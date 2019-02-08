@@ -25,7 +25,7 @@ describe('SortableList', () => {
     containerId: 'sortable-list',
     groupName: 'group',
     items: [{ id: '1', text: 'item 1' }, { id: '2', text: 'item 2' }],
-    renderItem: ({ item }) => <div>{item.text}</div>,
+    renderItem: ({ item }) => <div data-hook={item.id}>{item.text}</div>,
   };
 
   const configureWrapper = props => {
@@ -336,6 +336,16 @@ describe('SortableList', () => {
 
     driver.beginDrag('1');
     expect(props.onDragStart).not.toBeCalled();
+  });
+
+  it('should contain prop to set custom  class (`isDragging`) while dragging', () => {
+    const renderItem = ({item, smthDragging}) => <div className={smthDragging ? 'isDragging' : null} data-hook={item.id}>{item.text}</div>;
+    const wrapper = configureWrapper({renderItem});
+    const driver = createDriver(wrapper);
+    driver.beginDrag('1');
+    expect(driver.getItem(1).classList.contains('isDragging')).toBeTruthy();
+    driver.endDrag();
+    expect(driver.getItem(1).classList.contains('isDragging')).toBeFalsy();
   });
 
   describe('with delay prop', () => {

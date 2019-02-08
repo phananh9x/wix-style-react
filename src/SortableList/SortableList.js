@@ -226,12 +226,15 @@ export default class SortableList extends WixComponent {
     );
   }
 
-  renderItem = (args) => {
-    const dropped =  this.context.dragDropManager.monitor.didDrop();
+  renderItem = args => {
+    const dropped = this.context.dragDropManager.monitor.didDrop();
     const dragging = this.context.dragDropManager.monitor.isDragging();
 
-    return this.props.renderItem({...args, smthDragging: dragging && !dropped})
-  }
+    return this.props.renderItem({
+      ...args,
+      smthDragging: dragging && !dropped,
+    });
+  };
 
   render() {
     const {
@@ -347,4 +350,3 @@ SortableList.propTypes = {
   */
   listOfPropsThatAffectItems: PropTypes.array,
 };
-
