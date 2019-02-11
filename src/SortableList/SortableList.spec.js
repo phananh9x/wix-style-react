@@ -339,13 +339,14 @@ describe('SortableList', () => {
   });
 
   it('should contain prop to set custom  class (`isDragging`) while dragging', () => {
-    const renderItem = ({item, smthDragging}) => <div className={smthDragging ? 'isDragging' : null} data-hook={item.id}>{item.text}</div>;
+    const renderItem = ({item, isListInDragState}) => <div className={isListInDragState ? 'isDragging' : null} data-hook={item.id}>{item.text}</div>;
     const wrapper = configureWrapper({renderItem});
     const driver = createDriver(wrapper);
+    const elem = ReactDOM.findDOMNode(wrapper);
     driver.beginDrag('1');
-    expect(driver.getElement().querySelector('[data-hook="1"]').classList.contains('isDragging')).toBeTruthy();
+    expect(elem.querySelector('[data-hook="1"]').classList.contains('isDragging')).toBeTruthy();
     driver.endDrag();
-    expect(driver.getElement().querySelector('[data-hook="1"]').classList.contains('isDragging')).toBeFalsy();
+    expect(elem.querySelector('[data-hook="1"]').classList.contains('isDragging')).toBeFalsy();
   });
 
   describe('with delay prop', () => {

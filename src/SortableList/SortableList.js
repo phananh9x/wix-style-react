@@ -232,7 +232,7 @@ export default class SortableList extends WixComponent {
 
     return this.props.renderItem({
       ...args,
-      smthDragging: dragging && !dropped,
+      isListInDragState: dragging && !dropped,
     });
   };
 
