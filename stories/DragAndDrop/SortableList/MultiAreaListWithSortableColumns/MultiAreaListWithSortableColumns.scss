@@ -33,7 +33,7 @@
   padding: 21px 24px;
   margin-bottom: 12px;
 
-  &:hover:not(.isDragging) {
+  &:hover:not(.isListInDragState) {
     background: red;
   }
 }

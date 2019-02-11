@@ -74,7 +74,7 @@ export default class MultiAreaListWithSortableColumns extends React.Component {
           defaultDndStyles.itemPreview,
           styles.itemPreview,
         )]: isPreview,
-        [styles.isDragging]: isListInDragState,
+        [styles.isListInDragState]: isListInDragState,
       },
       classNames(defaultDndStyles.item, styles.item),
     );
