@@ -343,9 +343,9 @@ describe('SortableList', () => {
     const wrapper = configureWrapper({renderItem});
     const driver = createDriver(wrapper);
     driver.beginDrag('1');
-    expect(driver.getItem(1).classList.contains('isDragging')).toBeTruthy();
+    expect(driver.getElement().querySelector('[data-hook="1"]').classList.contains('isDragging')).toBeTruthy();
     driver.endDrag();
-    expect(driver.getItem(1).classList.contains('isDragging')).toBeFalsy();
+    expect(driver.getElement().querySelector('[data-hook="1"]').classList.contains('isDragging')).toBeFalsy();
   });
 
   describe('with delay prop', () => {
