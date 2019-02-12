@@ -227,8 +227,8 @@ export default class SortableList extends WixComponent {
   }
 
   renderItem = args => {
-    const dropped = this.context.dragDropManager.monitor.didDrop();
-    const dragging = this.context.dragDropManager.monitor.isDragging();
+    const dropped = this.context.dragDropManager ? this.context.dragDropManager.monitor.didDrop() : true;
+    const dragging = this.context.dragDropManager ? this.context.dragDropManager.monitor.isDragging() : false;
 
     return this.props.renderItem({
       ...args,
