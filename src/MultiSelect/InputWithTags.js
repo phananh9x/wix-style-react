@@ -7,6 +7,7 @@ import styles from './InputWithTags.scss';
 import classNames from 'classnames';
 import isUndefined from 'lodash/isUndefined';
 import SortableList from '../SortableList/SortableList';
+import DragDropContextProvider from '../DragDropContextProvider';
 import defaultDndStyles from '../dnd-styles';
 
 class InputWithTags extends React.Component {
@@ -106,12 +107,14 @@ class InputWithTags extends React.Component {
         data-hook={this.props.dataHook}
       >
         {onReorder ? (
-          <SortableList
-            contentClassName={styles.tagsContainer}
-            items={tags}
-            onDrop={onReorder}
-            renderItem={this.renderReorderableTag}
-          />
+          <DragDropContextProvider>
+            <SortableList
+              contentClassName={styles.tagsContainer}
+              items={tags}
+              onDrop={onReorder}
+              renderItem={this.renderReorderableTag}
+            />
+          </DragDropContextProvider>
         ) : (
           tags.map(({ label, ...rest }) => (
             <Tag
