@@ -7,7 +7,6 @@ import styles from './InputWithTags.scss';
 import classNames from 'classnames';
 import isUndefined from 'lodash/isUndefined';
 import SortableList from '../SortableList/SortableList';
-import DragDropContextProvider from '../DragDropContextProvider';
 import defaultDndStyles from '../dnd-styles';
 
 class InputWithTags extends React.Component {
