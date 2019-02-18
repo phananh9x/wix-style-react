@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import { Draggable } from '../DragAndDrop/Draggable';
 import Container from '../DragAndDrop/Draggable/components/Container';
-import DragDropContextProvider from '../DragDropContextProvider';
 
 import times from '../utils/operators/times';
+import withDNDContext from './withDNDContext';
 
 /**
  * Attaches Drag and Drop behavior to a list of items
  */
-export default class SortableList extends WixComponent {
+class SortableList extends WixComponent {
   static defaultProps = {
     animationDuration: 0,
     animationTiming: '',
@@ -260,41 +260,38 @@ export default class SortableList extends WixComponent {
     }
 
     return (
-      <DragDropContextProvider>
-        <Container
-          className={className}
-          total={this.state.items.length}
-          {...common}
-        >
-          <div className={contentClassName}>
-            {this.state.items.map((item, index) => (
-              <Draggable
-                listOfPropsThatAffectItems={this.props.listOfPropsThatAffectItems}
-                key={`${item.id}-${containerId}`}
-                shift={this.state.animationShifts[index]}
-                hasDragged={
-                  !!this.state.draggedId && this.state.draggedId !== item.id
-                }
-                setWrapperNode={this.setWrapperNode}
-                animationDuration={animationDuration}
-                animationTiming={animationTiming}
-                {...common}
-                id={item.id}
-                index={index}
-                item={item}
-                renderItem={this.renderItem}
-                withHandle={withHandle}
-                usePortal={usePortal}
-                onDrop={this.handleDrop}
-                onDragStart={this.handleDragStart}
-                onDragEnd={this.handleDragEnd}
-                canDrag={this.props.canDrag}
-                delay={this.props.delay}
-              />
-            ))}
-          </div>
-        </Container>
-      </DragDropContextProvider>
+      <Container
+        className={className}
+        total={this.state.items.length}
+        {...common}
+      >
+        <div className={contentClassName}>
+          {this.state.items.map((item, index) => (
+            <Draggable
+              key={`${item.id}-${containerId}`}
+              shift={this.state.animationShifts[index]}
+              hasDragged={
+                !!this.state.draggedId && this.state.draggedId !== item.id
+              }
+              setWrapperNode={this.setWrapperNode}
+              animationDuration={animationDuration}
+              animationTiming={animationTiming}
+              {...common}
+              id={item.id}
+              index={index}
+              item={item}
+              renderItem={this.renderItem}
+              withHandle={withHandle}
+              usePortal={usePortal}
+              onDrop={this.handleDrop}
+              onDragStart={this.handleDragStart}
+              onDragEnd={this.handleDragEnd}
+              canDrag={this.props.canDrag}
+              delay={this.props.delay}
+            />
+          ))}
+        </div>
+      </Container>
     );
   }
 }
@@ -350,3 +347,5 @@ SortableList.propTypes = {
   */
   listOfPropsThatAffectItems: PropTypes.array,
 };
+
+export default withDNDContext(SortableList);

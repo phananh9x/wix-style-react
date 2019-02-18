@@ -107,14 +107,12 @@ class InputWithTags extends React.Component {
         data-hook={this.props.dataHook}
       >
         {onReorder ? (
-          <DragDropContextProvider>
-            <SortableList
-              contentClassName={styles.tagsContainer}
-              items={tags}
-              onDrop={onReorder}
-              renderItem={this.renderReorderableTag}
-            />
-          </DragDropContextProvider>
+          <SortableList
+            contentClassName={styles.tagsContainer}
+            items={tags}
+            onDrop={onReorder}
+            renderItem={this.renderReorderableTag}
+          />
         ) : (
           tags.map(({ label, ...rest }) => (
             <Tag
