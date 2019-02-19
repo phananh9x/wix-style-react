@@ -121,13 +121,13 @@ import { accordionDriverFactory } from '../src/Accordion/Accordion.driver';
 
 export const accordionTestkitFactory = puppeteerUniTestkitFactoryCreator(
   accordionDriverFactory,
+);
 
 import { richTextInputAreaDriverFactory } from '../src/RichTextInputArea/RichTextInputArea.driver';
 
 export const richTextInputAreaTestkitFactory = puppeteerUniTestkitFactoryCreator(
   richTextInputAreaDriverFactory,
 );
-
 
 import { floatingNotificationDriverFactory } from '../src/FloatingNotification/FloatingNotification.driver';
 
