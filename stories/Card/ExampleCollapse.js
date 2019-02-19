@@ -85,7 +85,7 @@ export default class extends React.Component {
 
 function field() {
   return (
-    <FormField label="Text Field">
+    <FormField label="Text Input">
       <Input placeholder="You can type here" />
     </FormField>
   );

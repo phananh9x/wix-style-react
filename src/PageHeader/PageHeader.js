@@ -10,18 +10,6 @@ import Heading from '../Heading';
 import { Animator } from 'wix-animations';
 import Button from '../Deprecated/Button';
 
-const animateComponent = (show, useEnterDelay, content) => {
-  return useEnterDelay ? (
-    <Animator show={show} opacity timing="medium" delay={{ enter: 100 }}>
-      {content}
-    </Animator>
-  ) : (
-    <Animator show={show} opacity timing="medium">
-      {content}
-    </Animator>
-  );
-};
-
 const isDarkTheme = (hasBackgroundImage, minimized) =>
   !minimized && hasBackgroundImage;
 
@@ -99,6 +87,24 @@ export default class PageHeader extends WixComponent {
     }
   }
 
+  _animateComponent = (show, useEnterDelay, content) => {
+    const { upgrade } = this.props;
+
+    if (upgrade && show) {
+      return content;
+    }
+
+    return useEnterDelay ? (
+      <Animator show={show} opacity timing="medium" delay={{ enter: 100 }}>
+        {content}
+      </Animator>
+    ) : (
+      <Animator show={show} opacity timing="medium">
+        {content}
+      </Animator>
+    );
+  };
+
   render() {
     const {
       breadcrumbs,
@@ -110,15 +116,18 @@ export default class PageHeader extends WixComponent {
       showBackButton,
       hasBackgroundImage,
       className,
+      upgrade,
     } = this.props;
+
     const breadcrumbsExists = !!breadcrumbs;
     const { themedBreadcrumbs } = this.state;
+    const _title = getTitle(title, minimized);
 
     return (
       <div className={classNames(s.headerContainer, className)}>
         <div className={s.header}>
           <div>
-            {animateComponent(
+            {this._animateComponent(
               breadcrumbsExists || minimized,
               !breadcrumbsExists,
               <div
@@ -139,7 +148,7 @@ export default class PageHeader extends WixComponent {
           >
             {showBackButton &&
               onBackClicked &&
-              animateComponent(
+              this._animateComponent(
                 !minimized,
                 !breadcrumbsExists,
                 <div
@@ -159,7 +168,7 @@ export default class PageHeader extends WixComponent {
               )}
             <div className={s.titleColumn}>
               {title &&
-                animateComponent(
+                this._animateComponent(
                   !minimized,
                   !breadcrumbsExists,
                   <div
@@ -168,13 +177,16 @@ export default class PageHeader extends WixComponent {
                     })}
                     data-hook="page-header-title"
                   >
-                    <Heading light={isDarkTheme(hasBackgroundImage, minimized)}>
-                      {getTitle(title, minimized)}
+                    <Heading
+                      ellipsis={typeof _title === 'string'}
+                      light={isDarkTheme(hasBackgroundImage, minimized)}
+                    >
+                      {_title}
                     </Heading>
                   </div>,
                 )}
               {subtitle &&
-                animateComponent(
+                this._animateComponent(
                   !minimized,
                   !breadcrumbsExists,
                   <div
@@ -182,6 +194,7 @@ export default class PageHeader extends WixComponent {
                     data-hook="page-header-subtitle"
                   >
                     <Text
+                      ellipsis={typeof subtitle === 'string'}
                       light={isDarkTheme(hasBackgroundImage, minimized)}
                       secondary={!isDarkTheme(hasBackgroundImage, minimized)}
                     >
@@ -197,6 +210,7 @@ export default class PageHeader extends WixComponent {
             className={classNames(s.actionsBar, {
               [s.minimized]: minimized,
               [s.withBreadcrumbs]: breadcrumbsExists,
+              [s.animationEnabled]: !upgrade,
             })}
             data-hook="page-header-actionbar"
           >
@@ -229,8 +243,12 @@ PageHeader.propTypes = {
   onBackClicked: PropTypes.func,
   /** A placeholder for a component that can contain actions / anything else. It should be a React component that receives `minimized` and `hasBackgroundImage` props. */
   actionsBar: PropTypes.node,
+
+  /** @hidden internal for new Page*/
+  upgrade: PropTypes.bool,
 };
 
 PageHeader.defaultProps = {
   minimized: false,
+  upgrade: false,
 };

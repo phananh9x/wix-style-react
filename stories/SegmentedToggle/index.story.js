@@ -2,19 +2,21 @@ import React from 'react';
 import { storySettings } from './storySettings';
 import {
   tab,
-  liveCode,
+  code,
   testkit,
   description,
   importExample,
+  api,
 } from 'wix-storybook-utils/Sections';
+import { getParsedSource } from '../autodocsRegistry';
 
 import SegmentedToggle from '../../src/SegmentedToggle';
 import LockLocked from 'wix-style-react/new-icons/LockLocked';
 import LockUnlocked from 'wix-style-react/new-icons/LockUnlocked';
 import { Layout, Cell } from 'wix-style-react/Layout';
 
-import apiDocs from '!raw-loader!./API.md';
-
+import ToggleButton from '../../src/SegmentedToggle/ToggleButton/ToggleButton';
+import ToggleIcon from '../../src/SegmentedToggle/ToggleIcon/ToggleIcon';
 import * as examples from './examples';
 
 export default {
@@ -62,7 +64,7 @@ export default {
           text: `Icon accompanied by text make information easier to find and scan.`,
         }),
 
-        liveCode({
+        code({
           source: examples.textAndIcon,
           components: { SegmentedToggle, LockLocked, Layout, Cell },
         }),
@@ -75,7 +77,7 @@ export default {
           text: `Simple usecase where prefix icon is not an option.`,
         }),
 
-        liveCode({
+        code({
           source: examples.text,
           components: { SegmentedToggle, LockLocked, Layout, Cell },
         }),
@@ -88,7 +90,7 @@ export default {
           text: `Icon only option is mostly used in narrow places. This option provides additional tooltip on hover in order to inform users on icons meaning.`,
         }),
 
-        liveCode({
+        code({
           source: examples.icon,
           components: {
             SegmentedToggle,
@@ -103,9 +105,9 @@ export default {
     tab({
       title: 'API',
       sections: [
-        description({
-          text: apiDocs,
-        }),
+        api(),
+        api({ parsedSource: getParsedSource(ToggleButton) }),
+        api({ parsedSource: getParsedSource(ToggleIcon) }),
       ],
     }),
 

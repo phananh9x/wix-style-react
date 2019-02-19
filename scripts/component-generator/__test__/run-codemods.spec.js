@@ -37,3 +37,10 @@ defineTest(
   options,
   'testkit-puppeteer',
 );
+
+defineTest(
+  __dirname,
+  'src/transforms/testkit-definitions',
+  options,
+  'testkit-definitions',
+);

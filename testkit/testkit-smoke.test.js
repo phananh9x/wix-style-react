@@ -11,7 +11,7 @@ import { isTestkitExists, isUniTestkitExists } from 'wix-ui-test-utils/vanilla';
 import AllComponents from './all-components';
 
 import COMPONENT_DEFINITIONS from './component-definitions.js';
-import TESTKIT_DEFINITIONS from '../scripts/generate-testkit-exports/testkit-definitions';
+import TESTKIT_DEFINITIONS from './testkit-definitions';
 
 import * as reactTestUtilsTestkitFactories from './index';
 import * as enzymeTestkitFactories from './enzyme';

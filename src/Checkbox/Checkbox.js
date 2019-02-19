@@ -9,6 +9,7 @@ import WixComponent from '../BaseComponents/WixComponent';
 import { withFocusable, focusableStates } from '../common/Focusable';
 
 import { generateID } from '../utils/generateId';
+import Tooltip from '../Tooltip';
 
 /** a simple WixStyle checkbox */
 class Checkbox extends WixComponent {
@@ -28,6 +29,7 @@ class Checkbox extends WixComponent {
     hasError: bool,
     id: string,
     indeterminate: bool,
+    errorMessage: string,
 
     /** used for automatic testing */
     hover: bool,
@@ -53,6 +55,7 @@ class Checkbox extends WixComponent {
       indeterminate,
       disabled,
       hasError,
+      errorMessage,
       hover,
       size,
       onChange,
@@ -86,6 +89,7 @@ class Checkbox extends WixComponent {
         tabIndex={disabled ? null : 0}
       >
         <input
+          data-hook="checkbox-input"
           type="checkbox"
           id={id}
           checked={checked}
@@ -95,14 +99,28 @@ class Checkbox extends WixComponent {
         />
 
         <Label for={id} dataHook="checkbox-label">
-          <div
-            data-hook="checkbox-box"
-            className={classNames(styles.checkbox, styles[size])}
+          <Tooltip
+            dataHook="checkbox-box"
+            disabled={disabled || !hasError || !errorMessage}
+            placement={'top'}
+            alignment="center"
+            content={errorMessage || ' '}
+            overlay=""
+            theme="dark"
+            maxWidth="230px"
+            hideDelay={150}
+            zIndex={10000}
           >
-            <div className={styles.inner} onClick={e => e.stopPropagation()}>
-              {indeterminate ? <CheckboxIndeterminate /> : <CheckboxChecked />}
+            <div className={classNames(styles.checkbox, styles[size])}>
+              <div className={styles.inner} onClick={e => e.stopPropagation()}>
+                {indeterminate ? (
+                  <CheckboxIndeterminate />
+                ) : (
+                  <CheckboxChecked />
+                )}
+              </div>
             </div>
-          </div>
+          </Tooltip>
 
           {children && (
             <div className={styles.children} data-hook="checkbox-children">

@@ -14,16 +14,22 @@
 }
 
 .saturation {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   background-image: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
   @include sticky;
 }
 
 .brightness {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #000);
   @include sticky;
 }
 
 .hue {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   background-color: red;
   @include sticky;
 }

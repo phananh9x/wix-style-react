@@ -1,0 +1,13 @@
+{
+  "title": "Wix Style React Example Application For E2E Tests",
+  "debug": true,
+  "experiments": {
+
+  },
+  "locale": "en",
+  "basename": "/",
+  "clientTopology": {
+    "staticsDomain": "static.parastorage.com",
+    "staticsBaseUrl": "//localhost:3200/"
+  }
+}

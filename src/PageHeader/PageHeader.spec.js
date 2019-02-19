@@ -1,8 +1,8 @@
 import React from 'react';
 import PageHeader from './PageHeader';
 import pageHeaderDriverFactory from './PageHeader.driver';
-import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import Button from '../Deprecated/Button';
+import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
+import Button from '../Button';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import PropTypes from 'prop-types';
 
@@ -16,13 +16,24 @@ const generateBreadcrumbs = title => (
   />
 );
 
+const ActionBar = props => props.children;
+
 describe('PageHeader', () => {
   const title = 'This is a title';
   const subtitle = 'This is a subtitle';
   const breadcrumbs = generateBreadcrumbs(title);
-  const actionsBar = <Button>Action</Button>;
+  const actionsBar = (
+    <ActionBar>
+      <Button>Action</Button>
+    </ActionBar>
+  );
   const onBackClicked = () => {};
-  const createDriver = createDriverFactory(pageHeaderDriverFactory);
+  const render = createRendererWithDriver(pageHeaderDriverFactory);
+  const createDriver = jsx => render(jsx).driver;
+
+  afterEach(() => {
+    cleanup();
+  });
 
   it('should initialize component with title', () => {
     const pageHeader = <PageHeader title={title} />;

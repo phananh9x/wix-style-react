@@ -24,7 +24,6 @@ const suffixRules = {
   clearButton: ({ isClearButtonVisible }) => isClearButtonVisible,
   menuArrow: ({ menuArrow, isClearButtonVisible, magnifyingGlass }) =>
     menuArrow && !isClearButtonVisible && !magnifyingGlass,
-  unitSeparator: ({ unit }) => !!unit,
   unit: ({ unit }) => !!unit,
   customSuffix: ({ suffix }) => !!suffix,
 };
@@ -72,6 +71,7 @@ const InputSuffix = ({
     {
       component: () => (
         <InputLoaderSuffix
+          theme={theme}
           tooltipMessage={statusMessage}
           tooltipPlacement={tooltipPlacement}
           onTooltipShow={onTooltipShow}
@@ -118,10 +118,6 @@ const InputSuffix = ({
         </div>
       ),
       isVisible: suffixRules.clearButton({ isClearButtonVisible }),
-    },
-    {
-      component: () => <div className={styles.unitSeparator} />,
-      isVisible: suffixRules.unitSeparator({ unit }),
     },
     {
       component: () => (

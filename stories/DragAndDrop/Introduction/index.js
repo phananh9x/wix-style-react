@@ -1,1 +1,3 @@
-export { default } from './Introduction';
+import { default as Introduction } from './Introduction';
+
+export { Introduction };

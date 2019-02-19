@@ -17,8 +17,8 @@ const options = [
   }),
   contactItemBuilder({
     id: 1,
-    title: 'Some Other Name',
-    subtitle: 'some other subtitle',
+    title: 'Some very very long long long Name',
+    subtitle: 'some very very long long long subtitle',
   }),
   contactItemBuilder({ id: 2, title: 'No subtitle item' }),
   contactItemBuilder({

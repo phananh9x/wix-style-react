@@ -7,6 +7,7 @@ import SearchIcon from 'wix-ui-icons-common/Search';
 import WixComponent from '../BaseComponents/WixComponent';
 import { StringUtils } from '../utils/StringUtils';
 import styles from './Search.scss';
+import Input from '../Input/Input';
 
 /**
  * Search component with suggestions based on input value listed in dropdown
@@ -140,9 +141,9 @@ export default class Search extends WixComponent {
           ref={r => (this.searchInput = r)}
           roundInput
           prefix={
-            <div className={styles.leftIcon}>
+            <Input.IconAffix>
               <SearchIcon />
-            </div>
+            </Input.IconAffix>
           }
           menuArrow={false}
           clearButton

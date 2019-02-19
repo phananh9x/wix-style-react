@@ -10,10 +10,11 @@ import PopoverMenuItem from '../PopoverMenuItem';
 import ChevronRight from '../new-icons/ChevronRight';
 
 /* eslint-disable react/prop-types */
-function renderPrimaryAction({ text, theme, onClick }) {
+function renderPrimaryAction({ text, theme, onClick, disabled }) {
   return (
     <Button
       theme={theme}
+      disabled={disabled}
       onClick={event => {
         onClick();
 
@@ -146,11 +147,13 @@ TableActionCell.propTypes = {
    * text , `theme` is the button theme (can be `whiteblue` or `fullblue`),
    * `onClick` is the callback function for the action, whose signature is
    * `onClick(rowData, rowNum)`.
+   * `disabled` is an optional prop for the primary action to be disabled
    */
   primaryAction: PropTypes.shape({
     text: PropTypes.string.isRequired,
     theme: PropTypes.oneOf(['whiteblue', 'fullblue']),
     onClick: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
   }),
 
   /**

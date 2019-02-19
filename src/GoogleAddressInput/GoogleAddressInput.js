@@ -11,6 +11,7 @@ import {
   trySetStreetNumberIfNotReceived,
 } from './google2address';
 import styles from './GoogleAddressInput.scss';
+import Search from '../new-icons/Search';
 
 export const GoogleAddressInputHandler = {
   geocode: 'geocode',
@@ -55,6 +56,7 @@ class GoogleAddressInput extends React.Component {
 
   render() {
     const { suggestions, value } = this.state;
+    const { magnifyingGlass } = this.props;
 
     const options = [
       ...suggestions.map(({ description, id }) => ({ id, value: description })),
@@ -69,6 +71,14 @@ class GoogleAddressInput extends React.Component {
           ]
         : []),
     ];
+
+    const suffix = magnifyingGlass ? (
+      <Input.IconAffix>
+        <Search data-hook="search-icon" />
+      </Input.IconAffix>
+    ) : (
+      undefined
+    );
 
     return (
       <div>
@@ -87,6 +97,7 @@ class GoogleAddressInput extends React.Component {
               ? GoogleAddressInput.getGoogleFooter()
               : null
           }
+          suffix={suffix}
           selectedHighlight={false}
         />
       </div>

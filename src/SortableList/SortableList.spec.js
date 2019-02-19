@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 
+import { enzymeTestkitFactoryCreator } from 'wix-ui-test-utils/enzyme';
+
 import TestBackend from '../DragDropContextProvider/TestBackend';
 import DragDropContextProvider from '../DragDropContextProvider';
 import Modal from '../Modal';
@@ -17,6 +19,31 @@ import privateSortableListDriver from './SortableList.driver.private';
 import SortableList from './SortableList';
 
 describe('SortableList', () => {
+  const defaultProps = {
+    contentClassName: 'cl',
+    dataHook: 'sortable-list',
+    containerId: 'sortable-list',
+    groupName: 'group',
+    items: [{ id: '1', text: 'item 1' }, { id: '2', text: 'item 2' }],
+    renderItem: ({ item }) => <div>{item.text}</div>,
+  };
+
+  const configureWrapper = props => {
+    const elemProps = { ...defaultProps, ...props };
+    return ReactTestUtils.renderIntoDocument(
+      <DragDropContextProvider backend={TestBackend}>
+        <SortableList {...elemProps} />
+      </DragDropContextProvider>,
+    );
+  };
+
+  const createDriver = wrapper => {
+    return privateSortableListDriver({
+      wrapper,
+      element: ReactDOM.findDOMNode(wrapper),
+    });
+  };
+
   it('should exists', () => {
     const dataHook = 'sortable-list';
     const items = [{ id: '1', text: 'item 1' }, { id: '2', text: 'item 2' }];
@@ -297,6 +324,82 @@ describe('SortableList', () => {
       removedIndex: 0,
     });
   });
+
+  it('should not call onDragStart if canDrag prop is false', () => {
+    const props = {
+      onDragStart: jest.fn(),
+      onDragEnd: jest.fn(),
+      canDrag: () => false,
+    };
+    const wrapper = configureWrapper(props);
+    const driver = createDriver(wrapper);
+
+    driver.beginDrag('1');
+    expect(props.onDragStart).not.toBeCalled();
+  });
+
+  describe('with delay prop', () => {
+    let privateDriver, onDragStart, onDragEnd;
+    const items = [{ id: '1', text: 'item 1' }, { id: '2', text: 'item 2' }];
+    const renderItem = ({ item }) => <div>{item.text}</div>; // eslint-disable-line react/prop-types
+
+    const configureWrapperWithDelay = delay => {
+      const wrapper = ReactTestUtils.renderIntoDocument(
+        <DragDropContextProvider backend={TestBackend}>
+          <SortableList
+            containerId="sortable-list"
+            groupName="group"
+            items={items}
+            renderItem={renderItem}
+            onDragStart={onDragStart}
+            onDragEnd={onDragEnd}
+            delay={delay}
+          />
+        </DragDropContextProvider>,
+      );
+
+      privateDriver = privateSortableListDriver({
+        wrapper,
+        element: ReactDOM.findDOMNode(wrapper),
+      });
+    };
+
+    beforeEach(() => {
+      onDragStart = jest.fn();
+      onDragEnd = jest.fn();
+    });
+
+    it('should not initiate drag immediately if delay specified', () => {
+      configureWrapperWithDelay(200);
+
+      ReactTestUtils.Simulate.mouseDown(privateDriver.getDelayWrapper());
+      privateDriver.beginDrag('1');
+      expect(onDragStart).not.toBeCalled();
+    });
+
+    it('should be able to drag after delay end', done => {
+      configureWrapperWithDelay(200);
+
+      ReactTestUtils.Simulate.mouseDown(privateDriver.getDelayWrapper());
+      privateDriver.beginDrag('1');
+
+      setTimeout(() => {
+        privateDriver.beginDrag('1');
+        privateDriver.endDrag();
+        expect(onDragStart).toBeCalled();
+        done();
+      }, 210);
+    });
+
+    it('should be able to drag if delay is 0', () => {
+      configureWrapperWithDelay(0);
+
+      ReactTestUtils.Simulate.mouseDown(privateDriver.getDelayWrapper());
+      privateDriver.beginDrag('1');
+      privateDriver.endDrag();
+      expect(onDragStart).toBeCalled();
+    });
+  });
 });
 
 describe('Enzyme: SortableList', () => {
@@ -572,5 +675,67 @@ describe('Enzyme: SortableList', () => {
       removedFromContainerId: 'sortable-list',
       removedIndex: 0,
     });
+  });
+
+  it('should call renderItem when props changed', () => {
+    const dataHook = 'sortable-list';
+    const items = [{ id: '1', text: 'item 1' }, { id: '2', text: 'item 2' }];
+    const onDrop = jest.fn();
+
+    class MyComponent extends React.Component {
+      state = {
+        isDragging: false
+      }
+      handleDragStart = () => this.setState({ isDragging: true })
+      handleDragEnd = () => this.setState({ isDragging: false })
+
+      renderItem = ({ item }) => (
+        <div key={item.id} data-hook={`item-${item.id}`} data-drag-value={this.state.isDragging}>
+          {item.text}
+        </div>
+      )
+
+      render() {
+        return (
+          <div>
+            <SortableList
+              contentClassName="cl"
+              dataHook={dataHook}
+              containerId="sortable-list-1"
+              groupName="group1"
+              items={items}
+              renderItem={this.renderItem}
+              onDrop={onDrop}
+              onDragStart={this.handleDragStart}
+              onDragEnd={this.handleDragEnd}
+              listOfPropsThatAffectItems={[this.state.isDragging]}
+            />
+          </div>
+        );
+      }
+    }
+
+    const wrapper = mount(
+      <DragDropContextProvider backend={TestBackend}>
+        <MyComponent />
+      </DragDropContextProvider>,
+    );
+
+    const driver = enzymeTestkitFactoryCreator(privateSortableListDriver)({ wrapper, dataHook });
+
+    driver.beginDrag('1');
+    expect(wrapper.find('[data-hook="item-1"]').getDOMNode().dataset.dragValue).toBe('true');
+    expect(wrapper.find('[data-hook="item-2"]').getDOMNode().dataset.dragValue).toBe('true');
+    driver.endDrag();
+    // here was bug, that state of item not updated
+    expect(wrapper.find('[data-hook="item-1"]').getDOMNode().dataset.dragValue).toBe('false');
+    expect(wrapper.find('[data-hook="item-2"]').getDOMNode().dataset.dragValue).toBe('false');
+
+    driver.reorder({ removedId: '1', addedId: '2' });
+    driver.reorder({ removedId: '2', addedId: '1' });
+    driver.reorder({ removedId: '1', addedId: '2' });
+
+    expect(wrapper.find('[data-hook="item-1"]').getDOMNode().dataset.dragValue).toBe('false');
+    expect(wrapper.find('[data-hook="item-2"]').getDOMNode().dataset.dragValue).toBe('false');
   });
 });

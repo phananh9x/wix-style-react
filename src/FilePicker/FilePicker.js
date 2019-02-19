@@ -37,6 +37,7 @@ class FilePicker extends WixComponent {
       supportedFormats,
       error,
       errorMessage,
+      name,
     } = this.props;
 
     return (
@@ -66,6 +67,7 @@ class FilePicker extends WixComponent {
           type="file"
           accept={supportedFormats}
           onChange={e => this.onChooseFile(e.target.files[0])}
+          name={name}
         />
       </div>
     );
@@ -110,6 +112,9 @@ FilePicker.propTypes = {
 
   /** id for the filePicker */
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /** Name for inner input */
+  name: PropTypes.string,
 };
 
 export default FilePicker;

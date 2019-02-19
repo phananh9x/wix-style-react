@@ -3,6 +3,8 @@ import { storiesOf } from '@storybook/react';
 import Markdown from 'wix-storybook-utils/Markdown';
 import TabbedView from 'wix-storybook-utils/TabbedView';
 import CodeExample from 'wix-storybook-utils/CodeExample';
+import LiveCodeExample from '../utils/Components/LiveCodeExample';
+import { Layout, Cell } from '../../src/Layout';
 
 import Readme from '../../src/AutoComplete/README.md';
 import ReadmeTestKit from '../../src/AutoComplete/README.TESTKIT.md';
@@ -15,10 +17,11 @@ import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 
 import ExampleComplex from './ExampleComplex';
 import ExampleComplexRaw from '!raw-loader!./ExampleComplex';
+import EmptyMessageExampleRaw from '!raw-loader!./EmptyMessageExample';
 
 storiesOf('4. Selection', module).add('4.1 + AutoComplete', () => (
   <TabbedView tabs={['API', 'TestKits']}>
-    <div>
+    <div style={{ marginBottom: '200px' }}>
       <Markdown source={Readme} />
 
       <h1>Usage examples</h1>
@@ -34,6 +37,16 @@ storiesOf('4. Selection', module).add('4.1 + AutoComplete', () => (
       <CodeExample title="Complex input" code={ExampleComplexRaw}>
         <ExampleComplex />
       </CodeExample>
+
+      <Layout>
+        <Cell span={4}>
+          <LiveCodeExample
+            title="Show empty message for no results"
+            compact
+            initialCode={EmptyMessageExampleRaw}
+          />
+        </Cell>
+      </Layout>
     </div>
 
     <Markdown source={ReadmeTestKit} />

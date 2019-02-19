@@ -32,6 +32,10 @@
   outline: none;
 }
 
+.root:hover {
+  box-shadow: 0 0 0 1px value(B20) inset;
+}
+
 .root:focus-visible::before {
   position: absolute;
   top: 0;
@@ -57,6 +61,7 @@
 
 .root:disabled {
   box-shadow: 0 0 0 1px value(D55) inset;
+  cursor: default;
 }
 
 .root:disabled .image {
@@ -76,6 +81,10 @@
   padding: 0;
   height: 100%;
   box-shadow: 0 0 0 1px value(B30);
+}
+
+.root:hasBackground:hover {
+  box-shadow: 0 0 0 1px value(B20);
 }
 
 .root:hasBackground:selected {

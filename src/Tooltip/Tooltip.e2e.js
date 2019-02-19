@@ -3,10 +3,13 @@ import { tooltipTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { getStoryUrl } from '../../test/utils/storybook-helpers';
 import { SHORT_CONTENT, LONG_CONTENT } from '../../stories/Tooltip/content';
+import { Category } from '../../stories/storiesHierarchy';
 
 describe('Tooltip', () => {
-  const tooltipStoryUrl = getStoryUrl('7. Tooltips', '7.1. Tooltip');
-  const popoverStoryUrl = getStoryUrl('7. Tooltips', '7.2. Popover');
+  const tooltipStoryUrl = getStoryUrl(
+    Category.TOOLTIP_AND_POPOVER,
+    '7.1. Tooltip',
+  );
 
   const dataHook = 'tooltip-e2e-wrapper';
   const tooltipDataHook = 'tooltip-e2e-tooltip';
@@ -79,23 +82,6 @@ describe('Tooltip', () => {
         driver.getTooltipContentElement(tooltipDataHook),
         'Cannot find Tooltip content',
       );
-    });
-  });
-
-  describe('Popover story', () => {
-    beforeEach(() => {
-      browser.get(popoverStoryUrl);
-    });
-
-    describe('Popover with EmptyState', () => {
-      eyes.it('should not break design', async () => {
-        const driver = tooltipTestkitFactory({
-          dataHook: 'popover-empty-state',
-        });
-
-        await waitForVisibilityOf(driver.element());
-        driver.clickButton();
-      });
     });
   });
 });

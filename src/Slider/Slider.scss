@@ -5,37 +5,37 @@
 }
 
 :global(.wix-slider) {
-    $height: 6px;
-    $borderRadius: 10px;
+  $height: 6px;
+  $borderRadius: 10px;
 
-    :global(.rc-slider-rail) {
-        background-color: $B40;
-        border-radius: 5px;
-        height: $height;
-        border-radius: $borderRadius;
-    }
+  :global(.rc-slider-rail) {
+    background-color: $B40;
+    border-radius: 5px;
+    height: $height;
+    border-radius: $borderRadius;
+  }
 
-    :global(.rc-slider-track) {
-        background-color: $B10;
-        height: $height;
-        border-radius: $borderRadius;
-    }
+  :global(.rc-slider-track) {
+    background-color: $B10;
+    height: $height;
+    border-radius: $borderRadius;
+  }
 
-    :global(.rc-slider-dot) {
-        display: none;
-    }
+  :global(.rc-slider-dot) {
+    display: none;
+  }
 
-    :global(.mark-line) {
-        position: relative;
-        margin: auto;
-        top: 6px;
-        width: 1px;
-        height: 7px;
-        background-color: $D50;
-    }
+  :global(.mark-line) {
+    position: relative;
+    margin: auto;
+    top: 6px;
+    width: 1px;
+    height: 7px;
+    background-color: $D50;
+  }
 
-    :global(.mark-value) {
-        position: relative;
-        margin-top: 14px;
-    }
+  :global(.mark-value) {
+    position: relative;
+    margin-top: 14px;
+  }
 }

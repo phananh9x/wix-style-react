@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const simpleGit = require('simple-git');
 
-const getProjectRoot = () => path.join(__dirname, '../../../');
+const getProjectRoot = () => path.join(__dirname, '..', '..', '..');
 
 const isProjectRoot = dir =>
   path.resolve(dir) === path.resolve(getProjectRoot());

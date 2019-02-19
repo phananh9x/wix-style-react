@@ -10,12 +10,15 @@ import SortableListReadme from '../../src/SortableList/README.md';
 import SortableListReadmeAPI from '../../src/SortableList/API.md';
 import {
   SingleAreaList,
+  SingleAreaListWithAnimation,
+  ListWithDelay,
   MultiAreaList,
   MultiAreaListWithSortableColumns,
+  MultiAreaListWithSortableColumnsWithAnimations,
   Styles as SortableListStyles,
 } from './SortableList';
 
-import Introduction from './Introduction';
+import { Introduction } from './Introduction';
 import Styles from './Styles';
 import DragDropContextProvider from './DragDropContextProvider';
 
@@ -36,7 +39,14 @@ storiesOf('WIP/Drag And Drop/SortableList', module)
   ))
   .add('Styles', () => <SortableListStyles />)
   .add('Single Area List', () => <SingleAreaList />)
+  .add('Single Area List with animations', () => (
+    <SingleAreaListWithAnimation />
+  ))
+  .add('List With Delay', () => <ListWithDelay />)
   .add('Multi Area List', () => <MultiAreaList />)
   .add('Multi Area List with sortable columns', () => (
     <MultiAreaListWithSortableColumns />
+  ))
+  .add('Multi Area List with sortable columns with animations', () => (
+    <MultiAreaListWithSortableColumnsWithAnimations />
   ));

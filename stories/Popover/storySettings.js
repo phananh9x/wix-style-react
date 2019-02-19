@@ -1,9 +1,9 @@
 import { Category } from '../storiesHierarchy';
 
 export const storySettings = {
-  kind: Category.COMPONENTS,
-  category: Category.COMPONENTS,
-  storyName: 'Popover',
+  kind: Category.TOOLTIP_AND_POPOVER,
+  category: Category.TOOLTIP_AND_POPOVER,
+  storyName: '7.2 Popover',
   dataHook: 'storybook-popover',
 };
 

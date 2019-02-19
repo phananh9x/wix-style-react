@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-/* eslint-disable no-console */
-const chalk = require('chalk');
 const { generateComponent, utils, logger } = require('../src');
 
 const cwd = process.cwd();
@@ -35,11 +33,14 @@ const run = async () => {
 
     logger.divider();
     logger.info(
-      `You can regenarte the test component by running:
+      `You can regenerate the test component by running:
 
       $ npm run generate`,
     );
 
+    logger.divider();
+
+    /* eslint-disable-next-line no-console */
     console.log(
       `##teamcity[buildStatus text='{build.status.text}; generated test component may be outdated']`,
     );

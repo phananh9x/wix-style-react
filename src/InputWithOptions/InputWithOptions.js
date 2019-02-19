@@ -77,7 +77,11 @@ class InputWithOptions extends WixComponent {
     const inputAdditionalProps = this.inputAdditionalProps();
     const inputProps = Object.assign(
       omit(
-        Object.keys(DropdownLayout.propTypes).concat(['onChange', 'dataHook']),
+        Object.keys(DropdownLayout.propTypes).concat([
+          'onChange',
+          'dataHook',
+          'magnifyingGlass',
+        ]),
         this.props,
       ),
       inputAdditionalProps,
@@ -85,7 +89,7 @@ class InputWithOptions extends WixComponent {
 
     const { inputElement } = inputProps;
     return React.cloneElement(inputElement, {
-      menuArrow: true,
+      menuArrow: !this.props.magnifyingGlass,
       ref: input => (this.input = input),
       ...inputProps,
       onKeyDown: chainEventHandlers(
@@ -368,6 +372,7 @@ InputWithOptions.defaultProps = {
   dropdownWidth: null,
   dropdownOffsetLeft: '0',
   showOptionsIfEmptyInput: true,
+  magnifyingGlass: false,
   autocomplete: 'off',
 };
 

@@ -1,0 +1,33 @@
+@import '../../common.scss';
+
+.custom {
+    @include FontRoman();
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $D40;
+    padding: 0 6px;
+    &.inSuffix {
+        &.small {
+            padding-left: 0;
+        }
+    }
+    &.inPrefix {
+        &.small {
+            padding-right: 0;
+        }
+    }
+}
+
+@include withRTL() {
+    &.inSuffix {
+        &.small {
+            padding-right: 0;
+        }
+    }
+    &.inPrefix {
+        &.small {
+            padding-left: 0;
+        }
+    }
+}

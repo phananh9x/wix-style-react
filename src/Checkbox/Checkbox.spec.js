@@ -66,6 +66,33 @@ describe('Checkbox', () => {
     expect(driver.isIndeterminate()).toBeTruthy();
   });
 
+  it('should show error message when in error state with message', async () => {
+    const errorMessage = 'Error message';
+    const driver = createDriver(
+      <Checkbox hasError errorMessage={errorMessage} />,
+    );
+    expect(await driver.getErrorMessage()).toEqual(errorMessage);
+  });
+
+  it('should not show error message when disabled', async () => {
+    const errorMessage = 'Error message';
+    const driver = createDriver(
+      <Checkbox hasError errorMessage={errorMessage} disabled />,
+    );
+    expect(driver.getErrorMessage()).rejects.toThrow(Error);
+  });
+
+  it('should not show error message when no error message stated', async () => {
+    const driver = createDriver(<Checkbox hasError />);
+    expect(driver.getErrorMessage()).rejects.toThrow(Error);
+  });
+
+  it('should not show error message when not in error state', async () => {
+    const errorMessage = 'Error message';
+    const driver = createDriver(<Checkbox errorMessage={errorMessage} />);
+    expect(driver.getErrorMessage()).rejects.toThrow(Error);
+  });
+
   it('should not warn with deprecation warning, if no size', () => {
     global.console.warn = jest.fn();
     createDriver(<Checkbox />);

@@ -4,14 +4,20 @@ import classNames from 'classnames';
 
 import Ticker from './Ticker';
 import Unit from './Unit';
+import IconAffix from './IconAffix';
+import Affix from './Affix';
 import Group from './Group';
 import InputSuffix, { getVisibleSuffixCount } from './InputSuffix';
+import deprecationLog from '../utils/deprecationLog';
 
 import styles from './Input.scss';
+import { InputContext } from './InputContext';
 
 class Input extends Component {
   static Ticker = Ticker;
   static Unit = Unit;
+  static IconAffix = IconAffix;
+  static Affix = Affix;
   static Group = Group;
 
   static StatusError = 'error';
@@ -20,6 +26,11 @@ class Input extends Component {
   state = {
     focus: false,
   };
+
+  constructor(props) {
+    super(props);
+    this.logDeprecations(props);
+  }
 
   componentDidMount() {
     const { autoFocus, value } = this.props;
@@ -39,6 +50,26 @@ class Input extends Component {
 
     this.isComposing = isComposing;
   };
+
+  logDeprecations(props) {
+    if (props.unit) {
+      deprecationLog(
+        `Input's unit prop is deprecated and will be removed in the next major release, please use suffix property with '<Input suffix={<Input.Affix>${
+          props.unit
+        }</Input.Affix>}/>' instead`,
+      );
+    }
+    if (props.magnifyingGlass) {
+      deprecationLog(
+        `Input's magnifyingGlass prop is deprecated and will be removed in the next major release, please use suffix property with '<Input suffix={<Input.Affix><Search /></Input.Affix>}/>' instead`,
+      );
+    }
+    if (props.help) {
+      deprecationLog(
+        `Input's help prop is deprecated and will be removed in the next major release, please '<FormField infoContent="content"><Input /></FormField>'  instead`,
+      );
+    }
+  }
 
   render(props = {}) {
     const {
@@ -165,20 +196,18 @@ class Input extends Component {
       />
     );
 
-    //needs additional wrapper with class .prefixSuffixWrapper to fix inputs with prefix in ie11
-    //https://github.com/wix/wix-style-react/issues/1693
-    //https://github.com/wix/wix-style-react/issues/1691
     return (
       <div className={styles.inputWrapper}>
         {prefix && (
-          <div className={styles.prefixSuffixWrapper}>
-            <div className={styles.prefix}>{prefix}</div>
+          <div className={styles.prefix}>
+            <InputContext.Provider value={{ ...this.props, inPrefix: true }}>
+              <span>{prefix}</span>
+            </InputContext.Provider>
           </div>
         )}
-
         {inputElement}
-        {visibleSuffixCount > 0 && (
-          <div className={styles.prefixSuffixWrapper}>
+        <InputContext.Provider value={{ ...this.props, inSuffix: true }}>
+          {visibleSuffixCount > 0 && (
             <InputSuffix
               status={suffixStatus}
               statusMessage={suffixStatusMessage}
@@ -197,8 +226,8 @@ class Input extends Component {
               tooltipPlacement={tooltipPlacement}
               onTooltipShow={onTooltipShow}
             />
-          </div>
-        )}
+          )}
+        </InputContext.Provider>
       </div>
     );
   }
@@ -409,9 +438,6 @@ Input.propTypes = {
   helpMessage: PropTypes.node,
   id: PropTypes.string,
 
-  /** Should the component include a magnifyingGlass */
-  magnifyingGlass: PropTypes.bool,
-
   /** Input max length */
   maxLength: PropTypes.number,
 
@@ -508,7 +534,6 @@ Input.propTypes = {
   /** Placement of the error and help tooltips (supported only for amaterial theme for now) */
   tooltipPlacement: PropTypes.string,
   type: PropTypes.string,
-  unit: PropTypes.string,
 
   /** Inputs value */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

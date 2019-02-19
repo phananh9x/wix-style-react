@@ -4,6 +4,7 @@ import { Simulate, renderIntoDocument } from 'react-dom/test-utils';
 import Ticker from '../Ticker';
 
 import styles from '../Ticker.scss';
+import { InputContext } from '../../InputContext';
 
 export const tickerDriverFactory = component => {
   const handlers = {
@@ -19,10 +20,12 @@ export const tickerDriverFactory = component => {
   return handlers;
 };
 
-export const componentFactory = (props = {}) =>
+export const componentFactory = (props = {}, context = {}) =>
   renderIntoDocument(
     <div>
-      <Ticker {...props} />
+      <InputContext.Provider value={context}>
+        <Ticker dataHook="ticker" {...props} />
+      </InputContext.Provider>
     </div>,
   ).childNodes[0];
 

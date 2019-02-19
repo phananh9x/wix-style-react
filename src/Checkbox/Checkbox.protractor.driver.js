@@ -30,10 +30,11 @@ const checkboxDriverFactory = element => {
   const publicDriver = {
     element: () => element,
     click: () => checkboxElement.click(),
-    getLabel: () => element.$(`label`),
-    getInput: () => element.$(`input`),
-    isChecked: () => element.$(`input`).isSelected(),
-    isDisabled: () => hasAttribute(element.$(`input`), 'disabled'),
+    getLabel: () => element.$('[data-hook="checkbox-label"]'),
+    getInput: () => element.$('[data-hook="checkbox-input"]'),
+    isChecked: () => element.$('[data-hook="checkbox-input"]').isSelected(),
+    isDisabled: () =>
+      hasAttribute(element.$('[data-hook="checkbox-input"]'), 'disabled'),
     hasError: () => hasClass(element, styles.hasError),
   };
 

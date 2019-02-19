@@ -33,6 +33,7 @@ const sectionHelperDriverFactory = ({ element }) => {
     isDanger: () => classExists(styles.danger),
     isSuccess: () => classExists(styles.success),
     isPremium: () => classExists(styles.premium),
+    isPreview: () => classExists(styles.preview),
   };
 };
 

@@ -26,6 +26,18 @@ describe('FilePicker', () => {
     });
   });
 
+  describe('name property', () => {
+    it('should not have name property by defaullt', () => {
+      const driver = createDriver(<FilePicker />);
+      expect(driver.getName()).toEqual('');
+    });
+
+    it('should have name', () => {
+      const driver = createDriver(<FilePicker name="filePickerName" />);
+      expect(driver.getName()).toEqual('filePickerName');
+    });
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       expect(isTestkitExists(<FilePicker />, filePickerTestkitFactory)).toBe(

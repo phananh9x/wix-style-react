@@ -1,5 +1,7 @@
+import { Category } from '../storiesHierarchy';
+
 export const storySettings = {
-  kind: '7. Tooltips',
+  kind: Category.TOOLTIP_AND_POPOVER,
   storyName: '7.3 Popover Menu',
   dataHook: 'story-popover-menu',
   itemDataHook: 'story-popover-menu-item',

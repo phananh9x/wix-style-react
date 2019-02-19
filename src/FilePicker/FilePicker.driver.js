@@ -21,6 +21,9 @@ const filePickerDriverFactory = ({ element }) => {
 
     /** returns FilePicker mainLabel text  */
     getMainLabel: () => mainLabel.textContent,
+
+    /** returns FilePicker input name  */
+    getName: () => input.name,
   };
 };
 

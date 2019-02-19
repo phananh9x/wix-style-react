@@ -145,6 +145,7 @@ const createOptionDriver = option => ({
   content: () => option.textContent,
   click: () => ReactTestUtils.Simulate.mouseDown(option),
   isDivider: () => isClassExists(option, 'divider'),
+  isDisabled: () => isClassExists(option, 'disabled'),
 });
 
 export default dropdownLayoutDriverFactory;

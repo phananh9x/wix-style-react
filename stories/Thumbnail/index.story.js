@@ -6,7 +6,7 @@ import {
   playground,
   api,
   testkit,
-  liveCode,
+  code,
 } from 'wix-storybook-utils/Sections';
 
 import Thumbnail from 'wix-style-react/Thumbnail';
@@ -91,7 +91,7 @@ export default {
             source: examples.listOfSmall,
           },
         ].map(({ source, title }) =>
-          liveCode({
+          code({
             source,
             title,
             components: { Thumbnail, Layout, Cell },

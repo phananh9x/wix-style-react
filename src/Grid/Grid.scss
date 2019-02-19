@@ -7,6 +7,8 @@
 @import 'bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities.scss';
 
 @import './GridConstants.scss';
+@import '../Page/Page.public.scss';
+
 $grid-row-margin-bottom: 30px;
 
 .rawContainer,
@@ -28,6 +30,13 @@ $grid-row-margin-bottom: 30px;
 .rawContainer {
   .row:last-child {
     margin-bottom: 0;
+  }
+}
+
+.rawContainer,
+.wixContainer {
+  &.stretchVertically {
+    @extend .pageStretchContentVertically;
   }
 }
 
@@ -54,6 +63,7 @@ $grid-row-margin-bottom: 30px;
 
 .stretch_vertically_row {
   display: flex;
+  min-height: inherit;
 }
 
 .stretch_vertically_row > [class*='col-'] {

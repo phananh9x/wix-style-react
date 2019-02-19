@@ -6,7 +6,7 @@ import {
   testkit,
   description,
   importExample,
-  liveCode,
+  code,
 } from 'wix-storybook-utils/Sections';
 import { Image, Hint, More } from 'wix-style-react/new-icons';
 
@@ -70,7 +70,7 @@ const childrenExamples = [
 ];
 
 const propExplanationLiveExample = source =>
-  liveCode({
+  code({
     compact: true,
     source,
     components: { Box, Button },
@@ -135,7 +135,7 @@ export default {
           title: 'Examples',
         }),
 
-        liveCode({
+        code({
           title: 'Event Item (multiple boxes)',
           compact: true,
           source: ExampleEventItem,

@@ -26,6 +26,9 @@ import TableEmptyStateExampleRaw from '!raw-loader!./TableEmptyStateExample';
 import { TableColumnAlignmentExample } from './TableColumnAlignmentExample';
 import TableColumnAlignmentExampleRaw from '!raw-loader!./TableColumnAlignmentExample';
 
+import { TableSelectionDisabledExample } from './TableSelectionDisabledExample';
+import TableSelectionDisabledExampleRaw from '!raw-loader!./TableSelectionDisabledExample';
+
 const data = [
   { firstName: 'Meghan', lastName: 'Bishop' },
   { firstName: 'Sara', lastName: 'Porter' },
@@ -126,6 +129,14 @@ export default {
             code={TableColumnAlignmentExampleRaw}
           >
             <TableColumnAlignmentExample />
+          </CodeExample>
+        </div>
+        <div className={s.example}>
+          <CodeExample
+            title="Table with selection disabled"
+            code={TableSelectionDisabledExampleRaw}
+          >
+            <TableSelectionDisabledExample />
           </CodeExample>
         </div>
       </div>

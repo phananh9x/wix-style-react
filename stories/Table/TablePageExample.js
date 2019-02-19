@@ -158,7 +158,8 @@ export class TablePageExample extends React.Component {
         <ItemGroup position="end">
           <Item layout="button">
             <Button
-              theme="whiteblueprimary"
+              skin="light"
+              priority="primary"
               prefixIcon={<Upload />}
               onClick={() =>
                 window.alert(`Exporting selectedIds=${props.getSelectedIds()}`)
@@ -169,7 +170,8 @@ export class TablePageExample extends React.Component {
           </Item>
           <Item layout="button">
             <Button
-              theme="whiteblueprimary"
+              skin="light"
+              priority="primary"
               prefixIcon={<Duplicate />}
               onClick={() =>
                 window.alert(
@@ -182,7 +184,8 @@ export class TablePageExample extends React.Component {
           </Item>
           <Item layout="button">
             <Button
-              theme="whiteblueprimary"
+              skin="light"
+              priority="primary"
               prefixIcon={<Edit />}
               onClick={() =>
                 window.alert(`Editing selectedIds=${props.getSelectedIds()}`)

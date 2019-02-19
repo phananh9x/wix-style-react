@@ -11,7 +11,6 @@ const style = {
 
 const defaultProps = {
   size: 'normal',
-  magnifyingGlass: true,
   placeholder: 'They did not know it was impossible, so they did it!',
   unit: '$',
 };

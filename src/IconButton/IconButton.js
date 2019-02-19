@@ -10,7 +10,7 @@ class IconButton extends Component {
   static propTypes = {
     /** Classes to be applied to the root element */
     className: string,
-    /** Used for passing any wix-style-react icon.For external icon make sure to follow ux sizing guidelines */
+    /** Used for passing any wix-style-react icon. For external icon make sure to follow ux sizing guidelines */
     children: node,
     /** Button skins */
     skin: oneOf(['standard', 'inverted', 'light']),

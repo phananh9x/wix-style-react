@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ButtonNext } from 'wix-ui-core/button-next';
 import cx from 'classnames';
 
-import { string, oneOf, bool, func } from 'prop-types';
+import { string, oneOf, bool, func, node } from 'prop-types';
 import Close from '../new-icons/system/Close';
 import CloseLarge from '../new-icons/system/CloseLarge';
 
@@ -14,6 +14,8 @@ class CloseButton extends Component {
   static propTypes = {
     /** additional css classes */
     className: string,
+    /** Used for passing any wix-style-react icon. For external icon make sure to follow ux sizing guidelines */
+    children: node,
     /** skins of closebutton */
     skin: oneOf(['standard', 'standardFilled', 'light', 'lightFilled', 'dark']),
     /** size of closebutton */
@@ -33,7 +35,7 @@ class CloseButton extends Component {
   };
 
   render() {
-    const { skin, size, className, dataHook, ...rest } = this.props;
+    const { skin, size, className, dataHook, children, ...rest } = this.props;
 
     const classNames = cx(className, closeButton(skin, size));
     const CloseIcon = <Close data-hook="close" />;
@@ -41,7 +43,12 @@ class CloseButton extends Component {
 
     return (
       <ButtonNext {...rest} data-hook={dataHook} className={classNames}>
-        {size === 'small' ? CloseIcon : CloseLargeIcon}
+        {children
+          ? React.cloneElement(children, { size: '18px' })
+          // fallback to Close icon if children not provided (current behavior)
+          : size === 'small'
+          ? CloseIcon
+          : CloseLargeIcon}
       </ButtonNext>
     );
   }

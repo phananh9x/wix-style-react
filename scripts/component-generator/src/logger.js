@@ -7,6 +7,5 @@ module.exports = {
   success: msg => console.log(`${chalk.green('✔')} ${msg}`),
   info: msg => console.log(`${chalk.blue('ℹ')} ${msg}`),
   divider: () => console.log(),
-
   spinner: text => ora(text).start(),
 };

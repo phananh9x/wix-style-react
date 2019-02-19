@@ -1,15 +1,27 @@
 import { isClassExists } from '../../test/utils';
 import { labelDriverFactory } from 'wix-ui-backoffice/dist/src/components/Label/Label.driver';
 import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
+import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
 
 const labelTestkitFactory = testkitFactoryCreator(labelDriverFactory);
+const toolTipTestkitFactory = testkitFactoryCreator(tooltipDriverFactory);
 
 const checkboxDriverFactory = ({ element, eventTrigger }) => {
   const input = () => element.querySelector('input');
   const checkbox = () => element.querySelector('.checkbox');
   const labelDriver = () =>
     labelTestkitFactory({ wrapper: element, dataHook: 'checkbox-label' });
+  const tooltipDriver = () =>
+    toolTipTestkitFactory({ wrapper: element, dataHook: 'checkbox-box' });
   const isChecked = elm => isClassExists(elm, 'checked');
+
+  const getErrorMessage = async () => {
+    try {
+      return await tooltipDriver().hoverAndGetContent();
+    } catch (e) {
+      throw new Error('Failed getting checkbox error message');
+    }
+  };
 
   return {
     exists: () => !!element,
@@ -32,6 +44,7 @@ const checkboxDriverFactory = ({ element, eventTrigger }) => {
     hasError: () => isClassExists(element, 'hasError'),
     getLabel: () => labelDriver().getLabelText(),
     getLabelDriver: () => labelDriver(),
+    getErrorMessage,
   };
 };
 

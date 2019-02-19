@@ -1,0 +1,38 @@
+@import 'wix-rich-content-common/dist/styles.min';
+@import 'wix-rich-content-editor/dist/styles.min';
+
+@import '../common';
+@import '../typography-helpers';
+
+$minWidth: 378px;
+$minHeight: 132px;
+$border: 1px solid $B30;
+$borderRadius: 6px;
+$padding: 12px;
+
+.root {
+  min-width: $minWidth;
+  background-color: $D80;
+  border: $border;
+  border-radius: $borderRadius;
+
+  :global(.public-DraftEditor-content) { 
+    min-height: $minHeight;
+    padding: $padding;
+    border-radius: $borderRadius;
+
+    @include Text($weight: thin, $size: medium);
+
+    &:hover {
+      background-color: $B50;
+      cursor: pointer;
+    }
+
+    &:focus {
+      background-color: $D80;
+      cursor: text;
+      border-color: $B10;
+      box-shadow: 0 0 0 3px $F00;
+    }
+  }
+}

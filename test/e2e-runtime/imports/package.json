@@ -1,0 +1,36 @@
+{
+  "name": "esmodules",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "private": true,
+  "author": {
+    "name": "Artem Yavorsky",
+    "email": "artemy@wix.com"
+  },
+  "scripts": {
+    "pretest": "yoshi build",
+    "test": "yoshi test --jest"
+  },
+  "yoshi": {
+    "entry": {
+      "es": "./es",
+      "es-named": "./es-named",
+      "cjs": "./cjs"
+    },
+    "externals": {
+      "react": "React",
+      "react-dom": "ReactDOM"
+    }
+  },
+  "jest": {
+    "preset": "jest-yoshi-preset"
+  },
+  "babel": {
+    "presets": [
+      "yoshi"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "yoshi"
+  }
+}

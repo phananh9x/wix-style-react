@@ -4,13 +4,13 @@ const tempy = require('tempy');
 const globby = require('globby');
 const utils = require('../src/utils');
 const logger = require('../src/logger');
-const copyTemplates = require('../src/copy-templates');
+const copyTemplates = require('../src/tasks/copy-templates');
 
 // Extracted from
 // https://github.com/wix/yoshi/blob/master/packages/create-yoshi-app/src/getFilesInDir.js
-const getDirSnapshot = absoulteDirPath => {
+const getDirSnapshot = absoluteDirPath => {
   const filesPaths = globby.sync(['**/*', '!node_modules'], {
-    cwd: absoulteDirPath,
+    cwd: absoluteDirPath,
     dot: true,
     gitignore: true,
   });
@@ -19,7 +19,7 @@ const getDirSnapshot = absoulteDirPath => {
 
   filesPaths.forEach(filePath => {
     const content = fs.readFileSync(
-      path.join(absoulteDirPath, filePath),
+      path.join(absoluteDirPath, filePath),
       'utf-8',
     );
 

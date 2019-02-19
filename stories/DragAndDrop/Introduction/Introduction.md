@@ -12,3 +12,4 @@ The most useful building block you should be aware of is the `<SortableList/>` c
 
 ### Example
 Here is a simple usage of the `<SortableList/>` component with basic styles (Give it a try)!
+

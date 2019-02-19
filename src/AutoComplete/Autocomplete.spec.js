@@ -52,6 +52,36 @@ describe('Autocomplete', () => {
     expect(dropdownLayoutDriver.optionsLength()).toBe(2);
   });
 
+  it('should not display dropdown layout in case all options are filtered', () => {
+    const { inputDriver, dropdownLayoutDriver } = createDriver(
+      <AutoComplete options={options} predicate={() => false} />,
+    );
+    inputDriver.click();
+    inputDriver.trigger('keyDown', { key: asciiA });
+    // expect(dropdownLayoutDriver.isShown()).toBeFalsy();
+    expect(dropdownLayoutDriver.optionsLength()).toBe(0);
+  });
+
+  it('should display empty state message in case all options are filtered', () => {
+    const emptyStateMessage = 'Empty state';
+    const { inputDriver, dropdownLayoutDriver } = createDriver(
+      <AutoComplete
+        options={options}
+        predicate={() => false}
+        emptyStateMessage={emptyStateMessage}
+      />,
+    );
+
+    inputDriver.click();
+    inputDriver.trigger('keyDown', { key: asciiA });
+
+    expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+    expect(dropdownLayoutDriver.optionsLength()).toBe(1);
+    const option = dropdownLayoutDriver.options()[0];
+    expect(option.content()).toBe(emptyStateMessage);
+    expect(option.isDisabled()).toBeTruthy();
+  });
+
   it('should show all items when focusing even if some text exist', () => {
     const { dropdownLayoutDriver, inputDriver } = createDriver(
       <AutoComplete options={options} predicate={predicate} />,

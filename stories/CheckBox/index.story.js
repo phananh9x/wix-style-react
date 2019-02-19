@@ -35,6 +35,8 @@ export default {
   componentProps: setState => ({
     children: labelExamples[0].value,
     onChange: ({ target: { checked } }) => setState({ checked }),
+    errorMessage: '',
+    hasError: false,
     dataHook: 'storybook-checkbox',
   }),
 

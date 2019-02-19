@@ -15,6 +15,7 @@ export const HELPER_APPEARANCE = {
   danger: styles.danger,
   success: styles.success,
   premium: styles.premium,
+  preview: styles.preview,
 };
 
 /**

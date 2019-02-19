@@ -24,6 +24,7 @@ const sortableListFactory = ({ element, wrapper }) => {
     : null;
   return {
     ...publicSortableListDriver({ element, wrapper }),
+    getDelayWrapper: () => element.querySelector('[data-hook="delay-wrapper"]'),
     beginDrag: itemId =>
       backend &&
       backend.simulateBeginDrag([

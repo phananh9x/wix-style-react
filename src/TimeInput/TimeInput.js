@@ -229,6 +229,7 @@ export default class TimePicker extends Component {
           downDisabled={this.props.disabled}
           onUp={this.handlePlus}
           onDown={this.handleMinus}
+          dataHook="ticker"
         />
       </Input.Group>
     );

@@ -10,11 +10,12 @@ import { tableActionCellTestkitFactory } from '../../testkit';
 import { tableActionCellTestkitFactory as enzymeTableActionCellTestkitFactory } from '../../testkit/enzyme';
 import { flattenInternalDriver } from '../../test/utils/private-drivers';
 
-const primaryActionProps = (actionTrigger = () => {}) => ({
+const primaryActionProps = (actionTrigger = () => {}, disabled = false) => ({
   primaryAction: {
     text: 'primary action',
     theme: 'whiteblue',
     onClick: actionTrigger,
+    disabled,
   },
 });
 
@@ -196,6 +197,14 @@ describe('Table Action Cell', () => {
 
     driver.clickPopoverMenu();
     await eventually(() => expect(driver.getHiddenActionsCount()).toEqual(1));
+  });
+
+  it('should mark the primary action as disabled', () => {
+    const driver = createDriver(
+      <TableActionCell {...primaryActionProps(() => {}, true)} />,
+    );
+
+    expect(driver.getIsPrimaryActionButtonDisabled()).toBe(true);
   });
 });
 

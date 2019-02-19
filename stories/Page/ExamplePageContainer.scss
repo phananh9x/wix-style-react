@@ -1,0 +1,78 @@
+/* These styles try to immitate the current BusinessManager's styles.
+   Created by running the business-manager-test-app and copying the relevant DOM structure and styles.
+ */
+
+$headerHeight: 48px;
+$sideBarWidth: 220px;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 16px); // Compensate for browser's default margin
+}
+
+.header {
+  align-items: center;
+  box-shadow: 0 1px 5px 0 rgba(41,85,115,.21);
+  display: flex;
+  height: $headerHeight;
+  justify-content: space-between;
+  position: relative;
+  background-color: #fff;
+  z-index: 2000
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  height: calc(100% - 48px);
+}
+
+.sideBar {
+  z-index: 2;
+  display: flex;
+  position: relative;
+  white-space: pre-wrap;
+  height: 100%;
+  width: $sideBarWidth;
+  background-color:rgb(35, 38, 60);
+
+  .sideBarContent {
+    color: white;
+    width: 220px;
+  }
+}
+
+.rightSide {
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  direction: ltr;
+  background: #f0f4f7;
+
+  .mainContentContainer {
+    flex-grow: 1;
+    height: 100%;
+    position: relative;
+
+    .mainContent {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+
+      .withLoadingIndicatorWrapper {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        
+        .withLoadingIndicatorContainer {
+          height: 100%;
+        }
+      }
+    }
+  }
+}

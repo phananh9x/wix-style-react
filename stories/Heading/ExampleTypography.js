@@ -16,7 +16,7 @@ export default () => (
       <li>
         <span className={s.comp}>{'<Heading appearance="H2"/>'}</span>
         <span className={s.fonts}>
-          <Heading appearance="H2">Helvetica_65 / 28px / 42px</Heading>
+          <Heading appearance="H2">Helvetica_65 / 28px / 36px</Heading>
         </span>
       </li>
     </ul>

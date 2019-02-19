@@ -28,7 +28,7 @@ If your component's `unidriver` is composing other components that don’t use u
 2. The **Private** drivers (`component.driver.private.js`) are used for actions on a component that should not be exposed to the user. For example, asserting a class name existance on some component.
 3. The Private drivers are extending the public ones and should be used internally when testing the components.
 
-## Best Practices
+## Best Practices (For Public Drivers)
 
 1. Drivers should be used for when testing and do one of the following:
 
@@ -39,6 +39,7 @@ If your component's `unidriver` is composing other components that don’t use u
 1. Drivers are tested internally in the library and exposed to consumers as TestKits.
 1. Drivers should have the `exists()` method to verify component is rendered properly.
 1. Never return a `DOM` element as this is not a good abstraction over the component.
+1. For render slots (props that accept ReactElement), we don't provide a driver getter. The consumer can query for it himself (By `data-hook` or other selector)
 
 ## Exposed TestKits
 

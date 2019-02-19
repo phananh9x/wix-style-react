@@ -1,9 +1,12 @@
 # Frequently Asked Questions
 
 If you don't find your answer here, please open an issue or ask on our slack channel -
-`#wix-style-react`. Please create a pull request with the solution if it worth sharing.
+`#wix-style-react`.
+
+Please create a pull request with the solution if it worth sharing.
 
 ### Usage issues
+
 
 #### How should I import a component properly?
 
@@ -16,12 +19,41 @@ import Button from 'wix-style-react/Button';
 
 `import`ing a component directly from `dist/src` is strongly disencouraged.
 
+
+#### universal `create-yoshi-app` and `wix-style-react` does not work!
+
+You may receive an error like this one: `TypeError: (0 , _TextSt2.default) is not a function`
+
+In that case, ensure your generated `index.js` invokes `attachHook` from `@stylable/node`:
+
+```diff
+modified: my-generated-project/index.js
+@@ -1,14 +1,16 @@
+ const bootstrap = require('@wix/wix-bootstrap-ng');
+ const { wixCssModulesRequireHook } = require('yoshi-runtime');
++const { attachHook } = require('@stylable/node');
+ 
+ const rootDir = './dist/src';
+ const getPath = path =>
+   process.env.NODE_ENV === 'test' || process.env.DEBUGGER === 'true'
+     ? `./src/${path}`
+     : `${rootDir}/${path}`;
+ 
+ wixCssModulesRequireHook();
++attachHook();
+ 
+ bootstrap()
+   .express(getPath('server'))
+   .start({ disableCluster: process.env.NODE_ENV === 'development' });
+```
+
+
 #### My PR was merged, why can't I see it in my project?
 
 You PR might've merged into the `master` branch, but a new version containing it was not released
 yet. You can contact the WSR team (on Slack) to request a release.
 
-#### Why am I getting a weired error when using some component's TestKit?
+#### I getting a weird error when using some components' TestKit?
 
 ##### `TypeError: document.x is not a function`
 
@@ -43,30 +75,6 @@ afterEach(() => {
 ```
 
 Check out the documentation of the component you're using for more info.
-
-##### `ReferenceError: regeneratorRuntime is not defined`
-
-If your project uses babel, we recommend you to include `babel-polyfill` in your test setup file.
-Otherwise, please install `regenerator-runtime` to your `devDependencies` and include it in your
-test setup file.
-
-In `jest-setup`, you might do:
-
-```js
-import `regenerator-runtime/runtime`;
-```
-
-In `karma.conf.js`, you might do:
-
-```js
-module.exports = {
-  // ...
-
-  files: [
-    require.resolve('regenerator-runtime/runtime'),
-  ],
-};
-```
 
 #### How can I get colors and fonts to use in my project?
 

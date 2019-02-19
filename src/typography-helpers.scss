@@ -12,7 +12,7 @@
 $typography_headers: (
   /*    (font-family, font-size, line-height, color, uppercase, letter-spacing) */
   "h1": ($FontMedium, 36px, 48px, ($D10, $D80), null     , null ),
-  "h2": ($FontMedium, 28px, 42px, ($D10, $D80), null     , null ),
+  "h2": ($FontMedium, 28px, 36px, ($D10, $D80), null     , null ),
   "h3": ($FontRoman , 20px, 24px, ($D10, $D80), null     , null ),
   "h4": ($FontRoman , 18px, 24px, ($D10, $D80), null     , null ), 
   "h5": ($FontMedium, 12px, 24px, ($D20, $D50), UPPERCASE, 1px  ),

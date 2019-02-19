@@ -1,7 +1,7 @@
 import React from 'react';
 import { func } from 'prop-types';
 
-import Button from '../Deprecated/Button';
+import IconButton from '../IconButton';
 import X from '../new-icons/X';
 import Check from '../new-icons/Check';
 
@@ -9,17 +9,21 @@ import css from './ColorPickerActions.scss';
 
 const ColorPickerActions = ({ onCancel, onConfirm }) => (
   <div className={css.root}>
-    <Button height="small" theme="icon-standardsecondary" onClick={onCancel}>
+    <IconButton
+      dataHook="color-picker-cancel-button"
+      size="medium"
+      priority="secondary"
+      onClick={onCancel}
+    >
       <X />
-    </Button>
-    <Button
+    </IconButton>
+    <IconButton
       dataHook="color-picker-confirm-button"
-      height="small"
-      theme="icon-standard"
+      size="medium"
       onClick={onConfirm}
     >
       <Check />
-    </Button>
+    </IconButton>
   </div>
 );
 

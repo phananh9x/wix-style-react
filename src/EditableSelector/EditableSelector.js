@@ -125,7 +125,6 @@ class EditableSelector extends WixComponent {
                   </IconButton>
                   <div className={styles.editRow}>
                     <Button
-                      upgrade
                       onClick={() => this.editItem(index)}
                       dataHook="edit-item"
                       size="small"

@@ -2,89 +2,87 @@
 @import '../Grid/GridConstants.scss';
 
 $page-side-padding: 48px;
-$scroll-top-threshold: 20px;
-$page-background-color: rgba($D70, .95);
+$headerBottomPadding: 24px;
+$page-background-color: $D70;
 $image-container-offset: 30px;
+$pageBottomPadding: 48px; //  Should be synced with JS Page value
+
+$zIndexLayerStep: 100;
+/* z-index is needed so that non-sticky content with 'position: relative' would not overlay above the sticky content.
+   Need to be height than any component that may fit into a sticky page content.
+   Currently:
+    - InputErrorSuffix uses 10000 (Likely to appear in a sticky TableToolbar)
+    - Tooltip uses 2000
+    - ToggleButton uses 1000
+   */
+$stickyZIndex: 11000;
+$fixedContainerZIndex: $stickyZIndex + $zIndexLayerStep;
 
 .pageWrapper {
   overflow-x: auto;
-  display: flex;
-  flex-grow: 1;
-  flex-flow: column;
+  height: 100%;
+
+  .page {
+    position: relative;
+    background-color: $page-background-color;
+    min-width: $main-container-min-width;
+    height: 100%;
+
+    .fixedContainer {
+      position: absolute;
+      z-index: $fixedContainerZIndex;
+      min-height: 30px;
+      box-sizing: border-box;
+      margin: 0 auto;
+      left: 0;
+      width: 100%;
+    }
+
+    .scrollableContainer {
+      overflow-y: auto;
+      width: 100%;
+      position: relative;
+      height: 100%;
+      box-sizing: border-box;
+    
+      .contentWrapper {
+        padding-bottom: 48px;
+      }
+    }
+  }
 }
 
-.page {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
+.pageHeaderContainer {
   position: relative;
-  background-color: $page-background-color;
-  min-width: $main-container-min-width;
-}
-
-.fixed-container {
-  position: absolute;
-  z-index: 2;
-  min-height: 30px;
-  box-sizing: border-box;
-  margin: 0 auto;
-  left: 0;
-  width: 100%;
-}
-
-.page-header-container {
   padding-top: 30px;
-  padding-bottom: $scroll-top-threshold;
+  padding-bottom: $headerBottomPadding;
   
   &.minimized {
     padding-top: 18px;
     padding-bottom: 18px;
     background-color: $page-background-color;
+    
+    border-bottom: 1px solid $D60;
+  }
+
+  .pageHeader {
+    padding: 0 $page-side-padding;
+    margin: 0 auto;
+    z-index: $fixedContainerZIndex
   }
   
-  &.without-bottom-padding {
-    padding-bottom: 0;
+  .tail {
+    background-color: transparent;
+    padding: $headerBottomPadding $page-side-padding 0;
+    margin: 0 auto;
+  
+    &.minimized {
+      padding-top: 0;
+    }
   }
 }
 
-.page-header {
-  padding: 0 $page-side-padding;
-  margin: 0 auto;
-}
-
-.tail {
-  background-color: transparent;
-  padding: $scroll-top-threshold $page-side-padding 0;
-  margin: 0 auto;
-
-  &.minimized {
-    padding-top: 0;
-  }
-}
-
-.scrollable-content {
-  overflow-y: auto;
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.image-background {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  position: absolute;
-  top: -$image-container-offset;
-  bottom: -$image-container-offset;
-  left: -$image-container-offset;
-  right: -$image-container-offset;
-  filter: blur(12px);
-}
-
-.image-background-container {
+.imageBackgroundContainer {
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -99,26 +97,47 @@ $image-container-offset: 30px;
     height: 100%;
     background-color: rgba($D10, 0.42);
   }
+
+  .imageBackground {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: -$image-container-offset;
+    bottom: -$image-container-offset;
+    left: -$image-container-offset;
+    right: -$image-container-offset;
+    filter: blur(12px);
+  }
 }
 
-.gradient-background {
+.gradientBackground {
   position: absolute;
   top: 0;
   width: 100%;
 }
 
-.content {
-  position: relative;
+.contentHorizontalLayout {
   padding: 0 $page-side-padding;
   margin: 0 auto;
 }
 
-.content-placeholder {
-  flex-shrink: 0;
-  width: 100%;
+// Needed in order to be above the background image which has position absolute
+.contentFloating {
+  position: relative;
 }
 
-.content-full-screen {
+.contentFullWidth {
   padding-left: 0;
   padding-right: 0;
+}
+
+.sticky {
+  position: sticky;
+  z-index: $stickyZIndex;
+  background-color: $page-background-color; // This fixes non-sticky content from being shown behind sticky content with rounded-corners
+}
+
+.stretchVertically {
+  height: 100%;
 }

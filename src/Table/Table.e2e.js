@@ -45,6 +45,10 @@ describe('Table', () => {
     const driver = await init('story-table-column-alignment-example');
     await scrollToElement(driver.element);
   });
+  eyes.it('should render with an selection disabled', async () => {
+    const driver = await init('story-table-selection-disabled-example');
+    await scrollToElement(driver.element);
+  });
 
   describe('Action cell', () => {
     describe('Primary action only', () => {

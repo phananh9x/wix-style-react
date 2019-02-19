@@ -5,9 +5,7 @@ import GeneratedTestComponent from './GeneratedTestComponent';
 import { generatedTestComponentPrivateDriverFactory } from './GeneratedTestComponent.driver.private';
 
 describe('GeneratedTestComponent', () => {
-  const createDriver = createUniDriverFactory(
-    generatedTestComponentPrivateDriverFactory,
-  );
+  const createDriver = createUniDriverFactory(generatedTestComponentPrivateDriverFactory);
 
   it('should render', async () => {
     const driver = createDriver(<GeneratedTestComponent />);
@@ -28,10 +26,9 @@ describe('GeneratedTestComponent', () => {
   });
 
   it('should allow changing the button text', async () => {
-    const driver = createDriver(
-      <GeneratedTestComponent buttonText="Press me" />,
-    );
+    const driver = createDriver(<GeneratedTestComponent buttonText="Press me" />);
 
     expect(await driver.getButtonText()).toEqual('Press me');
   });
 });
+

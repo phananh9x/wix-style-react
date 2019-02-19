@@ -4,7 +4,7 @@ import {
   tab,
   importExample,
   description,
-  liveCode,
+  code,
   api,
   playground,
   testkit,
@@ -84,14 +84,14 @@ export default {
           title: 'Examples',
         }),
 
-        liveCode({
+        code({
           title: 'Themes',
           compact: true,
           source: examples.themes,
           components: { Notification },
         }),
 
-        liveCode({
+        code({
           title: 'Actions',
           compact: true,
           source: examples.actions,

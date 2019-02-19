@@ -14,6 +14,7 @@ export const Category = {
   BUTTONS: '5. Buttons',
   INPUTS: '3. Inputs',
   SELECTION: '4. Selection',
+  TOOLTIP_AND_POPOVER: '7. Tooltip and Popover',
   PICKERS_AND_SELECTORS: '11. Pickers and Selectors',
   OTHER: '12. Other',
   COMPONENTS: 'Components',

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '../../Deprecated/Button';
-import TextLink from '../../Deprecated/TextLink';
+import Button from '../../Button';
+import TextButton from '../../TextButton';
 
 const ActionButton = ({ children, onClick, type, link }) => {
   const commonProps = {
@@ -11,18 +11,19 @@ const ActionButton = ({ children, onClick, type, link }) => {
 
   if (type === 'textLink') {
     return (
-      <TextLink
-        underlineStyle="always"
-        theme="darkBackground"
-        link={link}
+      <TextButton
+        underline="always"
+        skin="light"
+        as="a"
+        href={link}
         {...commonProps}
       >
         {children}
-      </TextLink>
+      </TextButton>
     );
   } else {
     return (
-      <Button height="small" theme="transparent" {...commonProps}>
+      <Button size="small" skin="transparent" {...commonProps}>
         {children}
       </Button>
     );

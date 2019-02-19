@@ -1,0 +1,19 @@
+@import '../../common.scss';
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: $B10;
+    &.inSuffix {
+        padding-right: 6px;
+    }
+}
+
+@include withRTL() {
+    padding: 0;
+    &.inSuffix {
+        padding-left: 6px;
+    }
+}

@@ -37,6 +37,9 @@ import PrimarySecondaryRTLExampleRaw from '!raw-loader!./examples/PrimarySeconda
 import DisabledSecondaryExample from './examples/DisabledSecondaryExample';
 import DisabledSecondaryExampleRaw from '!raw-loader!./examples/DisabledSecondaryExample';
 
+import DisabledPrimaryExample from './examples/DisabledPrimaryExample';
+import DisabledPrimaryExampleRaw from '!raw-loader!./examples/DisabledPrimaryExample';
+
 import { Star, Download, Duplicate, Print } from 'wix-style-react/new-icons';
 
 const primaryActionOptions1 = {
@@ -194,6 +197,15 @@ export default {
           code={DisabledSecondaryExampleRaw}
         >
           <DisabledSecondaryExample />
+        </CodeExample>
+      </div>
+
+      <div className={style.example}>
+        <CodeExample
+          title="Disabled primary actions"
+          code={DisabledPrimaryExampleRaw}
+        >
+          <DisabledPrimaryExample />
         </CodeExample>
       </div>
     </div>

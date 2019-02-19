@@ -43,6 +43,8 @@ function renderTrend(percent, invertPercentColor) {
  */
 class StatsWidget extends WixComponent {
   static propTypes = {
+    /** A component to be displayed on the right side of Stats Widget */
+    suffix: PropTypes.node,
     /** Widget title */
     title: PropTypes.string.isRequired,
     /** Statistics to display:
@@ -107,19 +109,26 @@ class StatsWidget extends WixComponent {
     );
   }
 
-  _renderFilters(filters) {
-    return <div className={styles.filtersWrapper}>{filters}</div>;
+  _renderSuffix(suffixElement, index) {
+    return (
+      <div className={styles.filtersWrapper} key={index}>
+        {suffixElement}
+      </div>
+    );
   }
 
   render() {
-    const { title, statistics, children, emptyState } = this.props;
+    const { title, statistics, children, emptyState, suffix } = this.props;
+    const suffixElements = [].concat(suffix).concat(children);
 
     return (
       <Card>
         <Card.Header
           dataHook="stats-widget-title"
           title={title}
-          suffix={this._renderFilters(children)}
+          suffix={suffixElements.map((suffixElement, index) =>
+            this._renderSuffix(suffixElement, index),
+          )}
         />
         <Card.Content>
           {statistics ? (

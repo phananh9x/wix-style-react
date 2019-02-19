@@ -27,6 +27,22 @@ export default class IntroductionExample extends React.Component {
           id: 'd',
           text: 'Item 4',
         },
+        {
+          id: 'e',
+          text: 'Item 5',
+        },
+        {
+          id: 'f',
+          text: 'Item 6',
+        },
+        {
+          id: 'g',
+          text: 'Item 7',
+        },
+        {
+          id: 'h',
+          text: 'Item 8',
+        },
       ],
     };
   }

@@ -140,6 +140,19 @@ describe('Table', () => {
       driver.clickRowChecbox(1);
       expect(driver.isRowSelected(1)).toBeFalsy();
     });
+
+    it(`should disable bulk selection when passed 'selectionDisabled' prop`, () => {
+      const driver = createDriver(
+        <Table {...defaultProps} selectionDisabled />,
+      );
+      expect(driver.isBulkSelectionDisabled()).toBe(true);
+    });
+    it(`should disable row selection when passed 'selectionDisabled' prop`, () => {
+      const driver = createDriver(
+        <Table {...defaultProps} selectionDisabled />,
+      );
+      expect(driver.isRowSelectionDisabled(0)).toBe(true);
+    });
   });
 
   describe('re-render', () => {

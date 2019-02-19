@@ -5,10 +5,11 @@ import { storiesOf } from '@storybook/react';
 import Page from 'wix-style-react/Page';
 import { getTestStoryKind } from '../storiesHierarchy';
 
-import * as s from './PageExample.scss';
+import * as s from './PageTestStories.scss';
 import { header, tail, fixedContent, content } from './PageChildren';
 import { storySettings } from './storySettings';
 import ExampleEmptyState from './ExampleEmptyState';
+import { ExamplePageContainer } from './ExamplePageContainer';
 
 const PageContainer = props => {
   return (
@@ -22,127 +23,242 @@ PageContainer.propTypes = {
 };
 
 const kind = getTestStoryKind(storySettings);
-const dataHook = 'story-page';
 
-storiesOf(kind, module).add('Header-Tail-Content: 1. Image', () => (
+const defaultPageProps = {
+  upgrade: true,
+  dataHook: storySettings.dataHook,
+  gradientClassName: 'background-gradient',
+  children: [header(), content()],
+};
+
+const PageTestStories = storiesOf(kind, module);
+
+PageTestStories.add('1. Image', () => (
   <PageContainer>
     <Page
-      dataHook={dataHook}
+      {...defaultPageProps}
+      backgroundImageUrl="https://static.wixstatic.com/media/f0548921c53940ec803dfb1c203e96fe.jpg/v1/fill/w_400,h_100/f0548921c53940ec803dfb1c203e96fe.jpg"
+    />
+  </PageContainer>
+));
+
+PageTestStories.add('2. Gradient', () => (
+  <PageContainer>
+    <Page {...defaultPageProps} gradientClassName="background-gradient" />
+  </PageContainer>
+));
+
+PageTestStories.add('3. FC-Image', () => (
+  <PageContainer>
+    <Page
+      {...defaultPageProps}
+      children={[header(), fixedContent, content(false)]}
+      backgroundImageUrl="https://static.wixstatic.com/media/f0548921c53940ec803dfb1c203e96fe.jpg/v1/fill/w_400,h_100/f0548921c53940ec803dfb1c203e96fe.jpg"
+    />
+  </PageContainer>
+));
+
+PageTestStories.add('4. FC-Gradient', () => (
+  <PageContainer>
+    <Page
+      {...defaultPageProps}
+      children={[header(), fixedContent, content(false)]}
+      gradientClassName="background-gradient"
+    />
+  </PageContainer>
+));
+
+PageTestStories.add('5. HTC-Image', () => (
+  <PageContainer>
+    <Page
+      {...defaultPageProps}
       children={[header(), tail, content(false)]}
       backgroundImageUrl="https://static.wixstatic.com/media/f0548921c53940ec803dfb1c203e96fe.jpg/v1/fill/w_400,h_100/f0548921c53940ec803dfb1c203e96fe.jpg"
     />
   </PageContainer>
 ));
 
-storiesOf(kind, module).add(
-  'Header-Tail-Content: 2. Gradient Cover Tail',
-  () => (
-    <PageContainer>
-      <Page
-        dataHook={dataHook}
-        children={[header(), tail, content(false)]}
-        gradientClassName="background-gradient"
-        gradientCoverTail
-      />
-    </PageContainer>
-  ),
-);
-
-storiesOf(kind, module).add('1. Image', () => (
+PageTestStories.add('6. HTC-Gradient Cover Tail', () => (
   <PageContainer>
     <Page
-      dataHook={dataHook}
-      children={[header(), content(false)]}
-      backgroundImageUrl="https://static.wixstatic.com/media/f0548921c53940ec803dfb1c203e96fe.jpg/v1/fill/w_400,h_100/f0548921c53940ec803dfb1c203e96fe.jpg"
+      {...defaultPageProps}
+      children={[header(), tail, content(false)]}
+      gradientClassName="background-gradient"
+      gradientCoverTail
     />
   </PageContainer>
 ));
 
-storiesOf(kind, module).add('2. Gradient', () => (
+PageTestStories.add('7. Default [min/max]-width', () => (
   <PageContainer>
-    <Page
-      dataHook={dataHook}
-      children={[header(), content(false)]}
-      gradientClassName="background-gradient"
-    />
+    <Page {...defaultPageProps} />
   </PageContainer>
 ));
 
-storiesOf(kind, module).add('3. FC-Image', () => (
+PageTestStories.add('8. Custom [min/max]-width', () => (
   <PageContainer>
     <Page
-      dataHook={dataHook}
-      children={[header(), fixedContent, content(false)]}
-      backgroundImageUrl="https://static.wixstatic.com/media/f0548921c53940ec803dfb1c203e96fe.jpg/v1/fill/w_400,h_100/f0548921c53940ec803dfb1c203e96fe.jpg"
-    />
-  </PageContainer>
-));
-
-storiesOf(kind, module).add('4. FC-Gradient', () => (
-  <PageContainer>
-    <Page
-      dataHook={dataHook}
-      children={[header(), fixedContent, content(false)]}
-      gradientClassName="background-gradient"
-    />
-  </PageContainer>
-));
-
-storiesOf(kind, module).add('5. Default [min/max]-width', () => (
-  <div>
-    <Page
-      dataHook={dataHook}
-      children={[header(), content(false)]}
-      gradientClassName="background-gradient"
-    />
-  </div>
-));
-
-storiesOf(kind, module).add('6. Custom [min/max]-width', () => (
-  <div>
-    <Page
-      dataHook={dataHook}
-      children={[header(), content(false)]}
-      gradientClassName="background-gradient"
+      {...defaultPageProps}
       minWidth={504} // With padding: 504 + 48*2 = 600px
       maxWidth={1304} // With padding: 1304 + 48*2 = 1400px
     />
-  </div>
+  </PageContainer>
 ));
 
-const contentPrefix = (
-  <div
-    style={{
-      backgroundColor: 'white',
-      paddingBottom: '20px',
-      fontSize: '36px',
-    }}
-  >
-    <b>
-      This simulates what some consumers are currently doing to implement
-      min-width with horizontal scroll. So we can see tat they are not broken.
-      They can increase the min-width, bu the can not decrease it, unless they
-      use the minWidth prop.
-    </b>
-  </div>
-);
-storiesOf(kind, module).add(
-  '7. Regression for [min/max]-width (introduced in version 5.25.0)',
-  () => (
-    <div style={{ overflowX: 'auto' }}>
-      <PageContainer style={{ minWidth: '1100px' }}>
-        <Page
-          dataHook={dataHook}
-          children={[header(), content(false, contentPrefix)]}
-          gradientClassName="background-gradient"
-        />
-      </PageContainer>
-    </div>
-  ),
-);
-
-storiesOf(kind, module).add('8. Empty State', () => (
+PageTestStories.add('9. Empty State', () => (
   <PageContainer>
-    <ExampleEmptyState />
+    <ExampleEmptyState {...defaultPageProps} />
   </PageContainer>
+));
+
+PageTestStories.add('10. Page Example with sidePadding=0', () => (
+  <PageContainer>
+    <Page {...defaultPageProps} sidePadding={0} />
+  </PageContainer>
+));
+
+/*
+ *  Vertical Test Stories
+ */
+
+class PageWithScroll extends React.Component {
+  state = { fixedContainerHeight: null };
+  static Constants = storySettings.PageWithScrollConstants;
+
+  static propTypes = {
+    extraScroll: PropTypes.number,
+    contentHeight: PropTypes.number,
+    stretchVertically: PropTypes.bool,
+    withFixedContent: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    extraScroll: 0,
+  };
+  componentDidMount = () => {};
+
+  render() {
+    let heightProps;
+    const { stretchVertically, contentHeight, withFixedContent } = this.props;
+
+    if (stretchVertically) {
+      heightProps = {
+        minHeight: 'inherit',
+      };
+    } else if (contentHeight) {
+      heightProps = { height: contentHeight };
+    } else {
+      const extraScroll = this.props.extraScroll;
+
+      const noScrollHeight =
+        PageWithScroll.Constants.pageHeight -
+        PageWithScroll.Constants.headerContainerHeight -
+        PageWithScroll.Constants.pageBottomPadding;
+      heightProps = { height: noScrollHeight + extraScroll };
+    }
+
+    return (
+      <PageContainer
+        style={{ height: `${PageWithScroll.Constants.pageHeight}px` }}
+      >
+        <Page {...defaultPageProps} ref={ref => (this.pageInstance = ref)}>
+          {header()}
+          {withFixedContent && fixedContent}
+          <Page.Content>
+            <div
+              ref={ref => (this.contentRef = ref)}
+              style={{
+                backgroundColor: 'white',
+                ...heightProps,
+              }}
+            />
+          </Page.Content>
+        </Page>
+      </PageContainer>
+    );
+  }
+}
+
+[false, true].forEach(withFixedContent => {
+  const Stories = storiesOf(
+    `${kind}/Scroll${withFixedContent ? '_FC' : ''}`,
+    module,
+  );
+
+  const prefix = testNumber => `${testNumber}. `;
+  // withFixedContent ? `2${testNumber}. FC - ` : `1${testNumber}. `;
+  const defaultProps = withFixedContent ? { withFixedContent } : {};
+
+  Stories.add(`${prefix(1)}Short Content`, () => (
+    <PageWithScroll {...defaultProps} contentHeight={200} />
+  ));
+
+  Stories.add(`${prefix(2)}Stretch Vertically`, () => (
+    <PageWithScroll {...defaultProps} stretchVertically />
+  ));
+
+  Stories.add(`${prefix(3)}Max Height No Scroll`, () => (
+    // Small scroll - lower than the threshold that triggers minimization
+    <PageWithScroll {...defaultProps} extraScroll={0} />
+  ));
+
+  Stories.add(`${prefix(4)}Scroll - No Mini Header`, () => (
+    // Small scroll - lower than the threshold that triggers minimization
+    <PageWithScroll
+      {...defaultProps}
+      extraScroll={PageWithScroll.Constants.scrollTrigger - 1}
+    />
+  ));
+
+  Stories.add(`${prefix(5)}Scroll - Trigger Mini Header`, () => {
+    return (
+      // Small scroll - lower than the threshold that triggers minimization
+      <PageWithScroll
+        {...defaultProps}
+        extraScroll={PageWithScroll.Constants.scrollTrigger}
+      />
+    );
+  });
+
+  Stories.add(`${prefix(6)}Long`, () => {
+    const arbitraryLong = PageWithScroll.Constants.pageHeight;
+    return (
+      // Small scroll - lower than the threshold that triggers minimization
+      <PageWithScroll {...defaultProps} extraScroll={arbitraryLong} />
+    );
+  });
+
+  Stories.add(`${prefix(7)}Multiple Stickies`, () => {
+    return (
+      <PageContainer>
+        <Page {...defaultPageProps}>
+          {header()}
+          <Page.Content>
+            {[1, 2, 3, 4, 5, 6].map(i => {
+              return (
+                <div>
+                  <Page.Sticky style={{ height: '50px', background: 'grey' }}>
+                    Sticky {i}
+                  </Page.Sticky>
+                  <div style={{ height: '200px', background: 'white' }}>
+                    Gap {i}
+                  </div>
+                </div>
+              );
+            })}
+          </Page.Content>
+        </Page>
+      </PageContainer>
+    );
+  });
+});
+
+const BMStories = storiesOf(`${kind}/BM`, module);
+BMStories.add('1. Simple', () => (
+  <ExamplePageContainer>
+    <Page upgrade gradientClassName="background-gradient">
+      <Page.Header title="Hello WSR" />
+      {content()}
+    </Page>
+  </ExamplePageContainer>
 ));

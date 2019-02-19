@@ -17,7 +17,7 @@ describe('ColorPicker', () => {
 
   beforeEach(async () => await autoExampleDriver.remount());
 
-  eyes.it('should render the colorpicker', async () => {
+  eyes.it('should render the colorpicker', () => {
     expect(true).toBeTruthy();
   });
 

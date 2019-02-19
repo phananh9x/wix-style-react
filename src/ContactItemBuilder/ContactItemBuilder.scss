@@ -3,11 +3,13 @@
   flex-direction: row;
   align-items: center;
   height: 48px;
+  width: 100%;
 }
 
 .contact-item-titles {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .avatar {

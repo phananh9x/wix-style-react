@@ -3,7 +3,7 @@ const utils = require('../src/utils');
 
 describe('utils', () => {
   test('getProjectRoot', () => {
-    expect(utils.getProjectRoot()).toEqual(path.join(__dirname, '../../../'));
+    expect(utils.getProjectRoot()).toEqual(path.join(__dirname, '../../..'));
   });
 
   test('isProjectRoot', () => {

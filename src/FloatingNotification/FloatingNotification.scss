@@ -1,0 +1,97 @@
+@import "../colors";
+@import "../common";
+
+$buttonMaxWidth: 25%;
+
+.root {
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding-left: 12px;
+  padding-right: 6px;
+  max-width: 540px;
+  min-width: 395px;
+  box-sizing: border-box;
+
+  .icon {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .text, .textButton {
+    margin-left: 6px;
+  }
+
+  .button {
+    margin-left: 12px;
+  }
+
+  .button, .textButton {
+    max-width: $buttonMaxWidth;
+  }
+
+  .gap {
+    min-width: 24px;
+    flex-grow: 1;
+  }
+
+  .close {
+    flex-shrink: 0;
+  }
+
+  > *:first-child {
+    margin-left: 0;
+  }
+
+  &.standard {
+    background-color: $B50;
+    border-color: $B20;
+  }
+
+  &.success {
+    background-color: $G50;
+    border-color: $G20;
+  }
+
+  &.destructive {
+    background-color: $R40;
+    border-color: $R20;
+  }
+
+  &.warning {
+    background-color: $Y60;
+    border-color: $Y05;
+  }
+
+  &.premium {
+    background-color: $P50;
+    border-color: $P20;
+  }
+}
+
+@include withRTL() {
+  .root {
+    padding-right: 12px;
+    padding-left: 6px;
+
+    .text, .textButton {
+      margin-left: unset;
+      margin-right: 6px;
+    }
+
+    .button {
+      margin-left: unset;
+      margin-right: 12px;
+    }
+
+    > *:first-child {
+      margin-left: unset;
+      margin-right: 0;
+    }
+  }
+}

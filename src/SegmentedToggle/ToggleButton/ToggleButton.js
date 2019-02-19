@@ -44,7 +44,7 @@ const ToggleButton = ({
   </button>
 );
 
-ToggleButton.PropTypes = {
+ToggleButton.propTypes = {
   children: node,
   prefixIcon: node,
   value: string,

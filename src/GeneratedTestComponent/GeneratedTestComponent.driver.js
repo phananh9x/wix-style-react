@@ -5,15 +5,12 @@ export const generatedTestComponentDriverFactory = base => {
     ...baseUniDriverFactory(base),
 
     /** Get the current count */
-    getCountText: async () =>
-      base.$('[data-hook="generatedTestComponent-count"]').text(),
+    getCountText: async () => base.$('[data-hook="generatedTestComponent-count"]').text(),
 
     /** Click the button */
-    clickButton: async () =>
-      base.$('[data-hook="generatedTestComponent-button"]').click(),
+    clickButton: async () => base.$('[data-hook="generatedTestComponent-button"]').click(),
 
     /** Get the button's text */
-    getButtonText: async () =>
-      base.$('[data-hook="generatedTestComponent-button"]').text(),
+    getButtonText: async () => base.$('[data-hook="generatedTestComponent-button"]').text(),
   };
 };

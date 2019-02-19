@@ -6,6 +6,7 @@ import { storySettings } from './storySettings';
 import PageHeader from 'wix-style-react/PageHeader';
 import { getTestStoryKind } from '../storiesHierarchy';
 import Button from 'wix-style-react/Button';
+import Dropdown from 'wix-style-react/Dropdown';
 import { RTLWrapper } from '../utils';
 
 const PageHeaderContainer = props => {
@@ -22,15 +23,63 @@ PageHeaderContainer.propTypes = {
 const kind = getTestStoryKind(storySettings);
 const dataHook = 'story-page-header';
 
-storiesOf(kind, module).add('1. Long Title and Subtitle', () => (
+const defaultProps = {
+  dataHook,
+  title: 'PageHeader Title',
+  subtitle: 'PageHeader Subtitle',
+  actionsBar: <Button>Action</Button>,
+  showBackButton: true,
+  onBackClicked: () => null,
+};
+
+storiesOf(kind, module).add('1. Standard', () => (
+  <PageHeaderContainer>
+    <PageHeader {...defaultProps} />
+  </PageHeaderContainer>
+));
+
+storiesOf(kind, module).add('2. Long Title and Subtitle', () => (
   <PageHeaderContainer>
     <PageHeader
-      dataHook={dataHook}
+      {...defaultProps}
       title="PageHeader title - very very long very very long very very long very very long very very long"
       subtitle="PageHeader subtitle - very very long very very long very very long very very long very very long very very long very very long"
-      actionsBar={<Button>Action</Button>}
-      showBackButton
-      onBackClicked={() => null}
+    />
+  </PageHeaderContainer>
+));
+
+storiesOf(kind, module).add('3. Title with Dropdown', () => (
+  <PageHeaderContainer>
+    <PageHeader
+      {...defaultProps}
+      title={
+        <Dropdown
+          dataHook="title-dropdown"
+          options={[
+            { id: '1', value: 'option 1' },
+            { id: '2', value: 'option 2' },
+            { id: '3', value: 'option 3' },
+          ]}
+        />
+      }
+    />
+  </PageHeaderContainer>
+));
+
+storiesOf(kind, module).add('4. Subtitle with Dropdown', () => (
+  <PageHeaderContainer>
+    <PageHeader
+      {...defaultProps}
+      subtitle={
+        <Dropdown
+          dataHook="subtitle-dropdown"
+          options={[
+            { id: '1', value: 'option 1' },
+            { id: '2', value: 'option 2' },
+            { id: '3', value: 'option 3' },
+          ]}
+        />
+      }
     />
   </PageHeaderContainer>
 ));

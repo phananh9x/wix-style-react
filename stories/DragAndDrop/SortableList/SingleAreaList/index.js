@@ -18,11 +18,11 @@ ${SingleAreaListScssRaw}
 export default () => (
   <div>
     <Markdown source={SingleAreaListReadme} />
-    <CodeExample title="SortableList" code={SingleAreaListRawCombined}>
+    <CodeExample title="ListWithDelay" code={SingleAreaListRawCombined}>
       <SingleAreaList />
     </CodeExample>
     <CodeExample
-      title="SortableList with handle"
+      title="ListWithDelay with handle"
       code={SingleAreaListRawCombined}
     >
       <SingleAreaList withHandle />

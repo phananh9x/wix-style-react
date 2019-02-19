@@ -17,6 +17,7 @@ test/e2e
 yarn.lock
 package-lock.json
 .DS_Store
+autodocs-registry
 
 # we ignore all *.js and *.scss in root folder to avoid comitting component export
 # files that appear in root after build

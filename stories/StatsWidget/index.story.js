@@ -9,6 +9,9 @@ import StatsWidget from 'wix-style-react/StatsWidget';
 import ExampleStatsWidgetStandard from './ExampleStatsWidgetStandard';
 import ExampleStatsWidgetStandardRaw from '!raw-loader!./ExampleStatsWidgetStandard';
 
+import ExampleStatsWidgetWithSuffix from './ExampleStatsWidgetWithSuffix';
+import ExampleStatsWidgetWithSuffixRaw from '!raw-loader!./ExampleStatsWidgetWithSuffix';
+
 import ExampleStatsWidgetWithPercents from './ExampleStatsWidgetWithPercents';
 import ExampleStatsWidgetWithPercentsRaw from '!raw-loader!./ExampleStatsWidgetWithPercents';
 
@@ -43,6 +46,12 @@ export default {
                 code={ExampleStatsWidgetStandardRaw}
               >
                 <ExampleStatsWidgetStandard />
+              </CodeExample>
+              <CodeExample
+                title="Stats widget with TextButton suffix"
+                code={ExampleStatsWidgetWithSuffixRaw}
+              >
+                <ExampleStatsWidgetWithSuffix />
               </CodeExample>
               <CodeExample
                 title="Stats widget example with percents"

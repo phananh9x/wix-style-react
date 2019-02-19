@@ -35,6 +35,16 @@ const tableDriverFactory = ({ element, eventTrigger }) => {
     return !checkboxDriver.isChecked() && !checkboxDriver.isIndeterminate();
   };
 
+  const isBulkSelectionDisabled = () => {
+    const checkboxDriver = getBulkSelectionCheckboxDriver();
+    return checkboxDriver.isDisabled();
+  };
+
+  const isRowSelectionDisabled = index => {
+    const checkboxDriver = getRowCheckboxDriver(index);
+    return checkboxDriver.isDisabled();
+  };
+
   return {
     ...dataTableDriver,
     element,
@@ -42,6 +52,10 @@ const tableDriverFactory = ({ element, eventTrigger }) => {
     getRowCheckboxDriver,
     /** Get driver of row bulk-selection checbox */
     getBulkSelectionCheckboxDriver,
+    /** Whether bulk selection checkbox is disabled */
+    isBulkSelectionDisabled,
+    /** Whether specific row selection checkbox is disabled */
+    isRowSelectionDisabled,
     /** Click the row selection checkbox */
     clickRowChecbox: index => getRowCheckboxDriver(index).click(),
     /** Click the bulk-selection checkbox */

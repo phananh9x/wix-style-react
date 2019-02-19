@@ -11,7 +11,7 @@ import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
 
 import Notification from './Notification';
 import Button from '../Button';
-import TextLink from '../Deprecated/TextLink';
+import TextButton from '../TextButton';
 
 const renderNotificationWithProps = (props = {}) => (
   <Notification {...props}>
@@ -348,14 +348,14 @@ describe('Notification', () => {
       expect(component.find('Button')).toHaveLength(1);
     });
 
-    it('should display a TextLink explicitly required', () => {
+    it('should display a TextButton explicitly required', () => {
       const component = mount(
         <Notification.ActionButton type="textLink" link="some link">
           Action Button
         </Notification.ActionButton>,
       );
 
-      expect(component.find(TextLink)).toHaveLength(1);
+      expect(component.find(TextButton)).toHaveLength(1);
     });
   });
 });

@@ -37,7 +37,7 @@ export const createPropsArray = props =>
  * example's context. If a component is failed to render, make sure it's
  * available in the index file.
  */
-const baseScope = {
+export const baseScope = {
   ...wsrScope,
   ...iconsScope,
 };

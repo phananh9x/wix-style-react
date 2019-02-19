@@ -407,4 +407,16 @@ import { accordionDriverFactory } from '../src/Accordion/Accordion.driver';
 
 export const accordionTestkitFactory = protractorUniTestkitFactoryCreator(
   accordionDriverFactory,
+
+import { richTextInputAreaDriverFactory } from '../src/RichTextInputArea/RichTextInputArea.driver';
+
+export const richTextInputAreaTestkitFactory = protractorUniTestkitFactoryCreator(
+  richTextInputAreaDriverFactory,
+);
+
+import { floatingNotificationDriverFactory } from '../src/FloatingNotification/FloatingNotification.driver';
+
+export const floatingNotificationTestkitFactory = protractorUniTestkitFactoryCreator(
+  floatingNotificationDriverFactory,
+
 );

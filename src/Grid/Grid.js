@@ -3,17 +3,21 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import styles from './Grid.scss';
+import pageStyles from '../Page/Page.public.scss';
 
 const containerProps = {
   children: PropTypes.node,
   fluid: PropTypes.bool,
   className: PropTypes.string,
+  /** Applies min-height in order to fit to `<Page.Contnet/>`  */
+  stretchVertically: PropTypes.bool,
 };
 
-const RawContainer = ({ children, fluid, className }) => (
+const RawContainer = ({ children, fluid, className, stretchVertically }) => (
   <div
     className={classNames(styles.rawContainer, className, {
       [styles.fluidContainer]: fluid,
+      [pageStyles.pageStretchContentVertically]: stretchVertically,
     })}
     children={children}
   />
@@ -21,10 +25,11 @@ const RawContainer = ({ children, fluid, className }) => (
 
 RawContainer.propTypes = containerProps;
 
-const Container = ({ children, fluid, className }) => (
+const Container = ({ children, fluid, className, stretchVertically }) => (
   <div
     className={classNames(styles.wixContainer, className, {
       [styles.fluidContainer]: fluid,
+      [pageStyles.pageStretchContentVertically]: stretchVertically,
     })}
     children={children}
   />

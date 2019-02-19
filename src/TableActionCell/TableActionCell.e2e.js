@@ -57,6 +57,7 @@ describe('Table Action Cell', () => {
     'Only secondary actions': 'story-only-secondary',
     'Only visible secondary actions': 'story-only-visible-secondary',
     'Primary and secondary actions with RTL': 'story-primary-secondary-rtl',
+    'Primary action disabled': 'story-primary-disabled',
   };
 
   beforeAll(async () => {

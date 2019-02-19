@@ -9,7 +9,7 @@ $material-gap: 8px;
 .root {
   position: relative;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   border: solid 1px;
   border-radius: 6px;
   @include BoxSizing();
@@ -19,17 +19,24 @@ $material-gap: 8px;
 .input-wrapper {
   display: flex;
   width: 100%;
+  padding: 0 $gap;
+}
+
+.size-large {
+  .input-wrapper {
+    padding: 0 $double-gap;
+  }
 }
 
 .input {
   flex-grow: 1;
   flex-shrink: 1;
-  min-width: 20px;
-  line-height: 1.5;
-  padding: 0 $double-gap;
+  min-width: 24px;
+  padding: 0 $gap;
   margin: 0;
   border: 0;
   outline: 0;
+  line-height: 1.5;
   background: transparent;
   @include BorderRadius(6px);
   @include FontRoman();
@@ -46,9 +53,6 @@ $material-gap: 8px;
     }
   }
 
-  &.withPrefix { padding-left: 0; }
-  &.withSuffix { padding-right: 0; }
-  &.withSuffixes { padding-right: $gap; }
 }
 
 // Remove IE10+ automatically x button
@@ -61,7 +65,6 @@ $material-gap: 8px;
   display: none !important;
 }
 
-.prefixes,
 .suffixes {
   display: flex;
   align-items: center;
@@ -72,26 +75,12 @@ $material-gap: 8px;
   height: 100%;
 }
 
-.prefix,
 .suffix {
   height: 100%;
   display: flex;
   align-items: center;
 
-  &:first-child .unit-separator { margin-left: $double-gap; }
   &:last-child .unit { padding-right: $double-gap; }
-}
-
-.prefix {
-  width: 100%;
-}
-
-.prefixSuffixWrapper {
-  //needs additional wrapper with display:block to fix inputs with prefix in ie11
-  //https://github.com/wix/wix-style-react/issues/1693
-  //https://github.com/wix/wix-style-react/issues/1691
-  display: block;
-  margin-right: 6px;
 }
 
 .roundInput {
@@ -102,7 +91,7 @@ $material-gap: 8px;
     @include BorderRadius(15px);
   }
   &.size-large {
-    @include BorderRadius(27px);
+    @include BorderRadius(30px);
   }
 }
 
@@ -121,8 +110,8 @@ $material-gap: 8px;
   &-small-with-selection { @include Size($height: 28px, $fontSize: 14px); }
   &-normal { @include Size($height: 36px, $fontSize: 16px); }
   &-normal-with-selection { @include Size($height: 34px, $fontSize: 16px); }
-  &-large  { @include Size($height: 60px, $fontSize: 22px); }
-  &-large-with-selection { @include Size($height: 58px, $fontSize: 22px); }
+  &-large  { @include Size($height: 60px, $fontSize: 16px); }
+  &-large-with-selection { @include Size($height: 58px, $fontSize: 16px); }
 }
 
 .theme {
@@ -256,7 +245,6 @@ $material-gap: 8px;
   }
   &-material {
     border-radius: 0;
-    .prefixes,
     .suffixes {
       padding: 0 4px;
     }
@@ -307,7 +295,7 @@ $material-gap: 8px;
     border: none;
     border-radius: 0;
 
-    &.size-large { @include Size($height: 54px, $fontSize: 20px); }
+    &.size-large { @include Size($height: 54px, $fontSize: 16px); }
 
     &:hover, &.hasFocus { @include ThemeFlat($B20); }
     &:active            { @include ThemeFlat($B10); }
@@ -320,7 +308,7 @@ $material-gap: 8px;
     border: none;
     border-radius: 0;
 
-    &.size-large { @include Size($height: 54px, $fontSize: 20px); }
+    &.size-large { @include Size($height: 54px, $fontSize: 16px); }
 
     &:hover, &.hasFocus { @include ThemeFlat($B20); }
     &:active            { @include ThemeFlat($B10); }
@@ -334,7 +322,6 @@ $material-gap: 8px;
 @include withRTL() {
   .root,
   .input-wrapper,
-  .prefixes,
   .suffixes { direction: rtl; }
   .input {
     direction: rtl;
@@ -345,20 +332,13 @@ $material-gap: 8px;
 
   .prefix,
   .suffix {
-    &:first-child .unit-separator { margin-right: $double-gap; margin-left: $gap; }
     &:last-child .unit { padding-left: $double-gap; padding-right: $gap; }
-  }
-
-  .prefixSuffixWrapper {
-    margin-right: 0;
-    margin-left: 6px;
   }
 }
 
 // RTL layout based on a property passed directly to the component.
 .rtl.root {
   direction: rtl;
-  .prefixes,
   .suffixes { direction: rtl; }
   .input { direction: rtl; }
 }
@@ -417,7 +397,6 @@ $material-gap: 8px;
 }
 
 .clear-button {
-  margin-right: 6px;
   line-height: 0;
   background: $B50;
   border-radius: 12px;
@@ -426,23 +405,10 @@ $material-gap: 8px;
 .unit {
   padding: 0 $gap;
   color: $paletteD3;
-  @include FontLight();
+  @include FontRoman();
   //needs display:block to fix inputs with prefix in ie11
   //https://github.com/wix/wix-style-react/issues/1691
   display: block;
-}
-
-.unit-separator {
-  width: 1px;
-  margin: 0 $gap;
-  background-color: $paletteB4;
-  height: 18px;
-
-  @at-root {
-    .hasError .unit-separator {
-      background-color: $paletteR1;
-    }
-  }
 }
 
 .menu-arrow {

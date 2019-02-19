@@ -4,7 +4,7 @@ const program = require('commander');
 const { generateComponent, utils, logger } = require('../src');
 
 program
-  .version('0.1.0')
+  .version('1.0.0')
   .description(`A component generator tailored for wix-style-react's needs`)
   .option('-f, --force', 'Skip some pre-run checks')
   .parse(process.argv);

@@ -1,106 +1,117 @@
 @import '../common';
 
-.header-container {
+// Allow flex-child to shrink when there is a truncated descendant
+// See: https://css-tricks.com/flexbox-truncated-text/#article-header-id-3
+@mixin truncatedFlexChild {
+  min-width: 0;
+}
+
+.headerContainer {
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
   min-height: 30px;
-}
+  
+  .header {
+    flex: 1;
+    @include truncatedFlexChild;
 
-.header {
-  flex: 1;
-}
-
-.breadcrumbs-container {
-  margin-left: -10px;
-
-  &.absolute {
-    position: absolute;
-  }
-}
-
-.back-button {
-  position: relative;
-  top: 6px;
-  left: -12px;
-  z-index: 1;
-  width: 36px;
-  height: 36px;
-
-  button {
-    border: none;
-    background-color: transparent;
-
-    &:hover {
-      background-color: rgba($D80, 1);
-    }
-
-    &:active {
-      margin-left: -3px;
-      margin-top: -3px;
-      width: 42px;
-      height: 42px;
-    }
-  }
-
-  &.dark-theme {
-    button {
-      color: $D80;
-
-      &:hover {
-        background-color: rgba($D80, 0.3);
+    .breadcrumbsContainer {
+      margin-left: -10px;
+    
+      &.absolute {
+        position: absolute;
       }
     }
+    
+    .titleContainer {
+      display: flex;
+    
+      &.minimized {
+        position: absolute;
+      }
+    
+      .backButton {
+        position: relative;
+        top: 6px;
+        left: -12px;
+        z-index: 1;
+        width: 36px;
+        height: 36px;
+      
+        button {
+          border: none;
+          background-color: transparent;
+      
+          &:hover {
+            background-color: rgba($D80, 1);
+          }
+      
+          &:active {
+            margin-left: -3px;
+            margin-top: -3px;
+            width: 42px;
+            height: 42px;
+          }
+        }
+      
+        &.darkTheme {
+          button {
+            color: $D80;
+      
+            &:hover {
+              background-color: rgba($D80, 0.3);
+            }
+          }
+        }
+
+        .backButtonIcon {
+          display: block;
+          width: 36px;
+          height: 36px;
+        }        
+      }
+      
+      .titleColumn {
+        @include truncatedFlexChild;
+    
+        .title {
+          height: 48px;
+        }
+      }
+    }    
   }
-}
 
-.back-button-icon {
-  display: block;
-  width: 36px;
-  height: 36px;
-}
+  .actionsBar {
+    height: 30px;
+    margin-top: 6px;
+    margin-left: auto;
 
-.title-container {
-  display: flex;
-
-  &.minimized {
-    position: absolute;
-  }
-}
-
-.title {
-  h2 {
-    margin: 0;
-    height: 48px;
-  }
-}
-
-.actions-bar {
-  height: 30px;
-  margin-top: 6px;
-  margin-left: auto;
-  transition: margin .2s cubic-bezier(0.4, 0.0, 0.2, 1);
-
-  &.with-breadcrumbs {
-    margin-top: 36px;
-  }
-
-  &.minimized {
-    margin-top: -3px;
-  }
+    &.animationEnabled {
+      transition: margin .2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+  
+    &.withBreadcrumbs {
+      margin-top: 36px;
+    }
+  
+    &.minimized {
+      margin-top: -3px;
+    }
+  }  
 }
 
 @include withRTL() {
-  .breadcrumbs-container {
+  .breadcrumbsContainer {
     margin-left: 0;
     margin-right: -10px;
   }
 
-  .back-button {
+  .backButton {
     left: 12px;
   }
 
-  .back-button-icon {
+  .backButtonIcon {
     transform: scaleX(-1);
   }
 }

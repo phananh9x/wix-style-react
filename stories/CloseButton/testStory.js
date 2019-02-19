@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import Help from 'wix-ui-icons-common/Help';
 
 import { getTestStoryKind } from '../storiesHierarchy';
 import { storySettings, testStories } from './storySettings';
@@ -70,6 +71,21 @@ storiesOf(kind, module).add(testStories.CLOSEBUTTON_AS, () => (
     <div style={{ marginLeft: '10px' }}>
       <Layout>
         <ButtonBlock as="a" title="as Anchor" />
+      </Layout>
+    </div>
+  </TestContainer>
+));
+
+storiesOf(kind, module).add(testStories.CLOSEBUTTON_CUSTOM_ICON, () => (
+  <TestContainer>
+    <div style={{ marginLeft: '10px' }}>
+      <Layout>
+        <ButtonBlock title="Custom Icon (small)">
+          <Help />
+        </ButtonBlock>
+        <ButtonBlock size="medium" title="Custom Icon (medium)">
+          <Help />
+        </ButtonBlock>
       </Layout>
     </div>
   </TestContainer>

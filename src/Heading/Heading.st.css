@@ -22,7 +22,7 @@
 .root:appearance(H2) {
   font-family: value(fontMedium);
   font-size: 28px;
-  line-height: 42px;
+  line-height: 36px;
   color: value(D10);
 }
 

@@ -1,4 +1,4 @@
-@import '../common.scss';
+@import '../colors';
 
 .root {
   position: relative;
@@ -64,4 +64,9 @@
 .premium {
   background-color: $P50;
   border-color: $P30;
+}
+
+.preview {
+  background-color: $D70;
+  border-color: $D50;
 }

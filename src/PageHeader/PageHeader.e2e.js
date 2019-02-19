@@ -1,7 +1,10 @@
 import { eyesItInstance } from '../../test/utils/eyes-it';
 
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
-import { pageHeaderTestkitFactory } from '../../testkit/protractor';
+import {
+  pageHeaderTestkitFactory,
+  dropdownTestkitFactory,
+} from '../../testkit/protractor';
 import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
 
 import { storySettings } from '../../stories/PageHeader/storySettings';
@@ -20,15 +23,41 @@ describe('PageHeader', () => {
     return driver;
   };
 
-  describe('Long title', () => {
-    eyes.it('should disaply multiline title and subtitle', async () => {
-      await initTest({ testName: '1. Long Title and Subtitle' });
+  eyes.it('should display standard header', async () => {
+    await initTest({ testName: '1. Standard', rtl: true });
+  });
+
+  describe('Ellipsis', () => {
+    eyes.it('should display title and subtitle with ellipsis', async () => {
+      await initTest({ testName: '2. Long Title and Subtitle' });
     });
+
+    eyes.it(
+      'should display an opened dropdown in title (no ellipsis)',
+      async () => {
+        await initTest({ testName: '3. Title with Dropdown' });
+        const dropdownTeskit = dropdownTestkitFactory({
+          dataHook: 'title-dropdown',
+        });
+        await dropdownTeskit.click();
+      },
+    );
+
+    eyes.it(
+      'should display an opened dropdown in subtitle (no ellipsis)',
+      async () => {
+        await initTest({ testName: '4. Subtitle with Dropdown' });
+        const dropdownTeskit = dropdownTestkitFactory({
+          dataHook: 'subtitle-dropdown',
+        });
+        await dropdownTeskit.click();
+      },
+    );
   });
 
   describe('RTL', () => {
-    eyes.it('should disaply multiline title and subtitle', async () => {
-      await initTest({ testName: '1. Long Title and Subtitle', rtl: true });
+    eyes.it('should display standard header', async () => {
+      await initTest({ testName: '1. Standard', rtl: true });
     });
   });
 });

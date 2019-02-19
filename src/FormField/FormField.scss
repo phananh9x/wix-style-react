@@ -19,6 +19,7 @@ $childrenMargin: 6px;
 
 .children {
   flex: 0 0 100%;
+  max-width: 100%;
 
   &.childrenWithInlineSuffixes {
     flex: 0 0 auto;
@@ -87,6 +88,7 @@ $childrenMargin: 6px;
 .asterisk {
   display: inline-block;
   color: $B20;
+  font-family: $FontLight;
   font-size: 22px;
   margin-left: 6px;
   margin-top: -4px;

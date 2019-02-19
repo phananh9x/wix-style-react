@@ -1,5 +1,13 @@
 import React from 'react';
-import { string, number, arrayOf, oneOfType, func, any } from 'prop-types';
+import {
+  string,
+  number,
+  arrayOf,
+  oneOfType,
+  func,
+  any,
+  bool,
+} from 'prop-types';
 import createReactContext from 'create-react-context';
 
 export const BulkSelectionContext = createReactContext();
@@ -142,7 +150,7 @@ export class BulkSelection extends React.Component {
        * Possible values: ALL, SOME, NONE
        */
       bulkSelectionState,
-
+      disabled: this.props.disabled,
       // Modifiers
       /** Toggle the selection state (selected/not-selected) of an item by id */
       toggleSelectionById: this.toggleSelectionById,
@@ -179,6 +187,8 @@ BulkSelection.propTypes = {
    * In case of 'SINGLE_TOGGLE' the `change` object will also include an `id` prop with the item's id,
    * and a `value` prop with the new boolean selection state of the item. */
   onSelectionChanged: func,
+  /** Are checkboxes disabled */
+  disabled: bool,
   /** Any - can consume the BulkSelectionProvider context */
   children: any,
 };

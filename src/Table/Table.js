@@ -22,6 +22,7 @@ export function createColumns({ tableProps, bulkSelectionContext }) {
     bulkSelectionState,
     toggleSelectionById,
     isSelected,
+    disabled,
   }) => {
     return {
       title: (
@@ -29,6 +30,7 @@ export function createColumns({ tableProps, bulkSelectionContext }) {
           dataHook="table-select"
           checked={bulkSelectionState === BulkSelectionState.ALL}
           indeterminate={bulkSelectionState === BulkSelectionState.SOME}
+          disabled={disabled}
           onChange={() => toggleAll()}
         />
       ),
@@ -37,6 +39,7 @@ export function createColumns({ tableProps, bulkSelectionContext }) {
         return (
           <div onClick={e => e.stopPropagation()}>
             <Checkbox
+              disabled={disabled}
               dataHook="row-select"
               checked={isSelected(id)}
               onChange={() => toggleSelectionById(id)}
@@ -113,6 +116,7 @@ export class Table extends React.Component {
           <BulkSelection
             ref={_ref => (this.bulkSelection = _ref)}
             selectedIds={this.props.selectedIds}
+            disabled={this.props.selectionDisabled}
             allIds={this.props.data.map((rowData, rowIndex) =>
               defaultTo(rowData.id, rowIndex),
             )}
@@ -215,6 +219,8 @@ Table.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.arrayOf(PropTypes.number),
   ]),
+  /** Is selection disabled for the table */
+  selectionDisabled: PropTypes.bool,
   /** The width of the fixed table. Can be in percentages or pixels. */
   width: PropTypes.string,
   /**

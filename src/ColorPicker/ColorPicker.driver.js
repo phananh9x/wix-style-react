@@ -7,6 +7,10 @@ export const colorPickerDriverFactory = ({ element }) => {
       ReactTestUtils.Simulate.click(
         element.querySelector('[data-hook="color-picker-confirm-button"]'),
       ),
+    cancel: () =>
+      ReactTestUtils.Simulate.click(
+        element.querySelector('[data-hook="color-picker-cancel-button"]'),
+      ),
     clickOnPreviousColor: () =>
       ReactTestUtils.Simulate.click(
         element.querySelector('[data-hook="color-picker-history-previous"]'),

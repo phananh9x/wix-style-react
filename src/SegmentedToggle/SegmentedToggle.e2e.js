@@ -1,5 +1,4 @@
 import { eyesItInstance } from '../../test/utils/eyes-it';
-import { segmentedToggleTestkitFactory } from '../../testkit/protractor';
 import {
   storySettings,
   testStories,

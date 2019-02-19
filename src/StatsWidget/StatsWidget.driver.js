@@ -9,6 +9,8 @@ const statsWidgetDriverFactory = ({ element }) => {
   const getStatistic = index =>
     findByHook(element, 'stats-widget-content-wrapper').childNodes[index];
 
+  const getSuffix = () => findByHook(element, 'suffix');
+
   const headerElement = findByHook(element, 'stats-widget-title');
 
   const headerDriver = headerDriverFactory({
@@ -18,6 +20,10 @@ const statsWidgetDriverFactory = ({ element }) => {
 
   return {
     exists: () => !!element,
+
+    getSuffixElementByHook: dataHook => {
+      return findByHook(getSuffix(), 'suffix-element-hook').textContent;
+    },
 
     /** returns header title  */
     titleText: () => headerDriver.title(),

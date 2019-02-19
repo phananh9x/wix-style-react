@@ -75,7 +75,6 @@ class CalendarPanelFooter extends React.PureComponent {
           <ItemGroup position="end">
             <Item>
               <Button
-                upgrade
                 priority="secondary"
                 dataHook="secondary-action-button"
                 onClick={secondaryActionOnClick}
@@ -85,7 +84,6 @@ class CalendarPanelFooter extends React.PureComponent {
             </Item>
             <Item>
               <Button
-                upgrade
                 disabled={primaryActionDisabled}
                 dataHook="primary-action-button"
                 onClick={primaryActionOnClick}

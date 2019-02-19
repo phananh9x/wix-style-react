@@ -2,7 +2,7 @@ const tempy = require('tempy');
 
 const logger = require('../src/logger');
 const utils = require('../src/utils');
-const verifyWorkingDirectory = require('../src/verify-working-directory');
+const verifyWorkingDirectory = require('../src/tasks/verify-working-directory');
 
 let isGitRepoCleanSpy;
 
@@ -48,15 +48,5 @@ describe('verifyWorkingDirectory', () => {
     expect(errorSpy).toHaveBeenCalledWith(
       'Git working directory is dirty. Commit or stash your changes, or run the generator with the --force flag',
     );
-  });
-
-  it('should skip git checks if needed', async () => {
-    mockGitStatus(true);
-
-    await verifyWorkingDirectory(tempy.directory(), { skipGitChecks: true });
-
-    expect(isGitRepoCleanSpy).not.toHaveBeenCalled();
-    expect(errorSpy).not.toHaveBeenCalled();
-    expect(exitSpy).not.toHaveBeenCalled();
   });
 });

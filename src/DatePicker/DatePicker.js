@@ -175,9 +175,9 @@ export default class DatePicker extends WixComponent {
       readOnly,
       placeholder: placeholderText,
       prefix: (
-        <span className={styles.icon}>
+        <Input.IconAffix>
           <CalendarIcon />
-        </span>
+        </Input.IconAffix>
       ),
       onFocus: this.openCalendar,
       onKeyDown: this._handleKeyDown,
