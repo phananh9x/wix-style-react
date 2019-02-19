@@ -62,6 +62,7 @@ class AccordionItem extends React.PureComponent {
         onClick={() => toggleOpen(id)}
       >
         <div className={itemStyle}>
+          <div className={styles.headerDetails}>
           {icon && (
             <div className={styles.headerIcon} data-hook="icon">
               {icon}
@@ -69,24 +70,25 @@ class AccordionItem extends React.PureComponent {
           )}
           {title && (
             <div className={styles.headerText}>
-              { typeof title === "string" && (
+              {typeof title === "string" && (
                 <Text data-hook="title" ellipsis weight="normal">
                   {title}
                 </Text>
               )}
-              { typeof title === "object" && (title)}
+              {typeof title === "object" && (title)}
             </div>
           )}
-        </div>
-        <div className={buttonsStyle}>
-          <MoreLessButton
-            dataHook="toggle-accordion-wrapper"
-            isOpen={isOpen}
-            handleClick={() => toggleOpenClose(id)}
-            expandLabel={expandLabel}
-            collapseLabel={collapseLabel}
-            hover={hover}
-          />
+          </div>
+          <div className={buttonsStyle}>
+            <MoreLessButton
+              dataHook="toggle-accordion-wrapper"
+              isOpen={isOpen}
+              handleClick={() => toggleOpenClose(id)}
+              expandLabel={expandLabel}
+              collapseLabel={collapseLabel}
+              hover={hover}
+            />
+          </div>
         </div>
         <Animator show={isOpen} height>
           <div data-hook="content" className={styles.collapse}>

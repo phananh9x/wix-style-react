@@ -1,4 +1,5 @@
 @import '../../common.scss';
+$row-hover-vertical-padding: 21px;
 $row-sides-padding: 30px;
 $row-top-padding: 24px;
 $icon-accordion-padding: 24px;
@@ -6,26 +7,29 @@ $icon-accordion-height: 24px;
 $moreLessPosition: 30px;
 $moreLess-height: 30px;
 $collapse-top-padding: 24px;
+$collapse-sides-padding: 30px;
 
 .collapse,
 .item {
   display: flex;
-  align-items: flex-start;
 }
 
 .wrapper {
   position: relative;
-
 }
 
 .item {
   padding: $row-top-padding $row-sides-padding;
   width: calc(100% - #{$row-sides-padding * 2});
   transition: background-color .3s;
+  justify-content: space-between;
+  align-items: center;
 
   &:not(.open):hover {
     background-color: $B40;
     cursor: pointer;
+    padding: $row-hover-vertical-padding $row-sides-padding;
+    height: $moreLess-height;
   }
 }
 
@@ -40,21 +44,23 @@ $collapse-top-padding: 24px;
 }
 
 .headerText {
-  width: calc(100% - 140px);
+  margin-right: 12px;
+}
+
+.headerDetails {
+  display: flex;
+  justify-content: center;
 }
 
 .collapse {
   align-items: flex-start;
   flex-direction: column;
-  padding: $collapse-top-padding 30px 90px 78px;
+  padding: $collapse-top-padding $collapse-sides-padding $collapse-sides-padding $collapse-sides-padding;
   background-color: $B60;
 }
 
 .moreLessButton {
-  position: absolute;
-  right: $row-sides-padding;
-  bottom: 18px;
-  height: $moreLess-height;
+  position: relative;
   transition: bottom .2s;
 
   &.open {

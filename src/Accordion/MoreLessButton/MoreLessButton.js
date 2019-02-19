@@ -31,12 +31,11 @@ export default ({
       }}
     >
       {!hover && !isOpen && (
-        <ChevronDown className={styles.expandCollapseArrow} size="18px" />
+        <ChevronDown className={styles.expandCollapseArrow} size="24px" />
       )}
       {hover && !isOpen && (
         <Button
           dataHook="toggle-accordion-button"
-          suffixIcon={<ChevronDown />}
           className={buttonStyle}
           priority={isOpen ? 'secondary' : 'primary'}
           size="small"
