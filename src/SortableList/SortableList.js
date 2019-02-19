@@ -288,6 +288,7 @@ class SortableList extends WixComponent {
               onDragEnd={this.handleDragEnd}
               canDrag={this.props.canDrag}
               delay={this.props.delay}
+              listOfPropsThatAffectItems={this.props.listOfPropsThatAffectItems}
             />
           ))}
         </div>
