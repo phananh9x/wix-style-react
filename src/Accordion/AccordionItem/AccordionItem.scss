@@ -2,12 +2,12 @@
 $row-hover-vertical-padding: 21px;
 $row-sides-padding: 30px;
 $row-top-padding: 24px;
-$icon-accordion-padding: 24px;
 $icon-accordion-height: 24px;
 $moreLessPosition: 30px;
 $moreLess-height: 30px;
 $collapse-top-padding: 24px;
 $collapse-sides-padding: 30px;
+$item-internal-margin: 12px;
 
 .collapse,
 .item {
@@ -39,12 +39,12 @@ $collapse-sides-padding: 30px;
 }
 
 .headerIcon {
-  margin-right: $icon-accordion-padding;
+  margin-right: $item-internal-margin;
   height: $icon-accordion-height;
 }
 
 .headerText {
-  margin-right: 12px;
+  margin-right: $item-internal-margin;
 }
 
 .headerDetails {
