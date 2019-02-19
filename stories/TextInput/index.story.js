@@ -92,7 +92,7 @@ export default {
       },
 
       {
-        title: 'Position',
+        title: 'Label Position',
         text:
           'Text Input’s label can be position on top, left or can be hidden. Additional properties behave accordingly.',
         source: examples.position,
