@@ -1,7 +1,5 @@
-export const importExample = `
-import FormField from 'wix-style-react/FormField';
-import Input from 'wix-style-react/Input'
-`;
+export const importExample = `import FormField from 'wix-style-react/FormField';
+import Input from 'wix-style-react/Input'`;
 
 export const sizes = `
 <Layout>
@@ -29,13 +27,13 @@ export const affix = `
 <Layout>
   <Cell>
     <FormField label="Field label">
-      <Input size="normal" placeholder="Placeholder" prefix="$"/>
+      <Input size="normal" placeholder="Placeholder" prefix={<Input.Affix>$</Input.Affix>}/>
       </FormField>
   </Cell>
 
   <Cell>
     <FormField label="Field label">
-      <Input size="normal" placeholder="Placeholder" suffix="Kg."/>
+      <Input size="normal" placeholder="Placeholder" suffix={<Input.Affix>Kg.</Input.Affix>}/>
     </FormField>
   </Cell>
 </Layout>

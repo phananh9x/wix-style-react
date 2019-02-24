@@ -15,13 +15,13 @@ export const standard = `
 export const error = `
 <Layout>
   <Cell>
-    <Input status={'error'}/>
+    <Input status="error"/>
   </Cell>
   <Cell>
-    <Input status={'error'} forceHover />
+    <Input status="error" forceHover />
   </Cell>
   <Cell>
-    <Input status={'error'} forceFocus />
+    <Input status="error" forceFocus />
   </Cell>
 </Layout>
 `;

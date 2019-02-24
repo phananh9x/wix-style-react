@@ -12,19 +12,18 @@ import { searchTestkitFactory as enzymeSearchTestkitFactory } from '../../testki
 import { makeControlled } from '../../test/utils';
 import { mount } from 'enzyme';
 
-const REGEXP_SPECIAL_CHARS = '^$\\.*+?)(][}{|';
-
-const options = [
-  'The quick',
-  'brown',
-  'fox',
-  'jumps over',
-  'the lazy',
-  'dog',
-  REGEXP_SPECIAL_CHARS,
-].map((value, index) => ({ id: index, value }));
-
 describe('Search', () => {
+  const REGEXP_SPECIAL_CHARS = '^$\\.*+?)(][}{|';
+
+  const options = [
+    'The quick',
+    'brown',
+    'fox',
+    'jumps over',
+    'the lazy',
+    'dog',
+    REGEXP_SPECIAL_CHARS,
+  ].map((value, index) => ({ id: index, value }));
   const createDriver = createDriverFactory(searchDriverFactory);
 
   describe('Controlled', () => {
@@ -140,6 +139,22 @@ describe('Search', () => {
       expect(driver.inputDriver.isFocus()).toBe(true);
     });
 
+    it('should allow filtering options by predicate', () => {
+      const nodeOptions = [
+        { id: 1, value: <div>Found me</div>, keywords: ['Found'] },
+        { id: 2, value: <div>Filtered me</div>, keywords: ['Filtered'] },
+      ];
+      const predicate = jest.fn(option => {
+        return option.keywords.includes('Found');
+      });
+      const driver = createDriver(
+        <ControlledSearch options={nodeOptions} predicate={predicate} />,
+      );
+      driver.inputDriver.enterText('Some text value');
+      expect(predicate).toHaveBeenCalled();
+      expect(driver.dropdownLayoutDriver.optionsLength()).toBe(1);
+    });
+
     it('should highlight the matched options text', () => {
       const driver = createDriver(
         <ControlledSearch value="the" options={options} />,
@@ -239,23 +254,5 @@ describe('Search', () => {
       expect(driver.isExpandable()).toBeTruthy();
       expect(driver.isCollapsed()).toBeFalsy();
     });
-  });
-});
-
-describe('Testkits', () => {
-  it('Using ReactTestUtils testkit', () => {
-    expect(
-      isTestkitExists(<Search options={options} />, searchTestkitFactory),
-    ).toBe(true);
-  });
-
-  it('Using Enzyme testkit', () => {
-    expect(
-      isEnzymeTestkitExists(
-        <Search options={options} />,
-        enzymeSearchTestkitFactory,
-        mount,
-      ),
-    ).toBe(true);
   });
 });

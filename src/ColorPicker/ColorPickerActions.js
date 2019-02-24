@@ -7,7 +7,7 @@ import Check from '../new-icons/Check';
 
 import css from './ColorPickerActions.scss';
 
-const ColorPickerActions = ({ onCancel, onConfirm }) => (
+const ColorPickerActions = ({ onCancel, onConfirm, disabled }) => (
   <div className={css.root}>
     <IconButton
       dataHook="color-picker-cancel-button"
@@ -20,6 +20,7 @@ const ColorPickerActions = ({ onCancel, onConfirm }) => (
     <IconButton
       dataHook="color-picker-confirm-button"
       size="medium"
+      disabled={disabled}
       onClick={onConfirm}
     >
       <Check />

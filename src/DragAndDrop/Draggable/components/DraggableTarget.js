@@ -75,7 +75,6 @@ const collect = connect => ({
   connectDropTarget: connect.dropTarget(),
 });
 
-@DropTarget(ItemTypes.DRAGGABLE, target, collect)
 class DraggableTarget extends WixComponent {
   registerNode = node => {
     this.props.setWrapperNode(node, this.props.index, this.props.item);
@@ -103,4 +102,6 @@ DraggableTarget.propTypes = {
   item: PropTypes.object,
 };
 
-export default DraggableTarget;
+export default DropTarget(ItemTypes.DRAGGABLE, target, collect)(
+  DraggableTarget,
+);

@@ -14,6 +14,7 @@ export const LOCAL_NOTIFICATION = 'local';
 export const GLOBAL_NOTIFICATION = 'global';
 export const STICKY_NOTIFICATION = 'sticky';
 export const DEFAULT_AUTO_HIDE_TIMEOUT = 6000;
+export const DEFAULT_TIMEOUT = DEFAULT_AUTO_HIDE_TIMEOUT;
 
 export const notificationTypeToPosition = {
   [LOCAL_NOTIFICATION]: 'absolute',

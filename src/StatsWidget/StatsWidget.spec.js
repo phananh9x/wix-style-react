@@ -208,12 +208,12 @@ describe('StatsWidget', () => {
         },
       ];
 
-      const PageRequiredChildrenArrayError =
-        'Warning: Failed prop type: Invalid prop `statistics[0].percent` of type `string` supplied to `StatsWidget`, expected `number`.\n    in StatsWidget';
       createComponent({ title, statistics: wrongStatistics });
 
       expect(consoleErrorSpy).toHaveBeenCalledWith(
-        PageRequiredChildrenArrayError,
+        expect.stringContaining(
+          'Warning: Failed prop type: Invalid prop `statistics[0].percent` of type `string` supplied to `StatsWidget`, expected `number`',
+        ),
       );
     });
 
@@ -225,7 +225,9 @@ describe('StatsWidget', () => {
       });
 
       expect(consoleErrorSpy).toHaveBeenCalledWith(
-        'Warning: Failed prop type: Invalid Prop children, maximum amount of filters are 3\n    in StatsWidget',
+        expect.stringContaining(
+          'Warning: Failed prop type: Invalid Prop children, maximum amount of filters are 3',
+        ),
       );
     });
 
@@ -235,9 +237,10 @@ describe('StatsWidget', () => {
         statistics,
         children: [<div key="1" />, <div key="2" />, <div key="3" />],
       });
-
       expect(consoleErrorSpy).toHaveBeenCalledWith(
-        'Warning: Failed prop type: StatsWidget: Invalid Prop children, only <StatsWidget.FilterButton/> is allowed\n    in StatsWidget',
+        expect.stringContaining(
+          'Warning: Failed prop type: StatsWidget: Invalid Prop children, only <StatsWidget.FilterButton/> is allowed',
+        ),
       );
     });
   });

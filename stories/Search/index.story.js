@@ -1,8 +1,6 @@
 import React from 'react';
 import Search from 'wix-style-react/Search';
-import CodeExample from 'wix-storybook-utils/CodeExample';
-import ExpandableExampleRaw from '!raw-loader!./expandable.example';
-import ExpandableSearchExample from './expandable.example';
+import { Predicate, Expandable } from './examples';
 
 const createOption = (value, id = 0) => ({ id, value });
 
@@ -57,9 +55,8 @@ export default {
 
   examples: (
     <div>
-      <CodeExample title="Expandable" code={ExpandableExampleRaw}>
-        <ExpandableSearchExample />
-      </CodeExample>
+      <Expandable />
+      <Predicate />
     </div>
   ),
 };

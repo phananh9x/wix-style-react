@@ -1,42 +1,79 @@
-export const importExample = `
-import FormField from 'wix-style-react/FormField';
-import InputArea from 'wix-style-react/InputArea';
-`;
+export const importExample = `import FormField from 'wix-style-react/FormField';
+import InputArea from 'wix-style-react/InputArea';`;
 
 export const basicExample = `
-<FormField
-label="This is the FormField label"
-required
-infoContent="This is the info tooltip content"
->
+<FormField label="Text Area label">
   <InputArea
-    placeholder="Placeholder Text"
+    placeholder="placeholder text"
   />
+</FormField>
+`;
+
+export const charLimitExample = `
+<FormField label="Text Area label">
+  {({setCharactersLeft}) =>
+    <InputArea onChange={event => setCharactersLeft(100 - event.target.value.length)} placeholder="placeholder text"/>
+  }
 </FormField>
 `;
 
 export const resizableHeightExample = `
 <FormField
-label="This is the FormField label"
-required
-infoContent="This is the info tooltip content"
+label="Text Area label"
 >
   <InputArea
-    placeholder="Placeholder Text"
+    placeholder="placeholder text"
     resizable
-    value="Free Philippine Real Estate Ads Forums And Classifieds Advertising On A Budget Part 3 Frequency Frequency Frequency Forums Philippine"
   />
 </FormField>
 `;
 
-export const withoutALabelExample = `
-<FormField
-  required
-  infoContent="This is the info tooltip content"
->
-  <InputArea
-    placeholder="Placeholder Text"
-    value="Free Philippine Real Estate Ads Forums And Classifieds Advertising On A Budget Part 3 Frequency Frequency Frequency Forums Philippine"
-  />
-</FormField>
+export const positionExample = `
+<Layout>
+  <Cell>
+    <FormField label="Text Area label" infoContent="Tooltip text" required>
+      {({ setCharactersLeft }) => (
+        <InputArea
+          onChange={event => setCharactersLeft(100 - event.target.value.length)}
+          placeholder="placeholder text"
+          required
+        />
+      )}
+    </FormField>
+  </Cell>
+
+  <Cell>
+    <FormField
+      label="Text Area label"
+      infoContent="Tooltip text"
+      labelPlacement="left"
+      required
+    >
+      {({ setCharactersLeft }) => (
+        <InputArea
+          onChange={event => setCharactersLeft(100 - event.target.value.length)}
+          placeholder="placeholder text"
+          required
+        />
+      )}
+    </FormField>
+  </Cell>
+
+  <Cell>
+    <FormField
+      label="Text Area label"
+      infoContent="Tooltip text"
+      labelPlacement="right"
+      required
+    >
+      {({ setCharactersLeft }) => (
+        <InputArea
+          onChange={event => setCharactersLeft(100 - event.target.value.length)}
+          placeholder="placeholder text"
+          required
+        />
+      )}
+    </FormField>
+  </Cell>
+</Layout>
 `;

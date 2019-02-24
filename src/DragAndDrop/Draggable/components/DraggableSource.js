@@ -104,8 +104,7 @@ const collect = (connect, monitor) => ({
   isDragging: monitor.isDragging(),
 });
 
-@DragSource(ItemTypes.DRAGGABLE, source, collect)
-export default class DraggableSource extends React.Component {
+class DraggableSource extends React.Component {
   state = {
     offsetOfHandle: { x: 0, y: 0 },
     itemWidth: null
@@ -287,3 +286,7 @@ DraggableSource.propTypes = {
   /** Is delay timer still waiting before user can drag the item */
   delayed: PropTypes.bool,
 };
+
+export default DragSource(ItemTypes.DRAGGABLE, source, collect)(
+  DraggableSource,
+);

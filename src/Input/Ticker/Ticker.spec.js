@@ -2,7 +2,8 @@ import { componentFactory, tickerDriverFactory } from './testkit/Ticker';
 import { spy } from 'sinon';
 
 describe('<Ticker/>', () => {
-  const createDriver = props => tickerDriverFactory(componentFactory(props));
+  const createDriver = (props, context) =>
+    tickerDriverFactory(componentFactory(props, context));
 
   it('should create a ticker', () => {
     const driver = createDriver({});
@@ -40,6 +41,18 @@ describe('<Ticker/>', () => {
     expect(driver.isDownDisabled()).toEqual(true);
 
     driver.clickUp();
+    expect(onDown.calledOnce).toEqual(false);
+  });
+
+  it('should be disabled in case input is disabled', () => {
+    const onDown = spy();
+    const onUp = spy();
+    const driver = createDriver({ onDown, onUp }, { disabled: true });
+    expect(driver.isDownDisabled()).toEqual(true);
+    expect(driver.isUpDisabled()).toEqual(true);
+    driver.clickUp();
+    driver.clickDown();
+    expect(onUp.calledOnce).toEqual(false);
     expect(onDown.calledOnce).toEqual(false);
   });
 });

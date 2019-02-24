@@ -8,19 +8,21 @@ import InputConsumer from '../InputConsumer';
 
 const Ticker = ({ onUp, onDown, upDisabled, downDisabled, dataHook }) => (
   <InputConsumer consumerCompName={Ticker.displayName}>
-    {props => (
+    {({ disabled }) => (
       <div className={styles.root} data-hook={dataHook}>
         <div
-          className={classnames(styles.up, { [styles.disabled]: upDisabled })}
-          onClick={upDisabled ? null : onUp}
+          className={classnames(styles.up, {
+            [styles.disabled]: upDisabled || disabled,
+          })}
+          onClick={upDisabled || disabled ? null : onUp}
         >
           <FormFieldSpinnerUp />
         </div>
         <div
           className={classnames(styles.down, {
-            [styles.disabled]: downDisabled,
+            [styles.disabled]: downDisabled || disabled,
           })}
-          onClick={downDisabled ? null : onDown}
+          onClick={downDisabled || disabled ? null : onDown}
         >
           <FormFieldSpinnerDown />
         </div>

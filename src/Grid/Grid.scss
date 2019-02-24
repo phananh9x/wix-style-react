@@ -1,10 +1,10 @@
-@import 'bootstrap-sass/assets/stylesheets/bootstrap/variables.scss';
-@import 'bootstrap-sass/assets/stylesheets/bootstrap/mixins/clearfix.scss';
-@import 'bootstrap-sass/assets/stylesheets/bootstrap/mixins/grid-framework.scss';
-@import 'bootstrap-sass/assets/stylesheets/bootstrap/mixins/grid.scss';
-@import 'bootstrap-sass/assets/stylesheets/bootstrap/mixins/responsive-visibility.scss';
-@import 'bootstrap-sass/assets/stylesheets/bootstrap/grid.scss';
-@import 'bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities.scss';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins/_clearfix.scss';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins/_grid-framework.scss';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins/_grid.scss';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins/_responsive-visibility.scss';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_grid.scss';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_responsive-utilities.scss';
 
 @import './GridConstants.scss';
 @import '../Page/Page.public.scss';

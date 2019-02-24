@@ -7,8 +7,7 @@ import Heading from '../Heading';
 import Text from '../Text';
 
 /**
- * # `<EmptyState/>` component
- * > Representing a state of an empty page, section, table, etc.
+ * Representing a state of an empty page, section, table, etc.
  */
 const EmptyState = ({ theme, title, subtitle, image, children, dataHook }) => (
   <div

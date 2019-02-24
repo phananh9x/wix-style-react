@@ -26,7 +26,7 @@ export const dropdownLayoutDriverFactory = base => {
 
     clickAtOption: async index => {
       if (base.type === 'react') {
-        const option = await getOptionAt(index).getNative();
+        const option = await getOptionAt(index).getNative(); // eslint-disable-line no-restricted-properties
         Simulate.mouseDown(option);
       }
     },

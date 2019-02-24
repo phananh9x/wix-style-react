@@ -17,7 +17,7 @@ import ExampleCollapseRaw from '!raw-loader!./ExampleCollapse';
 import ExampleEmptyState from './ExampleEmptyState';
 import ExampleEmptyStateRaw from '!raw-loader!./ExampleEmptyState';
 
-storiesOf('2. Layout', module).add('Card', () => (
+storiesOf('2. Layout', module).add('2.2 Card Layout', () => (
   <div>
     <Markdown source={CardReadme} />
 

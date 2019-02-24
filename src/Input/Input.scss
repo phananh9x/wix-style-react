@@ -43,8 +43,8 @@ $material-gap: 8px;
   @include Placeholder(getTextColor($light: true, $secondary: true));
   @include Selection($paletteB4);
 
-  &[type=number] {
-    -moz-appearance:textfield;
+  &[type='number'] {
+    -moz-appearance: textfield;
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
@@ -52,7 +52,6 @@ $material-gap: 8px;
       margin: 0;
     }
   }
-
 }
 
 // Remove IE10+ automatically x button
@@ -80,7 +79,9 @@ $material-gap: 8px;
   display: flex;
   align-items: center;
 
-  &:last-child .unit { padding-right: $double-gap; }
+  &:last-child .unit {
+    padding-right: $double-gap;
+  }
 }
 
 .roundInput {
@@ -106,40 +107,81 @@ $material-gap: 8px;
 }
 
 .size {
-  &-small  { @include Size($height: 30px, $fontSize: 14px); }
-  &-small-with-selection { @include Size($height: 28px, $fontSize: 14px); }
-  &-normal { @include Size($height: 36px, $fontSize: 16px); }
-  &-normal-with-selection { @include Size($height: 34px, $fontSize: 16px); }
-  &-large  { @include Size($height: 60px, $fontSize: 16px); }
-  &-large-with-selection { @include Size($height: 58px, $fontSize: 16px); }
+  &-small {
+    @include Size($height: 30px, $fontSize: 14px);
+  }
+  &-small-with-selection {
+    @include Size($height: 28px, $fontSize: 14px);
+  }
+  &-normal {
+    @include Size($height: 36px, $fontSize: 16px);
+  }
+  &-normal-with-selection {
+    @include Size($height: 34px, $fontSize: 16px);
+  }
+  &-large {
+    @include Size($height: 60px, $fontSize: 16px);
+  }
+  &-large-with-selection {
+    @include Size($height: 58px, $fontSize: 16px);
+  }
 }
 
 .theme {
   &-normal {
-    @include ThemeDefault($color: $D10, $borderColor: $B30, $backgroundColor: $D80);
+    @include ThemeDefault(
+      $color: $D10,
+      $borderColor: $B30,
+      $backgroundColor: $D80
+    );
     @include ThemeHover($backgroundColor: $B50);
     @include ThemeFocus($borderColor: $B10, $boxShadow: 0 0 0 3px $F00);
     @include ThemeError($borderColor: $paletteR1);
-    @include ThemeDisable($color: $D55, $borderColor: $D60, $backgroundColor: $D80);
+    @include ThemeDisable(
+      $color: $D55,
+      $borderColor: $D60,
+      $backgroundColor: $D80
+    );
     @include ThemeDisableHover($borderColor: $GR20);
   }
   &-paneltitle {
-    @include ThemeDefault($color: white, $borderColor: $B30, $backgroundColor: rgba(22,45,61,0.6));
-    @include ThemeHover($backgroundColor: rgba(22,45,61,0.4));
-    @include ThemeFocusPanelTile($borderColor: $B20, $boxShadow: inset 0 0 5px 0 rgba(56,153,236,0.6));
+    @include ThemeDefault(
+      $color: white,
+      $borderColor: $B30,
+      $backgroundColor: rgba(22, 45, 61, 0.6)
+    );
+    @include ThemeHover($backgroundColor: rgba(22, 45, 61, 0.4));
+    @include ThemeFocusPanelTile(
+      $borderColor: $B20,
+      $boxShadow: inset 0 0 5px 0 rgba(56, 153, 236, 0.6)
+    );
     @include ThemeError($borderColor: $paletteR1);
-    @include ThemeDisable($color: white, $borderColor: $GR40, $backgroundColor: rgba(22,45,61,0.6));
+    @include ThemeDisable(
+      $color: white,
+      $borderColor: $GR40,
+      $backgroundColor: rgba(22, 45, 61, 0.6)
+    );
   }
   &-tags {
-    @include ThemeDefault($color: $D10, $borderColor: $B30, $backgroundColor: transparent);
+    @include ThemeDefault(
+      $color: $D10,
+      $borderColor: $B30,
+      $backgroundColor: transparent
+    );
     @include ThemeHover($backgroundColor: $B50);
     @include ThemeFocus($borderColor: transparent, $boxShadow: none);
-    @include ThemeError($borderColor: $paletteR1, $boxShadow: inset 0px 0px 5px 0px fade($R10, 60%));
-    @include ThemeDisable($color: $D55, $borderColor: $D60, $backgroundColor: $D80);
+    @include ThemeError(
+      $borderColor: $paletteR1,
+      $boxShadow: inset 0px 0px 5px 0px fade($R10, 60%)
+    );
+    @include ThemeDisable(
+      $color: $D55,
+      $borderColor: $D60,
+      $backgroundColor: $D80
+    );
     @include ThemeDisableHover($borderColor: $GR20);
   }
   &-amaterial {
-
     .errorIcon {
       padding: 0 6px 16px;
       color: #f2564d;
@@ -158,7 +200,7 @@ $material-gap: 8px;
 
     label {
       font-size: 20px;
-      transition:all .2s ease-in-out;
+      transition: all 0.2s ease-in-out;
       position: absolute;
       top: 2px;
       padding: 0 12px;
@@ -168,7 +210,8 @@ $material-gap: 8px;
       @include FontLight();
       opacity: 0;
       z-index: 1;
-      transition: border-bottom .3s, border-color .3s, border-width .3s, border .3s, opacity 0s ease-in-out;
+      transition: border-bottom 0.3s, border-color 0.3s, border-width 0.3s,
+        border 0.3s, opacity 0s ease-in-out;
       line-height: 1;
       display: block;
       margin-top: 0;
@@ -194,7 +237,8 @@ $material-gap: 8px;
       }
 
       .bar {
-        &:before, &:after {
+        &:before,
+        &:after {
           height: 2px;
           background-color: $B10;
         }
@@ -212,7 +256,8 @@ $material-gap: 8px;
       right: -1px;
       height: 1px;
       background: $D60;
-      &:before, &:after {
+      &:before,
+      &:after {
         content: '';
         height: 1px;
         width: 0;
@@ -226,18 +271,22 @@ $material-gap: 8px;
     @at-root {
       .hasFocus .barBlue:before,
       .hasFocus .barBlue:after {
-        width:100%;
+        width: 100%;
       }
     }
     &:hover:not(.disabled) {
-      .bar, .input:hover ~ .barBlue, .input.hasHover ~ .barBlue {
+      .bar,
+      .input:hover ~ .barBlue,
+      .input.hasHover ~ .barBlue {
         background-color: #000;
         transition: 0.3s ease all;
       }
     }
 
     &.hasError {
-      .bar, .input:hover ~ .barBlue, .input.hasHover ~ .barBlue {
+      .bar,
+      .input:hover ~ .barBlue,
+      .input.hasHover ~ .barBlue {
         background-color: #f2564d;
         height: 2px;
       }
@@ -255,7 +304,11 @@ $material-gap: 8px;
       @include FontLight();
       padding: 0 $material-gap;
     }
-    @include ThemeDefault($color: $D10, $borderColor: transparent, $backgroundColor: $D80);
+    @include ThemeDefault(
+      $color: $D10,
+      $borderColor: transparent,
+      $backgroundColor: $D80
+    );
     .bar {
       position: absolute;
       bottom: 0;
@@ -263,7 +316,8 @@ $material-gap: 8px;
       right: -1px;
       height: 1px;
       background: $D60;
-      &:before, &:after {
+      &:before,
+      &:after {
         content: '';
         height: 1px;
         width: 0;
@@ -272,8 +326,12 @@ $material-gap: 8px;
         background: $D50;
         transition: 0.2s ease all;
       }
-      &:before { left: 50%; }
-      &:after { right: 50%; }
+      &:before {
+        left: 50%;
+      }
+      &:after {
+        right: 50%;
+      }
     }
     @at-root {
       .hasFocus .barBlack:before,
@@ -284,7 +342,8 @@ $material-gap: 8px;
     &.hasError {
       .bar {
         background: $R05;
-        &:before, &:after {
+        &:before,
+        &:after {
           background: $R05;
         }
       }
@@ -295,11 +354,20 @@ $material-gap: 8px;
     border: none;
     border-radius: 0;
 
-    &.size-large { @include Size($height: 54px, $fontSize: 16px); }
+    &.size-large {
+      @include Size($height: 54px, $fontSize: 16px);
+    }
 
-    &:hover, &.hasFocus { @include ThemeFlat($B20); }
-    &:active            { @include ThemeFlat($B10); }
-    &.disabled          { @include ThemeFlat($D50); }
+    &:hover,
+    &.hasFocus {
+      @include ThemeFlat($B20);
+    }
+    &:active {
+      @include ThemeFlat($B10);
+    }
+    &.disabled {
+      @include ThemeFlat($D50);
+    }
 
     @include ThemeFlat($D20);
   }
@@ -308,11 +376,20 @@ $material-gap: 8px;
     border: none;
     border-radius: 0;
 
-    &.size-large { @include Size($height: 54px, $fontSize: 16px); }
+    &.size-large {
+      @include Size($height: 54px, $fontSize: 16px);
+    }
 
-    &:hover, &.hasFocus { @include ThemeFlat($B20); }
-    &:active            { @include ThemeFlat($B10); }
-    &.disabled          { @include ThemeFlat($D50); }
+    &:hover,
+    &.hasFocus {
+      @include ThemeFlat($B20);
+    }
+    &:active {
+      @include ThemeFlat($B10);
+    }
+    &.disabled {
+      @include ThemeFlat($D50);
+    }
 
     @include ThemeFlat($D80);
   }
@@ -322,25 +399,40 @@ $material-gap: 8px;
 @include withRTL() {
   .root,
   .input-wrapper,
-  .suffixes { direction: rtl; }
+  .suffixes {
+    direction: rtl;
+  }
   .input {
     direction: rtl;
 
-    &.withPrefix { padding-right: 0; padding-left: $double-gap; }
-    &.withSuffix { padding-left: 0; padding-right: $double-gap; }
+    &.withPrefix {
+      padding-right: 0;
+      padding-left: $double-gap;
+    }
+    &.withSuffix {
+      padding-left: 0;
+      padding-right: $double-gap;
+    }
   }
 
   .prefix,
   .suffix {
-    &:last-child .unit { padding-left: $double-gap; padding-right: $gap; }
+    &:last-child .unit {
+      padding-left: $double-gap;
+      padding-right: $gap;
+    }
   }
 }
 
 // RTL layout based on a property passed directly to the component.
 .rtl.root {
   direction: rtl;
-  .suffixes { direction: rtl; }
-  .input { direction: rtl; }
+  .suffixes {
+    direction: rtl;
+  }
+  .input {
+    direction: rtl;
+  }
 }
 
 .magnifying-glass {
@@ -349,12 +441,20 @@ $material-gap: 8px;
   flex-direction: column;
   justify-content: center;
 
-  path { fill: $B10; }
-  line { stroke: $B10; }
+  path {
+    fill: $B10;
+  }
+  line {
+    stroke: $B10;
+  }
 
   &[disabled] {
-    path { fill: $GR40; }
-    line { stroke: $GR40; }
+    path {
+      fill: $GR40;
+    }
+    line {
+      stroke: $GR40;
+    }
   }
 }
 
@@ -366,7 +466,7 @@ $material-gap: 8px;
   justify-content: center;
   color: #fff;
 
-  &.narrow{
+  &.narrow {
     margin: 0;
   }
 
@@ -417,11 +517,17 @@ $material-gap: 8px;
   height: 100%;
   padding: 0 $double-gap;
   margin-top: 1px;
-  path { fill: $B10; }
+  path {
+    fill: $B10;
+  }
 
   &[disabled] {
-    path { fill: $GR40; }
-    line { stroke: $GR40; }
+    path {
+      fill: $GR40;
+    }
+    line {
+      stroke: $GR40;
+    }
   }
 }
 
@@ -435,7 +541,6 @@ $material-gap: 8px;
   white-space: nowrap;
 
   @include Text($weight: thin, $size: medium, $secondary: true);
-
 }
 
 .loaderContainer {

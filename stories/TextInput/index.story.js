@@ -2,6 +2,7 @@ import React from 'react';
 import { storySettings } from './storySettings';
 import { baseScope } from '../utils/Components/LiveCodeExample';
 import {
+  header,
   description,
   table,
   importExample,
@@ -10,6 +11,9 @@ import {
 } from 'wix-storybook-utils/Sections';
 import LinkTo from '@storybook/addon-links/react';
 import * as examples from './examples';
+
+import Input from 'wix-style-react/Input';
+import FormField from 'wix-style-react/FormField';
 
 const code = config =>
   baseCode({ components: baseScope, compact: true, ...config });
@@ -24,29 +28,54 @@ export default {
   storyName: storySettings.storyName,
 
   sections: [
-    description({
-      text: `
-Text Input is a composition of 2 individual components – &lt;FormField/&gt; and &lt;Input /&gt;.
+    header({
+      component: (
+        <div style={{ width: '50%' }}>
+          <FormField label="Text Input">
+            <Input placeholder="Placeholder" />
+          </FormField>
+        </div>
+      ),
 
-This composition is used to build various forms.`,
+      issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
     }),
 
-    table({
-      title: 'Included Components',
-      rows: [
-        [
-          <LinkTo kind="Components" story="FormField">{`<FormField/>`}</LinkTo>,
-          'Layout component for form elements',
-        ],
-        [
-          <LinkTo kind="Components" story="Input">{`<Input/>`}</LinkTo>,
-          'Component that receives data',
-        ],
+    columns({
+      items: [
+        description({
+          title: 'Description',
+          text: `Text Input is a composition of 2 individual components – &lt;FormField/&gt; and &lt;Input /&gt;. This composition is used to build various forms.`,
+        }),
       ],
     }),
 
-    importExample({
-      source: examples.importExample,
+    columns({
+      items: [
+        table({
+          title: 'Included Components',
+          rows: [
+            [
+              <LinkTo
+                kind="Components"
+                story="FormField"
+              >{`<FormField/>`}</LinkTo>,
+              'Layout component for form elements',
+            ],
+            [
+              <LinkTo kind="Components" story="Input">{`<Input/>`}</LinkTo>,
+              'Component that receives data',
+            ],
+          ],
+        }),
+      ],
+    }),
+
+    columns({
+      items: [
+        importExample({
+          source: examples.importExample,
+        }),
+      ],
     }),
 
     description({ text: '## Examples' }),
@@ -77,7 +106,7 @@ This composition is used to build various forms.`,
       },
 
       {
-        title: 'Position',
+        title: 'Label Position',
         text:
           'Text Input’s label can be position on top, left or can be hidden. Additional properties behave accordingly.',
         source: examples.position,

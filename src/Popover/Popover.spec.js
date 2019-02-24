@@ -57,7 +57,9 @@ describe('Popover', () => {
       );
 
       expect(consoleErrorSpy).toHaveBeenCalledWith(
-        'Warning: Failed prop type: Invalid children provided, <Popover.Element/> must be provided\n    in Popover',
+        expect.stringContaining(
+          'Warning: Failed prop type: Invalid children provided, <Popover.Element/> must be provided',
+        ),
       );
     });
 
@@ -69,7 +71,9 @@ describe('Popover', () => {
       );
 
       expect(consoleErrorSpy).toHaveBeenCalledWith(
-        'Warning: Failed prop type: Invalid children provided, <Popover.Content/> must be provided\n    in Popover',
+        expect.stringContaining(
+          'Warning: Failed prop type: Invalid children provided, <Popover.Content/> must be provided',
+        ),
       );
     });
 
@@ -83,7 +87,9 @@ describe('Popover', () => {
       );
 
       expect(consoleErrorSpy).toHaveBeenCalledWith(
-        'Warning: Failed prop type: Invalid children provided, unknown child <div/> supplied\n    in Popover',
+        expect.stringContaining(
+          'Warning: Failed prop type: Invalid children provided, unknown child <div/> supplied',
+        ),
       );
     });
   });

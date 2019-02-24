@@ -134,3 +134,9 @@ import { floatingNotificationDriverFactory } from '../src/FloatingNotification/F
 export const floatingNotificationTestkitFactory = puppeteerUniTestkitFactoryCreator(
   floatingNotificationDriverFactory,
 );
+
+import { noBorderInputDriverFactory } from '../src/NoBorderInput/NoBorderInput.puppeteer.driver';
+
+export const noBorderInputTestkitFactory = puppeteerTestkitFactoryCreator(
+  noBorderInputDriverFactory,
+);

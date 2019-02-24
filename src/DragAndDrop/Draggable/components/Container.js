@@ -105,9 +105,6 @@ const target = {
   },
 };
 
-@DropTarget(ItemTypes.DRAGGABLE, target, connect => ({
-  connectDropTarget: connect.dropTarget(),
-}))
 class Container extends WixComponent {
   setRootRef = node => (this.rootNode = node);
   setChildRef = node => (this.childNode = node);
@@ -134,4 +131,6 @@ Container.propTypes = {
   onHover: PropTypes.func,
 };
 
-export default Container;
+export default DropTarget(ItemTypes.DRAGGABLE, target, connect => ({
+  connectDropTarget: connect.dropTarget(),
+}))(Container);

@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: row;
   line-height: 15px;
-  width: 115px;
+  width: 120px; // Infered from Zeplin spec.
 
   &.rtl {
       flex-direction: row-reverse;

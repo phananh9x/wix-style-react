@@ -1,5 +1,4 @@
 import { storySettings } from './storySettings';
-import { AutoExampleWrapper } from '../../AutoExampleWrapper';
 
 const countries = [
   { name: 'Alabama', code: 'AL' },
@@ -35,7 +34,6 @@ function createTag({ countryName, countryCode }) {
 }
 
 export default {
-  componentWrapper: AutoExampleWrapper,
   componentProps: (setState, getState) => ({
     dataHook: storySettings.dataHook,
     value: '',

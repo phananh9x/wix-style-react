@@ -15,7 +15,7 @@ const wrapItemWithFunction = (fn, item) => `${fn}(${item})`;
 
 // load() is function included during build time. It comes from test/generate-testkit-exports/templates/load.js
 // It is a helper that `require`s given path and extracts export (default or only one found)
-const wrapWithLoad = path => wrapItemWithFunction('load', `'${path}'`);
+const wrapWithLoad = path => wrapItemWithFunction('load', `require('${path}')`);
 
 const pathResolve = (...a) => path.resolve(__dirname, ...a);
 

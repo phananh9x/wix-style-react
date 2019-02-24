@@ -32,6 +32,10 @@
   border: 1px solid #7a92a5;
   padding: 21px 24px;
   margin-bottom: 12px;
+
+  &:hover:not(.isListInDragState) {
+    background: red;
+  }
 }
 
 .itemPlaceholder {

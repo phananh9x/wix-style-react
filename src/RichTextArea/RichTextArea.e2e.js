@@ -1,18 +1,19 @@
 import eyes from 'eyes.it';
 import { richTextAreaTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
-import { getStoryUrl } from '../../test/utils/storybook-helpers';
-import { settings } from '../../stories/RichTextArea/RichTextArea.story';
-import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
+import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
+import {
+  storySettings,
+  testStories,
+} from '../../stories/RichTextArea/storySettings';
 import { BUTTON_TYPES } from './RichTextArea.protractor.driver';
 import { flattenInternalDriver } from '../../test/utils/private-drivers';
 
 const EDITOR_TAB_ORDINAL = 7;
 
 describe('RichTextArea', () => {
-  const storyUrl = getStoryUrl(settings.category, settings.storyName);
   const richTextAreaTestkit = richTextAreaTestkitFactory({
-    dataHook: settings.dataHook,
+    dataHook: storySettings.dataHook,
   });
 
   const pressTab = times =>
@@ -26,10 +27,20 @@ describe('RichTextArea', () => {
       .perform();
   const focusEditor = () => pressTab(EDITOR_TAB_ORDINAL);
 
+  const navigateToTestUrl = async testName => {
+    const testStoryUrl = createTestStoryUrl({
+      category: storySettings.indexCategory,
+      storyName: storySettings.storyName,
+      dataHook: storySettings.dataHook,
+      testName,
+    });
+    await browser.get(testStoryUrl);
+  };
+
   // TODO: We can change this to beforeAll (to make the test go faster),
   // after we have a way to reset the focus before Each test.
-  beforeEach(() => {
-    browser.get(storyUrl);
+  beforeEach(async () => {
+    await navigateToTestUrl(testStories.basic);
   });
 
   beforeEach(async () => {
@@ -173,7 +184,7 @@ describe('RichTextArea', () => {
     });
 
     it('should insert link and it should become absolute if absoluteLinks props true', async () => {
-      await autoExampleDriver.setProps({ absoluteLinks: true });
+      await navigateToTestUrl(testStories.absoluteLinks);
       await focusEditor();
       await richTextAreaTestkit.clickButtonByType('link');
       await richTextAreaTestkit.isLinkDialogVisible();
@@ -186,8 +197,7 @@ describe('RichTextArea', () => {
       ).toBeTruthy();
     });
 
-    it('should insert link and it should not become absolute if absoluteLinks props false', async () => {
-      await autoExampleDriver.setProps({ absoluteLinks: false });
+    it('should insert link and it should not become absolute when absoluteLinks is false (by default)', async () => {
       await focusEditor();
       await richTextAreaTestkit.clickButtonByType('link');
       await richTextAreaTestkit.isLinkDialogVisible();
@@ -204,7 +214,7 @@ describe('RichTextArea', () => {
 
   describe('Focus+Error', () => {
     beforeEach(async () => {
-      await autoExampleDriver.setProps({ error: true });
+      await navigateToTestUrl(testStories.error);
     });
 
     eyes.it('should show focus styles for editor', async () => {

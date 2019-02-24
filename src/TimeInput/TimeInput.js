@@ -251,12 +251,12 @@ export default class TimePicker extends Component {
   }
 
   render() {
-    const { style, dataHook, rtl, disabled } = this.props;
+    const { className, style, dataHook, rtl, disabled } = this.props;
     const { focus, hover } = this.state;
 
     return (
       <div
-        className={classNames(styles.wrapper, {
+        className={classNames(styles.wrapper, className, {
           [styles.disabled]: disabled,
         })}
         style={style}

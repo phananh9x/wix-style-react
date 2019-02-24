@@ -14,6 +14,46 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## next
+### Fixed
+- infra: avoid dynamic require in testkit/index.js & testkit/enzyme.js [#3000](https://github.com/wix/wix-style-react/pull/3000)
+
+## 6.5.1 - 2019-02-20
+### Fixed
+- infra: transpile test directory [#3004](https://github.com/wix/wix-style-react/pull/3004)
+
+
+## 6.5.0 - 2019-02-20
+
+### Added
+
+- `<Search />` - allow filtering options using custom predicate [#2907](https://github.com/wix/wix-style-react/pull/2907)
+
+### Fixed
+
+- `<DropdownLayout />` - fix double scrollbar issue [#2969](https://github.com/wix/wix-style-react/pull/2969)
+- `<SortableList/>` - fix hover event bug [#2923](https://github.com/wix/wix-style-react/pull/2923)
+- `<Input/>` - fix disabled ticker color [#2986](https://github.com/wix/wix-style-react/pull/2986)
+- `<TimeInput/>` - Fix cut text [#2970](https://github.com/wix/wix-style-react/pull/2970)
+
+### Docs
+- `<TextField/>` -  rename docs page to `TextInput` [#2977](https://github.com/wix/wix-style-react/pull/2977)
+- `<TextArea/>` - refactor story page based on new design [#2975](https://github.com/wix/wix-style-react/pull/2975)
+- `<TextInput/>` - improve docs structuring [#2988](https://github.com/wix/wix-style-react/pull/2988)
+- `<TextArea/>` - improve documentations after UX review [#2987](https://github.com/wix/wix-style-react/pull/2987)
+- `<Input/>` - remove tabs from examples [#2985](https://github.com/wix/wix-style-react/pull/2985)
+- `<Page/>` -  Write new UX Page Layout story [#2981](https://github.com/wix/wix-style-react/pull/2981)
+
+### Changed
+- infra: improve build process. Migrate to `babel@7` [#2868](https://github.com/wix/wix-style-react/pull/2868)
+
+### Lab
+- `<NoBorderInput/>` - add new component [#2948](https://github.com/wix/wix-style-react/pull/2948)
+
+### Deprecated
+
+- `<RichTextAreaComposite />` - deprecated component, you should use a composition of `<RichTextArea/>` and `<FormField/>` [#2997](https://github.com/wix/wix-style-react/pull/2997)
+
 ## 6.4.0 - 2019-02-18
 
 ### Added
@@ -34,8 +74,10 @@ Types of changes:
 
 - `<ContactItemBuilder/>` - fixed ellipsis [#2951](https://github.com/wix/wix-style-react/pull/2951)
 - `<ColorPicker/>` - fixed border radius and action button icon size according to design spec [2959](https://github.com/wix/wix-style-react/pull/2959)
+- `<DropdownLayout/>` - fix double scrollbar issue [#2969](https://github.com/wix/wix-style-react/pull/2969)
 
 ### Lab
+
 - `<RichTextInputArea/>` - use `RichContentEditor` [2943](https://github.com/wix/wix-style-react/pull/2943)
 
 ## 6.3.0 - 2019-02-10

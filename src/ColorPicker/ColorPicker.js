@@ -44,6 +44,7 @@ export default class ColorPicker extends WixComponent {
 
     /** Handle confirm button click */
     onConfirm: func.isRequired,
+
     /** Children would be rendered above action buttons */
     children: node,
   };
@@ -66,7 +67,13 @@ export default class ColorPicker extends WixComponent {
   }
 
   render() {
-    const { showHistory, showInput, showConverter, children } = this.props;
+    const {
+      showHistory,
+      showInput,
+      showConverter,
+      children,
+      value,
+    } = this.props;
     const { current, previous } = this.state;
 
     return (
@@ -88,7 +95,11 @@ export default class ColorPicker extends WixComponent {
           onEnter={this.confirm}
         />
         {children && <div className={css.children}>{children}</div>}
-        <ColorPickerActions onConfirm={this.confirm} onCancel={this.cancel} />
+        <ColorPickerActions
+          disabled={value === ''}
+          onConfirm={this.confirm}
+          onCancel={this.cancel}
+        />
       </div>
     );
   }

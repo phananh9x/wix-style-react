@@ -7,7 +7,7 @@ import { createStoryUrl } from '../../test/utils/storybook-helpers';
 
 describe('Card and Grid', () => {
   const byDataHook = dataHook => $(`[data-hook="${dataHook}"]`);
-  const storyUrl = createStoryUrl({ kind: '2. Layout', story: 'Card' });
+  const storyUrl = createStoryUrl({ kind: 'Components', story: 'Card' });
   const eyes = eyesItInstance();
 
   eyes.it('should not break design', async () => {

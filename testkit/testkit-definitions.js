@@ -56,7 +56,6 @@ module.exports = {
   },
 
   DragAndDrop: { skipSanityTest: true, noTestkit: true },
-
   DragDropContextProvider: { skipSanityTest: true, noTestkit: true },
 
   EndorseContentLayout: {
@@ -74,13 +73,9 @@ module.exports = {
   },
 
   GoogleAddressInputWithLabel: { skipSanityTest: true },
-
   Grid: { skipSanityTest: true, noTestkit: true },
-
   HBox: { skipSanityTest: true, noTestkit: true },
-
   Layout: { skipSanityTest: true, noTestkit: true },
-
   MessageBox: { skipSanityTest: true, noTestkit: true },
 
   Header: {
@@ -90,23 +85,14 @@ module.exports = {
   },
 
   Page: { skipSanityTest: true },
-
   PageHeader: { skipSanityTest: true },
-
   PopoverMenuItem: { skipSanityTest: true, noTestkit: true },
-
   TableToolbar: { skipSanityTest: true, noTestkit: true },
-
   Tooltip: { skipSanityTest: true },
-
   VBox: { skipSanityTest: true, noTestkit: true },
-
   Collapse: { skipSanityTest: true, noTestkit: true },
-
   Card: { skipSanityTest: true, noTestkit: true },
-
   Composite: { skipSanityTest: true, noTestkit: true },
-
   FullTextView: { skipSanityTest: true, noTestkit: true },
 
   RichTextArea: {
@@ -178,9 +164,7 @@ module.exports = {
   },
 
   Proportion: { unidriver: true, drivers: ['enzyme'] },
-
   GeneratedTestComponent: { unidriver: true, drivers: ['enzyme'] },
-
   DropdownBase: { unidriver: true },
 
   RadioButton: {
@@ -199,7 +183,6 @@ module.exports = {
   },
 
   Box: { unidriver: true },
-
   Thumbnail: { unidriver: true },
 
   SegmentedToggle: {
@@ -208,4 +191,6 @@ module.exports = {
   },
 
   RichTextInputArea: { unidriver: true },
+
+  NoBorderInput: {},
 };

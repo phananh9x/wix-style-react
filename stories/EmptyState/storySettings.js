@@ -1,5 +1,7 @@
+import { Category } from '../storiesHierarchy';
+
 export const storySettings = {
-  kind: '2. Layout',
-  storyName: '2.6 EmptyState',
+  kind: Category.LAYOUT,
+  storyName: '2.4 EmptyState',
   dataHook: 'storybook-empty-state',
 };

@@ -53,7 +53,8 @@ $arrowDownShadow: -3px -3px 8px rgba(0, 0, 0, .1);
 }
 
 .content-container.shown {
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: auto;
   overflow: auto;
   opacity: 1;

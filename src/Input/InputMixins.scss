@@ -1,39 +1,43 @@
 @import '../common.scss';
 
 @mixin BoxSizing($boxSizing: border-box) {
+  box-sizing: $boxSizing;
+  * {
     box-sizing: $boxSizing;
-    * { box-sizing: $boxSizing; }
+  }
 }
 
 @mixin Size($height, $fontSize) {
-    height: $height;
-    line-height: $height - 2px;
+  height: $height;
+  line-height: $height - 2px;
+  font-size: $fontSize;
+  .input {
+    display: block;
     font-size: $fontSize;
-    .input {
-        display: block;
-        font-size: $fontSize;
-        &:-webkit-autofill {
-          -webkit-box-shadow: 0 0 0 $height white inset;
-          box-shadow: 0 0 0 $height white inset;
-        }
-        &::placeholder {
-            line-height: $height - 2px;
-            font-size: $fontSize;
-        }
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 $height white inset;
+      box-shadow: 0 0 0 $height white inset;
     }
+    &::placeholder {
+      line-height: $height - 2px;
+      font-size: $fontSize;
+    }
+  }
 
-    .prefix,
-    .suffix {
-        height: $height;
-        line-height: $height;
-    }
+  .prefix,
+  .suffix {
+    height: $height;
+    line-height: $height;
+  }
 }
 
 @mixin ThemeDefault($borderColor, $backgroundColor, $color) {
-    border-color: $borderColor;
-    background-color: $backgroundColor;
+  border-color: $borderColor;
+  background-color: $backgroundColor;
+  color: $color;
+  .input {
     color: $color;
-    .input { color: $color; }
+  }
 }
 
 @mixin BorderRadius($borderRadius) {
@@ -44,71 +48,89 @@
 }
 
 @mixin ThemeHover($backgroundColor) {
-    &:hover:not(.hasFocus)    { background-color: $backgroundColor; }
-    &.hasHover { background-color: $backgroundColor; }
+  &:hover:not(.hasFocus):not(.disabled) {
+    background-color: $backgroundColor;
+  }
+  &.hasHover:not(.disabled) {
+    background-color: $backgroundColor;
+  }
 }
 
 @mixin ThemeDisable($borderColor, $backgroundColor, $color) {
-    &.disabled {
-        border-color: $borderColor;
-        background-color: $backgroundColor;
-        color: $color;
-        .input,
-        .unit {
-            color: $color;
-        }
+  &.disabled {
+    border-color: $borderColor;
+    background-color: $backgroundColor;
+    color: $color;
+    .input,
+    .unit {
+      color: $color;
     }
+  }
 }
 
 @mixin ThemeDisableHover($borderColor) {
-    &.disabled {
-        &:hover,
-        &.hasHover {
-            border-color: $borderColor;
-        }
+  &.disabled {
+    &:hover,
+    &.hasHover {
+      border-color: $borderColor;
     }
+  }
 }
 
 @mixin ThemeFlat($color) {
-    .input {
-        @include Placeholder($color: $color);
-        color: $color;
-    }
-    .menu-arrow path { fill: $color; }
+  .input {
+    @include Placeholder($color: $color);
+    color: $color;
+  }
+  .menu-arrow path {
+    fill: $color;
+  }
 }
 
 @mixin ThemeFocus($borderColor, $boxShadow) {
-    &.hasFocus {
-        @include FocusBox($borderColor, $boxShadow);
+  &.hasFocus {
+    @include FocusBox($borderColor, $boxShadow);
 
-        &.hasError {
-            @include FocusBoxError
-        }
+    &.hasError {
+      @include FocusBoxError;
     }
+  }
 }
 
 @mixin ThemeFocusPanelTile($borderColor, $boxShadow: none) {
-    &.hasFocus {
-        border-color: $borderColor;
-        box-shadow: $boxShadow;
-    }
+  &.hasFocus {
+    border-color: $borderColor;
+    box-shadow: $boxShadow;
+  }
 }
 
 @mixin ThemeError($borderColor, $boxShadow: none) {
-    &.hasError {
-        border-color: $borderColor;
-        box-shadow: $boxShadow;
-    }
+  &.hasError {
+    border-color: $borderColor;
+    box-shadow: $boxShadow;
+  }
 }
 
 @mixin Selection($color) {
-    &::selection      { background: $color; }
-    &::-moz-selection { background: $color; }
+  &::selection {
+    background: $color;
+  }
+  &::-moz-selection {
+    background: $color;
+  }
 }
 
 @mixin Placeholder($color) {
-    &::-webkit-input-placeholder { color: $color; }
-    &:-moz-placeholder           { color: $color; }
-    &::-moz-placeholder          { color: $color; }
-    &:-ms-input-placeholder      { color: $color !important; }
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+  &:-moz-placeholder {
+    color: $color;
+  }
+  &::-moz-placeholder {
+    color: $color;
+  }
+  &:-ms-input-placeholder {
+    color: $color !important;
+  }
 }
