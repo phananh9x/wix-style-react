@@ -440,16 +440,14 @@ import {
   segmentedToggleDriverFactory,
 } from '../src/SegmentedToggle/SegmentedToggle.driver';
 
+export const segmentedToggleTestkitFactory = protractorUniTestkitFactoryCreator (
+  segmentedToggleDriverFactory
+);
+
 import { accordionDriverFactory } from '../src/Accordion/Accordion.driver';
 
 export const accordionTestkitFactory = protractorUniTestkitFactoryCreator(
   accordionDriverFactory,
-);
-
-import { richTextInputAreaDriverFactory } from '../src/RichTextInputArea/RichTextInputArea.driver';
-
-export const segmentedToggleTestkitFactory = protractorUniTestkitFactoryCreator (
-  segmentedToggleDriverFactory
 );
 
 import {
