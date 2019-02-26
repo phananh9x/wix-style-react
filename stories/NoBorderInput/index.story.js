@@ -14,13 +14,15 @@ export default {
   componentProps: setState => ({
     dataHook: storySettings.dataHook,
     value: '',
+    label: '',
+    placeholder: '',
     onChange: e => setState({ value: e.target.value }),
     size: 'normal',
     statusMessage: undefined,
   }),
 
   exampleProps: {
-    status: [{ label: 'Input.StatusError', value: 'error' }],
+    status: [{ label: 'NoBorderInput.StatusError', value: 'error' }],
   },
 
   examples: (

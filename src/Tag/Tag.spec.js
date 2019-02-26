@@ -1,6 +1,6 @@
 import React from 'react';
 import Tag from './Tag';
-import tagPrivateDriverFactory from './Tag.driver.private';
+import tagPrivateDriverFactory from './Tag.private.driver';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import { SIZES, WEIGHTS } from '../Text/constants';
 

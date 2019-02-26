@@ -1,7 +1,7 @@
 import { eyesItInstance } from '../../test/utils/eyes-it';
 import eventually from 'wix-eventually';
 import { pageTestkitFactory } from '../../testkit/protractor';
-import { pagePrivateDriverFactory } from './Page.protractor.driver.private';
+import { pagePrivateDriverFactory } from './Page.private.protractor.driver';
 import {
   waitForVisibilityOf,
   scrollToElement,

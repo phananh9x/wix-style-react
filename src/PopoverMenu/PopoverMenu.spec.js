@@ -5,13 +5,6 @@ import popoverMenuDriverFactory from './PopoverMenu.driver';
 import PopoverMenu from './PopoverMenu';
 import PopoverMenuItem from '../PopoverMenuItem/PopoverMenuItem';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import {
-  isTestkitExists,
-  isEnzymeTestkitExists,
-} from '../../test/utils/testkit-sanity';
-import { popoverMenuTestkitFactory } from '../../testkit';
-import { popoverMenuTestkitFactory as enzymePopoverMenuTestkitFactory } from '../../testkit/enzyme';
-import { mount } from 'enzyme';
 
 const waitFor = fn => waitForCond.assert(fn, 5000);
 
@@ -176,30 +169,5 @@ describe('PopoverMenu', () => {
       expect(driver.menu.isShown()).toBe(false);
       expect(onHide).not.toHaveBeenCalled();
     });
-  });
-});
-
-describe('Testkits', () => {
-  const genPopoverMenuElement = () => (
-    <PopoverMenu>
-      <PopoverMenuItem text="Menu Item #1" />
-      <PopoverMenuItem text="Menu Item #2" />
-    </PopoverMenu>
-  );
-
-  it('Using ReactTestUtils testkit', () => {
-    expect(
-      isTestkitExists(genPopoverMenuElement(), popoverMenuTestkitFactory),
-    ).toBe(true);
-  });
-
-  it('Using Enzyme testkit', () => {
-    expect(
-      isEnzymeTestkitExists(
-        genPopoverMenuElement(),
-        enzymePopoverMenuTestkitFactory,
-        mount,
-      ),
-    ).toBe(true);
   });
 });

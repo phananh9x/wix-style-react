@@ -6,7 +6,7 @@ import InputConsumer from '../InputConsumer';
 
 const Group = ({ children }) => (
   <InputConsumer consumerCompName={Group.displayName}>
-    {props => <div className={styles.root}>{children}</div>}
+    {() => <div className={styles.root}>{children}</div>}
   </InputConsumer>
 );
 

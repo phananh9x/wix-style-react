@@ -1,13 +1,6 @@
 import React from 'react';
-import { mount } from 'enzyme';
 import times from '../utils/operators/times';
 
-import { modalSelectorLayoutTestkitFactory as enzymeModalSelectorLayoutTestkitFactory } from '../../testkit/enzyme';
-import { modalSelectorLayoutTestkitFactory } from '../../testkit';
-import {
-  isEnzymeTestkitExists,
-  isTestkitExists,
-} from '../../test/utils/testkit-sanity';
 import ModalSelectorLayout from './ModalSelectorLayout';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import modalSelectorLayoutDriverFactory from './ModalSelectorLayout.driver';
@@ -682,31 +675,6 @@ describe('ModalSelectorLayout', () => {
 
       await flushPromises();
       expect(driver.subtitleTextDriver().exists()).toBe(false);
-    });
-  });
-
-  describe('testkits', () => {
-    describe('vanilla', () => {
-      it('should exist', () => {
-        expect(
-          isTestkitExists(
-            <ModalSelectorLayout {...requiredProps} />,
-            modalSelectorLayoutTestkitFactory,
-          ),
-        ).toBe(true);
-      });
-    });
-
-    describe('enzyme', () => {
-      it('should exist', () => {
-        expect(
-          isEnzymeTestkitExists(
-            <ModalSelectorLayout {...requiredProps} />,
-            enzymeModalSelectorLayoutTestkitFactory,
-            mount,
-          ),
-        ).toBe(true);
-      });
     });
   });
 });

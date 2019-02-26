@@ -14,7 +14,7 @@ import Button from '../Button';
 import { sortableListTestkitFactory } from '../../testkit';
 import { sortableListTestkitFactory as enzymeSortableListTestkitFactory } from '../../testkit/enzyme';
 
-import privateSortableListDriver from './SortableList.driver.private';
+import privateSortableListDriver from './SortableList.private.driver';
 
 import SortableList from './SortableList';
 
@@ -339,14 +339,29 @@ describe('SortableList', () => {
   });
 
   it('should contain prop to set custom  class (`isListInDragState`) while dragging', () => {
-    const renderItem = ({item, isListInDragState}) => <div className={isListInDragState ? 'isListInDragState' : null} data-hook={item.id}>{item.text}</div>;
-    const wrapper = configureWrapper({renderItem});
+    const renderItem = ({ item, isListInDragState }) => (
+      <div
+        className={isListInDragState ? 'isListInDragState' : null}
+        data-hook={item.id}
+      >
+        {item.text}
+      </div>
+    );
+    const wrapper = configureWrapper({ renderItem });
     const driver = createDriver(wrapper);
     const elem = ReactDOM.findDOMNode(wrapper);
     driver.beginDrag('1');
-    expect(elem.querySelector('[data-hook="1"]').classList.contains('isListInDragState')).toBeTruthy();
+    expect(
+      elem
+        .querySelector('[data-hook="1"]')
+        .classList.contains('isListInDragState'),
+    ).toBeTruthy();
     driver.endDrag();
-    expect(elem.querySelector('[data-hook="1"]').classList.contains('isListInDragState')).toBeFalsy();
+    expect(
+      elem
+        .querySelector('[data-hook="1"]')
+        .classList.contains('isListInDragState'),
+    ).toBeFalsy();
   });
 
   describe('with delay prop', () => {
@@ -695,16 +710,20 @@ describe('Enzyme: SortableList', () => {
 
     class MyComponent extends React.Component {
       state = {
-        isDragging: false
-      }
-      handleDragStart = () => this.setState({ isDragging: true })
-      handleDragEnd = () => this.setState({ isDragging: false })
+        isDragging: false,
+      };
+      handleDragStart = () => this.setState({ isDragging: true });
+      handleDragEnd = () => this.setState({ isDragging: false });
 
       renderItem = ({ item }) => (
-        <div key={item.id} data-hook={`item-${item.id}`} data-drag-value={this.state.isDragging}>
+        <div
+          key={item.id}
+          data-hook={`item-${item.id}`}
+          data-drag-value={this.state.isDragging}
+        >
           {item.text}
         </div>
-      )
+      );
 
       render() {
         return (
@@ -732,21 +751,36 @@ describe('Enzyme: SortableList', () => {
       </DragDropContextProvider>,
     );
 
-    const driver = enzymeTestkitFactoryCreator(privateSortableListDriver)({ wrapper, dataHook });
+    const driver = enzymeTestkitFactoryCreator(privateSortableListDriver)({
+      wrapper,
+      dataHook,
+    });
 
     driver.beginDrag('1');
-    expect(wrapper.find('[data-hook="item-1"]').getDOMNode().dataset.dragValue).toBe('true');
-    expect(wrapper.find('[data-hook="item-2"]').getDOMNode().dataset.dragValue).toBe('true');
+    expect(
+      wrapper.find('[data-hook="item-1"]').getDOMNode().dataset.dragValue,
+    ).toBe('true');
+    expect(
+      wrapper.find('[data-hook="item-2"]').getDOMNode().dataset.dragValue,
+    ).toBe('true');
     driver.endDrag();
     // here was bug, that state of item not updated
-    expect(wrapper.find('[data-hook="item-1"]').getDOMNode().dataset.dragValue).toBe('false');
-    expect(wrapper.find('[data-hook="item-2"]').getDOMNode().dataset.dragValue).toBe('false');
+    expect(
+      wrapper.find('[data-hook="item-1"]').getDOMNode().dataset.dragValue,
+    ).toBe('false');
+    expect(
+      wrapper.find('[data-hook="item-2"]').getDOMNode().dataset.dragValue,
+    ).toBe('false');
 
     driver.reorder({ removedId: '1', addedId: '2' });
     driver.reorder({ removedId: '2', addedId: '1' });
     driver.reorder({ removedId: '1', addedId: '2' });
 
-    expect(wrapper.find('[data-hook="item-1"]').getDOMNode().dataset.dragValue).toBe('false');
-    expect(wrapper.find('[data-hook="item-2"]').getDOMNode().dataset.dragValue).toBe('false');
+    expect(
+      wrapper.find('[data-hook="item-1"]').getDOMNode().dataset.dragValue,
+    ).toBe('false');
+    expect(
+      wrapper.find('[data-hook="item-2"]').getDOMNode().dataset.dragValue,
+    ).toBe('false');
   });
 });

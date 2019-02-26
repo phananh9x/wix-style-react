@@ -1,12 +1,8 @@
 import React from 'react';
-import ReactTestUtils from 'react-dom/test-utils';
-import { mount } from 'enzyme';
 
 import tabsDriverFactory from './Tabs.driver';
 import Tabs from './Tabs';
-import { tabsTestkitFactory } from '../../testkit';
 import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
-import { tabsTestkitFactory as enzymeTabsTestkitFactory } from '../../testkit/enzyme';
 
 describe('Tabs component', () => {
   const render = createRendererWithDriver(tabsDriverFactory);
@@ -111,33 +107,5 @@ describe('Tabs component', () => {
     const driver = createComponent({ items, hasDivider: true });
 
     expect(driver.hasDivider()).toBeTruthy();
-  });
-
-  describe('testkit', () => {
-    it('should exist', () => {
-      const div = document.createElement('div');
-      const dataHook = 'myDataHook';
-      const wrapper = div.appendChild(
-        ReactTestUtils.renderIntoDocument(
-          <div>
-            <Tabs items={[]} dataHook={dataHook} />
-          </div>,
-        ),
-      );
-      const breadcrumbsTestkit = tabsTestkitFactory({ wrapper, dataHook });
-      expect(breadcrumbsTestkit.exists()).toBeTruthy();
-    });
-  });
-
-  describe('enzyme testkit', () => {
-    it('should exist', () => {
-      const dataHook = 'myDataHook';
-      const wrapper = mount(<Tabs items={[]} dataHook={dataHook} />);
-      const breadcrumbsTestkit = enzymeTabsTestkitFactory({
-        wrapper,
-        dataHook,
-      });
-      expect(breadcrumbsTestkit.exists()).toBeTruthy();
-    });
   });
 });

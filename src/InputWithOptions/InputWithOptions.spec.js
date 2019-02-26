@@ -431,6 +431,7 @@ describe('InputWithOptions', () => {
   });
 
   // TODO
+  // eslint-disable-next-line jest/no-disabled-tests
   it.skip('should change input value when an option is pressed', () => {
     const driver = createDriver(<InputWithOptions options={options} />);
     driver.inputDriver.focus();
@@ -441,6 +442,7 @@ describe('InputWithOptions', () => {
   });
 
   // TODO
+  // eslint-disable-next-line jest/no-disabled-tests
   it.skip('should invoke onChange with proper event object when an option is pressed', () => {
     const onChange = jest.fn();
     const driver = createDriver(

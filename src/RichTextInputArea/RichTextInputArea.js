@@ -1,10 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ContentState, convertFromHTML, convertToRaw } from '@wix/draft-js';
-import { EditorState, RichContentEditor } from 'wix-rich-content-editor';
+import {
+  EditorState,
+  Editor,
+  ContentState,
+  convertFromHTML,
+  convertToRaw,
+} from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 
 import styles from './RichTextInputArea.scss';
+import RichTextToolbar from './RichTextToolbar';
 
 class RichTextInputArea extends React.PureComponent {
   static displayName = 'RichTextInputArea';
@@ -35,14 +41,24 @@ class RichTextInputArea extends React.PureComponent {
 
     return (
       <div data-hook={dataHook} className={styles.root}>
-        <RichContentEditor
+        <RichTextToolbar
+          className={styles.toolbar}
+          editorState={this.state.editorState}
+          onBold={this._setEditorState}
+          onItalic={this._setEditorState}
+          onUnderline={this._setEditorState}
+          onBulletedList={this._setEditorState}
+          onNumberedList={this._setEditorState}
+        />
+        <Editor
           editorState={this.state.editorState}
           onChange={this._onEditorChange}
-          textToolbarType="static"
         />
       </div>
     );
   }
+
+  _setEditorState = editorState => this.setState({ editorState });
 
   _onEditorChange = newEditorState => {
     this.setState({ editorState: newEditorState });

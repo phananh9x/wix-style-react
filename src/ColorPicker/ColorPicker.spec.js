@@ -1,7 +1,7 @@
 import React from 'react';
 import color from 'color';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import colorPickerDriverFactory from './ColorPicker.driver.private';
+import colorPickerDriverFactory from './ColorPicker.private.driver';
 
 import ColorPicker from './ColorPicker';
 

@@ -1,0 +1,21 @@
+@import '../common';
+
+.button {
+  background: transparent;
+  color: $D30;
+  height: 40px;
+  width: 54px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  outline: none;
+
+  &:hover {
+    cursor: pointer;
+    color: $B20;
+  }
+}
+
+.active {
+  color: $B10;
+}

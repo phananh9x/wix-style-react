@@ -1,6 +1,7 @@
 import React from 'react';
 
 import AllComponents from './all-components';
+import { GmapsTestClient } from '../src/GoogleAddressInput/GoogleAddressInput.spec';
 
 const {
   Popover,
@@ -11,6 +12,7 @@ const {
   RichTextArea,
   Notification,
   FloatingHelper,
+  GoogleAddressInput,
 } = AllComponents;
 
 /*
@@ -226,6 +228,12 @@ export default {
   Box: {
     props: {
       children: <div />,
+    },
+  },
+
+  GoogleAddressInputWithLabel: {
+    props: {
+      children: <GoogleAddressInput Client={GmapsTestClient} />,
     },
   },
 };

@@ -1,13 +1,9 @@
 import React from 'react';
-import ReactTestUtils from 'react-dom/test-utils';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import { mount } from 'enzyme';
 import eventually from 'wix-eventually';
 
 import TableActionCell from './TableActionCell';
 import tableActionCellDriverFactory from './TableActionCell.driver';
-import { tableActionCellTestkitFactory } from '../../testkit';
-import { tableActionCellTestkitFactory as enzymeTableActionCellTestkitFactory } from '../../testkit/enzyme';
 import { flattenInternalDriver } from '../../test/utils/private-drivers';
 
 const primaryActionProps = (actionTrigger = () => {}, disabled = false) => ({
@@ -205,40 +201,5 @@ describe('Table Action Cell', () => {
     );
 
     expect(driver.getIsPrimaryActionButtonDisabled()).toBe(true);
-  });
-});
-
-describe('testkit', () => {
-  it('should exist', () => {
-    const div = document.createElement('div');
-    const dataHook = 'table-action-cell';
-
-    const wrapper = div.appendChild(
-      ReactTestUtils.renderIntoDocument(
-        <div>
-          <TableActionCell dataHook={dataHook} {...primaryActionProps()} />
-        </div>,
-      ),
-    );
-
-    const actionCellTextkit = tableActionCellTestkitFactory({
-      wrapper,
-      dataHook,
-    });
-    expect(actionCellTextkit.getPrimaryActionButtonDriver()).toBeTruthy();
-  });
-});
-
-describe('enzyme testkit', () => {
-  it('should exist', () => {
-    const dataHook = 'table-action-cell';
-    const wrapper = mount(
-      <TableActionCell dataHook={dataHook} {...primaryActionProps()} />,
-    );
-    const actionCellTextkit = enzymeTableActionCellTestkitFactory({
-      wrapper,
-      dataHook,
-    });
-    expect(actionCellTextkit.getPrimaryActionButtonDriver()).toBeTruthy();
   });
 });

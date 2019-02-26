@@ -1,4 +1,4 @@
-import {noBorderInputDriverFactory as publicDriverFactory } from './NoBorderInput.driver';
+import { noBorderInputDriverFactory as publicDriverFactory } from './NoBorderInput.driver';
 
 export const noBorderInputPrivateDriverFactory = base => {
   return {

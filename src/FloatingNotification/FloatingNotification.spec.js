@@ -2,7 +2,7 @@ import React from 'react';
 import { createRendererWithUniDriver, cleanup } from '../../test/utils/unit';
 
 import FloatingNotification from './FloatingNotification';
-import { floatingNotificationPrivateDriverFactory } from './FloatingNotification.driver.private';
+import { floatingNotificationPrivateDriverFactory } from './FloatingNotification.private.driver';
 
 describe('FloatingNotification', () => {
   const someText = 'someText';

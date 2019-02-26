@@ -43,10 +43,6 @@ module.exports = {
 
   BadgeSelectItemBuilder: { skipSanityTest: true, noTestkit: true },
 
-  ColorPicker: {
-    skipSanityTest: true, // missing export in testkit/index.js, so skipping for now
-  },
-
   MultiSelect: {
     skipSanityTest: true, // testkit does not have root `exists` method
   },
@@ -72,7 +68,6 @@ module.exports = {
     noTestkit: true,
   },
 
-  GoogleAddressInputWithLabel: { skipSanityTest: true },
   Grid: { skipSanityTest: true, noTestkit: true },
   HBox: { skipSanityTest: true, noTestkit: true },
   Layout: { skipSanityTest: true, noTestkit: true },

@@ -6,7 +6,15 @@ import Button from '../Deprecated/Button';
 import More from '../new-icons/More';
 import PopoverMenuItem from '../PopoverMenuItem';
 import classnames from 'classnames';
-import { oneOf, oneOfType, bool, element, number, string, func } from 'prop-types';
+import {
+  oneOf,
+  oneOfType,
+  bool,
+  element,
+  number,
+  string,
+  func,
+} from 'prop-types';
 
 class PopoverMenu extends WixComponent {
   static displayName = 'PopoverMenu';

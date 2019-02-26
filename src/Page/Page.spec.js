@@ -133,6 +133,7 @@ describe('Page', () => {
   });
 
   describe('DOM calculations', () => {
+    // eslint-disable-next-line jest/no-disabled-tests
     xit('should recalculate component heights when rerendered', () => {
       // TODO:
     });

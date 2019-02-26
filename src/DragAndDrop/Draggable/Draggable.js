@@ -12,10 +12,19 @@ export class Draggable extends React.Component {
   };
   delayTimer = null;
 
-  shouldComponentUpdate({listOfPropsThatAffectItems, ...nextProps}, nextState) {
-    const {listOfPropsThatAffectItems: prevListOfPropsThatAffectItems, ...prevProps} = this.props;
+  shouldComponentUpdate(
+    { listOfPropsThatAffectItems, ...nextProps },
+    nextState,
+  ) {
+    const {
+      listOfPropsThatAffectItems: prevListOfPropsThatAffectItems,
+      ...prevProps
+    } = this.props;
 
-    if (!shallowEqual(nextProps, prevProps) || !shallowEqual(listOfPropsThatAffectItems, prevListOfPropsThatAffectItems)) {
+    if (
+      !shallowEqual(nextProps, prevProps) ||
+      !shallowEqual(listOfPropsThatAffectItems, prevListOfPropsThatAffectItems)
+    ) {
       return true;
     }
     if (!shallowEqual(nextState, this.state)) {
@@ -31,7 +40,7 @@ export class Draggable extends React.Component {
 
   resetDelayState = () => {
     if (!!this.props.delay) {
-      this.setState({delayed: false});
+      this.setState({ delayed: false });
       this.resetDelayTimer();
     }
   };
@@ -43,30 +52,33 @@ export class Draggable extends React.Component {
 
   countDelay = () => {
     if (!!this.props.delay) {
-      this.setState({delayed: true});
+      this.setState({ delayed: true });
       this.resetDelayTimer();
 
-      this.delayTimer = setTimeout(() => this.setState({delayed: false}), this.props.delay);
+      this.delayTimer = setTimeout(
+        () => this.setState({ delayed: false }),
+        this.props.delay,
+      );
     }
   };
 
-  onDragStart = ({id, index, containerId, groupName, item}) => {
+  onDragStart = ({ id, index, containerId, groupName, item }) => {
     if (this.props.onDragStart) {
-      this.props.onDragStart({id, index, containerId, groupName, item});
+      this.props.onDragStart({ id, index, containerId, groupName, item });
     }
 
     this.resetDelayTimer();
   };
 
-  onDragEnd = ({id, index, containerId, groupName, item}) => {
+  onDragEnd = ({ id, index, containerId, groupName, item }) => {
     if (this.props.onDragEnd) {
-      this.props.onDragEnd({id, index, containerId, groupName, item});
+      this.props.onDragEnd({ id, index, containerId, groupName, item });
     }
 
     this.resetDelayState();
   };
 
-  canDrag = ({id, index, containerId, groupName, item, canDrag}) => {
+  canDrag = ({ id, index, containerId, groupName, item }) => {
     const canDragByDelay = !!this.props.delay ? !this.state.delayed : true;
     const propsCanDrag = this.props.canDrag
       ? this.props.canDrag({
@@ -74,22 +86,26 @@ export class Draggable extends React.Component {
           index,
           containerId,
           groupName,
-          item
+          item,
         })
       : true;
 
     if (!canDragByDelay) {
       this.resetDelayState();
     }
-      
+
     return canDragByDelay && propsCanDrag;
   };
 
   render() {
-    const {hasDragged, ...restProps} = this.props;
+    const { hasDragged, ...restProps } = this.props;
     return (
       <DraggableTarget {...restProps}>
-        <div onMouseDown={this.countDelay} onMouseUp={this.resetDelayState} data-hook="delay-wrapper">
+        <div
+          onMouseDown={this.countDelay}
+          onMouseUp={this.resetDelayState}
+          data-hook="delay-wrapper"
+        >
           <DraggableSource
             {...restProps}
             ignoreMouseEvents={hasDragged}
@@ -159,7 +175,7 @@ Draggable.propTypes = {
       )
     }
   */
- listOfPropsThatAffectItems: PropTypes.array,
+  listOfPropsThatAffectItems: PropTypes.array,
 };
 
 export default Draggable;

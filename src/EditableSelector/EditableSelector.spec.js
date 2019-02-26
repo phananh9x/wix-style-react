@@ -1,12 +1,8 @@
 import React from 'react';
 import sinon from 'sinon';
-import ReactTestUtils from 'react-dom/test-utils';
 import editableSelectorDriverFactory from './EditableSelector.driver';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import { editableSelectorTestkitFactory } from '../../testkit';
 import EditableSelector from './EditableSelector';
-import { editableSelectorTestkitFactory as enzymeEditableSelectorTestkitFactory } from '../../testkit/enzyme';
-import { mount } from 'enzyme';
 
 describe('EditableSelector', () => {
   const createDriver = createDriverFactory(editableSelectorDriverFactory);
@@ -148,38 +144,5 @@ describe('EditableSelector', () => {
     driver.startEditing(0, newTitle);
     expect(driver.isEditingRow()).toBeTruthy();
     expect(driver.isAddingRow()).toBeFalsy();
-  });
-
-  describe('testkit', () => {
-    it('should exist', () => {
-      const div = document.createElement('div');
-      const dataHook = 'myDataHook';
-      const wrapper = div.appendChild(
-        ReactTestUtils.renderIntoDocument(
-          <div>
-            <EditableSelector {...props} dataHook={dataHook} />
-          </div>,
-        ),
-      );
-      const editableSelectorTestkit = editableSelectorTestkitFactory({
-        wrapper,
-        dataHook,
-      });
-      expect(editableSelectorTestkit.exists()).toBeTruthy();
-    });
-  });
-
-  describe('enzyme testkit', () => {
-    it('should exist', () => {
-      const dataHook = 'myDataHook';
-      const wrapper = mount(
-        <EditableSelector {...props} dataHook={dataHook} />,
-      );
-      const editableSelectorTestkit = enzymeEditableSelectorTestkitFactory({
-        wrapper,
-        dataHook,
-      });
-      expect(editableSelectorTestkit.exists()).toBeTruthy();
-    });
   });
 });

@@ -3,14 +3,7 @@ import React from 'react';
 import searchDriverFactory from './Search.driver';
 import Search from './Search';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import {
-  isTestkitExists,
-  isEnzymeTestkitExists,
-} from '../../test/utils/testkit-sanity';
-import { searchTestkitFactory } from '../../testkit';
-import { searchTestkitFactory as enzymeSearchTestkitFactory } from '../../testkit/enzyme';
 import { makeControlled } from '../../test/utils';
-import { mount } from 'enzyme';
 
 describe('Search', () => {
   const REGEXP_SPECIAL_CHARS = '^$\\.*+?)(][}{|';
@@ -130,6 +123,7 @@ describe('Search', () => {
     });
 
     // TODO: enhance Input component
+    // eslint-disable-next-line jest/no-disabled-tests
     it.skip('should focus search input if click on magnifying glass', () => {
       const driver = createDriver(
         <ControlledSearch options={options} value="fox" />,

@@ -1,8 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { isTestkitExists } from '../../test/utils/testkit-sanity';
 import notificationDriverFactory from './Notification.driver';
-import { notificationTestkitFactory } from '../../testkit';
 import {
   notificationTestkitFactory as enzymeNotificationTestkitFactory,
   buttonTestkitFactory as enzymeButtonTestkitFactory,
@@ -295,15 +293,6 @@ describe('Notification', () => {
         renderNotificationWithProps({ show: true, zIndex }),
       );
       expect(driver.getZIndex()).toEqual(zIndex);
-    });
-  });
-
-  describe('testkit', () => {
-    it('should exist', () => {
-      const component = renderNotificationWithProps({ show: true });
-      expect(
-        isTestkitExists(component, notificationTestkitFactory),
-      ).toBeTruthy();
     });
   });
 

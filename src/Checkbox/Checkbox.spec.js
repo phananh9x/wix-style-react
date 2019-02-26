@@ -1,11 +1,7 @@
 import React from 'react';
-import ReactTestUtils from 'react-dom/test-utils';
 import checkboxDriverFactory from './Checkbox.driver';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import { checkboxTestkitFactory } from '../../testkit';
 import Checkbox from './Checkbox';
-import { checkboxTestkitFactory as enzymeCheckboxTestkitFactory } from '../../testkit/enzyme';
-import { mount } from 'enzyme';
 
 const cachedConsoleWarn = global.console.warn;
 
@@ -98,33 +94,5 @@ describe('Checkbox', () => {
     createDriver(<Checkbox />);
     expect(global.console.warn).not.toBeCalled();
     global.console.warn = cachedConsoleWarn;
-  });
-
-  describe('testkit', () => {
-    it('should exist', () => {
-      const div = document.createElement('div');
-      const dataHook = 'myDataHook';
-      const wrapper = div.appendChild(
-        ReactTestUtils.renderIntoDocument(
-          <div>
-            <Checkbox dataHook={dataHook} />
-          </div>,
-        ),
-      );
-      const checkboxTestkit = checkboxTestkitFactory({ wrapper, dataHook });
-      expect(checkboxTestkit.exists()).toBeTruthy();
-    });
-  });
-
-  describe('enzyme testkit', () => {
-    it('should exist', () => {
-      const dataHook = 'myDataHook';
-      const wrapper = mount(<Checkbox dataHook={dataHook} />);
-      const checkboxTestkit = enzymeCheckboxTestkitFactory({
-        wrapper,
-        dataHook,
-      });
-      expect(checkboxTestkit.exists()).toBeTruthy();
-    });
   });
 });

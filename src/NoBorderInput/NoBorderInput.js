@@ -1,12 +1,14 @@
 import React from 'react';
 import classNames from 'classnames';
 import omit from 'omit';
-
+import PropTypes from 'prop-types';
 import Input from '../Input/Input';
 import inputStyles from '../Input/Input.scss';
 import styles from './NoBorderInput.scss';
 
 class NoBorderInput extends React.Component {
+  static StatusError = Input.StatusError;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +21,7 @@ class NoBorderInput extends React.Component {
       id,
       size,
       dataHook,
-      title,
+      label,
       disabled,
       onFocus,
       onBlur,
@@ -27,7 +29,6 @@ class NoBorderInput extends React.Component {
       statusMessage,
       className,
       value,
-      withSelection,
     } = this.props;
 
     const rejectedProps = [
@@ -49,16 +50,20 @@ class NoBorderInput extends React.Component {
       (this.wsrInput && this.wsrInput.input && !!this.wsrInput.input.value);
     const conditionalClasses = {
       [styles.disabled]: disabled,
-      [styles.hasError]: status === Input.StatusError,
+      [styles.hasError]: status === NoBorderInput.StatusError,
       [styles.hasFocus]: this.state.focus,
       [styles.hasValue]: hasValue,
+      [styles.noLabel]: !label,
     };
     const statusClass = status && statusMessage ? styles.errorMessage : '';
     const statusText = status && statusMessage;
 
     const renderStatusLine = () =>
       !disabled && (
-        <div className={classNames(statusClass, styles.message)}>
+        <div
+          data-hook="status-message"
+          className={classNames(statusClass, styles.message)}
+        >
           {statusText}
         </div>
       );
@@ -68,13 +73,13 @@ class NoBorderInput extends React.Component {
         className={classNames(
           conditionalClasses,
           styles.root,
-          inputStyles[`size-${size}${withSelection ? '-with-selection' : ''}`],
+          inputStyles[`size-${size}`],
           className,
         )}
         data-hook={dataHook}
       >
-        <label className={styles.label} htmlFor={id}>
-          {title}
+        <label data-hook="label" className={styles.label} htmlFor={id}>
+          {label}
         </label>
         <Input
           className={styles.nbinput}
@@ -108,7 +113,7 @@ class NoBorderInput extends React.Component {
 NoBorderInput.displayName = 'NoBorderInput';
 
 NoBorderInput.defaultProps = {
-  autoSelect: false,
+  autoSelect: true,
   size: 'normal',
   statusMessage: '',
   textOverflow: 'clip',
@@ -116,7 +121,11 @@ NoBorderInput.defaultProps = {
 };
 
 NoBorderInput.propTypes = {
+  /** The label displayed above the input when focused and as the input text when there is none */
+  label: PropTypes.string,
   ...Input.propTypes,
+  /** Input status - use to display an status indication for the user. for example: 'error' */
+  status: PropTypes.oneOf([NoBorderInput.StatusError]),
 };
 
 export default NoBorderInput;

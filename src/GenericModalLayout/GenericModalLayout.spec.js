@@ -1,16 +1,8 @@
-import { mount } from 'enzyme';
 import React from 'react';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 
-import {
-  isEnzymeTestkitExists,
-  isTestkitExists,
-} from '../../test/utils/testkit-sanity';
-import { genericModalLayoutTestkitFactory } from '../../testkit';
-import { genericModalLayoutTestkitFactory as enzymeGenericModalLayoutTestkitFactory } from '../../testkit/enzyme';
-
 import GenericModalLayout from '.';
-import genericModalLayoutPrivateDriverFactory from './GenericModalLayout.driver.private';
+import genericModalLayoutPrivateDriverFactory from './GenericModalLayout.private.driver';
 
 const renderWithProps = (properties = {}) => (
   <GenericModalLayout {...properties} />
@@ -20,11 +12,6 @@ describe('GenericModalLayout', () => {
   const createPrivateDriver = createDriverFactory(
     genericModalLayoutPrivateDriverFactory,
   );
-
-  it('should render', () => {
-    const driver = createPrivateDriver(renderWithProps());
-    expect(driver.exists()).toBeTruthy();
-  });
 
   it('should render header', () => {
     const driver = createPrivateDriver(
@@ -81,29 +68,6 @@ describe('GenericModalLayout', () => {
       );
 
       expect(driver.isFullscreen()).toBeFalsy();
-    });
-  });
-
-  describe('testkit', () => {
-    it('should exist', () => {
-      expect(
-        isTestkitExists(
-          <GenericModalLayout />,
-          genericModalLayoutTestkitFactory,
-        ),
-      ).toBe(true);
-    });
-  });
-
-  describe('enzyme testkit', () => {
-    it('should exist', () => {
-      expect(
-        isEnzymeTestkitExists(
-          <GenericModalLayout />,
-          enzymeGenericModalLayoutTestkitFactory,
-          mount,
-        ),
-      ).toBe(true);
     });
   });
 });

@@ -25,8 +25,7 @@ export default {
       <GeneratedTestComponent
         dataHook="story-generated-test-component-live-example"
         buttonText="Press me for a surprise"
-        />
+      />
     </div>
   ),
 };
-

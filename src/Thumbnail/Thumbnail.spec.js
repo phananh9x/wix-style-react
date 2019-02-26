@@ -2,7 +2,7 @@ import React from 'react';
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 
 import Thumbnail from './Thumbnail';
-import { thumbnailPrivateDriverFactory } from './Thumbnail.driver.private';
+import { thumbnailPrivateDriverFactory } from './Thumbnail.private.driver';
 
 const createDriver = createUniDriverFactory(thumbnailPrivateDriverFactory);
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import noBorderInputDriverFactory from './NoBorderInput.driver';
 import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
-
 import NoBorderInput from './NoBorderInput';
 
 const renderNoBorderInputWithProps = (props = {}) => (
@@ -19,6 +18,25 @@ describe('NoBorderInput', () => {
   it('should verify component exists', () => {
     const driver = createDriver(renderNoBorderInputWithProps());
     expect(driver.exists()).toBe(true);
+  });
+
+  it('should render label', () => {
+    const someLabel = 'bob';
+    const driver = createDriver(
+      renderNoBorderInputWithProps({ label: someLabel }),
+    );
+    expect(driver.getLabel()).toEqual(someLabel);
+  });
+
+  it('should render the status message', () => {
+    const someStatusMessage = 'george';
+    const driver = createDriver(
+      renderNoBorderInputWithProps({
+        status: NoBorderInput.StatusError,
+        statusMessage: someStatusMessage,
+      }),
+    );
+    expect(driver.getStatusMessage()).toEqual(someStatusMessage);
   });
 
   it('should auto focus', () => {

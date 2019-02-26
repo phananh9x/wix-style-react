@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text } from '../../../../..';
+import Text from '../../../../dist/es/src/Text';
 
 class App extends React.Component {
   render() {
     return (
       <div data-name="App">
-        <Text data-name="ES-Named-Text">Works!</Text>
+        <Text data-name="ES-Text">Works!</Text>
       </div>
     );
   }

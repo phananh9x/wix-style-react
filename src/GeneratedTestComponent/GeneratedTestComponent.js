@@ -40,7 +40,10 @@ class GeneratedTestComponent extends React.PureComponent {
         </Text>
 
         <div className={styles.button}>
-          <Button onClick={this._handleClick} dataHook="generatedTestComponent-button">
+          <Button
+            onClick={this._handleClick}
+            dataHook="generatedTestComponent-button"
+          >
             {buttonText}
           </Button>
         </div>

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import {Table} from 'wix-style-react/Table';
+import { Table } from 'wix-style-react/Table';
 import {
   TableToolbar,
   ItemGroup,
@@ -9,9 +9,9 @@ import {
   SelectedCount,
   Divider,
 } from 'wix-style-react/TableToolbar';
-import {Container, Row} from 'wix-style-react/Grid';
-import {header, tail} from './PageChildren';
-import {ExamplePageContainer} from './ExamplePageContainer';
+import { Container, Row } from 'wix-style-react/Grid';
+import { header, tail } from './PageChildren';
+import { ExamplePageContainer } from './ExamplePageContainer';
 
 import Dropdown from 'wix-style-react/Dropdown';
 import Search from 'wix-style-react/Search';
@@ -21,7 +21,7 @@ import Page from 'wix-style-react/Page';
 import Button from 'wix-style-react/Button';
 import TextButton from 'wix-style-react/TextButton';
 import Text from 'wix-style-react/Text';
-import {Edit, Duplicate, Upload} from 'wix-style-react/new-icons';
+import { Edit, Duplicate, Upload } from 'wix-style-react/new-icons';
 import Highlighter from 'wix-style-react/Highlighter';
 
 import ImagePlaceholder from '../../assets/ImagePlaceholder';
@@ -63,9 +63,9 @@ const createDataSet = setIndex => [
   },
 ];
 
-const allData = [1, 2, 3, 4, 5].reduce (
-  (accum, index) => accum.concat (createDataSet (index)),
-  []
+const allData = [1, 2, 3, 4, 5].reduce(
+  (accum, index) => accum.concat(createDataSet(index)),
+  [],
 );
 
 class ExampleStretchTable extends React.Component {
@@ -77,8 +77,8 @@ class ExampleStretchTable extends React.Component {
     inStock: false,
   };
 
-  clearSearch () {
-    this.setState ({
+  clearSearch() {
+    this.setState({
       collectionId: 0,
       filterId: 0,
       searchTerm: '',
@@ -86,17 +86,17 @@ class ExampleStretchTable extends React.Component {
     });
   }
 
-  renderMainToolbar () {
+  renderMainToolbar() {
     const collectionOptions = [
-      {id: 0, value: 'All'},
-      {id: 1, value: 'Towels'},
-      {id: 2, value: 'Slippers'},
+      { id: 0, value: 'All' },
+      { id: 1, value: 'Towels' },
+      { id: 2, value: 'Slippers' },
     ];
 
     const filterOptions = [
-      {id: 0, value: 'All'},
-      {id: 1, value: 'Red'},
-      {id: 2, value: 'Cyan'},
+      { id: 0, value: 'All' },
+      { id: 1, value: 'Red' },
+      { id: 2, value: 'Cyan' },
     ];
 
     return (
@@ -106,12 +106,12 @@ class ExampleStretchTable extends React.Component {
             <Item>
               <Label>
                 Product
-                <span style={{width: '150px'}}>
+                <span style={{ width: '150px' }}>
                   <Dropdown
                     options={collectionOptions}
                     selectedId={this.state.collectionId}
                     onSelect={selectedOption => {
-                      this.setState ({collectionId: selectedOption.id});
+                      this.setState({ collectionId: selectedOption.id });
                     }}
                     roundInput
                   />
@@ -121,12 +121,13 @@ class ExampleStretchTable extends React.Component {
             <Item>
               <Label>
                 Color
-                <span style={{width: '86px'}}>
+                <span style={{ width: '86px' }}>
                   <Dropdown
                     options={filterOptions}
                     selectedId={this.state.filterId}
                     onSelect={selectedOption =>
-                      this.setState ({filterId: selectedOption.id})}
+                      this.setState({ filterId: selectedOption.id })
+                    }
                     roundInput
                   />
                 </span>
@@ -135,21 +136,21 @@ class ExampleStretchTable extends React.Component {
             <Item>
               <Checkbox
                 checked={this.state.inStock}
-                onChange={e => this.setState ({inStock: e.target.checked})}
+                onChange={e => this.setState({ inStock: e.target.checked })}
               >
                 In Stock only
               </Checkbox>
             </Item>
           </ItemGroup>
           <ItemGroup position="end">
-            <Item>{this.renderSearch (false)}</Item>
+            <Item>{this.renderSearch(false)}</Item>
           </ItemGroup>
         </TableToolbar>
       </Card>
     );
   }
 
-  renderBulkActionsToolbar (props) {
+  renderBulkActionsToolbar(props) {
     return (
       <TableToolbar>
         <ItemGroup position="start">
@@ -164,9 +165,8 @@ class ExampleStretchTable extends React.Component {
               skin="light"
               priority="primary"
               onClick={() =>
-                window.alert (
-                  `Exporting selectedIds=${props.getSelectedIds ()}`
-                )}
+                window.alert(`Exporting selectedIds=${props.getSelectedIds()}`)
+              }
             >
               Export
             </Button>
@@ -177,9 +177,10 @@ class ExampleStretchTable extends React.Component {
               priority="primary"
               prefixIcon={<Duplicate />}
               onClick={() =>
-                window.alert (
-                  `Duplicating selectedIds=${props.getSelectedIds ()}`
-                )}
+                window.alert(
+                  `Duplicating selectedIds=${props.getSelectedIds()}`,
+                )
+              }
             >
               Duplicate
             </Button>
@@ -190,32 +191,33 @@ class ExampleStretchTable extends React.Component {
               priority="primary"
               prefixIcon={<Edit />}
               onClick={() =>
-                window.alert (`Editing selectedIds=${props.getSelectedIds ()}`)}
+                window.alert(`Editing selectedIds=${props.getSelectedIds()}`)
+              }
             >
               Edit
             </Button>
           </Item>
           <Divider />
-          <Item>{this.renderSearch (true)}</Item>
+          <Item>{this.renderSearch(true)}</Item>
         </ItemGroup>
       </TableToolbar>
     );
   }
 
-  renderSearch (expandable) {
+  renderSearch(expandable) {
     return (
       <Search
         expandable={expandable}
         onChange={e => {
-          this.setState ({searchTerm: e.target.value});
+          this.setState({ searchTerm: e.target.value });
         }}
         value={this.state.searchTerm}
       />
     );
   }
 
-  renderTable () {
-    const tableData = this.getFilteredData ();
+  renderTable() {
+    const tableData = this.getFilteredData();
     return (
       <Table
         withWrapper
@@ -253,7 +255,8 @@ class ExampleStretchTable extends React.Component {
           },
         ]}
         onSelectionChange={selectedIds =>
-          console.log ('Table.onSelectionChange(): selectedIds=', selectedIds)}
+          console.log('Table.onSelectionChange(): selectedIds=', selectedIds)
+        }
         showSelection
         showLastRowDivider
       >
@@ -262,32 +265,39 @@ class ExampleStretchTable extends React.Component {
             <Table.ToolbarContainer>
               {selectionContext =>
                 selectionContext.selectedCount === 0
-                  ? this.renderMainToolbar ()
-                  : this.renderBulkActionsToolbar (selectionContext)}
+                  ? this.renderMainToolbar()
+                  : this.renderBulkActionsToolbar(selectionContext)
+              }
             </Table.ToolbarContainer>
-            {tableData.length
-              ? <Table.Titlebar />
-              : <Table.EmptyState
-                  image={<ImagePlaceholder />}
-                  subtitle={
-                    this.state.searchTerm
-                      ? <Text>
-                          There are no search results for{' '}
-                          <Text weight="normal">{`"${this.state.searchTerm}"`}</Text>
-                          <br />
-                          Try search by other cryteria
-                        </Text>
-                      : <Text>
-                          There are no results matching your filters
-                          <br />
-                          Try search by other cryteria
-                        </Text>
-                  }
-                >
-                  <TextButton onClick={() => this.clearSearch ()}>
-                    Clear the search
-                  </TextButton>
-                </Table.EmptyState>}
+            {tableData.length ? (
+              <Table.Titlebar />
+            ) : (
+              <Table.EmptyState
+                image={<ImagePlaceholder />}
+                subtitle={
+                  this.state.searchTerm ? (
+                    <Text>
+                      There are no search results for{' '}
+                      <Text weight="normal">{`"${
+                        this.state.searchTerm
+                      }"`}</Text>
+                      <br />
+                      Try search by other cryteria
+                    </Text>
+                  ) : (
+                    <Text>
+                      There are no results matching your filters
+                      <br />
+                      Try search by other cryteria
+                    </Text>
+                  )
+                }
+              >
+                <TextButton onClick={() => this.clearSearch()}>
+                  Clear the search
+                </TextButton>
+              </Table.EmptyState>
+            )}
           </Card>
         </Page.Sticky>
         <Card stretchVertically>
@@ -297,14 +307,14 @@ class ExampleStretchTable extends React.Component {
     );
   }
 
-  render () {
+  render() {
     return (
       <ExamplePageContainer>
         <Page
           upgrade
           backgroundImageUrl="https://static.wixstatic.com/media/f0548921c53940ec803dfb1c203e96fe.jpg/v1/fill/w_400,h_100/f0548921c53940ec803dfb1c203e96fe.jpg"
         >
-          {header ()}
+          {header()}
           {tail}
           <Page.Content>
             <Container>
@@ -313,14 +323,14 @@ class ExampleStretchTable extends React.Component {
                   <Card.Content>Some Content 1</Card.Content>
                 </Card>
               </Row>
-              <Row>{this.renderTable ()}</Row>
+              <Row>{this.renderTable()}</Row>
 
               <Row>
                 <Card>
                   <Card.Content>Some Content 2</Card.Content>
                 </Card>
               </Row>
-              <Row>{this.renderTable ()}</Row>
+              <Row>{this.renderTable()}</Row>
             </Container>
           </Page.Content>
         </Page>
@@ -328,20 +338,20 @@ class ExampleStretchTable extends React.Component {
     );
   }
 
-  getFilteredData () {
+  getFilteredData() {
     let data = allData;
     if (this.state.collectionId > 0) {
-      data = data.filter (row => row.collectionId === this.state.collectionId);
+      data = data.filter(row => row.collectionId === this.state.collectionId);
     }
     if (this.state.filterId > 0) {
-      data = data.filter (row => row.filterId === this.state.filterId);
+      data = data.filter(row => row.filterId === this.state.filterId);
     }
     if (this.state.inStock) {
-      data = data.filter (row => row.inventory === 'In stock');
+      data = data.filter(row => row.inventory === 'In stock');
     }
     if (this.state.searchTerm !== '') {
-      data = data.filter (row =>
-        row.name.toUpperCase ().includes (this.state.searchTerm.toUpperCase ())
+      data = data.filter(row =>
+        row.name.toUpperCase().includes(this.state.searchTerm.toUpperCase()),
       );
     }
     return data;

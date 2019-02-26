@@ -45,8 +45,7 @@ class CloseButton extends Component {
       <ButtonNext {...rest} data-hook={dataHook} className={classNames}>
         {children
           ? React.cloneElement(children, { size: '18px' })
-          // fallback to Close icon if children not provided (current behavior)
-          : size === 'small'
+          : size === 'small' // fallback to Close icon if children not provided (current behavior)
           ? CloseIcon
           : CloseLargeIcon}
       </ButtonNext>

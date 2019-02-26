@@ -1,7 +1,7 @@
 {
   "name": "wix-style-react",
   "description": "wix-style-react",
-  "version": "6.5.1",
+  "version": "6.6.1",
   "main": "./dist/src/index.js",
   "module": "./dist/es/src/index.js",
   "sideEffects": [
@@ -13,7 +13,7 @@
     "dist",
     "src",
     "scripts",
-    ".babelrc",
+    "babel.config.js",
     "testkit",
     "es",
     "new-icons",
@@ -27,13 +27,13 @@
     "start": "./scripts/npm-start.sh",
     "precommit": "lint-staged",
     "pretest": "npm run lint && ./scripts/ensure-dist.sh",
-    "test": "npm run test:unit && npm run test:e2e",
+    "test": "npm run test:unit",
     "test:unit": "yoshi test --jest",
     "test:watch": "yoshi test --jest --watch",
     "pretest:e2e": "./scripts/ensure-dist.sh",
-    "test:e2e": "concurrently 'npm run test:e2e-only' 'node scripts/e2e-server.js' --names 'protractor,e2e-server' --success first --kill-others && npm run test:e2e-runtime",
+    "test:e2e": "npm run test:e2e-runtime && concurrently 'npm run test:e2e-only' 'node scripts/e2e-server.js' --names 'protractor,e2e-server' --success first --kill-others",
     "test:e2e-only": "NODE_ENV=production yoshi test --protractor",
-    "test:e2e-runtime": "cd ./test/e2e-runtime/imports && NODE_ENV=production npm run test",
+    "test:e2e-runtime": "cd ./test-runtime/imports && NODE_ENV=production npm run test",
     "copy-public-styles": "cp src/*.scss .",
     "prebuild": "npm run generate-testkit-exports",
     "build": "npm run lint && npm run proxy-wix-ui-icons && npm run generate-test-component && npm run transpile && npm run storybook:build",
@@ -49,7 +49,7 @@
     "storybook": "npm run prestorybook && start-storybook -p 6006",
     "postpublish": "npm install teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
     "export-components": "import-path --path src",
-    "lint": "yoshi lint",
+    "lint": "yoshi lint --fix",
     "proxy-wix-ui-icons": "node scripts/proxy-wix-ui-icons",
     "generate": "./scripts/component-generator/bin/component-generator.js",
     "generate-test-component": "./scripts/component-generator/bin/generate-test-component.js",
@@ -161,7 +161,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.3.1",
-    "@wix/draft-js": "^0.10.379",
     "bootstrap-sass": "^3.3.7",
     "classnames": "^2.2.5",
     "color": "^2.0.0",
@@ -195,14 +194,13 @@
     "slate": "^0.20.3",
     "wix-animations": "^1.0.276",
     "wix-eventually": "^2.2.0",
-    "wix-rich-content-editor": "^2.0.3",
     "wix-ui-backoffice": "^1.0.339",
     "wix-ui-core": "^2.0.1",
     "wix-ui-icons-common": "^2.0.9",
     "wix-ui-test-utils": "^1.0.115"
   },
   "lint-staged": {
-    "*.{js,scss}": "yoshi lint"
+    "*.{js,scss}": "yoshi lint --fix"
   },
   "jest": {
     "setupFiles": [
@@ -215,7 +213,7 @@
     "testPathIgnorePatterns": [
       "<rootDir>/dist/",
       "<rootDir>/node_modules/",
-      "<rootDir>/test/e2e-runtime",
+      "<rootDir>/test-runtime/",
       "<rootDir>/scripts/component-generator/templates/"
     ]
   },
@@ -304,13 +302,15 @@
     },
     "overrides": [
       {
-        "files": [ "**/*.uni.driver.js" ],
+        "files": [
+          "**/*.uni.driver.js"
+        ],
         "rules": {
           "no-restricted-properties": [
             "error",
             {
               "property": "getNative",
-              "message": "Do not use getNative() in Unidrivers, only in tests."
+              "message": "Do not use getNative() in Unidrivers unless a method needs to return an HTMLElement (In which case, that method also need to be deprecated!)."
             }
           ]
         }

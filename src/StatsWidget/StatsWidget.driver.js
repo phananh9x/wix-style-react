@@ -21,7 +21,7 @@ const statsWidgetDriverFactory = ({ element }) => {
   return {
     exists: () => !!element,
 
-    getSuffixElementByHook: dataHook => {
+    getSuffixElementByHook: () => {
       return findByHook(getSuffix(), 'suffix-element-hook').textContent;
     },
 

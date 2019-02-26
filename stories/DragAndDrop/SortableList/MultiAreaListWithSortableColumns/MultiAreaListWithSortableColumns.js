@@ -63,7 +63,14 @@ export default class MultiAreaListWithSortableColumns extends React.Component {
     this.setState({ ...nextState });
   };
 
-  renderCell = ({ isPlaceholder, isPreview, id, item, previewStyles, isListInDragState }) => {
+  renderCell = ({
+    isPlaceholder,
+    isPreview,
+    id,
+    item,
+    previewStyles,
+    isListInDragState,
+  }) => {
     const classes = classNames(
       {
         [classNames(

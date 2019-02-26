@@ -2,7 +2,7 @@ import React from 'react';
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 
 import ToggleIcon from './ToggleIcon';
-import { toggleIconPrivateDriverFactory } from './ToggleIcon.driver.private';
+import { toggleIconPrivateDriverFactory } from './ToggleIcon.private.driver';
 import LockLocked from '../../new-icons/LockLocked';
 
 describe('ToggleIcon', () => {

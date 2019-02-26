@@ -4,7 +4,7 @@ import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 import { enzymeUniTestkitFactoryCreator } from 'wix-ui-test-utils/enzyme';
 
 import DropdownBase from './DropdownBase';
-import { dropdownBasePrivateDriverFactory } from './DropdownBase.driver.private';
+import { dropdownBasePrivateDriverFactory } from './DropdownBase.private.driver';
 
 describe('DropdownBase', () => {
   const createDriver = createUniDriverFactory(dropdownBasePrivateDriverFactory);
@@ -69,11 +69,6 @@ describe('DropdownBase', () => {
       wrapper,
     };
   };
-
-  it('should render', async () => {
-    const driver = createDriver(<DropdownBase {...defaultProps} />);
-    expect(await driver.exists()).toBeTruthy();
-  });
 
   it('should accept a node as a children', async () => {
     const driver = createDriver(

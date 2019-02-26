@@ -26,18 +26,18 @@ describe('CloseButton', () => {
 
     it('when given small or none should have 18px icon', () => {
       const wrapper = shallow(
-        <CloseButton size='small'>
+        <CloseButton size="small">
           <Add data-hook={dataHook} />
-        </CloseButton>
+        </CloseButton>,
       );
       expect(wrapper.find(selector).props().size).toEqual('18px');
     });
 
     it('when given medium should have 18px icon', () => {
       const wrapper = shallow(
-        <CloseButton size='medium'>
+        <CloseButton size="medium">
           <Add data-hook={dataHook} />
-        </CloseButton>
+        </CloseButton>,
       );
       expect(wrapper.find(selector).props().size).toEqual('18px');
     });

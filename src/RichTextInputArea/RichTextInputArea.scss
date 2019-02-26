@@ -1,5 +1,4 @@
-@import '~wix-rich-content-common/dist/styles.min';
-@import '~wix-rich-content-editor/dist/styles.min';
+@import '~draft-js/dist/Draft';
 
 @import '../common';
 @import '../typography-helpers';
@@ -13,13 +12,14 @@ $padding: 12px;
 .root {
   min-width: $minWidth;
   background-color: $D80;
-  border: $border;
   border-radius: $borderRadius;
 
   :global(.public-DraftEditor-content) { 
     min-height: $minHeight;
     padding: $padding;
-    border-radius: $borderRadius;
+    border: $border;
+    border-bottom-left-radius: $borderRadius;
+    border-bottom-right-radius: $borderRadius;
 
     @include Text($weight: thin, $size: medium);
 
@@ -35,4 +35,11 @@ $padding: 12px;
       box-shadow: 0 0 0 3px $F00;
     }
   }
+}
+
+.toolbar {
+  border: $border;
+  border-bottom: 0;
+  border-top-left-radius: $borderRadius;
+  border-top-right-radius: $borderRadius;
 }

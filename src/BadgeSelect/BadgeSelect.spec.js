@@ -1,5 +1,5 @@
 import React from 'react';
-import badgeSelectPrivateDriverFactory from './BadgeSelect.driver.private';
+import badgeSelectPrivateDriverFactory from './BadgeSelect.private.driver';
 import BadgeSelect from './BadgeSelect';
 import {
   SKIN,

@@ -585,6 +585,7 @@ describe('Input', () => {
       expect(onChange.mock.calls[0][0].target.value).toBe('');
     });
 
+    // eslint-disable-next-line jest/no-disabled-tests
     describe.skip('Uncontrolled', () => {
       // TODO
       it('should be displayed when using uncontrolled component with defaultValue', () => {

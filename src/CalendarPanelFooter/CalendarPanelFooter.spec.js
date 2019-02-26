@@ -1,7 +1,7 @@
 import React from 'react';
 import CalendarPanelFooter, { defaultDateToStringOptions } from '.';
 import { createRendererWithUniDriver, cleanup } from '../../test/utils/unit';
-import { calendarPanelFooterPrivateDriverFactory } from './CalendarPanelFooter.driver.private';
+import { calendarPanelFooterPrivateDriverFactory } from './CalendarPanelFooter.private.driver';
 
 describe('CalendarPanelFooter', () => {
   const render = createRendererWithUniDriver(

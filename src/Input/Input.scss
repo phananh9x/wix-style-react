@@ -38,6 +38,7 @@ $material-gap: 8px;
   outline: 0;
   line-height: 1.5;
   background: transparent;
+  box-shadow: none;
   @include BorderRadius(6px);
   @include FontRoman();
   @include Placeholder(getTextColor($light: true, $secondary: true));

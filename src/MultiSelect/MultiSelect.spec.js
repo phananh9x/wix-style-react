@@ -578,6 +578,7 @@ describe('MultiSelect', () => {
   });
 
   // TODO: dnd testkit is missing - once it's available, this test has to be completed and run
+  // eslint-disable-next-line jest/no-disabled-tests
   xdescribe('Drag & Drop', () => {
     it('should allow reordering the tags', () => {
       const tags = [

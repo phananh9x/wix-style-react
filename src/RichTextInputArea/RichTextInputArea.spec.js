@@ -2,7 +2,7 @@ import React from 'react';
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 
 import RichTextInputArea from './RichTextInputArea';
-import richTextInputAreaPrivateDriverFactory from './RichTextInputArea.driver.private';
+import richTextInputAreaPrivateDriverFactory from './RichTextInputArea.private.driver';
 
 describe('RichTextInputArea', () => {
   const createDriver = createUniDriverFactory(

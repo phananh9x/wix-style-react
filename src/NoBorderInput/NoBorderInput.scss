@@ -20,7 +20,8 @@ $disabledColor: $D55;
   .nbinput, input {
     opacity: 0;
     height: 36px;
-    @include FontLight();
+    @include FontRoman();
+    @include Placeholder($D55);
   }
 
   .message {
@@ -33,7 +34,7 @@ $disabledColor: $D55;
   }
 
   .label {
-    @include Text($weight: thin, $size: medium, $secondary: true);
+    @include Text($weight: normal, $size: medium, $secondary: true, $light: true);
 
     transition:all .2s ease-in-out;
     position: absolute;
@@ -61,11 +62,11 @@ $disabledColor: $D55;
   }
 
   &.hasFocus,
-  &.hasValue {
+  &.hasValue,
+  &.noLabel {
     .nbinput, input {
       border-bottom: 0;
-      @include Placeholder($D50);
-      transition: opacity 0.3s ease-in-out;
+      transition: opacity .3s ease-in-out;	
       opacity: 1;
     }
 
@@ -76,8 +77,8 @@ $disabledColor: $D55;
       }
     }
     .label {
+      @include Text($weight: normal, $size: tiny, $secondary: true, $light: true);
       top: -12px;
-      font-size: 12px;
     }
   }
 

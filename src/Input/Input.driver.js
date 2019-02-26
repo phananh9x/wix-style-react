@@ -33,7 +33,6 @@ const inputDriverFactory = ({ element }) => {
     keyDown: key => ReactTestUtils.Simulate.keyDown(input, { key }),
     click: () => ReactTestUtils.Simulate.click(input),
     clickSuffix: () => ReactTestUtils.Simulate.click(suffixNode),
-    clickClear: () => ReactTestUtils.Simulate.click(clearButton),
     clickUnit: () => ReactTestUtils.Simulate.click(unitNode),
     clickMagnifyingGlass: () =>
       ReactTestUtils.Simulate.click(magnifyingGlassNode),
