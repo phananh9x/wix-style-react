@@ -47,11 +47,12 @@ class AccordionItem extends React.PureComponent {
       toggleOpen,
       id,
     } = this.props;
-    const buttonsStyle = classNames(styles.moreLessButton, {
-      isOpen: styles.isOpen,
-    });
     const itemStyle = classNames(styles.item, {
+      [styles.itemNoIcon]: !icon,
       [styles.open]: isOpen,
+    });
+    const headerTextStyle = classNames(styles.headerText, {
+      [styles.headerTextNoIcon]: !icon,
     });
     return (
       <div
@@ -63,13 +64,14 @@ class AccordionItem extends React.PureComponent {
       >
         <div className={itemStyle}>
           <div className={styles.headerDetails}>
+            <div className={styles.headerDetailsInternal}>
           {icon && (
             <div className={styles.headerIcon} data-hook="icon">
               {icon}
             </div>
           )}
           {title && (
-            <div className={styles.headerText}>
+            <div className={headerTextStyle}>
               {typeof title === "string" && (
                 <Text data-hook="title" ellipsis weight="normal">
                   {title}
@@ -78,16 +80,17 @@ class AccordionItem extends React.PureComponent {
               {typeof title === "object" && (title)}
             </div>
           )}
-          </div>
-          <div className={buttonsStyle}>
-            <MoreLessButton
-              dataHook="toggle-accordion-wrapper"
-              isOpen={isOpen}
-              handleClick={() => toggleOpenClose(id)}
-              expandLabel={expandLabel}
-              collapseLabel={collapseLabel}
-              hover={hover}
-            />
+            </div>
+            <div className={styles.moreLessButton}>
+              <MoreLessButton
+                dataHook="toggle-accordion-wrapper"
+                isOpen={isOpen}
+                handleClick={() => toggleOpenClose(id)}
+                expandLabel={expandLabel}
+                collapseLabel={collapseLabel}
+                hover={hover}
+              />
+            </div>
           </div>
         </div>
         <Animator show={isOpen} height>

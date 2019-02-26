@@ -1,10 +1,14 @@
 @import '../../common.scss';
 $row-hover-vertical-padding: 21px;
-$row-sides-padding: 30px;
-$row-top-padding: 24px;
+$row-padding-left-no-icon: 30px;
+$row-sides-padding: 24px;
+$row-vertical-padding: 24px;
 $icon-accordion-height: 24px;
+$icon-margin-right: 24px;
 $moreLessPosition: 30px;
+$moreLess-width: 72px;
 $moreLess-height: 30px;
+$moreLess-margin-right: 6px;
 $collapse-top-padding: 24px;
 $collapse-sides-padding: 30px;
 $item-internal-margin: 12px;
@@ -19,7 +23,7 @@ $item-internal-margin: 12px;
 }
 
 .item {
-  padding: $row-top-padding $row-sides-padding;
+  padding: $row-vertical-padding $row-sides-padding $row-vertical-padding $row-sides-padding;
   width: calc(100% - #{$row-sides-padding * 2});
   transition: background-color .3s;
   justify-content: space-between;
@@ -30,7 +34,17 @@ $item-internal-margin: 12px;
     cursor: pointer;
     padding: $row-hover-vertical-padding $row-sides-padding;
     height: $moreLess-height;
+
+    &.itemNoIcon {
+      padding-left: $row-padding-left-no-icon;
+    }
   }
+
+  &.itemNoIcon {
+    padding-left: $row-padding-left-no-icon;
+    width: calc(100% - #{$row-sides-padding} - #{$row-padding-left-no-icon});
+  }
+
 }
 
 .headerInfo {
@@ -44,12 +58,21 @@ $item-internal-margin: 12px;
 }
 
 .headerText {
-  margin-right: $item-internal-margin;
+  width: calc(100% - #{$icon-accordion-height} - #{$item-internal-margin});
 }
 
 .headerDetails {
   display: flex;
+  width: 100%;
   justify-content: center;
+}
+
+.headerDetailsInternal {
+  display: flex;
+  align-items: center;
+  width: calc(100% - #{$moreLess-width} - #{$moreLess-margin-right} - #{$item-internal-margin});
+  margin-right: $item-internal-margin;
+  justify-content: flex-start;
 }
 
 .collapse {
@@ -61,9 +84,10 @@ $item-internal-margin: 12px;
 
 .moreLessButton {
   position: relative;
-  transition: bottom .2s;
+  width: $moreLess-width;
+  margin-right: 6px;
+}
 
-  &.open {
-    bottom: $moreLessPosition;
-  }
+.headerTextNoIcon {
+  width: 100%;
 }
