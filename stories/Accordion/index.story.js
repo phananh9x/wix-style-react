@@ -3,7 +3,9 @@ import { storySettings } from './storySettings';
 import LiveCodeExample from '../utils/Components/LiveCodeExample';
 
 import Accordion from '../../src/Accordion';
-import InfoCircle from '../../src/new-icons/InfoCircle';
+import Text from '../../src/Text';
+import RichTextArea from '../../src/RichTextArea';
+import { InfoCircle, AdminAccess } from '../../src/new-icons';
 
 const exampleData = [
   {
@@ -15,18 +17,29 @@ const exampleData = [
         expandLabel: 'More',
         collapseLabel: 'Less',
         content: (
-          <div>
+          <Text>
             lauren ipsum lauren ipsum lauren ipsum lauren ipsum lauren ipsum
             lauren ipsum lauren ipsum lauren ipsum
-          </div>
+          </Text>
         ),
       },
       {
         title: 'Second Item',
-        icon: <InfoCircle />,
+        icon: <AdminAccess />,
         expandLabel: 'More',
         collapseLabel: 'Less',
-        content: 'dummy content',
+        content: (
+          <Text>
+            lauren ipsum lauren ipsum lauren ipsum lauren ipsum lauren ipsum
+            lauren ipsum lauren ipsum lauren ipsum
+          </Text>
+        ),
+      },
+      {
+        title: 'Third Item',
+        expandLabel: 'More',
+        collapseLabel: 'Less',
+        content: <RichTextArea />,
       },
     ],
   },
@@ -66,10 +79,10 @@ export default {
                     expandLabel: 'More',
                     collapseLabel: 'Less',
                     content: (
-                      <div>
+                      <Text>
                         lauren ipsum lauren ipsum lauren ipsum lauren ipsum lauren ipsum
                         lauren ipsum lauren ipsum lauren ipsum
-                      </div>
+                      </Text>
                     ),
                   }
                 ]
