@@ -44,7 +44,11 @@ export default ({
         </Button>
       )}
       {isOpen && (
-        <TextButton suffixIcon={<ChevronUp />} className={buttonStyle}>
+        <TextButton
+          dataHook="toggle-accordion-button"
+          suffixIcon={<ChevronUp />}
+          className={buttonStyle}
+        >
           {collapseLabel}
         </TextButton>
       )}

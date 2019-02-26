@@ -91,6 +91,7 @@ describe('Accordion', () => {
 
     it('should accept an expand and collapse button labels', async () => {
       const driver = createDriver(<Accordion data={singleItem} />);
+      await driver.hoverOnItem(0);
       expect(await driver.getToggleButtonLabelAt(0)).toEqual('see more');
       await driver.clickToggleButtonAt(0);
       expect(await driver.getToggleButtonLabelAt(0)).toEqual('see less');
