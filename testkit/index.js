@@ -32,7 +32,7 @@ const load = module => {
   return defaultOrFirstExport;
 };
 
-export const accordionTestkitFactory = testkitFactoryCreator(load('../src/Accordion/Accordion.driver'));
+export const accordionTestkitFactory = uniTestkitFactoryCreator(load(require('../src/Accordion/Accordion.driver')));
 export const addItemTestkitFactory = testkitFactoryCreator(load(require('../src/AddItem/AddItem.driver')));
 export const autoCompleteTestkitFactory = testkitFactoryCreator(load(require('../src/AutoComplete/AutoComplete.driver')));
 export const autoCompleteCompositeTestkitFactory = testkitFactoryCreator(load(require('../src/AutoCompleteComposite/AutoCompleteComposite.driver')));

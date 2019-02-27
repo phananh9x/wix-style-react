@@ -1,9 +1,6 @@
 import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
 
-export const getItemAt = (idx, base) =>
-  base.$$('[data-hook="accordion-item"]').get(idx);
-
-export const accordionDriverFactory = base => {
+function accordionDriverFactory(base) {
   return {
     ...baseUniDriverFactory(base),
 
@@ -29,4 +26,12 @@ export const accordionDriverFactory = base => {
         .$('[data-hook="toggle-accordion-button"]')
         .text(),
   };
-};
+}
+
+function getItemAt(idx, base) {
+  return base.$$('[data-hook="accordion-item"]').get(idx);
+}
+
+export default accordionDriverFactory;
+
+export { getItemAt };

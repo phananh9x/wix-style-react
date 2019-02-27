@@ -32,7 +32,7 @@ const load = module => {
   return defaultOrFirstExport;
 };
 
-export const accordionTestkitFactory = enzymeTestkitFactoryCreator(load('../src/Accordion/Accordion.driver'));
+export const accordionTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/Accordion/Accordion.driver')));
 export const addItemTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/AddItem/AddItem.driver')));
 export const autoCompleteTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/AutoComplete/AutoComplete.driver')));
 export const autoCompleteCompositeTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/AutoCompleteComposite/AutoCompleteComposite.driver')));

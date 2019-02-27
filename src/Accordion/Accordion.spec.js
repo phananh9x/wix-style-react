@@ -2,7 +2,7 @@ import React from 'react';
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 
 import Accordion from './Accordion';
-import { accordionPrivateDriverFactory } from './Accordion.driver.private';
+import { accordionPrivateDriverFactory } from './Accordion.private.driver';
 
 import { eventually } from '../../test/utils/unit/eventually';
 

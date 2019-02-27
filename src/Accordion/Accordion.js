@@ -26,7 +26,6 @@ class Accordion extends React.Component {
   };
 
   _toggle = id => {
-
     this.setState({
       openId: this.state.openId !== id ? id : -1,
     });
@@ -36,7 +35,7 @@ class Accordion extends React.Component {
     this.setState({
       openId: id,
     });
-  }
+  };
 
   render() {
     const { openId } = this.state;
