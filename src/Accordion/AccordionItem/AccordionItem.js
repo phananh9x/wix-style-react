@@ -5,12 +5,14 @@ import Text from '../../Text';
 import MoreLessButton from '../MoreLessButton';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { BUTTON_TYPES } from '../constants';
 
 class AccordionItem extends React.PureComponent {
   static displayName = 'AccordionItem';
 
   static propTypes = {
     dataHook: PropTypes.string,
+    buttonType: PropTypes.oneOf(Object.values(BUTTON_TYPES)),
     id: PropTypes.number,
     title: PropTypes.string,
     expandLabel: PropTypes.string,
@@ -37,6 +39,7 @@ class AccordionItem extends React.PureComponent {
     const { hover } = this.state;
     const {
       dataHook,
+      buttonType,
       icon,
       title,
       toggleOpenClose,
@@ -47,6 +50,7 @@ class AccordionItem extends React.PureComponent {
       toggleOpen,
       id,
     } = this.props;
+    console.log(this.props);
     const itemStyle = classNames(styles.item, {
       [styles.itemNoIcon]: !icon,
       [styles.open]: isOpen,
@@ -65,21 +69,21 @@ class AccordionItem extends React.PureComponent {
         <div className={itemStyle}>
           <div className={styles.headerDetails}>
             <div className={styles.headerDetailsInternal}>
-          {icon && (
-            <div className={styles.headerIcon} data-hook="icon">
-              {icon}
-            </div>
-          )}
-          {title && (
-            <div className={headerTextStyle}>
-              {typeof title === "string" && (
-                <Text data-hook="title" ellipsis weight="normal">
-                  {title}
-                </Text>
+              {icon && (
+                <div className={styles.headerIcon} data-hook="icon">
+                  {icon}
+                </div>
               )}
-              {typeof title === "object" && (title)}
-            </div>
-          )}
+              {title && (
+                <div data-hook="title-container" className={headerTextStyle}>
+                  {typeof title === 'string' && (
+                    <Text data-hook="title" ellipsis weight="normal">
+                      {title}
+                    </Text>
+                  )}
+                  {typeof title === 'object' && title}
+                </div>
+              )}
             </div>
             <div className={styles.moreLessButton}>
               <MoreLessButton
@@ -89,6 +93,7 @@ class AccordionItem extends React.PureComponent {
                 expandLabel={expandLabel}
                 collapseLabel={collapseLabel}
                 hover={hover}
+                buttonType={buttonType}
               />
             </div>
           </div>

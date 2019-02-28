@@ -5,6 +5,7 @@ import ChevronDown from '../../new-icons/ChevronDown';
 import ChevronUp from '../../new-icons/ChevronUp';
 import classNames from 'classnames';
 import TextButton from '../../TextButton';
+import { BUTTON_TYPES } from '../constants';
 
 export default ({
   dataHook,
@@ -13,6 +14,7 @@ export default ({
   expandLabel,
   collapseLabel,
   hover,
+  buttonType,
 }) => {
   const toggleStyle = classNames(styles.toggleButtons, {
     [styles.open]: isOpen,
@@ -21,6 +23,11 @@ export default ({
   const buttonStyle = classNames(styles.button, {
     [styles.active]: isOpen,
   });
+
+  const shouldRenderButton =
+    hover && !isOpen && buttonType === BUTTON_TYPES.BUTTON;
+  const shouldRenderTextButton =
+    hover && !isOpen && buttonType === BUTTON_TYPES.TEXT_BUTTON;
   return (
     <div
       data-hook={dataHook}
@@ -33,7 +40,7 @@ export default ({
       {!hover && !isOpen && (
         <ChevronDown className={styles.expandCollapseArrow} size="24px" />
       )}
-      {hover && !isOpen && (
+      {shouldRenderButton && (
         <Button
           dataHook="toggle-accordion-button"
           className={buttonStyle}
@@ -42,6 +49,15 @@ export default ({
         >
           {expandLabel}
         </Button>
+      )}
+      {shouldRenderTextButton && (
+        <TextButton
+          dataHook="toggle-accordion-button"
+          suffixIcon={<ChevronDown />}
+          className={buttonStyle}
+        >
+          {expandLabel}
+        </TextButton>
       )}
       {isOpen && (
         <TextButton

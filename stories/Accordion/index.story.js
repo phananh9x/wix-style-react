@@ -3,6 +3,7 @@ import { storySettings } from './storySettings';
 import LiveCodeExample from '../utils/Components/LiveCodeExample';
 
 import Accordion from '../../src/Accordion';
+import { BUTTON_TYPES } from '../../src/Accordion/constants';
 import Text from '../../src/Text';
 import RichTextArea from '../../src/RichTextArea';
 import { InfoCircle, AdminAccess } from '../../src/new-icons';
@@ -54,11 +55,13 @@ export default {
 
   componentProps: {
     dataHook: storySettings.dataHook,
+    buttonType: BUTTON_TYPES.TEXT_BUTTON,
     data: exampleData[0].value,
   },
 
   exampleProps: {
     data: exampleData,
+    buttonType: BUTTON_TYPES.TEXT_BUTTON,
   },
 
   examples: (
@@ -71,6 +74,7 @@ export default {
             <Card.Header title="Example Card with Accordion"/>
             <Accordion
               dataHook="story-accordion-live-example"
+              buttonType={BUTTON_TYPES.BUTTON}
               data={
                 [
                   {
