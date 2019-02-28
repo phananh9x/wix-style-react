@@ -1,9 +1,13 @@
 export const skins = `
 <Layout cols={4} gap={0}>
   <TextButton >standard</TextButton>
-  <TextButton skin="light">light</TextButton>
+  <Box backgroundColor="D10">
+    <TextButton skin="light">light</TextButton>
+  </Box>
   <TextButton skin="premium">premium</TextButton>
-  <TextButton skin="dark">dark</TextButton>
+  <Box backgroundColor="Y30">
+    <TextButton skin="dark">dark</TextButton>
+  </Box>
 </Layout>`;
 
 export const underline = `
