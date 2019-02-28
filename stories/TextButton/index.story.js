@@ -21,14 +21,14 @@ import testkit from '!raw-loader!./testkit.md';
 import * as examples from './examples';
 import styles from './examples.scss';
 
+const Link = ({ children, ...rest }) => <a {...rest}>{children}</a>;
 
 const liveCode = config =>
   baseLiveCode({
     previewProps: {
       className: styles.livePreview,
     },
-    compact: true,
-    components: baseScope,
+    components: { ...baseScope, Link },
     ...config,
   });
 
@@ -103,6 +103,22 @@ export default {
               {
                 title: 'Underline: onHover',
                 source: examples.underlineOnHover,
+              },
+              {
+                title: 'Underline: always',
+                source: examples.underlineAlways,
+              },
+              {
+                title: 'Affixes',
+                source: examples.affixes,
+              },
+              {
+                title: 'Size',
+                source: examples.size,
+              },
+              {
+                title: 'Custom rendering',
+                source: examples.custom,
               },
             ].map(example),
           ],
