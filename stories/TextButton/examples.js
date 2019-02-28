@@ -1,39 +1,16 @@
-export const underlineNone = `
+export const skins = `
 <Layout cols={4} gap={0}>
-  <TextButton>standard</TextButton>
+  <TextButton >standard</TextButton>
   <TextButton skin="light">light</TextButton>
   <TextButton skin="premium">premium</TextButton>
   <TextButton skin="dark">dark</TextButton>
-</Layout>
-`;
+</Layout>`;
 
-export const underlineOnHover = `
+export const underline = `
 <Layout cols={4} gap={0}>
-  <TextButton underline="onHover">standard</TextButton>
-  <TextButton skin="light" underline="onHover">
-    light
-  </TextButton>
-  <TextButton skin="premium" underline="onHover">
-    premium
-  </TextButton>
-  <TextButton skin="dark" underline="onHover">
-    dark
-  </TextButton>
-</Layout>
-`;
-
-export const underlineAlways = `
-<Layout cols={4} gap={0}>
-  <TextButton underline="always">standard</TextButton>
-  <TextButton skin="light" underline="always">
-    light
-  </TextButton>
-  <TextButton skin="premium" underline="always">
-    premium
-  </TextButton>
-  <TextButton skin="dark" underline="always">
-    dark
-  </TextButton>
+  <TextButton>none</TextButton>
+  <TextButton underline="onHover">on hover</TextButton>
+  <TextButton underline="always">always</TextButton>
 </Layout>
 `;
 

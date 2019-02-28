@@ -28,14 +28,14 @@ const liveCode = config =>
     previewProps: {
       className: styles.livePreview,
     },
+    compact: true,
     components: { ...baseScope, Link },
     ...config,
   });
 
-const example = ({ title, source }) =>
-  liveCode({
-    title,
-    source,
+const example = ({ title, text, source }) =>
+  columns({
+    items: [description({ title, text }), liveCode({ source })],
   });
 
 export default {
@@ -97,16 +97,12 @@ export default {
 
             ...[
               {
-                title: 'Underline: none',
-                source: examples.underlineNone,
+                title: 'Skin',
+                source: examples.skins,
               },
               {
-                title: 'Underline: onHover',
-                source: examples.underlineOnHover,
-              },
-              {
-                title: 'Underline: always',
-                source: examples.underlineAlways,
+                title: 'Underline',
+                source: examples.underline,
               },
               {
                 title: 'Affixes',
