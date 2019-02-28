@@ -50,7 +50,6 @@ class AccordionItem extends React.PureComponent {
       toggleOpen,
       id,
     } = this.props;
-    console.log(this.props);
     const itemStyle = classNames(styles.item, {
       [styles.itemNoIcon]: !icon,
       [styles.open]: isOpen,
