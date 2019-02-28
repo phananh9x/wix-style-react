@@ -77,7 +77,7 @@ export default {
           title: 'Description',
           sections: [
             description({
-              text: 'Text buttons minimize distraction from content.',
+              text: `Text Button works as neutral button for some command, like "add item", "filter", etc.`,
             }),
 
             importExample({
@@ -98,22 +98,30 @@ export default {
             ...[
               {
                 title: 'Skin',
+                text:
+                  'TextButton supports 4 styles of different skins. Light skin is designed to be used on dark backgrounds while dark skin is for coloured backgrounds.',
                 source: examples.skins,
               },
               {
-                title: 'Underline',
-                source: examples.underline,
-              },
-              {
-                title: 'Affixes',
-                source: examples.affixes,
-              },
-              {
                 title: 'Size',
+                text: 'This action supports two sizes – small and medium.',
                 source: examples.size,
               },
               {
+                title: 'Affix',
+                text:
+                  'TextButton allows using any icon before or after the text.',
+                source: examples.affixes,
+              },
+              {
+                title: 'Underline',
+                text: `To emphasise an action, it is allowed to make underline always visible. While to make it more neutral, it's allowed to disable underline too.`,
+                source: examples.underline,
+              },
+              {
                 title: 'Custom rendering',
+                text:
+                  'This component can appear in different HTML tag names – button, a, span, div.',
                 source: examples.custom,
               },
             ].map(example),
