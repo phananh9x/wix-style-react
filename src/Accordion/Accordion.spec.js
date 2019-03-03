@@ -5,6 +5,7 @@ import Accordion from './Accordion';
 import { accordionPrivateDriverFactory } from './Accordion.private.driver';
 
 import { eventually } from '../../test/utils/unit/eventually';
+import { BUTTON_TYPES } from './constants';
 
 describe('Accordion', () => {
   const FakeIcon = () => <div>fake icon</div>;
@@ -58,6 +59,7 @@ describe('Accordion', () => {
         content: 'first item content',
         expandLabel: 'see more',
         collapseLabel: 'see less',
+        buttonType: BUTTON_TYPES.BUTTON,
       },
     ];
 
@@ -68,6 +70,7 @@ describe('Accordion', () => {
         content: 'first item content',
         expandLabel: 'see more',
         collapseLabel: 'see less',
+        buttonType: BUTTON_TYPES.BUTTON,
       },
       {
         title: 'second item',
@@ -75,6 +78,7 @@ describe('Accordion', () => {
         content: 'second item content',
         expandLabel: 'see more',
         collapseLabel: 'see less',
+        buttonType: BUTTON_TYPES.BUTTON,
       },
     ];
 
