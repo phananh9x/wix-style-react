@@ -7,22 +7,6 @@ import popoverDriverFactory from './Popover.driver';
 describe('Popover', () => {
   const createDriver = createDriverFactory(popoverDriverFactory);
 
-  it('should render', () => {
-    const driver = createDriver(
-      <Popover>
-        <Popover.Element>
-          <div>I am the trigger!</div>
-        </Popover.Element>
-
-        <Popover.Content>
-          <div>I am the content!</div>
-        </Popover.Content>
-      </Popover>,
-    );
-
-    expect(driver.exists()).toBeTruthy();
-  });
-
   it("should inherit core's driver methods", () => {
     const onClickFn = jest.fn();
 

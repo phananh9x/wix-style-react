@@ -1,8 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import LiveCodeExample from 'wix-storybook-utils/LiveCodeExample';
 
 import * as wsrScope from '../../../../src/index';
 import * as iconsScope from 'wix-ui-icons-common';
+
+import styles from './styles.scss';
 
 /**
  * A utility function to convert a props object to an array of props strings.
@@ -43,7 +46,7 @@ export const baseScope = {
 };
 
 const Component = props => {
-  const { scope, ...rest } = props;
+  const { scope, title, ...rest } = props;
 
   // Remove `eslint-disable` comments
   const filteredCode = props.initialCode.replace(
@@ -52,16 +55,21 @@ const Component = props => {
   );
 
   return (
-    <LiveCodeExample
-      scope={{ ...baseScope, ...scope }}
-      {...rest}
-      initialCode={filteredCode}
-    />
+    <div>
+      {title && <div className={styles.title}>{title}</div>}
+
+      <LiveCodeExample
+        scope={{ ...baseScope, ...scope }}
+        {...rest}
+        initialCode={filteredCode}
+      />
+    </div>
   );
 };
 
 Component.propTypes = {
   ...LiveCodeExample.propTypes,
+  title: PropTypes.string,
 };
 
 export default Component;

@@ -43,9 +43,9 @@ export default {
     tab({
       title: 'Description',
       sections: [
-        description({
-          text: `🍫 SegmentedToggle is a view group containing typically three or more buttons that can be toggled on and off. These buttons visibly change to indicate whether an option is active or inactive.`,
-        }),
+        description(
+          `🍫 SegmentedToggle is a view group containing typically three or more buttons that can be toggled on and off. These buttons visibly change to indicate whether an option is active or inactive.`,
+        ),
         importExample({
           source:
             "import SegmentedToggle from 'wix-style-react/SegmentedToggle';",
@@ -58,9 +58,6 @@ export default {
 
         description({
           title: `Text & Prefix`,
-        }),
-
-        description({
           text: `Icon accompanied by text make information easier to find and scan.`,
         }),
 
@@ -71,9 +68,6 @@ export default {
 
         description({
           title: `Text`,
-        }),
-
-        description({
           text: `Simple usecase where prefix icon is not an option.`,
         }),
 
@@ -84,9 +78,6 @@ export default {
 
         description({
           title: `Icon`,
-        }),
-
-        description({
           text: `Icon only option is mostly used in narrow places. This option provides additional tooltip on hover in order to inform users on icons meaning.`,
         }),
 
@@ -102,6 +93,7 @@ export default {
         }),
       ],
     }),
+
     tab({
       title: 'API',
       sections: [

@@ -1,4 +1,4 @@
-import { {%componentName%}DriverFactory as publicDriverFactory } from './{%ComponentName%}.driver';
+import { {%componentName%}DriverFactory as publicDriverFactory } from './{%ComponentName%}.uni.driver';
 
 export const {%componentName%}PrivateDriverFactory = base => {
   return {

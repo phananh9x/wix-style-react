@@ -156,11 +156,21 @@ describe('Page', () => {
   });
 
   eyes.it('should have sidePadding=0', async () => {
-    await browser.get(testStoryUrl('11. Page Example with sidePadding=0'));
+    await browser.get(testStoryUrl('10. Page Example with sidePadding=0'));
   });
 
-  eyes.it('should have short content stretched vertically', async () => {
-    await browser.get(testStoryUrl('12. Page Example with stretchVertically'));
+  eyes.it('should have sticky notification', async () => {
+    const ENOUGH_SCROLL_TO_MINIMIZE = 200;
+    const dataHook = storySettings.dataHook;
+    const privateDriver = protractorTestkitFactoryCreator(
+      pagePrivateDriverFactory,
+    )({ dataHook });
+
+    await browser.get(testStoryUrl('11. With Notification'));
+    await eyes.checkWindow('With shown notification');
+    await privateDriver.scrollVertically(ENOUGH_SCROLL_TO_MINIMIZE);
+    await eyes.checkWindow('With shown notification over a mini-header');
+    // TODO: click to close notification, scroll down to trigger mini-header (notification should not reappear. It happens , I don't know why!)
   });
 
   describe('Vertical Scroll', () => {

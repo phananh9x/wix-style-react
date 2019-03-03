@@ -58,6 +58,8 @@ Changed `theme` values
 
 - `transparentblue` --> skin = `standard` (default); priority = "secondary"
 
+- `emptyblue` --> skin = `standard` (default); priority = "secondary"
+
 - `emptyred` --> skin = `destructive`; priority = "secondary"
 
 - `emptypurple` --> skin = `premium`; priority="secondary"
@@ -67,8 +69,6 @@ Changed `theme` values
 Deprecated `theme` values
 
 - `login` --> deprecated
-
-- `emptyblue` --> deprecated
 
 - `fullgreen` --> deprecated
 

@@ -2,33 +2,6 @@
 
 exports[`copyTemplates should work as expected when description is not provided 1`] = `
 Object {
-  "src/MyNewComponent/MyNewComponent.driver.js": "import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
-
-export const myNewComponentDriverFactory = base => {
-  return {
-    ...baseUniDriverFactory(base),
-
-    /** Get the current count */
-    getCountText: async () => base.$('[data-hook=\\"myNewComponent-count\\"]').text(),
-
-    /** Click the button */
-    clickButton: async () => base.$('[data-hook=\\"myNewComponent-button\\"]').click(),
-
-    /** Get the button's text */
-    getButtonText: async () => base.$('[data-hook=\\"myNewComponent-button\\"]').text(),
-  };
-};
-",
-  "src/MyNewComponent/MyNewComponent.driver.private.js": "import { myNewComponentDriverFactory as publicDriverFactory } from './MyNewComponent.driver';
-
-export const myNewComponentPrivateDriverFactory = base => {
-  return {
-    ...publicDriverFactory(base),
-
-    // Add here driver methods that considered \\"private\\"
-  };
-};
-",
   "src/MyNewComponent/MyNewComponent.e2e.js": "import {
   createStoryUrl,
   waitForVisibilityOf,
@@ -126,6 +99,25 @@ class MyNewComponent extends React.PureComponent {
 
 export default MyNewComponent;
 ",
+  "src/MyNewComponent/MyNewComponent.meta.js": "import MyNewComponent from './MyNewComponent';
+import Registry from '@ui-autotools/registry';
+
+const metadata = Registry.getComponentMetadata(MyNewComponent);
+
+metadata.exportedFrom({
+  path: 'src/MyNewComponent/MyNewComponent.js',
+});
+",
+  "src/MyNewComponent/MyNewComponent.private.uni.driver.js": "import { myNewComponentDriverFactory as publicDriverFactory } from './MyNewComponent.uni.driver';
+
+export const myNewComponentPrivateDriverFactory = base => {
+  return {
+    ...publicDriverFactory(base),
+
+    // Add here driver methods that considered \\"private\\"
+  };
+};
+",
   "src/MyNewComponent/MyNewComponent.scss": ".root {
   text-align: center;
 }
@@ -139,7 +131,7 @@ export default MyNewComponent;
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 
 import MyNewComponent from './MyNewComponent';
-import { myNewComponentPrivateDriverFactory } from './MyNewComponent.driver.private';
+import { myNewComponentPrivateDriverFactory } from './MyNewComponent.private.uni.driver';
 
 describe('MyNewComponent', () => {
   const createDriver = createUniDriverFactory(myNewComponentPrivateDriverFactory);
@@ -170,6 +162,23 @@ describe('MyNewComponent', () => {
 });
 
 ",
+  "src/MyNewComponent/MyNewComponent.uni.driver.js": "import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+
+export const myNewComponentDriverFactory = base => {
+  return {
+    ...baseUniDriverFactory(base),
+
+    /** Get the current count */
+    getCountText: async () => base.$('[data-hook=\\"myNewComponent-count\\"]').text(),
+
+    /** Click the button */
+    clickButton: async () => base.$('[data-hook=\\"myNewComponent-button\\"]').click(),
+
+    /** Get the button's text */
+    getButtonText: async () => base.$('[data-hook=\\"myNewComponent-button\\"]').text(),
+  };
+};
+",
   "src/MyNewComponent/index.js": "export { default } from './MyNewComponent.js';
 ",
   "stories/MyNewComponent/index.story.js": "import React from 'react';
@@ -179,7 +188,7 @@ import LiveCodeExample from '../utils/Components/LiveCodeExample';
 import MyNewComponent from '../../src/MyNewComponent';
 
 export default {
-  category: storySettings.kind,
+  category: storySettings.category,
   storyName: storySettings.storyName,
 
   component: MyNewComponent,
@@ -215,7 +224,6 @@ export default {
   "stories/MyNewComponent/storySettings.js": "import { Category } from '../storiesHierarchy';
 
 export const storySettings = {
-  kind: Category.COMPONENTS,
   category: Category.COMPONENTS,
 
   storyName: 'MyNewComponent',
@@ -227,33 +235,6 @@ export const storySettings = {
 
 exports[`copyTemplates should work as expected when description is provided 1`] = `
 Object {
-  "src/MyNewComponent/MyNewComponent.driver.js": "import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
-
-export const myNewComponentDriverFactory = base => {
-  return {
-    ...baseUniDriverFactory(base),
-
-    /** Get the current count */
-    getCountText: async () => base.$('[data-hook=\\"myNewComponent-count\\"]').text(),
-
-    /** Click the button */
-    clickButton: async () => base.$('[data-hook=\\"myNewComponent-button\\"]').click(),
-
-    /** Get the button's text */
-    getButtonText: async () => base.$('[data-hook=\\"myNewComponent-button\\"]').text(),
-  };
-};
-",
-  "src/MyNewComponent/MyNewComponent.driver.private.js": "import { myNewComponentDriverFactory as publicDriverFactory } from './MyNewComponent.driver';
-
-export const myNewComponentPrivateDriverFactory = base => {
-  return {
-    ...publicDriverFactory(base),
-
-    // Add here driver methods that considered \\"private\\"
-  };
-};
-",
   "src/MyNewComponent/MyNewComponent.e2e.js": "import {
   createStoryUrl,
   waitForVisibilityOf,
@@ -351,6 +332,25 @@ class MyNewComponent extends React.PureComponent {
 
 export default MyNewComponent;
 ",
+  "src/MyNewComponent/MyNewComponent.meta.js": "import MyNewComponent from './MyNewComponent';
+import Registry from '@ui-autotools/registry';
+
+const metadata = Registry.getComponentMetadata(MyNewComponent);
+
+metadata.exportedFrom({
+  path: 'src/MyNewComponent/MyNewComponent.js',
+});
+",
+  "src/MyNewComponent/MyNewComponent.private.uni.driver.js": "import { myNewComponentDriverFactory as publicDriverFactory } from './MyNewComponent.uni.driver';
+
+export const myNewComponentPrivateDriverFactory = base => {
+  return {
+    ...publicDriverFactory(base),
+
+    // Add here driver methods that considered \\"private\\"
+  };
+};
+",
   "src/MyNewComponent/MyNewComponent.scss": ".root {
   text-align: center;
 }
@@ -364,7 +364,7 @@ export default MyNewComponent;
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 
 import MyNewComponent from './MyNewComponent';
-import { myNewComponentPrivateDriverFactory } from './MyNewComponent.driver.private';
+import { myNewComponentPrivateDriverFactory } from './MyNewComponent.private.uni.driver';
 
 describe('MyNewComponent', () => {
   const createDriver = createUniDriverFactory(myNewComponentPrivateDriverFactory);
@@ -394,6 +394,23 @@ describe('MyNewComponent', () => {
   });
 });
 
+",
+  "src/MyNewComponent/MyNewComponent.uni.driver.js": "import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+
+export const myNewComponentDriverFactory = base => {
+  return {
+    ...baseUniDriverFactory(base),
+
+    /** Get the current count */
+    getCountText: async () => base.$('[data-hook=\\"myNewComponent-count\\"]').text(),
+
+    /** Click the button */
+    clickButton: async () => base.$('[data-hook=\\"myNewComponent-button\\"]').click(),
+
+    /** Get the button's text */
+    getButtonText: async () => base.$('[data-hook=\\"myNewComponent-button\\"]').text(),
+  };
+};
 ",
   "src/MyNewComponent/README.md": "# \`<MyNewComponent/>\`
 
@@ -408,7 +425,7 @@ import LiveCodeExample from '../utils/Components/LiveCodeExample';
 import MyNewComponent from '../../src/MyNewComponent';
 
 export default {
-  category: storySettings.kind,
+  category: storySettings.category,
   storyName: storySettings.storyName,
 
   component: MyNewComponent,
@@ -444,7 +461,6 @@ export default {
   "stories/MyNewComponent/storySettings.js": "import { Category } from '../storiesHierarchy';
 
 export const storySettings = {
-  kind: Category.COMPONENTS,
   category: Category.COMPONENTS,
 
   storyName: 'MyNewComponent',
@@ -456,33 +472,6 @@ export const storySettings = {
 
 exports[`copyTemplates should work for test component 1`] = `
 Object {
-  "src/MyTestComponent/MyTestComponent.driver.js": "import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
-
-export const myTestComponentDriverFactory = base => {
-  return {
-    ...baseUniDriverFactory(base),
-
-    /** Get the current count */
-    getCountText: async () => base.$('[data-hook=\\"myTestComponent-count\\"]').text(),
-
-    /** Click the button */
-    clickButton: async () => base.$('[data-hook=\\"myTestComponent-button\\"]').click(),
-
-    /** Get the button's text */
-    getButtonText: async () => base.$('[data-hook=\\"myTestComponent-button\\"]').text(),
-  };
-};
-",
-  "src/MyTestComponent/MyTestComponent.driver.private.js": "import { myTestComponentDriverFactory as publicDriverFactory } from './MyTestComponent.driver';
-
-export const myTestComponentPrivateDriverFactory = base => {
-  return {
-    ...publicDriverFactory(base),
-
-    // Add here driver methods that considered \\"private\\"
-  };
-};
-",
   "src/MyTestComponent/MyTestComponent.e2e.js": "import {
   createStoryUrl,
   waitForVisibilityOf,
@@ -580,6 +569,25 @@ class MyTestComponent extends React.PureComponent {
 
 export default MyTestComponent;
 ",
+  "src/MyTestComponent/MyTestComponent.meta.js": "import MyTestComponent from './MyTestComponent';
+import Registry from '@ui-autotools/registry';
+
+const metadata = Registry.getComponentMetadata(MyTestComponent);
+
+metadata.exportedFrom({
+  path: 'src/MyTestComponent/MyTestComponent.js',
+});
+",
+  "src/MyTestComponent/MyTestComponent.private.uni.driver.js": "import { myTestComponentDriverFactory as publicDriverFactory } from './MyTestComponent.uni.driver';
+
+export const myTestComponentPrivateDriverFactory = base => {
+  return {
+    ...publicDriverFactory(base),
+
+    // Add here driver methods that considered \\"private\\"
+  };
+};
+",
   "src/MyTestComponent/MyTestComponent.scss": ".root {
   text-align: center;
 }
@@ -593,7 +601,7 @@ export default MyTestComponent;
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 
 import MyTestComponent from './MyTestComponent';
-import { myTestComponentPrivateDriverFactory } from './MyTestComponent.driver.private';
+import { myTestComponentPrivateDriverFactory } from './MyTestComponent.private.uni.driver';
 
 describe('MyTestComponent', () => {
   const createDriver = createUniDriverFactory(myTestComponentPrivateDriverFactory);
@@ -624,6 +632,23 @@ describe('MyTestComponent', () => {
 });
 
 ",
+  "src/MyTestComponent/MyTestComponent.uni.driver.js": "import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+
+export const myTestComponentDriverFactory = base => {
+  return {
+    ...baseUniDriverFactory(base),
+
+    /** Get the current count */
+    getCountText: async () => base.$('[data-hook=\\"myTestComponent-count\\"]').text(),
+
+    /** Click the button */
+    clickButton: async () => base.$('[data-hook=\\"myTestComponent-button\\"]').click(),
+
+    /** Get the button's text */
+    getButtonText: async () => base.$('[data-hook=\\"myTestComponent-button\\"]').text(),
+  };
+};
+",
   "src/MyTestComponent/index.js": "export { default } from './MyTestComponent.js';
 ",
   "stories/MyTestComponent/index.story.js": "import React from 'react';
@@ -632,7 +657,7 @@ import { storySettings } from './storySettings';
 import MyTestComponent from '../../src/MyTestComponent';
 
 export default {
-  category: storySettings.kind,
+  category: storySettings.category,
   storyName: storySettings.storyName,
 
   component: MyTestComponent,
@@ -662,9 +687,7 @@ export default {
   "stories/MyTestComponent/storySettings.js": "import { TESTS_PREFIX } from '../storiesHierarchy';
 
 export const storySettings = {
-  kind: TESTS_PREFIX,
   category: TESTS_PREFIX,
-
   storyName: 'MyTestComponent',
   dataHook: 'story-my-test-component',
 };

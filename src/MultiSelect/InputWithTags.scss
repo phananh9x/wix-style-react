@@ -59,6 +59,7 @@
   align-items: center;
   overflow-y: hidden;
   box-sizing: border-box;
+  background-color: $D80;
 
   &:hover:not(.hasFocus) {
     background: $B50;

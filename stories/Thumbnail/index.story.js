@@ -11,7 +11,6 @@ import {
 
 import Thumbnail from 'wix-style-react/Thumbnail';
 import { Layout, Cell } from 'wix-style-react/Layout';
-import LiveCodeExample from '../utils/Components/LiveCodeExample';
 
 import * as examples from './examples';
 import exampleControlled from '!raw-loader!./exampleControlled';
@@ -69,9 +68,7 @@ export default {
     tab({
       title: 'Description',
       sections: [
-        description({
-          text: thumbnailReadme,
-        }),
+        description(thumbnailReadme),
 
         ...[
           {
@@ -98,31 +95,19 @@ export default {
           }),
         ),
 
-        description({
+        code({
           title: 'Controlled Thumbnail',
-          text: (
-            <LiveCodeExample
-              initialCode={exampleControlled}
-              autoRender={false}
-            />
-          ),
+          source: exampleControlled,
+          components: { Thumbnail, Layout, Cell },
+          autoRender: false,
         }),
       ],
     }),
 
-    tab({
-      title: 'Playground',
-      sections: [playground()],
-    }),
-
-    tab({
-      title: 'API',
-      sections: [api()],
-    }),
-
-    tab({
-      title: 'Testkit',
-      sections: [testkit()],
-    }),
+    ...[
+      { title: 'Playground', sections: [playground()] },
+      { title: 'API', sections: [api()] },
+      { title: 'Testkit', sections: [testkit()] },
+    ].map(tab),
   ],
 };

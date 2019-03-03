@@ -51,6 +51,7 @@ class RichTextAreaLinkForm extends Component {
           </span>
           <span className={styles.button}>
             <Button
+              dataHook="rich-text-area-submit-button"
               theme="icon-standard"
               height="small"
               type="submit"

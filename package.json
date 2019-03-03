@@ -1,7 +1,7 @@
 {
   "name": "wix-style-react",
   "description": "wix-style-react",
-  "version": "6.6.1",
+  "version": "6.7.1",
   "main": "./dist/src/index.js",
   "module": "./dist/es/src/index.js",
   "sideEffects": [
@@ -27,7 +27,7 @@
     "start": "./scripts/npm-start.sh",
     "precommit": "lint-staged",
     "pretest": "npm run lint && ./scripts/ensure-dist.sh",
-    "test": "npm run test:unit",
+    "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "yoshi test --jest",
     "test:watch": "yoshi test --jest --watch",
     "pretest:e2e": "./scripts/ensure-dist.sh",
@@ -129,6 +129,7 @@
     "react-docgen": "^2.15.0",
     "react-dom": "^15.5.4",
     "react-element-to-jsx-string": "^13.0.0",
+    "react-lifecycles-compat": "^3.0.4",
     "react-test-renderer": "^15.5.4",
     "react-test-utils": "^0.0.1",
     "react-testing-library": "5.5.2",

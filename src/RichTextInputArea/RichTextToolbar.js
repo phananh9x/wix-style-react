@@ -1,33 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { EditorState, RichUtils } from 'draft-js';
+import { EditorState, SelectionState, Modifier, RichUtils } from 'draft-js';
 
 import styles from './RichTextToolbar.scss';
 import RichTextToolbarButton from './RichTextToolbarButton';
-import TextAreaBold from '../new-icons/system/TextAreaBold';
-import TextAreaItalic from '../new-icons/system/TextAreaItalic';
-import TextAreaUnderline from '../new-icons/system/TextAreaUnderline';
-import TextAreaBulletList from '../new-icons/system/TextAreaBulletList';
-import TextAreaNumberedList from '../new-icons/system/TextAreaNumberedList';
-
-const inlineStyleTypes = {
-  bold: 'BOLD',
-  italic: 'ITALIC',
-  underline: 'UNDERLINE',
-};
-
-const blockTypes = {
-  bulletedList: 'unordered-list-item',
-  numberedList: 'ordered-list-item',
-};
+import RichTextToolbarLinkButton from './RichTextToolbarLinkButton';
+import {
+  inlineStyleTypes,
+  blockTypes,
+  entityTypes,
+} from './RichTextInputAreaTypes';
+import {
+  TextAreaBold,
+  TextAreaItalic,
+  TextAreaUnderline,
+  TextAreaLink,
+  TextAreaBulletList,
+  TextAreaNumberedList,
+} from '../new-icons/system';
 
 const RichTextToolbar = ({
+  dataHook,
   className,
   editorState,
   onBold,
   onItalic,
   onUnderline,
+  onLink,
   onBulletedList,
   onNumberedList,
 }) => {
@@ -53,6 +52,58 @@ const RichTextToolbar = ({
     );
   };
 
+  const toggleEntity = (linkData, onClick) => {
+    const { href: url, text = 'bla' } = linkData;
+    const selection = editorState.getSelection();
+    const contentState = editorState.getCurrentContent();
+    const contentStateWithEntity = contentState.createEntity(
+      'LINK',
+      'MUTABLE',
+      {
+        url,
+      },
+    );
+    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+
+    let newEditorState;
+    let newSelection;
+
+    // In case there is no selected text
+    if (!selection.isCollapsed()) {
+      newEditorState = EditorState.set(editorState, {
+        currentContent: contentStateWithEntity,
+      });
+    } else {
+      const startPosition = selection.getStartOffset();
+      const endPosition = startPosition + text.length;
+
+      // A key for the block that containing the start of the selection range
+      const blockKey = selection.getStartKey();
+
+      // Replaces the content in specified selection range with text
+      const newContentState = Modifier.insertText(
+        contentState,
+        selection,
+        text,
+      );
+
+      newSelection = new SelectionState({
+        anchorOffset: startPosition,
+        anchorKey: blockKey,
+        focusOffset: endPosition,
+        focusKey: blockKey,
+      });
+
+      newEditorState = RichUtils.toggleLink(
+        EditorState.push(editorState, newContentState, 'insert-characters'),
+        newSelection,
+        entityKey,
+      );
+    }
+
+    onClick(RichUtils.toggleLink(newEditorState, newSelection, entityKey));
+  };
+
   const isActive = style => {
     return editorState && editorState.getCurrentInlineStyle().has(style);
   };
@@ -61,52 +112,71 @@ const RichTextToolbar = ({
     {
       type: inlineStyleTypes.bold,
       onClick: event => toggleStyle(event, onBold, inlineStyleTypes.bold),
-      icon: TextAreaBold,
+      buttonComponent: RichTextToolbarButton,
+      iconComponent: TextAreaBold,
       tooltipText: 'Bold',
     },
     {
       type: inlineStyleTypes.italic,
       onClick: event => toggleStyle(event, onItalic, inlineStyleTypes.italic),
-      icon: TextAreaItalic,
+      buttonComponent: RichTextToolbarButton,
+      iconComponent: TextAreaItalic,
       tooltipText: 'Italic',
     },
     {
       type: inlineStyleTypes.underline,
       onClick: event =>
         toggleStyle(event, onUnderline, inlineStyleTypes.underline),
-      icon: TextAreaUnderline,
+      buttonComponent: RichTextToolbarButton,
+      iconComponent: TextAreaUnderline,
       tooltipText: 'Underline',
+    },
+    {
+      type: entityTypes.link,
+      onClick: linkData => toggleEntity(linkData, onLink, entityTypes.link),
+      buttonComponent: RichTextToolbarLinkButton,
+      iconComponent: TextAreaLink,
+      tooltipText: 'Insert link',
     },
     {
       type: blockTypes.bulletedList,
       onClick: event =>
         toggleBlockType(event, onBulletedList, blockTypes.bulletedList),
-      icon: TextAreaBulletList,
+      buttonComponent: RichTextToolbarButton,
+      iconComponent: TextAreaBulletList,
       tooltipText: 'Bulleted List',
     },
     {
       type: blockTypes.numberedList,
       onClick: event =>
         toggleBlockType(event, onNumberedList, blockTypes.numberedList),
-      icon: TextAreaNumberedList,
+      buttonComponent: RichTextToolbarButton,
+      iconComponent: TextAreaNumberedList,
       tooltipText: 'Numbered List',
     },
   ];
 
   return (
-    <div className={classNames(className, styles.root)}>
+    <div data-hook={dataHook} className={classNames(className, styles.root)}>
       {buttons.map((button, index) => {
-        const { type, onClick, tooltipText, icon: Icon } = button;
+        const {
+          type,
+          onClick,
+          tooltipText,
+          buttonComponent: Button,
+          iconComponent: Icon,
+        } = button;
 
         return (
-          <RichTextToolbarButton
+          <Button
             key={`${index}-${type}`}
+            dataHook={`richtextarea-button-${type.toLowerCase()}`}
             onClick={onClick}
             tooltipText={tooltipText}
             isActive={isActive(type)}
           >
             <Icon />
-          </RichTextToolbarButton>
+          </Button>
         );
       })}
     </div>

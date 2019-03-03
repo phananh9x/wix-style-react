@@ -3,6 +3,7 @@ import React from 'react';
 import {
   tab,
   importExample,
+  title,
   description,
   code,
   api,
@@ -59,6 +60,7 @@ export default {
       </Text>
     </div>
   ),
+
   exampleProps: {
     children: exampleChildren,
   },
@@ -67,22 +69,17 @@ export default {
     tab({
       title: 'Description',
       sections: [
-        description({
-          text:
-            'A sticky toast bar that appears on top of the screen notifying about system changes.',
-        }),
+        description(
+          'A sticky toast bar that appears on top of the screen notifying about system changes.',
+        ),
 
         importExample({
           source: "import Notification from 'wix-style-react/Notification';",
         }),
 
-        description({
-          text: readme,
-        }),
+        description(readme),
 
-        description({
-          title: 'Examples',
-        }),
+        title('Examples'),
 
         code({
           title: 'Themes',
@@ -105,19 +102,10 @@ export default {
       ],
     }),
 
-    tab({
-      title: 'Playground',
-      sections: [playground()],
-    }),
-
-    tab({
-      title: 'API',
-      sections: [api()],
-    }),
-
-    tab({
-      title: 'Testkit',
-      sections: [testkit()],
-    }),
+    ...[
+      { title: 'Playground', sections: [playground()] },
+      { title: 'API', sections: [api()] },
+      { title: 'Testkit', sections: [testkit()] },
+    ].map(tab),
   ],
 };

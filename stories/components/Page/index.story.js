@@ -1,20 +1,25 @@
 import React from 'react';
-import CodeExample from 'wix-storybook-utils/CodeExample';
 import Page from 'wix-style-react/Page';
 import { storySettings } from './storySettings';
+
+import {
+  api,
+  tab,
+  playground,
+  testkit,
+  title,
+  description,
+} from 'wix-storybook-utils/Sections';
+import { codeExampleFullWidth } from '../../utils/sections';
+import UXStorySections from '../../utils/UXStorySections';
 
 import { header, tail, fixedContent, content } from './PageChildren';
 import './PageStory.scss';
 
-import ExampleEmptyState from './ExampleEmptyState';
-import ExampleEmptyStateRaw from '!raw-loader!./ExampleEmptyState';
-
-const examplePageContainerStyles = {
-  height: 500,
-  display: 'flex',
-  flexFlow: 'column',
-  minHeight: 0,
-};
+import PageDescriptionRaw from '!raw-loader!./Description.md';
+import ChildrenRaw from '!raw-loader!./Children.md';
+import ExampleStretchGridRaw from '!raw-loader!./ExampleStretchGrid';
+import ExampleStickyTableWithGapRaw from '!raw-loader!./ExampleStickyTableWithGap';
 
 export default {
   category: storySettings.category,
@@ -24,15 +29,14 @@ export default {
   componentWrapper: ({ component }) => (
     <div style={{ position: 'relative' }}>{component}</div>
   ),
-  componentPath: '../../../src/Page/Page.deprecated.js',
+  componentPath: '../../../src/Page/Page.js',
 
   componentProps: {
     children: [header(), tail, content(false)],
     dataHook: 'story-page-playground',
     gradientClassName: 'background-gradient',
-    gradientCoverTail: true,
-    backgroundImageUrl:
-      'https://static.wixstatic.com/media/f0548921c53940ec803dfb1c203e96fe.jpg/v1/fill/w_400,h_100/f0548921c53940ec803dfb1c203e96fe.jpg',
+    gradientCoverTail: false,
+    upgrade: true,
   },
 
   exampleProps: {
@@ -63,14 +67,42 @@ export default {
     ],
   },
 
-  examples: (
-    <CodeExample title="Page with and EmptyState" code={ExampleEmptyStateRaw}>
-      <div
-        data-hook="story-page-empty-state"
-        style={examplePageContainerStyles}
-      >
-        <ExampleEmptyState />
-      </div>
-    </CodeExample>
-  ),
+  sections: [
+    tab({
+      title: 'Usage',
+      sections: [
+        ...UXStorySections({
+          description: PageDescriptionRaw,
+          includedComponents: [
+            { name: 'Page.Header', description: '`<Page/>` component’s child' },
+          ],
+          importExample: `import Page from 'wix-style-react/Page';`,
+        }),
+        title('Examples'),
+        ...codeExampleFullWidth({
+          title: 'Stretch Content Vertically',
+          description: `Use Grid's <Container stretchVertically> to fill the viewport's height`,
+          code: ExampleStretchGridRaw,
+          codeConfig: { autoRender: false },
+        }),
+        ...codeExampleFullWidth({
+          title: 'Multiple Tables With Sticky Headers',
+          description: `Use <Page.Sticky/> to wrap the Table's header`,
+          code: ExampleStickyTableWithGapRaw,
+          codeConfig: { autoRender: false },
+        }),
+      ],
+    }),
+    ...[
+      { title: 'Playground', sections: [playground()] },
+      {
+        title: 'API',
+        sections: [
+          api(),
+          description({ title: 'Children', text: ChildrenRaw }),
+        ],
+      },
+      { title: 'Testkit', sections: [testkit()] },
+    ].map(tab),
+  ],
 };

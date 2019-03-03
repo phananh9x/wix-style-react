@@ -62,36 +62,27 @@ export default {
     tab({
       title: 'Description',
       sections: [
-        description({
-          text: 'Displays simple and temporary messages or destructive events',
-        }),
+        description(
+          'Displays simple and temporary messages or destructive events',
+        ),
 
         importExample({
           source:
             "import FloatingNotification from 'wix-style-react/FloatingNotification';",
         }),
 
-        description({
-          title: `Notification types`,
-        }),
-
         code({
+          title: `Notification types`,
           source: examples.ExampleAllTypes,
         }),
 
-        description({
-          title: `All options`,
-        }),
-
         code({
+          title: `All options`,
           source: examples.ExampleAllOptions,
         }),
 
-        description({
-          title: `Set buttons as anchors with href`,
-        }),
-
         code({
+          title: `Set buttons as anchors with href`,
           source: examples.ExampleHref,
         }),
       ],
@@ -100,7 +91,7 @@ export default {
     ...[
       { title: 'Playground', sections: [playground()] },
       { title: 'API', sections: [api()] },
-      { title: 'Testkit', sections: [description({ text: testkit })] },
+      { title: 'Testkit', sections: [testkit()] },
     ].map(tab),
   ],
 };

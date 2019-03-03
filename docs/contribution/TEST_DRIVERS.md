@@ -1,45 +1,65 @@
-# Test drivers
+# Test Drivers
 
-Test driver is a simple abstraction on top of component and supply a good way for the consumers to interact with the component.
+Test drivers have two purposes:
 
-## Types of drivers
+- Provide an abstraction of component implementation. Making Tests independent of implementation changes.
+- Provide an abstraction of complex user interactions with the component.
 
-### unidriver (for every new component)
+## Driver Types
 
-All component drivers in this library should be built on top of [unidriver](https://github.com/wix-incubator/unidriver). `unidriver` is a tool to write universal component drivers that can be reused in all test levels, from component to e2e.
+### UniDriver (for every new component)
 
-### legacy drivers (for existing components)
+All component drivers in this library should be built on top of [unidriver](https://github.com/wix-incubator/unidriver). `unidriver` is a tool to write universal component drivers that can be reused in all test platforms (e.g. ReactDOM/JSDOM, Protractor, Puppeteer, etc...).
 
-The library still contain a lot of technology specific drivers, mainly for the following ones:
+### Legacy Drivers (for existing components)
 
-- `enzyme` and `vanilla` for regular dom interaction.
+The library still contain a lot of platform specific drivers, mainly for the following ones:
+
+- `enzyme` and `vanilla` for regular dom (or JSDOM) interaction. (vanilla is a legacy BAD naming for React+JSDOM drivers)
 - `protractor` for browser interaction.
 - `puppeteer` for browser interaction.
 
 We will slowly migrate to use only unidriver, but in the meanwhile both still exist.
 
-### Composing unidriver with legacy drivers
+### Composing UniDriver With Legacy Drivers
 
 If your component's `unidriver` is composing other components that don’t use unidriver, please make sure to create a new `ConsumedComponent.uni.driver.js` next to the consumed component. You can start by implementing only the required functions and not the entire driver.
+Please open an inssue in this case, stating that the new `ConsumedComponent.uni.driver.js` is partially implemented.
 
-## Public and Private drivers
+## Public And Private Drivers
 
-1. The **Public** drivers (`component.driver.js`) are the ones that exposed to the consumers of the components. They should be simple abstractions over common actions (for example, selecting the third element in the dropdown).
-2. The **Private** drivers (`component.driver.private.js`) are used for actions on a component that should not be exposed to the user. For example, asserting a class name existance on some component.
+1. The **Public** drivers (`Component.uni.driver.js`) are the ones that exposed to the consumers of the components. They should be simple abstractions over common actions (for example, selecting the third element in the dropdown).
+2. The **Private** drivers (`Component.private.uni.driver.js`) are used for actions on a component that should not be exposed to the user. For example, asserting a class name existance on some component.
 3. The Private drivers are extending the public ones and should be used internally when testing the components.
 
-## Best Practices (For Public Drivers)
+## Writing Drivers
 
-1. Drivers should be used for when testing and do one of the following:
+See [Test Drivers Guidelines](./TEST_DRIVERS_GUIDELINES.md) for best-practices when writing test drivers.
 
-    - Make a side effect (e.g. click)
-    - Retrieve some primitive value as string, number or boolean (e.g. some value / is checked)
-1. Drivers should help testing the behavior and the DOM and not test React, so never check for component props.
-1. Components use `data-hook`s to easily locate parts of the DOM. We use them in the driver to query the elements.
-1. Drivers are tested internally in the library and exposed to consumers as TestKits.
-1. Drivers should have the `exists()` method to verify component is rendered properly.
-1. Never return a `DOM` element as this is not a good abstraction over the component.
-1. For render slots (props that accept ReactElement), we don't provide a driver getter. The consumer can query for it himself (By `data-hook` or other selector)
+## Testing Drivers
+
+Public drivers are also published code that needs to be tested.
+We test them simply by using them in our component tests.
+
+### Just a small but very common Gatchas
+
+If you write a boolean driver method (e.g. `isDisabled()`), remember to test it's related feature both ways!
+
+For example:
+
+```js
+describe('Disabled', ()=>{
+  it('should NOT be disabled by default', ()=>{
+    const {driver} = render(<Comp/>);
+    expect(driver.isDisabled()).toBe(false);
+  });
+
+  it('should be disabled by default', ()=>{
+    const {driver} = render(<Comp disabled/>);
+    expect(driver.isDisabled()).toBe(true);
+  })
+});
+```
 
 ## Exposed TestKits
 

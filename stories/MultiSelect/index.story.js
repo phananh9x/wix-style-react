@@ -5,13 +5,15 @@ import MultiSelect from '../../src/MultiSelect';
 
 import {
   tab,
+  table,
   importExample,
   description,
   playground,
   testkit,
 } from 'wix-storybook-utils/Sections';
 
-import { renderSection, IncludedComponents, Title } from '../UXStoryTemplate';
+import LinkTo from '@storybook/addon-links/react';
+import { Title } from '../UXStoryTemplate';
 
 import readmeApi from '../../src/MultiSelect/README.API.md';
 import playgroundStoryConfig from '../components/MultiSelect/MultiSelectPlaygroundConfig';
@@ -159,23 +161,33 @@ export default {
 
   componentPath: '../../src/MultiSelect',
   ...playgroundStoryConfig,
+
   sections: [
     tab({
       title: 'Description',
       sections: [
-        description({
-          text:
-            'A component for selecting/creating multiple values, and displaying them as tags.',
+        description(
+          'A component for selecting/creating multiple values, and displaying them as tags.',
+        ),
+
+        table({
+          title: 'Included Components',
+          rows: [
+            [
+              <LinkTo
+                kind="Components"
+                story="MultiSelect"
+              >{`<MultiSelect/>`}</LinkTo>,
+            ],
+            [<LinkTo kind="Components" story="Tag">{`<Tag/>`}</LinkTo>],
+          ],
         }),
 
-        renderSection(
-          <IncludedComponents componentNames={['MultiSelect', 'Tag']} />,
-        ),
         importExample({
           source: "import MultiSelect from 'wix-style-react/MultiSelect';",
         }),
 
-        renderSection(examples),
+        description({ text: examples }),
       ],
     }),
 
@@ -187,7 +199,7 @@ export default {
     tab({
       title: 'API',
       // Not using built-in api because we can not override props' description of InputWithOptions
-      sections: [renderSection(readmeApi)],
+      sections: [description(readmeApi)],
     }),
 
     tab({

@@ -13,12 +13,20 @@ const messageBoxFunctionalLayoutDriverFactory = ({ element }) => {
   return {
     exists: () => !!element,
     getConfirmationButtonText: () => confirmationButton().textContent,
+    isConfirmationButtonPrefixIconExists: () =>
+      confirmationButton().innerHTML.indexOf('prefix') !== -1,
+    isConfirmationButtonSuffixIconExists: () =>
+      confirmationButton().innerHTML.indexOf('suffix') !== -1,
     clickOnConfirmationButton: () =>
       ReactTestUtils.Simulate.click(confirmationButton()),
     getConfirmationButton: confirmationButton,
     getCancellationButton: cancellationButton,
     getHeaderCloseButton: headerCloseButton,
     getCancellationButtonText: () => cancellationButton().textContent,
+    isCancellationButtonPrefixIconExists: () =>
+      cancellationButton().innerHTML.indexOf('prefix') !== -1,
+    isCancellationButtonSuffixIconExists: () =>
+      cancellationButton().innerHTML.indexOf('suffix') !== -1,
     clickOnCancellationButton: () =>
       ReactTestUtils.Simulate.click(cancellationButton()),
     clickOnHeaderCloseButton: () =>

@@ -9,9 +9,13 @@ const FooterLayout = ({
   children,
   theme,
   cancelText,
+  cancelPrefixIcon,
+  cancelSuffixIcon,
   onCancel,
   onOk,
   confirmText,
+  confirmPrefixIcon,
+  confirmSuffixIcon,
   buttonsHeight,
   enableOk,
   enableCancel,
@@ -28,6 +32,8 @@ const FooterLayout = ({
         <div className={footerButtonsClassNames}>
           {cancelText && (
             <Button
+              prefixIcon={cancelPrefixIcon}
+              suffixIcon={cancelSuffixIcon}
               disabled={!enableCancel}
               height={buttonsHeight}
               theme={'empty' + theme}
@@ -38,6 +44,8 @@ const FooterLayout = ({
           )}
           {confirmText && (
             <Button
+              prefixIcon={confirmPrefixIcon}
+              suffixIcon={confirmSuffixIcon}
               disabled={!enableOk}
               height={buttonsHeight}
               theme={'full' + theme}
@@ -62,7 +70,11 @@ const FooterLayout = ({
 
 FooterLayout.propTypes = {
   confirmText: PropTypes.node,
+  confirmPrefixIcon: PropTypes.element,
+  confirmSuffixIcon: PropTypes.element,
   cancelText: PropTypes.node,
+  cancelPrefixIcon: PropTypes.element,
+  cancelSuffixIcon: PropTypes.element,
   onCancel: PropTypes.func,
   onOk: PropTypes.func,
   enableOk: PropTypes.bool,

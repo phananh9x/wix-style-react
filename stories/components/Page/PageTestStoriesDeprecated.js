@@ -10,6 +10,9 @@ import { header, tail, fixedContent, content } from './PageChildren';
 import { storySettings } from './storySettings';
 import ExampleEmptyState from './ExampleEmptyState';
 import { ExamplePageContainer } from './ExamplePageContainer';
+import { LongTextContent } from './SomeContentComponent';
+import Card from 'wix-style-react/Card';
+import Notification from 'wix-style-react/Notification';
 
 const PageContainer = props => {
   return (
@@ -152,4 +155,24 @@ storiesOf(kind, module).add('9. Empty State in BM', () => (
   <ExamplePageContainer>
     <ExampleEmptyState />
   </ExamplePageContainer>
+));
+
+storiesOf(kind, module).add('11. With Notification', () => (
+  <PageContainer>
+    <Page gradientClassName="background-gradient">
+      {header()}
+      <Page.Content>
+        <Card>
+          <Card.Header title="Hello" />
+          <Card.Content>
+            <LongTextContent />
+          </Card.Content>
+        </Card>
+      </Page.Content>
+    </Page>
+    <Notification type="sticky" show>
+      <Notification.TextLabel>Hello Notification</Notification.TextLabel>
+      <Notification.CloseButton />
+    </Notification>
+  </PageContainer>
 ));

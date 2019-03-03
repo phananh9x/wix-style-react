@@ -1,13 +1,15 @@
 import { storySettings } from './storySettings';
 import { baseScope } from '../utils/Components/LiveCodeExample';
 import {
+  title,
   description,
-  columns,
   code as baseCode,
 } from 'wix-storybook-utils/Sections';
+import { halfWidth, exampleDescription } from '../utils/sections';
+
 import * as examples from './examples';
-import UXStorySections from '../UXStorySections';
-import { sterilizeCode } from './sterilizeCodeForLive';
+import UXStorySections from '../utils/UXStorySections';
+import { sterilizeCode } from '../utils/sterilizeCodeForLive';
 
 import ExampleGeneralLayoutRaw from '!raw-loader!./ExampleGeneralLayout';
 import ExampleSplitLayoutRaw from '!raw-loader!./ExampleSplitLayout';
@@ -16,11 +18,6 @@ import ExampleEmptyStateRaw from '!raw-loader!./ExampleEmptyState';
 
 const code = config =>
   baseCode({ components: baseScope, compact: true, ...config });
-
-const halfWidthSection = desc =>
-  columns({
-    items: [desc, description({})],
-  });
 
 export default {
   category: storySettings.category,
@@ -41,44 +38,38 @@ export default {
       ],
       importExample: examples.importExample,
     }),
-    description({ text: '## Examples' }),
-    halfWidthSection(
-      description({
-        pretitle: '2.1.A',
-        title: 'General Layout',
-        description: 'A classic layout for forms and lists',
-      }),
-    ),
+
+    title('Examples'),
+
+    exampleDescription({
+      pretitle: '2.1.A',
+      title: 'General Layout',
+      description: 'A classic layout for forms and lists',
+    }),
     code({
       source: sterilizeCode(ExampleGeneralLayoutRaw),
     }),
-    halfWidthSection(
-      description({
-        pretitle: '2.1.B',
-        title: 'Split Layout',
-        description: 'A Layout for forms item previews',
-      }),
-    ),
+    exampleDescription({
+      pretitle: '2.1.B',
+      title: 'Split Layout',
+      description: 'A Layout for forms item previews',
+    }),
     code({
       source: sterilizeCode(ExampleSplitLayoutRaw),
     }),
-    halfWidthSection(
-      description({
-        pretitle: '2.1.C',
-        title: 'Gallery Layout',
-        description: 'Best for product category lists',
-      }),
-    ),
+    exampleDescription({
+      pretitle: '2.1.C',
+      title: 'Gallery Layout',
+      description: 'Best for product category lists',
+    }),
     code({
       source: sterilizeCode(ExampleGalleryLayoutRaw),
     }),
-    halfWidthSection(
-      description({
-        pretitle: '2.1.D',
-        title: 'Empty State',
-        description: 'Best for initial call to action',
-      }),
-    ),
+    exampleDescription({
+      pretitle: '2.1.D',
+      title: 'Empty State',
+      description: 'Best for initial call to action',
+    }),
     code({
       source: sterilizeCode(ExampleEmptyStateRaw),
     }),

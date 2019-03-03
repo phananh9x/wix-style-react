@@ -1,4 +1,4 @@
-import { generatedTestComponentDriverFactory as publicDriverFactory } from './GeneratedTestComponent.driver';
+import { generatedTestComponentDriverFactory as publicDriverFactory } from './GeneratedTestComponent.uni.driver';
 
 export const generatedTestComponentPrivateDriverFactory = base => {
   return {

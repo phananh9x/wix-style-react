@@ -351,6 +351,7 @@ class Input extends Component {
         ...event.target,
         value: '',
       };
+
       this._onChange(event);
     }
 

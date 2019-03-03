@@ -4,6 +4,7 @@ import {
   api,
   playground,
   testkit,
+  title,
   description,
   importExample,
   code,
@@ -103,37 +104,35 @@ export default {
     tab({
       title: 'Description',
       sections: [
-        description({
-          text: `📦  Box is a wrapper component that provides a way to align, space, resize and style - easily and straightforwardly.`,
-        }),
+        description(
+          `📦  Box is a wrapper component that provides a way to align, space, resize and style - easily and straightforwardly.`,
+        ),
 
         importExample({
           source: "import Box from 'wix-style-react/Box';",
         }),
 
         // Children
-        description({ text: propExplanations.children.description }),
+        description(propExplanations.children.description),
         propExplanationLiveExample(propExplanations.children.example),
 
         // Alignment
-        description({ text: propExplanations.alignment.description }),
+        description(propExplanations.alignment.description),
         propExplanationLiveExample(propExplanations.alignment.example),
 
         // Spacing
-        description({ text: propExplanations.spacing.description }),
+        description(propExplanations.spacing.description),
         propExplanationLiveExample(propExplanations.spacing.example),
 
         // Sizing
-        description({ text: propExplanations.sizing.description }),
+        description(propExplanations.sizing.description),
         propExplanationLiveExample(propExplanations.sizing.example),
 
         // Styling
-        description({ text: propExplanations.styling.description }),
+        description(propExplanations.styling.description),
         propExplanationLiveExample(propExplanations.styling.example),
 
-        description({
-          title: 'Examples',
-        }),
+        title('Examples'),
 
         code({
           title: 'Event Item (multiple boxes)',
@@ -144,19 +143,10 @@ export default {
       ],
     }),
 
-    tab({
-      title: 'Playground',
-      sections: [playground()],
-    }),
-
-    tab({
-      title: 'API',
-      sections: [api()],
-    }),
-
-    tab({
-      title: 'Testkit',
-      sections: [testkit()],
-    }),
+    ...[
+      { title: 'Playground', sections: [playground()] },
+      { title: 'API', sections: [api()] },
+      { title: 'Testkit', sections: [testkit()] },
+    ].map(tab),
   ],
 };

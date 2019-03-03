@@ -49,6 +49,7 @@ import './RadioGroup.story.js'; // 4.3 RadioGroup
 import './ToggleSwitch/index.story'; // 4.4 ToggleSwitch
 import './SegmentedToggle/index.story'; // 4.5 SegmentedToggle
 import './Slider/index.story'; // 4.7 Slider
+import './ColorInput/index.story'; // 4.8 ColorInput
 
 // 5. Buttons
 import './Button/index.story.js'; // 5.1 Standard
@@ -104,7 +105,6 @@ import './Highlighter.story.js'; // Highlighter
 
 // Components API
 import './Box/index.story.js';
-import './components/Page/index.story.js';
 import './components/Calendar/index.story';
 import './components/CalendarPanel/index.story';
 import './CalendarPanelFooter/index.story';
@@ -126,6 +126,7 @@ import './Layout/index.story.js';
 import './Layout';
 import './components/MultiSelect/index.story';
 import './components/Page/PageExampleStories.js';
+import './components/Page/index.story.js';
 import './components/PageHeader/index.story.js';
 import './Proportion/index.story.js';
 import './RichTextArea/api.story';
@@ -169,6 +170,7 @@ import './SegmentedToggle/testStory'; // 4.5 SegmentedToggle
 import './FloatingNotification/FloatingNotificationTestStory'; // 8.2 FloatingNotification
 import './FormField/testStory';
 import './RichTextArea/testStory';
+import './ColorInput/testStory';
 
 // The generated test component
 import './GeneratedTestComponent/index.story';

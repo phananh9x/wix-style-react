@@ -57,7 +57,11 @@ class MessageBoxFunctionalLayout extends WixComponent {
       onOk,
       onClose,
       confirmText,
+      confirmPrefixIcon,
+      confirmSuffixIcon,
       cancelText,
+      cancelPrefixIcon,
+      cancelSuffixIcon,
       children,
       buttonsHeight,
       hideFooter,
@@ -135,7 +139,11 @@ class MessageBoxFunctionalLayout extends WixComponent {
             enableOk={!disableConfirmation}
             buttonsHeight={buttonsHeight}
             confirmText={confirmText}
+            confirmPrefixIcon={confirmPrefixIcon}
+            confirmSuffixIcon={confirmSuffixIcon}
             cancelText={cancelText}
+            cancelPrefixIcon={cancelPrefixIcon}
+            cancelSuffixIcon={cancelSuffixIcon}
             onCancel={onCancel}
             onOk={onOk}
             theme={theme}
@@ -150,7 +158,11 @@ class MessageBoxFunctionalLayout extends WixComponent {
 MessageBoxFunctionalLayout.propTypes = {
   hideFooter: PropTypes.bool,
   confirmText: PropTypes.node,
+  confirmPrefixIcon: PropTypes.element,
+  confirmSuffixIcon: PropTypes.element,
   cancelText: PropTypes.node,
+  cancelPrefixIcon: PropTypes.element,
+  cancelSuffixIcon: PropTypes.element,
   theme: PropTypes.string,
   onOk: PropTypes.func,
   onCancel: PropTypes.func,

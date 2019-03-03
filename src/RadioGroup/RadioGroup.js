@@ -4,6 +4,7 @@ import uniqueId from 'lodash/uniqueId';
 import classNames from 'classnames';
 
 import RadioButton from './RadioButton/RadioButton';
+import deprecationLog from '../utils/deprecationLog';
 import styles from './RadioGroup.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 
@@ -16,8 +17,16 @@ class RadioGroup extends WixComponent {
   constructor(props) {
     super(props);
     this.name = uniqueId('RadioGroup_');
+    this.logDeprecations(props);
   }
 
+  logDeprecations(props) {
+    if (props.type === 'button') {
+      deprecationLog(
+        `RadioGroup's prop "type" with value "button" is deprecated. Use 'SegmentedToggle' component instead.`,
+      );
+    }
+  }
   render() {
     const {
       onChange,

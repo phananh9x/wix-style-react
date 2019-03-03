@@ -4,7 +4,7 @@ import { storySettings } from './storySettings';
 import {%ComponentName%} from '../../src/{%ComponentName%}';
 
 export default {
-  category: storySettings.kind,
+  category: storySettings.category,
   storyName: storySettings.storyName,
 
   component: {%ComponentName%},

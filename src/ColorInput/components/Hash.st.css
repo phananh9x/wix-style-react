@@ -1,0 +1,25 @@
+:import {
+  -st-from: "wix-ui-core/dist/src/themes/backoffice/colors.st.css";
+  -st-named: D40,D55;
+}
+
+:import {
+  -st-from: "wix-ui-core/dist/src/themes/backoffice/text.st.css";
+  -st-named: weightNormal, sizeSmall; 
+}
+
+.root {
+  -st-states: disabled, size(enum(small, medium,large));
+  -st-mixin: weightNormal;
+  font-size: 16px;
+  padding-left: 6px;
+  color: value(D40);
+}
+
+.root:size(small) {
+  font-size: 14px
+}
+
+.root:disabled {
+  color: value(D55);
+}

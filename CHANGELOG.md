@@ -14,6 +14,38 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## 6.7.1 - 2019-02-28
+
+### Added
+
+- `<MessageBoxFunctionalLayout/>`: Add prefix and suffix icons to modal confirm and cancel buttons [#2991](https://github.com/wix/wix-style-react/pull/2991)
+
+### Fixed
+
+- `<Page/>` (Fix): Prevent Page FixedContainer form blocking `<Notification type="sticky"/>` [#2979](https://github.com/wix/wix-style-react/pull/2979)
+- `<GeneratedTestComponent>` - fix puppeteer testkit export
+
+## 6.7.0 - 2019-02-28
+
+### Added
+
+- `<ColorInput/>` - new component for HEX color input [#2898](https://github.com/wix/wix-style-react/pull/2898)
+- `<SectionHelper/>` - add experimental Dark theme [#3042](https://github.com/wix/wix-style-react/pull/3042)
+- `<RichTextInputArea/>` - add link button [#3047](https://github.com/wix/wix-style-react/pull/3047)
+
+### Docs
+
+- `<Page/>` - Make docs describe the New Page. Improve Component Doc Page. Add examples. [#3049](https://github.com/wix/wix-style-react/pull/3049)
+
+### Deprecated
+
+- `<RadioGroup/>` - deprecated prop `type="button"` [#2874](https://github.com/wix/wix-style-react/pull/2874)
+
+### Fixed
+
+- `<Checkbox/>` - `disabled` & `hasError` styling [#3037](https://github.com/wix/wix-style-react/pull/3037)
+- `<MultiSelect/>` - Fix `background-color` styling [#3027](https://github.com/wix/wix-style-react/pull/3027)
+
 ## 6.6.1 - 2019-02-26
 
 ### Fixed
@@ -23,28 +55,35 @@ Types of changes:
 ## 6.6.0 - 2019-02-25
 
 ### Added
+
 - `<ColorPicker/>` - add feature to disable confirm button [#2998](https://github.com/wix/wix-style-react/pull/2998)
 
 ### Fixed
+
 - Infra: avoid dynamic require in testkit/index.js & testkit/enzyme.js [#3000](https://github.com/wix/wix-style-react/pull/3000)
 - Infra: remove duplicated `exists` tests [#3022](https://github.com/wix/wix-style-react/pull/3022)
 - Infra: fix all eslint warnings and move e2e-runtime to a separate dir [#2996](https://github.com/wix/wix-style-react/pull/2996)
 
 ### Changed
+
 - Infra: remove unused deps, fix progress-bar for transpile [#3009](https://github.com/wix/wix-style-react/pull/3009)
 - Infra: Add test to check for needed files inside dist presence. Remove stories from dist [#3015](https://github.com/wix/wix-style-react/pull/3015)
 
 ### Lab
+
 - `<NoBorderInput/>` - add support for focus props [#3005](https://github.com/wix/wix-style-react/pull/3005)
 - `<NoBorderInput/>` - make some style adjustments [#3011](https://github.com/wix/wix-style-react/pull/3011)
 
 ### Docs
+
 - `<RichTextArea>` - rewrite story page [#2989](https://github.com/wix/wix-style-react/pull/2989) [#3007](https://github.com/wix/wix-style-react/pull/3007)
 - `<FormField/>`, `<Input/>`, `<TextArea/>`, `<TextInput/>` - rewrite story pages [#3010](https://github.com/wix/wix-style-react/pull/3010)
 - `<Page/>` improve page layout story [#3014](https://github.com/wix/wix-style-react/pull/3014)
 
 ## 6.5.1 - 2019-02-20
+
 ### Fixed
+
 - Infra: transpile test directory [#3004](https://github.com/wix/wix-style-react/pull/3004)
 
 ## 6.5.0 - 2019-02-20
@@ -61,17 +100,20 @@ Types of changes:
 - `<TimeInput/>` - Fix cut text [#2970](https://github.com/wix/wix-style-react/pull/2970)
 
 ### Docs
-- `<TextField/>` -  rename docs page to `TextInput` [#2977](https://github.com/wix/wix-style-react/pull/2977)
+
+- `<TextField/>` - rename docs page to `TextInput` [#2977](https://github.com/wix/wix-style-react/pull/2977)
 - `<TextArea/>` - refactor story page based on new design [#2975](https://github.com/wix/wix-style-react/pull/2975)
 - `<TextInput/>` - improve docs structuring [#2988](https://github.com/wix/wix-style-react/pull/2988)
 - `<TextArea/>` - improve documentations after UX review [#2987](https://github.com/wix/wix-style-react/pull/2987)
 - `<Input/>` - remove tabs from examples [#2985](https://github.com/wix/wix-style-react/pull/2985)
-- `<Page/>` -  Write new UX Page Layout story [#2981](https://github.com/wix/wix-style-react/pull/2981)
+- `<Page/>` - Write new UX Page Layout story [#2981](https://github.com/wix/wix-style-react/pull/2981)
 
 ### Changed
+
 - infra: improve build process. Migrate to `babel@7` [#2868](https://github.com/wix/wix-style-react/pull/2868)
 
 ### Lab
+
 - `<NoBorderInput/>` - add new component [#2948](https://github.com/wix/wix-style-react/pull/2948)
 
 ### Deprecated

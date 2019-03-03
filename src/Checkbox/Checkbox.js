@@ -72,7 +72,7 @@ class Checkbox extends WixComponent {
       {
         [styles.hover]: hover,
         [styles.disabled]: disabled,
-        [styles.hasError]: hasError,
+        [styles.hasError]: hasError && !disabled,
       },
     );
 

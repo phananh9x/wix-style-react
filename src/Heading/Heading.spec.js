@@ -1,45 +1,43 @@
 import React from 'react';
 import headingDriverFactory from './Heading.driver';
 import Heading from './Heading';
-import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import { isEnzymeTestkitExists } from 'wix-ui-test-utils/enzyme';
-import { isTestkitExists } from 'wix-ui-test-utils/vanilla';
-import { mount } from 'enzyme';
-import { headingTestkitFactory } from '../../testkit';
-import { headingTestkitFactory as enzymeHeadingTestkitFactory } from '../../testkit/enzyme';
+import {
+  createRendererWithDriver,
+  createRendererWithUniDriver,
+  cleanup,
+} from '../../test/utils/react';
+import { headingUniDriverFactory } from './Heading.uni.driver';
 
 describe('Heading', () => {
-  const createDriver = createDriverFactory(headingDriverFactory);
+  afterEach(() => cleanup());
 
-  describe('light prop', () => {
-    it('should be dark by default', () => {
-      const wrapper = createDriver(<Heading>Hello</Heading>);
-      expect(wrapper.isLight()).toBe(false);
-    });
-
-    it('should be light', () => {
-      const wrapper = createDriver(<Heading light>Hello</Heading>);
-      expect(wrapper.isLight()).toBe(true);
-    });
+  describe('[async]', () => {
+    runTests(createRendererWithUniDriver(headingUniDriverFactory));
   });
 
-  describe('testkit', () => {
-    it('should exist', () => {
-      expect(
-        isTestkitExists(<Heading>Hello World</Heading>, headingTestkitFactory),
-      ).toBe(true);
-    });
+  describe('[sync]', () => {
+    runTests(createRendererWithDriver(headingDriverFactory));
   });
 
-  describe('enzyme testkit', () => {
-    it('should exist', () => {
-      expect(
-        isEnzymeTestkitExists(
-          <Heading>Hello World</Heading>,
-          enzymeHeadingTestkitFactory,
-          mount,
-        ),
-      ).toBe(true);
+  function runTests(render) {
+    it('should be dark by default', async () => {
+      const { driver } = render(<Heading>Hello</Heading>);
+      expect(await driver.isLight()).toBe(false);
     });
-  });
+
+    it('should be light', async () => {
+      const { driver } = render(<Heading light>Hello</Heading>);
+      expect(await driver.isLight()).toBe(true);
+    });
+
+    it('should have text', async () => {
+      const { driver } = render(<Heading>Hello</Heading>);
+      expect(await driver.getText()).toBe('Hello');
+    });
+
+    it('should have appearance H1', async () => {
+      const { driver } = render(<Heading appearance="H1">Hello</Heading>);
+      expect(await driver.getAppearance()).toBe('H1');
+    });
+  }
 });

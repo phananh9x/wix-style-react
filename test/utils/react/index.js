@@ -43,7 +43,11 @@ export const createRendererWithUniDriver = driverFactory => (jsx, dataHook) => {
   const rendered = render(jsx);
 
   const element = getElement({ rendered, dataHook });
-  const driver = driverFactory(reactUniDriver(element));
+  const driver = driverFactory(
+    reactUniDriver(element),
+    reactUniDriver(document.body),
+    reactUniDriver(document),
+  );
   return {
     ...rendered,
     driver,

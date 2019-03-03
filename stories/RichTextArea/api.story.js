@@ -1,10 +1,9 @@
-import React from 'react';
 import {
   tab,
   api,
+  title,
   code as baseCode,
   importExample,
-  description,
   playground,
   testkit,
 } from 'wix-storybook-utils/Sections';
@@ -45,47 +44,33 @@ export default {
         importExample({
           source: "import RichTextArea from 'wix-style-react/RichTextArea';",
         }),
-        description({ text: '## Examples' }),
-        description({
-          title: 'Resizable',
-        }),
-        code({
-          source: examples.resizable,
-        }),
-        description({
-          title: 'Error',
-        }),
-        code({
-          source: examples.error,
-        }),
-        description({
-          title: 'Disabled',
-        }),
-        code({
-          source: examples.disabled,
-        }),
-        description({
-          title: 'Placeholder',
-        }),
-        code({
-          source: examples.placeholder,
-        }),
+
+        title('Examples'),
+
+        ...[
+          { title: 'Resizable', source: examples.resizable },
+          { title: 'Error', source: examples.error },
+          { title: 'Disabled', source: examples.disabled },
+          { title: 'Placeholder', source: examples.placeholder },
+        ].map(code),
       ],
     }),
 
-    tab({
-      title: 'API',
-      sections: [api()],
-    }),
+    ...[
+      {
+        title: 'API',
+        sections: [api()],
+      },
 
-    tab({
-      title: 'TestKit',
-      sections: [testkit()],
-    }),
+      {
+        title: 'TestKit',
+        sections: [testkit()],
+      },
 
-    tab({
-      title: 'Playground',
-      sections: [playground()],
-    }),
+      {
+        title: 'Playground',
+        sections: [playground()],
+      },
+    ].map(tab),
   ],
 };

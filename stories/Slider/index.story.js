@@ -45,14 +45,16 @@ export default {
       ],
     }),
 
-    tab({
-      title: 'API',
-      sections: [api()],
-    }),
+    ...[
+      {
+        title: 'API',
+        sections: [api()],
+      },
 
-    tab({
-      title: 'Testkit',
-      sections: [testkit()],
-    }),
+      {
+        title: 'Testkit',
+        sections: [testkit()],
+      },
+    ].map(tab),
   ],
 };

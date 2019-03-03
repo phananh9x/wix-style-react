@@ -55,9 +55,7 @@ export default {
     tab({
       title: 'Description',
       sections: [
-        description({
-          text: `🔨 To trigger an operation.`,
-        }),
+        description(`🔨 To trigger an operation.`),
 
         importExample({
           source: "import Button from 'wix-style-react/Button';",
@@ -127,7 +125,7 @@ export default {
     ...[
       { title: 'Playground', sections: [playground()] },
       { title: 'API', sections: [api()] },
-      { title: 'Testkit', sections: [description({ text: testkit })] },
+      { title: 'Testkit', sections: [description(testkit)] },
     ].map(tab),
   ],
 };

@@ -23,7 +23,11 @@
 | hideFooter | bool | - | - | Hide or show footer |
 | footerBottomChildren | node | - | - | Content to appear at the footer (below the footer's buttons) |
 | confirmText | string | - | - | Confirm button Label |
+| confirmPrefixIcon | element | - | - | Element based icon (svg, image etc.) |
+| confirmSuffixIcon | element | - | - | Element based icon (svg, image etc.) |
 | cancelText | string | - | - | Cancel button Label |
+| cancelPrefixIcon | element | - | - | Element based icon (svg, image etc.) |
+| cancelSuffixIcon | element | - | - | Element based icon (svg, image etc.) |
 | theme | string | - | - | theme of the message box, (green, blue , red) |
 | onOk | func | - | - | Ok callback |
 | onCancel | func | - | - | Cancel callback |

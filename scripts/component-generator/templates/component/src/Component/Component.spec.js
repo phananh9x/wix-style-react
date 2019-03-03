@@ -2,7 +2,7 @@ import React from 'react';
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 
 import {%ComponentName%} from './{%ComponentName%}';
-import { {%componentName%}PrivateDriverFactory } from './{%ComponentName%}.driver.private';
+import { {%componentName%}PrivateDriverFactory } from './{%ComponentName%}.private.uni.driver';
 
 describe('{%ComponentName%}', () => {
   const createDriver = createUniDriverFactory({%componentName%}PrivateDriverFactory);

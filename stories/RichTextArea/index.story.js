@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   description,
+  title,
   table,
   importExample,
   columns,
@@ -23,60 +24,50 @@ const code = config =>
   baseCode({ components: baseScope, compact: true, ...config });
 
 const example = ({ title, text, source }) =>
-  columns({
-    items: [description({ title, text }), code({ source })],
-  });
+  columns([description({ title, text }), code({ source })]);
 
 export default {
   category: settings.category,
   storyName: settings.storyName,
 
   sections: [
-    description({ text: '### Description' }),
+    columns([
+      description({
+        title: 'Description',
+        text: `Rich text area allows to enter and edit long and complex descriptions.`,
+      }),
+    ]),
 
-    columns({
-      items: [
-        description({
-          text: `Rich text area allows to enter and edit long and complex descriptions.`,
-        }),
-        description(),
-      ],
-    }),
-
-    columns({
-      items: [
-        table({
-          title: '### Included Components',
-          rows: [
-            [
-              <LinkTo
-                kind="Components"
-                story="FormField"
-              >{`<FormField/>`}</LinkTo>,
-              'Layout component for form elements',
-            ],
-            [
-              <LinkTo
-                kind="Components"
-                story="RichTextArea"
-              >{`<RichTextArea/>`}</LinkTo>,
-              'Component that receives rich data',
-            ],
+    columns([
+      table({
+        title: 'Included Components',
+        rows: [
+          [
+            <LinkTo
+              kind="Components"
+              story="FormField"
+            >{`<FormField/>`}</LinkTo>,
+            'Layout component for form elements',
           ],
-        }),
-        description(),
-      ],
-    }),
+          [
+            <LinkTo
+              kind="Components"
+              story="RichTextArea"
+            >{`<RichTextArea/>`}</LinkTo>,
+            'Component that receives rich data',
+          ],
+        ],
+      }),
+    ]),
 
-    columns({
-      items: [
-        importExample({
-          source: examples.importExample,
-        }),
-        description(),
-      ],
-    }),
-    description({ text: '## Examples' }),
+    columns([
+      importExample({
+        source: examples.importExample,
+      }),
+    ]),
+
+    title('Examples'),
+
     ...[
       {
         title: 'Plain Example',

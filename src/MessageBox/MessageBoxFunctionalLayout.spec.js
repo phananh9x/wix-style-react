@@ -10,6 +10,7 @@ import {
 import { messageBoxFunctionalLayoutTestkitFactory } from '../../testkit';
 import { messageBoxFunctionalLayoutTestkitFactory as enzymeMessageBoxTestkitFactory } from '../../testkit/enzyme';
 import { mount } from 'enzyme';
+import ChevronDown from 'wix-style-react/new-icons/ChevronDown';
 
 describe('MessageBox', () => {
   const createDriver = createDriverFactory(MessageBoxFunctionalLayoutFactory);
@@ -22,12 +23,52 @@ describe('MessageBox', () => {
       expect(driver.getConfirmationButtonText()).toBe(props.confirmText);
     });
 
+    it('should display the prefix icon on top the confirmation button', () => {
+      const props = {
+        confirmText: 'confirmText',
+        confirmPrefixIcon: <ChevronDown />,
+      };
+      const driver = createDriver(<MessageBoxFunctionalLayout {...props} />);
+      expect(driver.getConfirmationButtonText()).toBe(props.confirmText);
+      expect(driver.isConfirmationButtonPrefixIconExists()).toBeTruthy();
+    });
+
+    it('should display the suffix icon on top the confirmation button', () => {
+      const props = {
+        confirmText: 'confirmText',
+        confirmSuffixIcon: <ChevronDown />,
+      };
+      const driver = createDriver(<MessageBoxFunctionalLayout {...props} />);
+      expect(driver.getConfirmationButtonText()).toBe(props.confirmText);
+      expect(driver.isConfirmationButtonSuffixIconExists()).toBeTruthy();
+    });
+
     it('should display the cancellation text on top the cancellation button', () => {
       const props = {
         cancelText: 'cancelText',
       };
       const driver = createDriver(<MessageBoxFunctionalLayout {...props} />);
       expect(driver.getCancellationButtonText()).toBe(props.cancelText);
+    });
+
+    it('should display the prefix icon on top the cancellation button', () => {
+      const props = {
+        cancelText: 'cancelText',
+        cancelPrefixIcon: <ChevronDown />,
+      };
+      const driver = createDriver(<MessageBoxFunctionalLayout {...props} />);
+      expect(driver.getCancellationButtonText()).toBe(props.cancelText);
+      expect(driver.isCancellationButtonPrefixIconExists()).toBeTruthy();
+    });
+
+    it('should display the suffix icon on top the cancellation button', () => {
+      const props = {
+        cancelText: 'cancelText',
+        cancelSuffixIcon: <ChevronDown />,
+      };
+      const driver = createDriver(<MessageBoxFunctionalLayout {...props} />);
+      expect(driver.getCancellationButtonText()).toBe(props.cancelText);
+      expect(driver.isCancellationButtonSuffixIconExists()).toBeTruthy();
     });
 
     it('should disable cancel button if disabled', () => {

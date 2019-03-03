@@ -4,7 +4,7 @@ import { storySettings } from './storySettings';
 import GeneratedTestComponent from '../../src/GeneratedTestComponent';
 
 export default {
-  category: storySettings.kind,
+  category: storySettings.category,
   storyName: storySettings.storyName,
 
   component: GeneratedTestComponent,

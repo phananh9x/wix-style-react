@@ -4,6 +4,7 @@ import { baseScope } from '../utils/Components/LiveCodeExample';
 import * as examples from './examples';
 import {
   header,
+  title,
   divider,
   columns,
   tabs,
@@ -131,61 +132,56 @@ export default {
       ),
     }),
 
-    tabs({
-      tabs: [
-        tab({
-          title: 'Usage',
-          sections: [
-            columns({
-              items: [
-                importExample({
-                  source: "import FormField from 'wix-style-react/FormField';",
-                }),
-              ],
+    tabs([
+      tab({
+        title: 'Usage',
+        sections: [
+          columns([
+            importExample({
+              source: "import FormField from 'wix-style-react/FormField';",
             }),
+          ]),
+          divider(),
 
-            divider(),
+          title('Examples'),
 
-            description({ text: '## Examples' }),
+          code({
+            title: 'Generic component to help build forms',
+            source: examples.generic,
+            interactive: false,
+          }),
 
-            code({
-              title: 'Generic component to help build forms',
-              source: examples.generic,
-              interactive: false,
-            }),
+          code({
+            title: 'With tooltip',
+            source: examples.withTooltip,
+            interactive: false,
+          }),
 
-            code({
-              title: 'With tooltip',
-              source: examples.withTooltip,
-              interactive: false,
-            }),
+          description({
+            title: 'With length count',
+            text:
+              'When children is function (a.k.a. render prop), it receives setCharactersLeft which can be called with number',
+          }),
 
-            description({
-              title: 'With length count',
-              text:
-                'When children is function (a.k.a. render prop), it receives setCharactersLeft which can be called with number',
-            }),
+          code({
+            source: examples.withLength,
+          }),
+          code({
+            title: 'Inline Label With Length Count',
+            source: examples.inlineLabelWithLength,
+          }),
+          code({
+            title: 'Within Grid',
+            source: examples.ExampleWithinGrid,
+          }),
+        ],
+      }),
 
-            code({
-              source: examples.withLength,
-            }),
-            code({
-              title: 'Inline Label With Length Count',
-              source: examples.inlineLabelWithLength,
-            }),
-            code({
-              title: 'Within Grid',
-              source: examples.ExampleWithinGrid,
-            }),
-          ],
-        }),
-
-        ...[
-          { title: 'API', sections: [api()] },
-          { title: 'TestKit', sections: [testkit()] },
-          { title: 'Playground', sections: [playground()] },
-        ].map(tab),
-      ],
-    }),
+      ...[
+        { title: 'API', sections: [api()] },
+        { title: 'TestKit', sections: [testkit()] },
+        { title: 'Playground', sections: [playground()] },
+      ].map(tab),
+    ]),
   ],
 };

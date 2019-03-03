@@ -1,30 +1,231 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { Table } from 'wix-style-react/Table';
-import {
-  TableToolbar,
-  ItemGroup,
-  Item,
-  Label,
-  SelectedCount,
-  Divider,
-} from 'wix-style-react/TableToolbar';
-import { Container, Row } from 'wix-style-react/Grid';
-import { header, tail } from './PageChildren';
-import { ExamplePageContainer } from './ExamplePageContainer';
-
-import Dropdown from 'wix-style-react/Dropdown';
-import Search from 'wix-style-react/Search';
-import Checkbox from 'wix-style-react/Checkbox';
-import Card from 'wix-style-react/Card';
-import Page from 'wix-style-react/Page';
+import Box from 'wix-style-react/Box';
+import Breadcrumbs from 'wix-style-react/Breadcrumbs';
 import Button from 'wix-style-react/Button';
-import TextButton from 'wix-style-react/TextButton';
-import Text from 'wix-style-react/Text';
-import { Edit, Duplicate, Upload } from 'wix-style-react/new-icons';
+import Card from 'wix-style-react/Card';
+import Checkbox from 'wix-style-react/Checkbox';
+import Dropdown from 'wix-style-react/Dropdown';
+import { Container, Row } from 'wix-style-react/Grid';
 import Highlighter from 'wix-style-react/Highlighter';
+import Page from 'wix-style-react/Page';
+import PopoverMenu from 'wix-style-react/PopoverMenu';
+import PopoverMenuItem from 'wix-style-react/PopoverMenuItem';
+import Search from 'wix-style-react/Search';
+import Table from 'wix-style-react/Table';
+import TableToolbar from 'wix-style-react/TableToolbar';
 
-import ImagePlaceholder from '../../assets/ImagePlaceholder';
+class Example extends React.Component {
+  render() {
+    return (
+      <ExamplePageContainer>
+        <Page upgrade>
+          {renderPageHeader()}
+          <Page.Content>
+            <Container>
+              <Row>
+                <Card>
+                  <Card.Content>Some Content 1</Card.Content>
+                </Card>
+              </Row>
+              <Row>{<ProductTable />}</Row>
+
+              <Row>
+                <Card>
+                  <Card.Content>Some Content 2</Card.Content>
+                </Card>
+              </Row>
+              <Row>{<ProductTable />}</Row>
+            </Container>
+          </Page.Content>
+        </Page>
+      </ExamplePageContainer>
+    );
+  }
+}
+
+const ExamplePageContainer = ({ children }) => (
+  <div style={{ height: '372px' }}>{children}</div>
+);
+
+class ProductTable extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: allData,
+      collectionId: 0,
+      filterId: 0,
+      searchTerm: '',
+      inStock: false,
+    };
+  }
+
+  render() {
+    const tableData = this.getFilteredData();
+    return (
+      <Table
+        withWrapper
+        dataHook="story-table-example"
+        data={tableData}
+        itemsPerPage={20}
+        columns={this.getColumns()}
+        onSelectionChange={selectedIds =>
+          console.log('Table.onSelectionChange(): selectedIds=', selectedIds)
+        }
+        showSelection
+        showLastRowDivider
+      >
+        <Page.Sticky>
+          <Card>
+            <Table.ToolbarContainer>
+              {() => this.renderMainToolbar()}
+            </Table.ToolbarContainer>
+            <Table.Titlebar />
+          </Card>
+        </Page.Sticky>
+        <Card>
+          <Table.Content titleBarVisible={false} />
+        </Card>
+      </Table>
+    );
+  }
+
+  getColumns() {
+    return [
+      {
+        title: 'Name',
+        render: row => (
+          <Highlighter match={this.state.searchTerm}>{row.name}</Highlighter>
+        ),
+        width: '30%',
+        minWidth: '150px',
+      },
+      {
+        title: 'SKU',
+        render: row => row.SKU,
+        width: '20%',
+        minWidth: '100px',
+      },
+      {
+        title: 'Price',
+        render: row => row.price,
+        width: '20%',
+        minWidth: '100px',
+      },
+      {
+        title: 'Inventory',
+        render: row => row.inventory,
+        width: '20%',
+        minWidth: '100px',
+      },
+    ];
+  }
+
+  clearSearch() {
+    this.setState({
+      collectionId: 0,
+      filterId: 0,
+      searchTerm: '',
+      inStock: false,
+    });
+  }
+
+  renderMainToolbar() {
+    const collectionOptions = [
+      { id: 0, value: 'All' },
+      { id: 1, value: 'Towels' },
+      { id: 2, value: 'Slippers' },
+    ];
+
+    const filterOptions = [
+      { id: 0, value: 'All' },
+      { id: 1, value: 'Red' },
+      { id: 2, value: 'Cyan' },
+    ];
+
+    return (
+      <Card>
+        <TableToolbar>
+          <TableToolbar.ItemGroup position="start">
+            <TableToolbar.Item>
+              <TableToolbar.Label>
+                Product
+                <span style={{ width: '150px' }}>
+                  <Dropdown
+                    options={collectionOptions}
+                    selectedId={this.state.collectionId}
+                    onSelect={selectedOption => {
+                      this.setState({ collectionId: selectedOption.id });
+                    }}
+                    roundInput
+                  />
+                </span>
+              </TableToolbar.Label>
+            </TableToolbar.Item>
+            <TableToolbar.Item>
+              <TableToolbar.Label>
+                Color
+                <span style={{ width: '86px' }}>
+                  <Dropdown
+                    options={filterOptions}
+                    selectedId={this.state.filterId}
+                    onSelect={selectedOption =>
+                      this.setState({ filterId: selectedOption.id })
+                    }
+                    roundInput
+                  />
+                </span>
+              </TableToolbar.Label>
+            </TableToolbar.Item>
+            <TableToolbar.Item>
+              <Checkbox
+                checked={this.state.inStock}
+                onChange={e => this.setState({ inStock: e.target.checked })}
+              >
+                In Stock only
+              </Checkbox>
+            </TableToolbar.Item>
+          </TableToolbar.ItemGroup>
+          <TableToolbar.ItemGroup position="end">
+            <TableToolbar.Item>{this.renderSearch(false)}</TableToolbar.Item>
+          </TableToolbar.ItemGroup>
+        </TableToolbar>
+      </Card>
+    );
+  }
+
+  renderSearch(expandable) {
+    return (
+      <Search
+        expandable={expandable}
+        onChange={e => {
+          this.setState({ searchTerm: e.target.value });
+        }}
+        value={this.state.searchTerm}
+      />
+    );
+  }
+
+  getFilteredData() {
+    let data = this.state.data;
+    if (this.state.collectionId > 0) {
+      data = data.filter(row => row.collectionId === this.state.collectionId);
+    }
+    if (this.state.filterId > 0) {
+      data = data.filter(row => row.filterId === this.state.filterId);
+    }
+    if (this.state.inStock) {
+      data = data.filter(row => row.inventory === 'In stock');
+    }
+    if (this.state.searchTerm !== '') {
+      data = data.filter(row =>
+        row.name.toUpperCase().includes(this.state.searchTerm.toUpperCase()),
+      );
+    }
+    return data;
+  }
+}
 
 const createDataSet = setIndex => [
   {
@@ -68,294 +269,47 @@ const allData = [1, 2, 3, 4, 5].reduce(
   [],
 );
 
-class ExampleStretchTable extends React.Component {
-  state = {
-    data: allData,
-    collectionId: 0,
-    filterId: 0,
-    searchTerm: '',
-    inStock: false,
+const renderPageHeader = () => {
+  const ActionBar = () => {
+    return (
+      <Box>
+        <Box>
+          <PopoverMenu
+            buttonTheme="icon-greybackground"
+            placement="bottom"
+            size="normal"
+            appendToParent
+            zIndex={1}
+          >
+            <PopoverMenuItem onClick={() => {}} text="Refresh" />
+            <PopoverMenuItem onClick={() => {}} text="Trash" />
+          </PopoverMenu>
+        </Box>
+        <Box marginLeft="small" marginRight="small">
+          <Button skin="light">Cancel</Button>
+        </Box>
+        <Box>
+          <Button>Save</Button>
+        </Box>
+      </Box>
+    );
   };
 
-  clearSearch() {
-    this.setState({
-      collectionId: 0,
-      filterId: 0,
-      searchTerm: '',
-      inStock: false,
-    });
-  }
+  return (
+    <Page.Header
+      title="Page Title"
+      breadcrumbs={
+        <Breadcrumbs
+          items={[1, 2, 3].map(i => ({ id: `${i}`, value: `Page ${i}` }))}
+          activeId="3"
+          size="medium"
+          theme="onGrayBackground"
+          onClick={() => {}}
+        />
+      }
+      actionsBar={<ActionBar />}
+    />
+  );
+};
 
-  renderMainToolbar() {
-    const collectionOptions = [
-      { id: 0, value: 'All' },
-      { id: 1, value: 'Towels' },
-      { id: 2, value: 'Slippers' },
-    ];
-
-    const filterOptions = [
-      { id: 0, value: 'All' },
-      { id: 1, value: 'Red' },
-      { id: 2, value: 'Cyan' },
-    ];
-
-    return (
-      <Card>
-        <TableToolbar>
-          <ItemGroup position="start">
-            <Item>
-              <Label>
-                Product
-                <span style={{ width: '150px' }}>
-                  <Dropdown
-                    options={collectionOptions}
-                    selectedId={this.state.collectionId}
-                    onSelect={selectedOption => {
-                      this.setState({ collectionId: selectedOption.id });
-                    }}
-                    roundInput
-                  />
-                </span>
-              </Label>
-            </Item>
-            <Item>
-              <Label>
-                Color
-                <span style={{ width: '86px' }}>
-                  <Dropdown
-                    options={filterOptions}
-                    selectedId={this.state.filterId}
-                    onSelect={selectedOption =>
-                      this.setState({ filterId: selectedOption.id })
-                    }
-                    roundInput
-                  />
-                </span>
-              </Label>
-            </Item>
-            <Item>
-              <Checkbox
-                checked={this.state.inStock}
-                onChange={e => this.setState({ inStock: e.target.checked })}
-              >
-                In Stock only
-              </Checkbox>
-            </Item>
-          </ItemGroup>
-          <ItemGroup position="end">
-            <Item>{this.renderSearch(false)}</Item>
-          </ItemGroup>
-        </TableToolbar>
-      </Card>
-    );
-  }
-
-  renderBulkActionsToolbar(props) {
-    return (
-      <TableToolbar>
-        <ItemGroup position="start">
-          <Item>
-            <SelectedCount>{`${props.selectedCount} Selected`}</SelectedCount>
-          </Item>
-        </ItemGroup>
-        <ItemGroup position="end">
-          <Item layout="button">
-            <Button
-              prefixIcon={<Upload />}
-              skin="light"
-              priority="primary"
-              onClick={() =>
-                window.alert(`Exporting selectedIds=${props.getSelectedIds()}`)
-              }
-            >
-              Export
-            </Button>
-          </Item>
-          <Item layout="button">
-            <Button
-              skin="light"
-              priority="primary"
-              prefixIcon={<Duplicate />}
-              onClick={() =>
-                window.alert(
-                  `Duplicating selectedIds=${props.getSelectedIds()}`,
-                )
-              }
-            >
-              Duplicate
-            </Button>
-          </Item>
-          <Item layout="button">
-            <Button
-              skin="light"
-              priority="primary"
-              prefixIcon={<Edit />}
-              onClick={() =>
-                window.alert(`Editing selectedIds=${props.getSelectedIds()}`)
-              }
-            >
-              Edit
-            </Button>
-          </Item>
-          <Divider />
-          <Item>{this.renderSearch(true)}</Item>
-        </ItemGroup>
-      </TableToolbar>
-    );
-  }
-
-  renderSearch(expandable) {
-    return (
-      <Search
-        expandable={expandable}
-        onChange={e => {
-          this.setState({ searchTerm: e.target.value });
-        }}
-        value={this.state.searchTerm}
-      />
-    );
-  }
-
-  renderTable() {
-    const tableData = this.getFilteredData();
-    return (
-      <Table
-        withWrapper
-        dataHook="story-table-example"
-        data={tableData}
-        itemsPerPage={20}
-        columns={[
-          {
-            title: 'Name',
-            render: row => (
-              <Highlighter match={this.state.searchTerm}>
-                {row.name}
-              </Highlighter>
-            ),
-            width: '30%',
-            minWidth: '150px',
-          },
-          {
-            title: 'SKU',
-            render: row => row.SKU,
-            width: '20%',
-            minWidth: '100px',
-          },
-          {
-            title: 'Price',
-            render: row => row.price,
-            width: '20%',
-            minWidth: '100px',
-          },
-          {
-            title: 'Inventory',
-            render: row => row.inventory,
-            width: '20%',
-            minWidth: '100px',
-          },
-        ]}
-        onSelectionChange={selectedIds =>
-          console.log('Table.onSelectionChange(): selectedIds=', selectedIds)
-        }
-        showSelection
-        showLastRowDivider
-      >
-        <Page.Sticky>
-          <Card>
-            <Table.ToolbarContainer>
-              {selectionContext =>
-                selectionContext.selectedCount === 0
-                  ? this.renderMainToolbar()
-                  : this.renderBulkActionsToolbar(selectionContext)
-              }
-            </Table.ToolbarContainer>
-            {tableData.length ? (
-              <Table.Titlebar />
-            ) : (
-              <Table.EmptyState
-                image={<ImagePlaceholder />}
-                subtitle={
-                  this.state.searchTerm ? (
-                    <Text>
-                      There are no search results for{' '}
-                      <Text weight="normal">{`"${
-                        this.state.searchTerm
-                      }"`}</Text>
-                      <br />
-                      Try search by other cryteria
-                    </Text>
-                  ) : (
-                    <Text>
-                      There are no results matching your filters
-                      <br />
-                      Try search by other cryteria
-                    </Text>
-                  )
-                }
-              >
-                <TextButton onClick={() => this.clearSearch()}>
-                  Clear the search
-                </TextButton>
-              </Table.EmptyState>
-            )}
-          </Card>
-        </Page.Sticky>
-        <Card stretchVertically>
-          <Table.Content titleBarVisible={false} />
-        </Card>
-      </Table>
-    );
-  }
-
-  render() {
-    return (
-      <ExamplePageContainer>
-        <Page
-          upgrade
-          backgroundImageUrl="https://static.wixstatic.com/media/f0548921c53940ec803dfb1c203e96fe.jpg/v1/fill/w_400,h_100/f0548921c53940ec803dfb1c203e96fe.jpg"
-        >
-          {header()}
-          {tail}
-          <Page.Content>
-            <Container>
-              <Row>
-                <Card>
-                  <Card.Content>Some Content 1</Card.Content>
-                </Card>
-              </Row>
-              <Row>{this.renderTable()}</Row>
-
-              <Row>
-                <Card>
-                  <Card.Content>Some Content 2</Card.Content>
-                </Card>
-              </Row>
-              <Row>{this.renderTable()}</Row>
-            </Container>
-          </Page.Content>
-        </Page>
-      </ExamplePageContainer>
-    );
-  }
-
-  getFilteredData() {
-    let data = allData;
-    if (this.state.collectionId > 0) {
-      data = data.filter(row => row.collectionId === this.state.collectionId);
-    }
-    if (this.state.filterId > 0) {
-      data = data.filter(row => row.filterId === this.state.filterId);
-    }
-    if (this.state.inStock) {
-      data = data.filter(row => row.inventory === 'In stock');
-    }
-    if (this.state.searchTerm !== '') {
-      data = data.filter(row =>
-        row.name.toUpperCase().includes(this.state.searchTerm.toUpperCase()),
-      );
-    }
-    return data;
-  }
-}
-
-export default ExampleStretchTable;
+export default Example;

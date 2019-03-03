@@ -1,0 +1,32 @@
+:import {
+  -st-from: "wix-ui-core/dist/src/themes/backoffice/colors.st.css";
+  -st-named: R00;
+}
+
+.root {
+  -st-states: empty, size(enum(small, medium, large));
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+  border: 1px solid rgba(87,112,131, 0.3);
+  margin-right: 3px;
+}
+
+.line {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top left,
+           rgba(214,69,61,0) 0%,
+           rgba(214,69,61,0) calc(50% - 0.8px),
+           rgba(214,69,61,1) 50%,
+           rgba(214,69,61,0) calc(50% + 0.8px),
+           rgba(214,69,61,0) 100%)
+}
+
+.root:size(large) {
+  width: 24px;
+  height: 24px;
+}
+
+

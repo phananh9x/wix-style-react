@@ -6,7 +6,7 @@ import {
   tabs,
   tab,
   code as baseCode,
-  description,
+  title,
   importExample,
   api,
   testkit,
@@ -40,37 +40,35 @@ export default {
       ),
     }),
 
-    tabs({
-      tabs: [
-        tab({
-          title: 'Usage',
-          sections: [
-            importExample({
-              source: "import Input from 'wix-style-react/Input';",
-            }),
+    tabs([
+      tab({
+        title: 'Usage',
+        sections: [
+          importExample({
+            source: "import Input from 'wix-style-react/Input';",
+          }),
 
-            divider(),
+          divider(),
 
-            description({ text: '## Examples' }),
+          title('Examples'),
 
-            ...[
-              { title: 'Standard States', source: examples.standard },
-              { title: 'Error', source: examples.error },
-              { title: 'Loader', source: examples.loader },
-              { title: 'Affix', source: examples.affix },
-              { title: 'Icon Affix', source: examples.iconAffix },
-              { title: 'Sizes', source: examples.sizes },
-              { title: 'Rounded', source: examples.rounded },
-            ].map(code),
-          ],
-        }),
+          ...[
+            { title: 'Standard States', source: examples.standard },
+            { title: 'Error', source: examples.error },
+            { title: 'Loader', source: examples.loader },
+            { title: 'Affix', source: examples.affix },
+            { title: 'Icon Affix', source: examples.iconAffix },
+            { title: 'Sizes', source: examples.sizes },
+            { title: 'Rounded', source: examples.rounded },
+          ].map(code),
+        ],
+      }),
 
-        ...[
-          { title: 'API', sections: [api()] },
-          { title: 'TestKit', sections: [testkit()] },
-          { title: 'Playground', sections: [playground()] },
-        ].map(tab),
-      ],
-    }),
+      ...[
+        { title: 'API', sections: [api()] },
+        { title: 'TestKit', sections: [testkit()] },
+        { title: 'Playground', sections: [playground()] },
+      ].map(tab),
+    ]),
   ],
 };
