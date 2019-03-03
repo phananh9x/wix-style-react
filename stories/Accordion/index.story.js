@@ -23,6 +23,7 @@ const exampleData = [
             lauren ipsum lauren ipsum lauren ipsum
           </Text>
         ),
+        buttonType: BUTTON_TYPES.TEXT_BUTTON,
       },
       {
         title: 'Second Item',
@@ -35,12 +36,14 @@ const exampleData = [
             lauren ipsum lauren ipsum lauren ipsum
           </Text>
         ),
+        buttonType: BUTTON_TYPES.TEXT_BUTTON,
       },
       {
         title: 'Third Item',
         expandLabel: 'More',
         collapseLabel: 'Less',
         content: <RichTextArea />,
+        buttonType: BUTTON_TYPES.BUTTON,
       },
     ],
   },
@@ -55,13 +58,11 @@ export default {
 
   componentProps: {
     dataHook: storySettings.dataHook,
-    buttonType: BUTTON_TYPES.TEXT_BUTTON,
     data: exampleData[0].value,
   },
 
   exampleProps: {
     data: exampleData,
-    buttonType: BUTTON_TYPES.TEXT_BUTTON,
   },
 
   examples: (
@@ -74,7 +75,6 @@ export default {
             <Card.Header title="Example Card with Accordion"/>
             <Accordion
               dataHook="story-accordion-live-example"
-              buttonType={BUTTON_TYPES.BUTTON}
               data={
                 [
                   {
@@ -82,6 +82,7 @@ export default {
                     icon: <InfoCircle />,
                     expandLabel: 'More',
                     collapseLabel: 'Less',
+                    buttonType: 'Button',
                     content: (
                       <Text>
                         lauren ipsum lauren ipsum lauren ipsum lauren ipsum lauren ipsum

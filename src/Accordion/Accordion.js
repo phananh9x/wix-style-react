@@ -10,9 +10,6 @@ class Accordion extends React.Component {
   static propTypes = {
     dataHook: PropTypes.string,
 
-    /** the type of button */
-    buttonType: PropTypes.oneOf(Object.values(BUTTON_TYPES)),
-
     /** accordion data nodes */
     data: PropTypes.arrayOf(
       PropTypes.shape({
@@ -21,6 +18,7 @@ class Accordion extends React.Component {
         content: PropTypes.node,
         expandLabel: PropTypes.node,
         collapseLabel: PropTypes.node,
+        buttonType: PropTypes.oneOf(Object.values(BUTTON_TYPES)),
       }),
     ),
   };
@@ -43,7 +41,7 @@ class Accordion extends React.Component {
 
   render() {
     const { openId } = this.state;
-    const { dataHook, buttonType, data } = this.props;
+    const { dataHook, data } = this.props;
 
     return (
       <div className={styles.root} data-hook={dataHook}>
@@ -52,7 +50,6 @@ class Accordion extends React.Component {
             <div className={styles.rowWrapper} key={index}>
               <AccordionItem
                 dataHook="accordion-item"
-                buttonType={buttonType}
                 id={index}
                 toggleOpenClose={this._toggle}
                 toggleOpen={this._toggleRow}
