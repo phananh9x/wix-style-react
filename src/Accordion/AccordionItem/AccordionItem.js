@@ -75,12 +75,11 @@ class AccordionItem extends React.PureComponent {
               )}
               {title && (
                 <div data-hook="title-container" className={headerTextStyle}>
-                  {typeof title === 'string' && (
+                  {typeof title === 'string' || typeof title === 'number' ? (
                     <Text data-hook="title" ellipsis weight="normal">
                       {title}
                     </Text>
-                  )}
-                  {typeof title === 'object' && title}
+                  ) : title }
                 </div>
               )}
             </div>
