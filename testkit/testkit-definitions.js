@@ -195,7 +195,7 @@ module.exports = {
   NoBorderInput: {},
 
   Accordion: {
-   unidriver: true,
+    unidriver: true,
   },
 
   ColorInput: {
