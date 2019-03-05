@@ -1,0 +1,82 @@
+@import '../common.scss';
+@import '../Input/InputMixins.scss';
+@import '../typography-helpers.scss';
+
+$statusColor: $D40;
+
+.activationIndicator {
+  bottom: 0;
+  margin-left: 6px;
+  margin-right: 2px;
+  padding-right: 2px;
+  max-width: 100%;
+  background: transparent;
+  border-bottom: 1px dashed $D40;
+  color: transparent;
+  white-space: pre;
+  display: flex;
+  flex-grow: 0;
+  transition: all 0.3s ease;
+  overflow-y: hidden;
+}
+
+.activationIndicatorHasFocus {
+  @extend .activationIndicator;
+  border-bottom: 1px solid $B10;
+  flex-grow: 1;
+}
+
+.root {
+  position: relative;
+  display: flex;
+  flex-grow: 0;
+  @include BoxSizing();
+  @include Heading($tagName: h1);
+  @include Size($height: 48px, $fontSize: 36px);
+
+  .nbinput, input, .label + div {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .nbinput, input {
+    height: 48px;
+    @include Heading($tagName: h1);
+    @include Placeholder($D55);
+  }
+
+  &:hover {
+    .activationIndicator, .input:hover ~ .activationIndicatorActive, .input.hasHover ~ .activationIndicatorActive {
+      border-bottom: 1px solid $B10;
+    }
+  }
+
+  .placeholder h1 {
+    color: $D55;
+  }
+}
+
+.headerIsRenaming {
+  @extend .heading;
+  visibility: hidden;
+}
+
+.heading {
+  max-width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 3;
+  padding-right: 6px;
+  left: 6px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.hiddenInput {
+  visibility: hidden;
+}
+
+.renamingInput {
+  visibility: inherit;
+}

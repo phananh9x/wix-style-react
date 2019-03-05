@@ -503,12 +503,12 @@ $material-gap: 8px;
   border-radius: 12px;
 }
 
+//needs display:block to fix inputs with prefix in ie11
+//https://github.com/wix/wix-style-react/issues/1691
 .unit {
   padding: 0 $gap;
   color: $paletteD3;
   @include FontRoman();
-  //needs display:block to fix inputs with prefix in ie11
-  //https://github.com/wix/wix-style-react/issues/1691
   display: block;
 }
 

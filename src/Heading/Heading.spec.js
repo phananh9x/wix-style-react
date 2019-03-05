@@ -1,12 +1,12 @@
 import React from 'react';
 import headingDriverFactory from './Heading.driver';
+import { headingUniDriverFactory } from './Heading.uni.driver';
 import Heading from './Heading';
 import {
   createRendererWithDriver,
   createRendererWithUniDriver,
   cleanup,
 } from '../../test/utils/react';
-import { headingUniDriverFactory } from './Heading.uni.driver';
 
 describe('Heading', () => {
   afterEach(() => cleanup());

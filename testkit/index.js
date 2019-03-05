@@ -116,6 +116,7 @@ export const dropdownLayoutTestkitFactory = testkitFactoryCreator(
 export const editableSelectorTestkitFactory = testkitFactoryCreator(
   load(require('../src/EditableSelector/EditableSelector.driver'))
 );
+export const editableTitleTestkitFactory = uniTestkitFactoryCreator(load(require('../src/EditableTitle/EditableTitle.uni.driver')));
 export const emptyStateTestkitFactory = testkitFactoryCreator(
   load(require('../src/EmptyState/EmptyState.driver'))
 );

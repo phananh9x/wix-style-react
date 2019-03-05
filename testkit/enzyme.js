@@ -116,6 +116,7 @@ export const dropdownLayoutTestkitFactory = enzymeTestkitFactoryCreator(
 export const editableSelectorTestkitFactory = enzymeTestkitFactoryCreator(
   load(require('../src/EditableSelector/EditableSelector.driver'))
 );
+export const editableTitleTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/EditableTitle/EditableTitle.uni.driver')));
 export const emptyStateTestkitFactory = enzymeTestkitFactoryCreator(
   load(require('../src/EmptyState/EmptyState.driver'))
 );
