@@ -1,5 +1,5 @@
 export const skins = `
-<Layout cols={4} gap={0}>
+<Layout cols={4} gap={0} justifyItems="center">
   <TextButton >standard</TextButton>
   <Box backgroundColor="D10">
     <TextButton skin="light">light</TextButton>
@@ -11,7 +11,7 @@ export const skins = `
 </Layout>`;
 
 export const underline = `
-<Layout cols={4} gap={0}>
+<Layout cols={3} gap={0} justifyItems="center">
   <TextButton>none</TextButton>
   <TextButton underline="onHover">on hover</TextButton>
   <TextButton underline="always">always</TextButton>
@@ -19,14 +19,14 @@ export const underline = `
 `;
 
 export const affixes = `
-<Layout cols={4} gap={0}>
+<Layout cols={2} gap={0} justifyItems="center">
   <TextButton prefixIcon={<ChevronDown />}>prefix</TextButton>
   <TextButton suffixIcon={<ChevronDown />}>suffix</TextButton>
 </Layout>
 `;
 
 export const size = `
-<Layout cols={4} gap={0}>
+<Layout cols={2} gap={0} justifyItems="center" alignItems="center">
   <TextButton size="small">
     small
   </TextButton>
@@ -36,7 +36,7 @@ export const size = `
 </Layout>`;
 
 export const custom = `
-<Layout cols={4} gap={0}>
+<Layout cols={2} gap={0} justifyItems="center">
   <TextButton as="a">
       HTML a
   </TextButton>
