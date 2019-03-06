@@ -9,6 +9,7 @@ import {
   importExample,
   columns,
   header,
+  title,
   code as baseLiveCode,
 } from 'wix-storybook-utils/Sections';
 
@@ -33,10 +34,8 @@ const liveCode = config =>
     ...config,
   });
 
-const example = ({ title, text, source }) =>
-  columns({
-    items: [description({ title, text }), liveCode({ source })],
-  });
+const example = ({ source, ...rest }) =>
+  columns([description({ ...rest }), liveCode({ source })]);
 
 export default {
   category: storySettings.kind,
@@ -88,14 +87,7 @@ export default {
 
             divider(),
 
-            columns({
-              items: [
-                description({
-                  text: '### Examples',
-                }),
-                description(),
-              ],
-            }),
+            columns([title('Examples')]),
 
             ...[
               {
