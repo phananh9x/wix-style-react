@@ -76,9 +76,11 @@ export default {
         tab({
           title: 'Description',
           sections: [
-            description({
-              text: `Text Button works as neutral button for some command, like "add item", "filter", etc.`,
-            }),
+            columns([
+              description({
+                text: ` Text buttons have a low level of emphasis and are typically used for less important actions. Because text buttons don’t have a container, they don’t distract from nearby content.`,
+              }),
+            ]),
 
             importExample({
               source: "import TexButton from 'wix-style-react/TextButton';",
