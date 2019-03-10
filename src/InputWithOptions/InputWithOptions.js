@@ -167,9 +167,9 @@ class InputWithOptions extends WixComponent {
   }
 
   render() {
-    const { dropDirectionUp } = this.props;
+    const { dropDirectionUp, dataHook } = this.props;
     return (
-      <div>
+      <div data-hook={dataHook} >
         {dropDirectionUp ? this._renderDropdownLayout() : null}
         <div data-input-parent className={this.inputClasses()}>
           {this.renderInput()}
@@ -237,8 +237,6 @@ class InputWithOptions extends WixComponent {
     if (this.state.isComposing) {
       return;
     }
-
-    event.preventDefault();
 
     inputValue = inputValue.trim();
     if (this.closeOnSelect()) {
