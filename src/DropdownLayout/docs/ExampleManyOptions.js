@@ -55,6 +55,9 @@ export default () => (
         visible
         options={options}
         fixedFooter={<div style={nodeStyle}>I am a footer</div>}
+        dataHook={'many-options-dropdown-layout'}
+        closeOnSelect={false}
+        onSelect={x => console.log('selected - ', x)}
       />
     </div>
   </div>

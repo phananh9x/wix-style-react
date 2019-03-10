@@ -166,6 +166,7 @@ require('../src/SegmentedToggle/docs/testStory'); // 4.5 SegmentedToggle
 require('../src/FloatingNotification/docs/FloatingNotificationTestStory'); // 8.2 FloatingNotification
 require('../src/FormField/docs/testStory');
 require('../src/RichTextArea/docs/testStory');
+require('../src/DropdownLayout/docs/testStory');
 require('../src/ColorInput/docs/testStory');
 
 // The generated test component
