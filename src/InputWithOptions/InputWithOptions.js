@@ -160,6 +160,7 @@ class InputWithOptions extends WixComponent {
           onClose={this.hideOptions}
           onSelect={this._onSelect}
           isComposing={this.state.isComposing}
+          tabIndex={-1}
         />
       </div>
     );
@@ -232,10 +233,12 @@ class InputWithOptions extends WixComponent {
     return this.getManualSubmitKeys().includes(key);
   }
 
-  _onManuallyInput(inputValue = '') {
+  _onManuallyInput(inputValue = '', event) {
     if (this.state.isComposing) {
       return;
     }
+
+    event.preventDefault();
 
     inputValue = inputValue.trim();
     if (this.closeOnSelect()) {
@@ -315,6 +318,7 @@ class InputWithOptions extends WixComponent {
     if (this.props.onBlur) {
       this.props.onBlur(e);
     }
+    this.hideOptions();
   }
 
   _onKeyDown(event) {
@@ -343,7 +347,7 @@ class InputWithOptions extends WixComponent {
 
       // For editing mode, we want to *submit* only for specific keys.
       if (this.shouldPerformManualSubmit(key)) {
-        this._onManuallyInput(this.state.inputValue);
+        this._onManuallyInput(this.state.inputValue, event);
       }
     }
   }
