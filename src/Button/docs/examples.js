@@ -51,6 +51,6 @@ export const loading = `
 export const custom = `
 <Layout cols={3} gap="10px">
   <Button as="a">HTML a</Button>
-  <Button skin="premium" as={Link}>React Router</Button>
+  <Button skin="premium" as={Link} to="/wix">React Router</Button>
 </Layout>
 `;

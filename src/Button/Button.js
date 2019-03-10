@@ -11,7 +11,6 @@ import {
   object,
   bool,
   func,
-  symbol,
 } from 'prop-types';
 
 class Button extends Component {
