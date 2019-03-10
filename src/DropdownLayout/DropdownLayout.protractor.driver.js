@@ -1,3 +1,5 @@
+import { isFocused } from 'wix-ui-test-utils/protractor';
+
 const driverFactory = component => {
   const getDropdown = () =>
     component.$(`[data-hook="dropdown-layout-options"]`);
@@ -11,6 +13,7 @@ const driverFactory = component => {
   };
 
   return {
+    isFocused: () => isFocused(component),
     getDropdown,
     getDropdownItemElement,
     element: () => component,
@@ -24,6 +27,10 @@ const driverFactory = component => {
         .count(),
     selectItemById: itemId =>
       component.$(`[data-hook^="dropdown-item-${itemId}"]`).click(),
+    hoverItemById: itemId => {
+      const item = component.$(`[data-hook^="dropdown-item-${itemId}"]`);
+      return browser.actions().mouseMove(item).perform();
+    },
   };
 };
 
