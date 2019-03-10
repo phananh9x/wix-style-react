@@ -103,7 +103,7 @@ describe('DropdownLayout', () => {
         .sendKeys(protractor.Key.TAB)
         .perform();
 
-    eyes.fit(
+    eyes.it(
       'should move out focus of dropdown only after 2 tab press when selecting an item',
       async () => {
         const firstElement = $(`[data-hook="input-for-initial-focus"]`);
