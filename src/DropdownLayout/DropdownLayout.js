@@ -174,8 +174,10 @@ class DropdownLayout extends WixComponent {
         if (this.props.closeOnSelect) {
           return this._onSelect(this.state.hovered);
         } else {
-          event.preventDefault();
-          if (!this._onSelect(this.state.hovered)) {
+          if (this._onSelect(this.state.hovered)) {
+            event.preventDefault();
+            return true;
+          } else {
             return false;
           }
         }
@@ -192,7 +194,6 @@ class DropdownLayout extends WixComponent {
       }
     }
 
-    event.preventDefault();
     event.stopPropagation();
     return true;
   }
