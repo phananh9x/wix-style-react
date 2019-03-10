@@ -7,6 +7,7 @@ import { RTLWrapper } from '../../../stories/utils/RTLWrapper';
 import MultiSelect from '..';
 
 import ExampleReorderable from './ExampleReorderable';
+import ExampleSelectAutocomplete from './ExampleSelectAutocomplete';
 
 const kind = getTestStoryKind({
   category: storySettings.category,
@@ -39,4 +40,12 @@ MultiSelectTests.add('2. Reorderable', () => (
   <RTLWrapper>
     <ExampleReorderable />
   </RTLWrapper>
+));
+
+MultiSelectTests.add('3. E2E', () => (
+  <div>
+    <input data-hook="input-for-focus-1"/>
+    <ExampleSelectAutocomplete/>
+    <input data-hook="input-for-focus-2"/>
+  </div>
 ));
