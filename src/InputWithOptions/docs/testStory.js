@@ -23,16 +23,16 @@ const TestContainer = ({ children }) => (
       height: '100%',
       backgroundColor: '#f0f4f7',
     }}
-    data-hook="input-with-options-test-story"
+
   >
     {children}
   </div>
 );
 
-storiesOf(kind, module).add(testStories.basic, () => (
+storiesOf(kind, module).add(testStories.e2e, () => (
   <TestContainer>
-    <input/>
+    <input data-hook="input-for-focus-1"/>
     <Example/>
-    <input/>
+    <input data-hook="input-for-focus-2"/>
   </TestContainer>
 ));

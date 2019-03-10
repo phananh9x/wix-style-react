@@ -7,5 +7,5 @@ export const storySettings = {
 };
 
 export const testStories = {
-  basic: 'E2E'
+  e2e: 'e2e'
 };

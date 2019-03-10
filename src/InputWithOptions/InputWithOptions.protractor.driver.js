@@ -15,6 +15,7 @@ const driverFactory = component => {
     element: () => component,
     /** Check wether the options dropdown is open */
     isOptionsShown: () => dropdownLayoutDriver.getDropdown().isDisplayed(),
+    enterText: text => input.clear().sendKeys(text),
   };
 };
 

@@ -153,6 +153,12 @@ export const popoverMenuTestkitFactory = protractorTestkitFactoryCreator(
   popoverMenuDriverFactory,
 );
 
+import inputWithOptionsDriverFactory from '../src/InputWithOptions/InputWithOptions.protractor.driver';
+
+export const inputWithOptionsTestkitFactory = protractorTestkitFactoryCreator(
+  inputWithOptionsDriverFactory,
+);
+
 import multiSelectDriverFactory from '../src/MultiSelect/MultiSelect.protractor.driver';
 
 export const multiSelectTestkitFactory = protractorTestkitFactoryCreator(
