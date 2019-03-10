@@ -7,7 +7,7 @@ import { storySettings, testStories } from './storySettings';
 
 import IconButton from '..';
 import { Layout, Cell } from '../../Layout';
-import AddChannel from 'wix-style-react/new-icons/AddChannel';
+import AddChannel from '../../new-icons/AddChannel';
 
 const kind = getTestStoryKind(storySettings);
 const dataHook = 'story-button-test';

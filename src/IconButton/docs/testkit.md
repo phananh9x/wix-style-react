@@ -4,12 +4,12 @@
 
 ## IconButton TestKit API
 
-| method           | arguments | returned value | description                        |
-| ---------------- | --------- | -------------- | ---------------------------------- |
-| exists           | -         | boolean        | returns true if element in the DOM |
-| element          | -         | element        | returns the component element      |
-| click            | -         | -              | clicks on the button               |
-| isButtonDisabled | -         | boolean        | returns true if button is disabled |
+| method           | arguments | returned value     | description                        |
+| ---------------- | --------- | ------------------ | ---------------------------------- |
+| exists           | -         | `Promise<boolean>` | returns true if element in the DOM |
+| element          | -         | `Promise<element>` | returns the component element      |
+| click            | -         | `Promise<void>`    | clicks on the button               |
+| isButtonDisabled | -         | `Promise<boolean>` | returns true if button is disabled |
 
 ## ReactTestUtils Example
 

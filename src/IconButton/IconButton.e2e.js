@@ -1,28 +1,12 @@
 import { eyesItInstance } from '../../test/utils/eyes-it';
-import {
-  createStoryUrl,
-  createTestStoryUrl,
-} from '../../test/utils/storybook-helpers';
+import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
 import { storySettings, testStories } from './docs/storySettings';
 
 describe('IconButton', () => {
-  const storyUrl = createStoryUrl({
-    kind: storySettings.kind,
-    story: storySettings.storyName,
-  });
-
-  beforeAll(async () => {
-    await browser.get(storyUrl);
-  });
-
   const testStoryUrl = testName =>
     createTestStoryUrl({ ...storySettings, testName });
 
   const eyes = eyesItInstance();
-
-  eyes.it('Make a screenshoft of all IconButton examples', () => {
-    expect(true).toBeTruthy();
-  });
 
   describe('test stories', () => {
     const checkTestStory = async testName => {

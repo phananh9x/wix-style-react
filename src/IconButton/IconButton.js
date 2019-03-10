@@ -2,16 +2,7 @@ import React, { Component } from 'react';
 import { ButtonNext } from 'wix-ui-core/button-next';
 import cx from 'classnames';
 import { iconButton } from 'wix-ui-core/themes/backoffice';
-import {
-  oneOfType,
-  string,
-  node,
-  oneOf,
-  object,
-  bool,
-  func,
-  symbol,
-} from 'prop-types';
+import { oneOfType, string, node, oneOf, object, bool, func } from 'prop-types';
 
 class IconButton extends Component {
   static displayName = 'IconButton';
