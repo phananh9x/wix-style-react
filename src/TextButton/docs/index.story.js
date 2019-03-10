@@ -14,7 +14,7 @@ import {
 } from 'wix-storybook-utils/Sections';
 
 import TextButton from '..';
-import { Layout } from 'wix-style-react/Layout';
+import { Layout } from '../../Layout';
 import { storySettings } from './storySettings';
 import icons from '../../../stories/utils/icons-for-story';
 import { baseScope } from '../../../stories/utils/LiveCodeExample';
