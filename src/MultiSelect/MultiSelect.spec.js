@@ -501,12 +501,12 @@ describe('MultiSelect', () => {
     });
 
     describe('Keep Options Open', () => {
-      it('should not lose Focus or close the options when options selected by mouse click', () => {
+      it('should not lose Focus but should close the options when options selected by mouse click', () => {
         const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
           <MultiSelect options={options} />,
         );
         driver.selectOptionById(FIRST_OPTION_ID);
-        expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+        expect(dropdownLayoutDriver.isShown()).toBeFalsy();
         expect(inputDriver.isFocus());
       });
 
