@@ -17,7 +17,7 @@ async function waitForFetching() {
 
 describe('DropdownLayout', () => {
   // TODO: divided tests to 2 parts - need to migrate Part A to use stroybook tests sections
-  describe('Part A', () => {
+  describe('General', () => {
     let driver;
 
     const storyUrl = createStoryUrl({
@@ -67,7 +67,7 @@ describe('DropdownLayout', () => {
     });
   });
 
-  describe('Part B', () => {
+  describe('Focus behaviour', () => {
     let driver;
 
     const navigateToTestUrl = async testName => {
@@ -80,15 +80,11 @@ describe('DropdownLayout', () => {
       await browser.get(testStoryUrl);
     };
 
-    beforeAll(async () => {
-      beforeEach(async () => {
-        await navigateToTestUrl(testStories.basic);
-      });
-    });
-
     beforeEach(async () => {
+      await navigateToTestUrl(testStories.tabsSwitches);
+
       driver = dropdownLayoutTestkitFactory({
-        dataHook: 'many-options-dropdown-layout',
+        dataHook: storySettings.dataHook,
       });
 
       await waitForVisibilityOf(
@@ -103,41 +99,32 @@ describe('DropdownLayout', () => {
         .sendKeys(protractor.Key.TAB)
         .perform();
 
-    eyes.it(
-      'should move out focus of dropdown only after 2 tab press when selecting an item',
-      async () => {
-        const firstElement = $(`[data-hook="input-for-initial-focus"]`);
-        pressTab();
-        expect(await isFocused(firstElement)).toEqual(true);
+    it('should move out focus of dropdown only after 2 tab press when selecting an item', async () => {
+      const firstElement = $(`[data-hook="input-for-initial-focus"]`);
+      pressTab();
+      expect(await isFocused(firstElement)).toEqual(true);
 
-        pressTab();
-        expect(await driver.isFocused()).toEqual(true);
+      pressTab();
+      expect(await driver.isFocused()).toEqual(true);
 
-        await driver.hoverItemById(0);
-        pressTab();
-        expect(await driver.isFocused(driver.element())).toEqual(true);
+      await driver.hoverItemById(0);
+      pressTab();
+      expect(await driver.isFocused()).toEqual(true);
 
-        pressTab();
-        expect(await driver.isFocused(driver.element())).toEqual(false);
-      },
-    );
+      pressTab();
+      expect(await driver.isFocused()).toEqual(false);
+    });
 
-    eyes.it(
-      'should move out focus of dropdown when pressing tab without any selection',
-      async () => {
-        const firstElement = await driver.getElementByDataHook(
-          'input-for-initial-focus',
-        );
-        pressTab();
-        expect(await driver.isFocused(firstElement)).toEqual(true);
-        pressTab();
-        const real = await driver.getElementByDataHook(
-          'many-options-dropdown-layout',
-        );
-        expect(await driver.isFocused(real)).toEqual(true);
-        pressTab();
-        expect(await driver.isFocused(real)).toEqual(false);
-      },
-    );
+    it('should move out focus of dropdown when pressing tab without any selection', async () => {
+      const firstElement = await $(`[data-hook="input-for-initial-focus"]`);
+      pressTab();
+      expect(await isFocused(firstElement)).toEqual(true);
+
+      pressTab();
+      expect(await driver.isFocused()).toEqual(true);
+
+      pressTab();
+      expect(await driver.isFocused()).toEqual(false);
+    });
   });
 });
