@@ -158,7 +158,6 @@ describe('MultiSelect', () => {
 
       await driver.click();
       await driver.hoverItemById('AL');
-      await browser.sleep(2000);
       pressTab();
       expect(await driver.isFocused()).toEqual(true);
 
