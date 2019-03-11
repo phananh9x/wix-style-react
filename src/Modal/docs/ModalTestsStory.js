@@ -1,10 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { getTestStoryKind } from '../storiesHierarchy';
+import { getTestStoryKind } from '../../../stories/storiesHierarchy';
 import { storySettings } from './storySettings';
-import Modal from '../../src/Modal/Modal';
-import { MessageBoxFunctionalLayout } from '../../src/MessageBox';
-import Button from '../../src/Button/Button';
+import Modal from '../Modal';
+import { MessageBoxFunctionalLayout } from '../../MessageBox/index';
+import Button from '../../Button/Button';
 
 const kind = getTestStoryKind(storySettings);
 

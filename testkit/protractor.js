@@ -209,7 +209,9 @@ export const loaderTestkitFactory = protractorTestkitFactoryCreator(
 
 import { modalDriverFactory } from '../src/Modal/Modal.uni.driver';
 
-export const modalTestkitFactory = protractorUniTestkitFactoryCreator(modalDriverFactory);
+export const modalTestkitFactory = protractorUniTestkitFactoryCreator(
+  modalDriverFactory,
+);
 
 import modalSelectorLayoutDriverFactory from '../src/ModalSelectorLayout/ModalSelectorLayout.protractor.driver';
 

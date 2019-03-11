@@ -154,6 +154,7 @@ require('../src/Calendar/docs/CalendarTestStory'); // Tests/3. Inputs/3.13 Calen
 require('../src/MultiSelect/docs/MultiSelectTestStory'); // Tests/3. Inputs/3.8 Tags
 require('../src/PopoverMenu/docs/PopoverMenuRegressionTest.js'); // Tests/7.3. Popover Menu/
 require('../src/Popover/docs/testStory');
+require('../src/Modal/docs/ModalTestsStory'); //Tests/9. Modal
 require('../src/TableToolbar/docs/ToolbarTestStory'); // Tests/10. Table
 require('../src/Tag/docs/TagTestStory'); // Tests/12. Other/12.5 Tag
 require('../src/Avatar/docs/AvatarTestStory'); // Tests/12. Other/12.6 Avatar
