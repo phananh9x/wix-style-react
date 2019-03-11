@@ -36,35 +36,28 @@ describe('InputWithOptions', () => {
       .sendKeys(protractor.Key.TAB)
       .perform();
 
-  it('should move out focus of input if nothing is pressed / selected', async () => {
+  async function focusOnInputWithOptions() {
     const firstElement = $(`[data-hook="input-for-focus-1"]`);
-    const thirdElement = $(`[data-hook="input-for-focus-2"]`);
 
     pressTab();
     expect(await isFocused(firstElement)).toEqual(true);
 
     pressTab();
-    expect(await isFocused(firstElement)).toEqual(false);
-    expect(await isFocused(thirdElement)).toEqual(false);
+    expect(await driver.isFocused()).toEqual(true);
+  }
+
+  it('should move out focus of input if nothing is pressed / selected', async () => {
+    await focusOnInputWithOptions();
 
     pressTab();
-    expect(await isFocused(thirdElement)).toEqual(true);
+    expect(await driver.isFocused()).toEqual(false);
   });
 
   it('should move out focus of input when have manual text option', async () => {
-    const firstElement = $(`[data-hook="input-for-focus-1"]`);
-    const thirdElement = $(`[data-hook="input-for-focus-2"]`);
-
-    pressTab();
-    expect(await isFocused(firstElement)).toEqual(true);
-
-    pressTab();
-    expect(await isFocused(firstElement)).toEqual(false);
-    expect(await driver.isFocused()).toEqual(true);
+    await focusOnInputWithOptions();
 
     await driver.enterText('some option');
     pressTab();
     expect(await driver.isFocused()).toEqual(false);
-    expect(await isFocused(thirdElement)).toEqual(true);
   });
 });

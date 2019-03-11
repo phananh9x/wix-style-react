@@ -148,13 +148,17 @@ describe('MultiSelect', () => {
         .sendKeys(protractor.Key.TAB)
         .perform();
 
-    it('should move out focus of dropdown only after 2 tab press when selecting an item', async () => {
+    async function focusOnMultiSelect() {
       const firstElement = $(`[data-hook="input-for-focus-1"]`);
       pressTab();
       expect(await isFocused(firstElement)).toEqual(true);
 
       pressTab();
       expect(await driver.isFocused()).toEqual(true);
+    }
+
+    it('should move out focus of multiselect only after 2 tab press when selecting an item', async () => {
+      await focusOnMultiSelect();
 
       await driver.click();
       await driver.hoverItemById('AL');
@@ -165,13 +169,8 @@ describe('MultiSelect', () => {
       expect(await driver.isFocused()).toEqual(false);
     });
 
-    it('should move out focus of dropdown when pressing tab without any selection', async () => {
-      const firstElement = $(`[data-hook="input-for-focus-1"]`);
-      pressTab();
-      expect(await isFocused(firstElement)).toEqual(true);
-
-      pressTab();
-      expect(await driver.isFocused()).toEqual(true);
+    it('should move out focus of multiselect when pressing tab without any selection', async () => {
+      await focusOnMultiSelect();
 
       pressTab();
       expect(await driver.isFocused()).toEqual(false);

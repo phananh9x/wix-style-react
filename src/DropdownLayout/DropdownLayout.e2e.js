@@ -99,13 +99,17 @@ describe('DropdownLayout', () => {
         .sendKeys(protractor.Key.TAB)
         .perform();
 
-    it('should move out focus of dropdown only after 2 tab press when selecting an item', async () => {
+    async function focusOnDropdownLayout() {
       const firstElement = $(`[data-hook="input-for-initial-focus"]`);
       pressTab();
       expect(await isFocused(firstElement)).toEqual(true);
 
       pressTab();
       expect(await driver.isFocused()).toEqual(true);
+    }
+
+    it('should move out focus of dropdown only after 2 tab press when selecting an item', async () => {
+      await focusOnDropdownLayout();
 
       await driver.hoverItemById(0);
       pressTab();
@@ -116,12 +120,7 @@ describe('DropdownLayout', () => {
     });
 
     it('should move out focus of dropdown when pressing tab without any selection', async () => {
-      const firstElement = await $(`[data-hook="input-for-initial-focus"]`);
-      pressTab();
-      expect(await isFocused(firstElement)).toEqual(true);
-
-      pressTab();
-      expect(await driver.isFocused()).toEqual(true);
+      await focusOnDropdownLayout();
 
       pressTab();
       expect(await driver.isFocused()).toEqual(false);
