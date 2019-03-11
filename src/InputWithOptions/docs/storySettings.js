@@ -3,9 +3,9 @@ import { Category } from '../../../stories/storiesHierarchy';
 export const storySettings = {
   storyName: 'InputWithOptions',
   indexCategory: Category.SELECTION,
-  dataHook: 'story-input-with-options',
+  dataHook: 'input-with-options-tabs-switches-test',
 };
 
 export const testStories = {
-  e2e: 'e2e'
+  tabsSwitches: 'Tabs switches'
 };

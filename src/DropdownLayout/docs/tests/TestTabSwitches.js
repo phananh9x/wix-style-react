@@ -1,6 +1,9 @@
 import React from 'react';
 import DropdownLayout from 'wix-style-react/DropdownLayout';
 
+import {storySettings} from "../storySettings";
+
+
 const style = {
   display: 'inline-block',
   padding: '0 5px',
@@ -55,6 +58,9 @@ export default () => (
         visible
         options={options}
         fixedFooter={<div style={nodeStyle}>I am a footer</div>}
+        dataHook={storySettings.dataHook}
+        closeOnSelect={false}
+        onSelect={x => console.log('selected - ', x)}
       />
     </div>
   </div>

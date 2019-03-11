@@ -5,3 +5,8 @@ export const storySettings = {
   storyName: '3.8 Tags',
   dataHook: 'storybook-multi-select',
 };
+
+export const testStories = {
+  tabsSwitches: 'Tabs switches'
+};
+

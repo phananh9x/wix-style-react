@@ -1,22 +1,14 @@
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
-import { eyesItInstance } from '../../test/utils/eyes-it';
-import { multiSelectTestkitFactory } from '../../testkit/protractor';
-import { $, browser } from 'protractor';
-import {
-  waitForVisibilityOf,
-  mouseEnter,
-  isFocused,
-} from 'wix-ui-test-utils/protractor';
-import {
-  createStoryUrl,
-  createTestStoryUrl,
-} from '../../test/utils/storybook-helpers';
-import eyes from 'eyes.it';
-import { storySettings } from './docs/storySettings';
+import {eyesItInstance} from '../../test/utils/eyes-it';
+import {multiSelectTestkitFactory} from '../../testkit/protractor';
+import {$, browser} from 'protractor';
+import {isFocused, mouseEnter, waitForVisibilityOf,} from 'wix-ui-test-utils/protractor';
+import {createStoryUrl, createTestStoryUrl,} from '../../test/utils/storybook-helpers';
+import {storySettings, testStories} from './docs/storySettings';
 
 describe('MultiSelect', () => {
   // TODO: divided tests to 2 parts - need to migrate Part A to use stroybook tests sections
-  describe('Part A', () => {
+  describe('General', () => {
     describe('AutoExample', () => {
       const eyes = eyesItInstance({});
 
@@ -128,25 +120,25 @@ describe('MultiSelect', () => {
     });
   });
 
-  describe('Part B', () => {
+  describe('Focus behaviour', () => {
     let driver;
 
     const storyUrl = createTestStoryUrl({
-      category: '3. Inputs',
-      storyName: '3.8 Tags',
-      testName: '3. E2E',
+      category: storySettings.category,
+      storyName: storySettings.storyName,
+      testName: testStories.tabsSwitches,
     });
 
     beforeEach(async () => {
       browser.get(storyUrl);
 
       driver = multiSelectTestkitFactory({
-        dataHook: 'multi-select-only',
+        dataHook: 'multiselect-tabs-switches-test',
       });
 
       await waitForVisibilityOf(
         driver.element(),
-        'Cant find multi-select-only',
+        'Cant find muiltiselect-tabs-switches-test',
       );
     });
 
@@ -156,7 +148,7 @@ describe('MultiSelect', () => {
         .sendKeys(protractor.Key.TAB)
         .perform();
 
-    eyes.it('should move out focus of dropdown only after 2 tab press when selecting an item', async () => {
+    it('should move out focus of dropdown only after 2 tab press when selecting an item', async () => {
       const firstElement = $(`[data-hook="input-for-focus-1"]`);
       pressTab();
       expect(await isFocused(firstElement)).toEqual(true);
@@ -174,7 +166,7 @@ describe('MultiSelect', () => {
       expect(await driver.isFocused()).toEqual(false);
     });
 
-    eyes.it('should move out focus of dropdown when pressing tab without any selection', async () => {
+    it('should move out focus of dropdown when pressing tab without any selection', async () => {
       const firstElement = $(`[data-hook="input-for-focus-1"]`);
       pressTab();
       expect(await isFocused(firstElement)).toEqual(true);

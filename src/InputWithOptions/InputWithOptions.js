@@ -169,7 +169,7 @@ class InputWithOptions extends WixComponent {
   render() {
     const { dropDirectionUp, dataHook } = this.props;
     return (
-      <div data-hook={dataHook} >
+      <div>
         {dropDirectionUp ? this._renderDropdownLayout() : null}
         <div data-input-parent className={this.inputClasses()}>
           {this.renderInput()}
@@ -233,7 +233,7 @@ class InputWithOptions extends WixComponent {
     return this.getManualSubmitKeys().includes(key);
   }
 
-  _onManuallyInput(inputValue = '', event) {
+  _onManuallyInput(inputValue = '') {
     if (this.state.isComposing) {
       return;
     }

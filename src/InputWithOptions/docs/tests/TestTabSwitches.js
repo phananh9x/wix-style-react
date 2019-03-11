@@ -2,6 +2,8 @@
 import React from 'react';
 import InputWithOptions from 'wix-style-react/InputWithOptions';
 
+import { storySettings } from '../storySettings';
+
 const style = {
   display: 'inline-block',
   padding: '0 5px 0',
@@ -72,6 +74,7 @@ class ControlledInputWithOptions extends React.Component {
         onSelect={onSelect}
         onManuallyInput={onManuallyInput}
         highlight
+        dataHook={storySettings.dataHook}
       />
     );
   }

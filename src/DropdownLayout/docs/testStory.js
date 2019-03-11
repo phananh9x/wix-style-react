@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-// import RichTextArea from 'wix-style-react/RichTextArea';
-import ExampleManyOptions from './ExampleManyOptions';
+import TestTabSwitches from './tests/TestTabSwitches';
 
 import { getTestStoryKind } from '../../../stories/storiesHierarchy';
 import { storySettings, testStories } from './storySettings';
@@ -23,16 +22,15 @@ const TestContainer = ({ children }) => (
       height: '100%',
       backgroundColor: '#f0f4f7',
     }}
-    data-hook="dropdown-test-story"
   >
     {children}
   </div>
 );
 
-storiesOf(kind, module).add(testStories.basic, () => (
+storiesOf(kind, module).add(testStories.tabsSwitches, () => (
   <TestContainer>
     <input data-hook="input-for-initial-focus" />
-    <ExampleManyOptions />
+    <TestTabSwitches />
     <input style={{ position: 'relative', top: '400px' }} />
   </TestContainer>
 ));

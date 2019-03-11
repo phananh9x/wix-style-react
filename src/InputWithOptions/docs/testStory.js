@@ -5,8 +5,7 @@ import { storiesOf } from '@storybook/react';
 
 import { getTestStoryKind } from '../../../stories/storiesHierarchy';
 import { storySettings, testStories } from './storySettings';
-import Example from "./ExampleControlled";
-
+import TestTabSwitches from './tests/TestTabSwitches';
 
 const kind = getTestStoryKind({
   storyName: storySettings.storyName,
@@ -23,16 +22,15 @@ const TestContainer = ({ children }) => (
       height: '100%',
       backgroundColor: '#f0f4f7',
     }}
-
   >
     {children}
   </div>
 );
 
-storiesOf(kind, module).add(testStories.e2e, () => (
+storiesOf(kind, module).add(testStories.tabsSwitches, () => (
   <TestContainer>
-    <input data-hook="input-for-focus-1"/>
-    <Example/>
-    <input data-hook="input-for-focus-2"/>
+    <input data-hook="input-for-focus-1" />
+    <TestTabSwitches />
+    <input data-hook="input-for-focus-2" />
   </TestContainer>
 ));
