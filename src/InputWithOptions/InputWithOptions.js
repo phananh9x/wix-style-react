@@ -167,7 +167,7 @@ class InputWithOptions extends WixComponent {
   }
 
   render() {
-    const { dropDirectionUp, dataHook } = this.props;
+    const { dropDirectionUp } = this.props;
     return (
       <div>
         {dropDirectionUp ? this._renderDropdownLayout() : null}
