@@ -23,6 +23,8 @@ describe('MultiSelectCheckbox', () => {
 
       driver.clickInput();
       driver.selectItemById('Arkansas');
+
+      driver.clickInput();
       driver.selectItemById('California');
 
       expect(driver.getInput().getAttribute('value')).toBe(
