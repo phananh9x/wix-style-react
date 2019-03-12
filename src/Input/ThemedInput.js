@@ -23,6 +23,7 @@ class ThemedInput extends Input {
       noLeftBorderRadius,
       noRightBorderRadius,
       value,
+      readOnly,
       withSelection,
     } = this.props;
 
@@ -60,6 +61,7 @@ class ThemedInput extends Input {
           styles[`theme-${theme}`],
           styles[`size-${size}${withSelection ? '-with-selection' : ''}`],
           className,
+          { [styles.readOnly]: readOnly },
         )}
         data-hook={dataHook}
       >

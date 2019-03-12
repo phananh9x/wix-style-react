@@ -55,6 +55,12 @@
   &.hasHover:not(.disabled) {
     background-color: $backgroundColor;
   }
+  &:hover.readOnly:not(.disabled) {
+    border: solid 1px #c6e2f7;
+  }
+  &:hover.readOnly.disabled {
+    border: solid 1px $D60;
+  }
 }
 
 @mixin ThemeDisable($borderColor, $backgroundColor, $color) {
