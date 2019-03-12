@@ -45,16 +45,22 @@ describe('Input', () => {
     expect(await driver.getText()).toEqual('hello');
   });
 
-  describe('readOnly' , ()=>{
-    eyes.it('should render input readOnly with the correct background color', async ()=>{
-      const driver = inputTestkitFactory({ dataHook: 'wsr-input-readonly' });
-      const url = createStoryUrl({
-        kind,
-        story: '4. Input with readOnly',
-      });
-      await browser.get(url);
-      await waitForVisibilityOf(driver.element(), 'Cannot find Input component');
-      expect(true).toEqual(true);
-    })
-  })
+  describe('readOnly', () => {
+    eyes.it(
+      'should render input readOnly with the correct background color',
+      async () => {
+        const driver = inputTestkitFactory({ dataHook: 'wsr-input-readonly' });
+        const url = createStoryUrl({
+          kind,
+          story: '4. Input with readOnly',
+        });
+        await browser.get(url);
+        await waitForVisibilityOf(
+          driver.element(),
+          'Cannot find Input component',
+        );
+        expect(true).toEqual(true);
+      },
+    );
+  });
 });

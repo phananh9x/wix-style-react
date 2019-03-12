@@ -72,3 +72,14 @@ storiesOf(kind, module).add('2. Input with prefix group', () => {
 storiesOf(kind, module).add('3. Input', () => (
   <Input dataHook="wsr-input-with-value" value="hello" />
 ));
+
+storiesOf(kind, module).add('4. Input with readOnly' , ()=> (
+  <div>
+    <h1>Input with readOnly</h1>
+    <br />
+    <Input readOnly dataHook='wsr-input-readonly' value='hello' />
+    <h1>Input with readOnly & disabled</h1>
+    <br />
+    <Input readOnly disabled dataHook='wsr-input-readonly' value='hello' />
+  </div>
+));
