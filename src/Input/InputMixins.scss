@@ -56,7 +56,7 @@
     background-color: $backgroundColor;
   }
   &:hover.readOnly:not(.disabled) {
-    border: solid 1px #c6e2f7;
+    border: solid 1px $B30;
   }
   &:hover.readOnly.disabled {
     border: solid 1px $D60;

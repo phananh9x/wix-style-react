@@ -59,7 +59,6 @@ describe('Input', () => {
           driver.element(),
           'Cannot find Input component',
         );
-        expect(true).toEqual(true);
       },
     );
   });

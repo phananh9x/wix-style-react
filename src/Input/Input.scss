@@ -16,9 +16,6 @@ $material-gap: 8px;
   @include BoxSizing();
   @include FontRoman();
   &.readOnly {
-    input{
-      cursor: auto;
-    }
     border: solid 1px $D60;
     background-color: $D70;
     @include ThemeHover($backgroundColor: $B50);
