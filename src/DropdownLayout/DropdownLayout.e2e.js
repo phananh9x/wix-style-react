@@ -101,10 +101,10 @@ describe('DropdownLayout', () => {
 
     async function focusOnDropdownLayout() {
       const firstElement = $(`[data-hook="input-for-initial-focus"]`);
-      pressTab();
+      await pressTab();
       expect(await isFocused(firstElement)).toEqual(true);
 
-      pressTab();
+      await pressTab();
       expect(await driver.isFocused()).toEqual(true);
     }
 
@@ -112,17 +112,17 @@ describe('DropdownLayout', () => {
       await focusOnDropdownLayout();
 
       await driver.hoverItemById(0);
-      pressTab();
+      await pressTab();
       expect(await driver.isFocused()).toEqual(true);
 
-      pressTab();
+      await pressTab();
       expect(await driver.isFocused()).toEqual(false);
     });
 
     it('should move out focus of dropdown when pressing tab without any selection', async () => {
       await focusOnDropdownLayout();
 
-      pressTab();
+      await pressTab();
       expect(await driver.isFocused()).toEqual(false);
     });
   });

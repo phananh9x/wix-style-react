@@ -150,10 +150,10 @@ describe('MultiSelect', () => {
 
     async function focusOnMultiSelect() {
       const firstElement = $(`[data-hook="input-for-focus-1"]`);
-      pressTab();
+      await pressTab();
       expect(await isFocused(firstElement)).toEqual(true);
 
-      pressTab();
+      await pressTab();
       expect(await driver.isFocused()).toEqual(true);
     }
 
@@ -162,17 +162,17 @@ describe('MultiSelect', () => {
 
       await driver.click();
       await driver.hoverItemById('AL');
-      pressTab();
+      await pressTab();
       expect(await driver.isFocused()).toEqual(true);
 
-      pressTab();
+      await pressTab();
       expect(await driver.isFocused()).toEqual(false);
     });
 
     it('should move out focus of multiselect when pressing tab without any selection', async () => {
       await focusOnMultiSelect();
 
-      pressTab();
+      await pressTab();
       expect(await driver.isFocused()).toEqual(false);
     });
   });

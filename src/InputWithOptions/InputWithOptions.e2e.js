@@ -39,17 +39,17 @@ describe('InputWithOptions', () => {
   async function focusOnInputWithOptions() {
     const firstElement = $(`[data-hook="input-for-focus-1"]`);
 
-    pressTab();
+    await pressTab();
     expect(await isFocused(firstElement)).toEqual(true);
 
-    pressTab();
+    await pressTab();
     expect(await driver.isFocused()).toEqual(true);
   }
 
   it('should move out focus of input if nothing is pressed / selected', async () => {
     await focusOnInputWithOptions();
 
-    pressTab();
+    await pressTab();
     expect(await driver.isFocused()).toEqual(false);
   });
 
@@ -57,7 +57,7 @@ describe('InputWithOptions', () => {
     await focusOnInputWithOptions();
 
     await driver.enterText('some option');
-    pressTab();
+    await pressTab();
     expect(await driver.isFocused()).toEqual(false);
   });
 });
