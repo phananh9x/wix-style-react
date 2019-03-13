@@ -152,6 +152,24 @@ describe('InputWithOptions', () => {
         driver.dropdownLayoutDriver.clickAtOption(0);
         expect(driver.dropdownLayoutDriver.isShown()).toBe(false);
       });
+
+      it('should not hide options on option select if closeOnSelect is set to false', () => {
+        const driver = createDriver(
+          <ControlledInputWithOptions
+            value="some value"
+            showOptionsIfEmptyInput={false}
+            options={options}
+            closeOnSelect={false}
+            onSelect={function(option) {
+              this.setState({ value: option.value });
+            }}
+          />,
+        );
+
+        driver.inputDriver.focus();
+        driver.dropdownLayoutDriver.clickAtOption(0);
+        expect(driver.dropdownLayoutDriver.isShown()).toBe(true);
+      });
     });
   });
 

@@ -316,7 +316,10 @@ class InputWithOptions extends WixComponent {
     if (this.props.onBlur) {
       this.props.onBlur(e);
     }
-    this.hideOptions();
+
+    if (this.props.closeOnSelect) {
+      this.hideOptions();
+    }
   }
 
   _onKeyDown(event) {
