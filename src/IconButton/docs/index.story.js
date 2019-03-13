@@ -77,7 +77,7 @@ export default {
           sections: [
             columns([
               description({
-                text: `An IconButton should perform a constructive action such as creating a new item or sharing the item on screen.`,
+                text: `Icon Button is used when action is lower priority than a regular action or there’s no space available to place a button with text.`,
               }),
             ]),
 
@@ -91,24 +91,33 @@ export default {
 
             ...[
               {
-                title: 'Primary Skins',
-                text: 'TextButton supports 3 primary priority styles.',
-                source: examples.primary,
+                title: 'Skin',
+                text:
+                  'Icon Button supports 3 skin styles. `standard` works well on white, `inverted` is great on grey and `light` is perfect on dark backgrounds.',
+                source: examples.skins,
               },
               {
-                title: 'Secondary Skins',
-                text: 'TextButton supports 2 secondary priority styles.',
-                source: examples.secondary,
+                title: 'Priority',
+                text:
+                  'It can be `primary` or `secondary` action. There should be only one primary action per page.',
+                source: examples.priority,
               },
               {
                 title: 'Size',
-                text: 'TextButton supports 2 sizes.',
+                text:
+                  'Its size can be `small` or `medium`. Smaller layout container should contain small buttons.',
                 source: examples.size,
+              },
+              {
+                title: 'Disabled',
+                text:
+                  'It can be `disabled` when needed to indicate that action is available, but cannot be performed at the moment.',
+                source: examples.disabled,
               },
               {
                 title: 'Custom rendering',
                 text:
-                  'This component can appear in different HTML tag names – button, a, span, div.',
+                  'This component can appear in different HTML tag names – `button`, `a`, `span`, `div`.',
                 source: examples.custom,
               },
             ].map(example),
