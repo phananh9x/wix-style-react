@@ -152,3 +152,9 @@ import { colorInputDriverFactory } from '../src/ColorInput/ColorInput.driver';
 export const colorInputTestkitFactory = puppeteerUniTestkitFactoryCreator(
   colorInputDriverFactory,
 );
+
+import { modalDriverFactory } from '../src/Modal/Modal.uni.driver';
+
+export const modalTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  modalDriverFactory
+);
