@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   description,
-  title,
+  title as sectionTitle,
   table,
   importExample,
   columns,
@@ -66,7 +66,7 @@ export default {
       }),
     ]),
 
-    title('Examples'),
+    sectionTitle('Examples'),
 
     ...[
       {

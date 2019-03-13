@@ -1,7 +1,7 @@
 {
   "name": "wix-style-react",
   "description": "wix-style-react",
-  "version": "6.7.3",
+  "version": "6.8.0",
   "main": "./dist/src/index.js",
   "module": "./dist/es/src/index.js",
   "sideEffects": [
@@ -150,7 +150,7 @@
     "yoshi-config": "^4.1.0-alpha.1",
     "yoshi-helpers": "^4.1.0-alpha.1",
     "yoshi-runtime": "^1.0.42",
-    "yoshi-style-dependencies": "^3.16.0"
+    "yoshi-style-dependencies": "^4.1.0-alpha.6"
   },
   "peerDependencies": {
     "react": "^15.0.0",

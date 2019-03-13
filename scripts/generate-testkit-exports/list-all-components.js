@@ -16,7 +16,6 @@ const NON_COMPONENT_FOLDER_NAMES = [
   'Deprecated',
   'Typography',
   'Animations',
-  'NumberInput',
 ];
 
 const matches = haystack => needle => haystack.some(h => needle === h);

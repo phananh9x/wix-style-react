@@ -114,4 +114,5 @@ export { default as SegmentedToggle } from './SegmentedToggle';
 export { default as FloatingNotification } from './FloatingNotification';
 export { default as RichTextInputArea } from './RichTextInputArea';
 export { default as NoBorderInput } from './NoBorderInput';
+export { default as NumberInput } from './NumberInput';
 export { default as ColorInput } from './ColorInput';

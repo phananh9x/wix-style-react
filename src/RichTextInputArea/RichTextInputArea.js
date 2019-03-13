@@ -12,22 +12,11 @@ import draftToHtml from 'draftjs-to-html';
 
 import styles from './RichTextInputArea.scss';
 import RichTextToolbar from './RichTextToolbar';
-import { entityTypes } from './RichTextInputAreaTypes';
-
-const findLinkEntities = (contentBlock, callback, contentState) => {
-  contentBlock.findEntityRanges(character => {
-    const entityKey = character.getEntity();
-
-    return (
-      entityKey !== null &&
-      contentState.getEntity(entityKey).getType() === entityTypes.link
-    );
-  }, callback);
-};
+import EditorUtilities from './EditorUtilities';
 
 const decorator = new CompositeDecorator([
   {
-    strategy: findLinkEntities,
+    strategy: EditorUtilities.findLinkEntities,
     component: ({ contentState, entityKey, children }) => {
       const { url } = contentState.getEntity(entityKey).getData();
 

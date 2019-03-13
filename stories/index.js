@@ -29,6 +29,7 @@ require('./TextInput/index.story'); // 3.1. Text Input
 require('./TextArea/index.story'); // 3.2 Text Area
 require('../src/RichTextArea/docs/index.story.js'); // 3.2b + RichTextArea
 require('./FieldWithSelectionComposite'); // 3.3 Field With Selection
+require('../src/NumberInput/docs/index.story.js'); // 3.4 NumberInput
 require('../src/TimeInput/docs/index.story.js'); // 3.4 TimeInput
 require('../src/DatePicker/docs/index.story.js'); // 3.6 DatePicker
 require('../src/Range/docs'); // 3.7 Range
@@ -121,6 +122,7 @@ require('../src/InputArea/docs/index.story.js');
 require('../src/Layout/docs/index.story.js');
 require('../src/Layout/docs');
 require('./MultiSelect/index.story');
+require('./NumberInput/index.story');
 require('../src/Page/docs/PageExampleStories.js');
 require('../src/Page/docs/index.story.js');
 require('../src/PageHeader/docs/index.story.js');
@@ -142,6 +144,7 @@ require('../src/ContactItemBuilder/docs');
 // Tests
 require('../src/Typography/docs/TypographyTestStories');
 require('../src/Input/docs/InputTestStories');
+require('../src/NumberInput/test/testStory');
 require('../src/TimeInput/docs/testStory');
 require('../src/Page/docs/PageTestStories.js'); // Tests/2. Layout/2.5 + Page/
 require('../src/Page/docs/PageTestStoriesDeprecated.js'); // Tests/2. Layout/2.5 + Page/Deprecated

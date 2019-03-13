@@ -16,12 +16,18 @@ Types of changes:
 
 ## Next
 
+## 6.8.0 - 2019-03-13
+
 ### Added
 
 - `<Calendar/>` - new supported locales Thai, Chinese, and Chech.[#3078](https://github.com/wix/wix-style-react/pull/3078)
 - `<CalendarPanel/>` - new supported locales Thai, Chinese, and Chech.[#3078](https://github.com/wix/wix-style-react/pull/3078)
 - `<DatePicker/>` - new supported locales Thai, Chinese, and Chech.[#3078](https://github.com/wix/wix-style-react/pull/3078)
 - `<Slider/>` - add single track support [#3062](https://github.com/wix/wix-style-react/pull/3062)
+- `<NumberInput />` - add new NumberInput component [#3033](https://github.com/wix/wix-style-react/pull/3033)
+
+### Fixed
+- `<ImageViewer/>` - fix image position in Firefox [#3092](https://github.com/wix/wix-style-react/pull/3092)
 
 ### Docs
 

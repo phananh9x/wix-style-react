@@ -37,6 +37,8 @@
 
 .image {
   height: 100%;
+  width: 100%;
+  object-fit: cover;
   transform: scale(1);
   transition: transform .2s cubic-bezier(0.18, 0.89, 0.32, 1.28);
 }
