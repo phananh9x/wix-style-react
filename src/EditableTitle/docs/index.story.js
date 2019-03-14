@@ -9,15 +9,12 @@ export default {
   storyName: storySettings.storyName,
 
   component: EditableTitle,
-  componentPath: '../../EditableTitle.js',
+  componentPath: '../EditableTitle.js',
 
   componentProps: {
     dataHook: storySettings.dataHook,
-  },
-
-  exampleProps: {
-    // Put here presets of props, for more info:
-    // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
+    initialValue: 'Some title',
+    defaultValue: undefined,
   },
 
   examples: (

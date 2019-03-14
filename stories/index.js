@@ -184,4 +184,4 @@ require('../src/RichTextInputArea/docs/index.story');
 require('../src/NoBorderInput/docs/index.story');
 
 // This import was added by the component generator
-import '../src/EditableTitle/docs/index.story';
+require('../src/EditableTitle/docs/index.story');
