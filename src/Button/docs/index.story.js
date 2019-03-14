@@ -71,67 +71,65 @@ export default {
         'https://github.com/wix/wix-style-react/tree/master/src/Button/Button.js',
       issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
     }),
-    tabs({
-      tabs: [
-        tab({
-          title: 'Description',
-          sections: [
-            description(`🔨 To trigger an operation.`),
+    tabs([
+      tab({
+        title: 'Description',
+        sections: [
+          description(`🔨 To trigger an operation.`),
 
-            importExample({
-              source: "import Button from 'wix-style-react/Button';",
-            }),
+          importExample({
+            source: "import Button from 'wix-style-react/Button';",
+          }),
 
-            divider(),
+          divider(),
 
-            columns([title('Examples')]),
+          columns([title('Examples')]),
 
-            ...[
-              {
-                title: 'Primary (Filled Buttons)',
-                text:
-                  'Use primary buttons to give more prominence to actions in layouts with a lot of varying content.',
-                source: examples.primary,
-              },
-              {
-                title: 'Secondary (Ghost Buttons)',
-                text:
-                  'Secondary button is best used for secondary or tertiary content, since it should not compete with your primary call to action.',
-                source: examples.secondary,
-              },
-              {
-                title: 'Sizes',
-                text:
-                  'Button supports four main sizes: tiny, small,medium, large. Default size is medium.',
-                source: examples.sizes,
-              },
-              {
-                title: 'Affixes',
-                text:
-                  'Suffix and prefix icons can be added to a button by setting prefixIcon or suffixIcon props.',
-                source: examples.affixes,
-              },
-              {
-                title: 'Loading state',
-                text: 'A button can show a loading indicator.',
-                source: examples.loading,
-              },
-              {
-                title: 'Custom rendering',
-                text:
-                  'Control the rendered HTML tag, or render Button component as another component.',
-                source: examples.custom,
-              },
-            ].map(example),
-          ],
-        }),
+          ...[
+            {
+              title: 'Primary (Filled Buttons)',
+              text:
+                'Use primary buttons to give more prominence to actions in layouts with a lot of varying content.',
+              source: examples.primary,
+            },
+            {
+              title: 'Secondary (Ghost Buttons)',
+              text:
+                'Secondary button is best used for secondary or tertiary content, since it should not compete with your primary call to action.',
+              source: examples.secondary,
+            },
+            {
+              title: 'Sizes',
+              text:
+                'Button supports four main sizes: tiny, small,medium, large. Default size is medium.',
+              source: examples.sizes,
+            },
+            {
+              title: 'Affixes',
+              text:
+                'Suffix and prefix icons can be added to a button by setting prefixIcon or suffixIcon props.',
+              source: examples.affixes,
+            },
+            {
+              title: 'Loading state',
+              text: 'A button can show a loading indicator.',
+              source: examples.loading,
+            },
+            {
+              title: 'Custom rendering',
+              text:
+                'Control the rendered HTML tag, or render Button component as another component.',
+              source: examples.custom,
+            },
+          ].map(example),
+        ],
+      }),
 
-        ...[
-          { title: 'API', sections: [api()] },
-          { title: 'Testkit', sections: [description(testkit)] },
-          { title: 'Playground', sections: [playground()] },
-        ].map(tab),
-      ],
-    }),
+      ...[
+        { title: 'API', sections: [api()] },
+        { title: 'Testkit', sections: [description(testkit)] },
+        { title: 'Playground', sections: [playground()] },
+      ].map(tab),
+    ]),
   ],
 };
