@@ -28,7 +28,7 @@ class InputArea extends WixComponent {
   state = {
     focus: false,
     counter: (this.props.value || this.props.defaultValue || '').length,
-    computedRows: this.props.minRows,
+    computedRows: this.props.minRowsAutoGrow,
   };
 
   // For autoGrow prop min rows is 2 so the textarea doesn't look like an input
@@ -40,7 +40,10 @@ class InputArea extends WixComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.autoGrow && prevProps.minRows !== this.props.minRows) {
+    if (
+      this.props.autoGrow &&
+      prevProps.minRowsAutoGrow !== this.props.minRowsAutoGrow
+    ) {
       this._calculateComputedRows();
     }
   }
@@ -208,7 +211,7 @@ class InputArea extends WixComponent {
   _calculateComputedRows() {
     this.setState({ computedRows: 1 }, () => {
       const rowsCount = this._getRowsCount();
-      const computedRows = Math.max(this.props.minRows, rowsCount);
+      const computedRows = Math.max(this.props.minRowsAutoGrow, rowsCount);
       this.setState({
         computedRows,
       });
@@ -269,7 +272,7 @@ InputArea.displayName = 'InputArea';
 
 InputArea.defaultProps = {
   theme: 'normal',
-  minRows: InputArea.MIN_ROWS,
+  minRowsAutoGrow: InputArea.MIN_ROWS,
 };
 
 InputArea.propTypes = {
@@ -346,7 +349,7 @@ InputArea.propTypes = {
   autoGrow: PropTypes.bool,
 
   /** Sets the minimum amount of rows the component can have when in autoGrow mode */
-  minRows: PropTypes.number,
+  minRowsAutoGrow: PropTypes.number,
 
   style: PropTypes.oneOf(['normal', 'paneltitle', 'material', 'amaterial']),
   tabIndex: PropTypes.number,

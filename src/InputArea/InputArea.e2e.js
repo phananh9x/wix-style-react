@@ -109,14 +109,14 @@ describe('input area page', () => {
     },
   );
 
-  eyes.it('should begin with minimum amount of rows', async () => {
+  eyes.it('should begin with miminum ammount of rows', async () => {
     await autoExampleDriver.setProps({ autoGrow: true });
     const rowCount = await inputAreaTestkit.getRowCount();
     expect(rowCount).toBe(InputArea.MIN_ROWS);
   });
 
   eyes.it('should begin with minRow amount of rows', async () => {
-    await autoExampleDriver.setProps({ autoGrow: true, minRows: 1 });
+    await autoExampleDriver.setProps({ autoGrow: true, minRowsAutoGrow: 1 });
     const rowCount = await inputAreaTestkit.getRowCount();
     expect(rowCount).toBe(1);
   });
