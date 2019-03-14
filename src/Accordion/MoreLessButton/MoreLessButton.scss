@@ -4,23 +4,22 @@
   position: relative;
   display: flex;
   justify-content: flex-end;
+}
 
-  .button,
-  .expand-collapse-arrow {
-    transition: all .2s;
+.button,
+.expand-collapse-arrow {
+  transition: all .2s;
+}
+
+.expand-collapse-arrow {
+  opacity: 1;
+  fill: $B10;
+}
+
+.button {
+  pointer-events: none;
+
+  &.active {
+    pointer-events: inherit;
   }
-
-  .expand-collapse-arrow {
-    opacity: 1;
-    fill: $B10;
-  }
-
-  .button {
-    pointer-events: none;
-
-    &.active {
-      pointer-events: inherit;
-    }
-  }
-
 }

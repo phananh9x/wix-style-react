@@ -79,7 +79,9 @@ class AccordionItem extends React.PureComponent {
                     <Text data-hook="title" ellipsis weight="normal">
                       {title}
                     </Text>
-                  ) : title }
+                  ) : (
+                    title
+                  )}
                 </div>
               )}
             </div>
