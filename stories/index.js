@@ -178,10 +178,6 @@ require('../src/GeneratedTestComponent/docs/index.story');
 require('../src/GeneratedTestComponent/test/GeneratedTestComponentStories');
 
 // This import was added by the component generator
-import './Accordion/index.story';
-import './RichTextInputArea/index.story';
-import './NoBorderInput/index.story';
 require('../src/RichTextInputArea/docs/index.story');
-
-// This import was added by the component generator
 require('../src/NoBorderInput/docs/index.story');
+require('../src/Accordion/docs/index.story');
