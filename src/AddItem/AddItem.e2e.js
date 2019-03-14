@@ -4,7 +4,7 @@ import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
 
 import { addItemTestkitFactory } from '../../testkit/protractor';
-import { storySettings } from '../../stories/AddItem/storySettings';
+import { storySettings } from './docs/storySettings';
 import { runFocusTests } from '../common/Focusable/FocusableTestsE2E';
 
 describe('AddItem', () => {

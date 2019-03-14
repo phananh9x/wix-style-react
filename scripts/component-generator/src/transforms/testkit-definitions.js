@@ -19,6 +19,11 @@ module.exports = (file, api, options) => {
         j.identifier(ComponentName),
         j.objectExpression([
           j.property('init', j.identifier('unidriver'), j.literal(true)),
+          j.property(
+            'init',
+            j.identifier('testkitPath'),
+            j.literal(`../src/${ComponentName}/${ComponentName}.uni.driver`),
+          ),
         ]),
       ),
     );

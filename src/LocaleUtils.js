@@ -14,6 +14,9 @@ import tr from 'date-fns/locale/tr';
 import sv from 'date-fns/locale/sv';
 import nl from 'date-fns/locale/nl';
 import da from 'date-fns/locale/da';
+import th from 'date-fns/locale/th';
+import cs from 'date-fns/locale/cs';
+import zh from 'date-fns/locale/zh_cn';
 import * as no from 'date-fns/locale/nb';
 
 const MONTHS_INDICE = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
@@ -34,6 +37,9 @@ const locales = {
   no,
   nl,
   da,
+  th,
+  cs,
+  zh,
 };
 
 const getLocale = locale =>

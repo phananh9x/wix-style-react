@@ -67,6 +67,9 @@ class CalendarPanel extends React.Component {
         'no',
         'nl',
         'da',
+        'zh',
+        'th',
+        'cs',
       ]),
       PropTypes.shape({
         distanceInWords: PropTypes.object,

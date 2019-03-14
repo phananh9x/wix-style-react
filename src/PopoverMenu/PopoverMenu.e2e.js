@@ -1,7 +1,7 @@
 import browserLogs from 'protractor-browser-logs';
 import { eyesItInstance } from '../../test/utils/eyes-it';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
-import { storySettings } from '../../stories/PopoverMenu/storySettings';
+import { storySettings } from './docs/storySettings';
 import { Category } from '../../stories/storiesHierarchy';
 
 const EC = protractor.ExpectedConditions;

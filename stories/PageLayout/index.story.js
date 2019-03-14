@@ -1,14 +1,18 @@
-import { storySettings } from './storySettings';
-import { baseScope } from '../utils/Components/LiveCodeExample';
+import React from 'react';
+import LinkTo from '@storybook/addon-links/react';
 import {
   title,
   description,
+  columns,
+  table,
+  importExample,
   code as baseCode,
 } from 'wix-storybook-utils/Sections';
-import { halfWidth, exampleDescription } from '../utils/sections';
+
+import { storySettings } from './storySettings';
+import { baseScope } from '../utils/LiveCodeExample';
 
 import * as examples from './examples';
-import UXStorySections from '../utils/UXStorySections';
 import { sterilizeCode } from '../utils/sterilizeCodeForLive';
 
 import ExampleGeneralLayoutRaw from '!raw-loader!./ExampleGeneralLayout';
@@ -24,54 +28,59 @@ export default {
   storyName: storySettings.storyName,
 
   sections: [
-    ...UXStorySections({
-      description: `Compositions from multiple components that help to setup a page.`,
-      includedComponents: [
-        { name: 'Page', description: 'Business Manager’s root component' },
-        { name: 'Page.Header', description: '`<Page/>` component’s child' },
-        { name: 'Grid', description: 'Component that constructs a grid' },
-        { name: 'Card', description: 'Light card component' },
-        {
-          name: 'EmptyState',
-          description: 'Component that render Empty state layout',
-        },
-      ],
-      importExample: examples.importExample,
+    description({
+      title: 'Description',
+      text: `Compositions from multiple components that help to setup a page.`,
     }),
+
+    columns([
+      table({
+        title: 'Included Components',
+        rows: [
+          ['Page', 'Business Manager’s root component'],
+          ['Page.Header', '`<Page/>` component’s child'],
+          ['Grid', 'Component that constructs a grid'],
+          ['Card', 'Light card component'],
+          ['EmptyState', 'Component that render Empty state layout'],
+        ].map(([story, text]) => [
+          <LinkTo kind="Components" story={story} children={`<${story} />`} />,
+          text,
+        ]),
+      }),
+    ]),
+
+    columns([importExample({ source: examples.importExample })]),
 
     title('Examples'),
 
-    exampleDescription({
-      pretitle: '2.1.A',
-      title: 'General Layout',
-      description: 'A classic layout for forms and lists',
-    }),
-    code({
-      source: sterilizeCode(ExampleGeneralLayoutRaw),
-    }),
-    exampleDescription({
-      pretitle: '2.1.B',
-      title: 'Split Layout',
-      description: 'A Layout for forms item previews',
-    }),
-    code({
-      source: sterilizeCode(ExampleSplitLayoutRaw),
-    }),
-    exampleDescription({
-      pretitle: '2.1.C',
-      title: 'Gallery Layout',
-      description: 'Best for product category lists',
-    }),
-    code({
-      source: sterilizeCode(ExampleGalleryLayoutRaw),
-    }),
-    exampleDescription({
-      pretitle: '2.1.D',
-      title: 'Empty State',
-      description: 'Best for initial call to action',
-    }),
-    code({
-      source: sterilizeCode(ExampleEmptyStateRaw),
-    }),
+    ...[
+      {
+        pretitle: '2.1.A',
+        title: 'General Layout',
+        description: 'A classic layout for forms and lists',
+        source: sterilizeCode(ExampleGeneralLayoutRaw),
+      },
+
+      {
+        pretitle: '2.1.B',
+        title: 'Split Layout',
+        description: 'A Layout for forms item previews',
+        source: sterilizeCode(ExampleSplitLayoutRaw),
+      },
+
+      {
+        pretitle: '2.1.C',
+        title: 'Gallery Layout',
+        description: 'Best for product category lists',
+        source: sterilizeCode(ExampleGalleryLayoutRaw),
+      },
+
+      {
+        pretitle: '2.1.D',
+        title: 'Empty State',
+        description: 'Best for initial call to action',
+        source: sterilizeCode(ExampleEmptyStateRaw),
+      },
+    ].map(code),
   ],
 };

@@ -2,7 +2,7 @@ import eyes from 'eyes.it';
 import path from 'path';
 import { filePickerTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
-import { storySettings } from '../../stories/FilePicker/storySettings';
+import { storySettings } from './docs/storySettings';
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
 
 const storyUrl = createStoryUrl({

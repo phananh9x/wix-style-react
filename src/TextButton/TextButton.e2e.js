@@ -3,10 +3,7 @@ import {
   createStoryUrl,
   createTestStoryUrl,
 } from '../../test/utils/storybook-helpers';
-import {
-  storySettings,
-  testStories,
-} from '../../stories/TextButton/storySettings';
+import { storySettings, testStories } from './docs/storySettings';
 
 describe('TextButton', () => {
   const storyUrl = createStoryUrl({

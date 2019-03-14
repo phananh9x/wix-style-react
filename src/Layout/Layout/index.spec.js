@@ -26,4 +26,18 @@ describe('Layout', () => {
       expect(layout.prop('style').gridTemplateColumns).toBeUndefined();
     });
   });
+
+  describe('`justifyItems` prop', () => {
+    it('should set `justifyItems` style', () => {
+      const layout = shallow(<Layout justifyItems="start" />);
+      expect(layout.prop('style').justifyItems).toEqual('start');
+    });
+  });
+
+  describe('`alignItems` prop', () => {
+    it('should set `justifyItems` style', () => {
+      const layout = shallow(<Layout alignItems="start" />);
+      expect(layout.prop('style').alignItems).toEqual('start');
+    });
+  });
 });

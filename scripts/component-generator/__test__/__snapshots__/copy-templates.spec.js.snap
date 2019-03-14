@@ -2,56 +2,13 @@
 
 exports[`copyTemplates should work as expected when description is not provided 1`] = `
 Object {
-  "src/MyNewComponent/MyNewComponent.e2e.js": "import {
-  createStoryUrl,
-  waitForVisibilityOf,
-  scrollToElement,
-} from 'wix-ui-test-utils/protractor';
-
-import { eyesItInstance } from '../../test/utils/eyes-it';
-import { myNewComponentTestkitFactory } from '../../testkit/protractor';
-import { storySettings } from '../../stories/MyNewComponent/storySettings';
-
-const eyes = eyesItInstance();
-
-describe('MyNewComponent', () => {
-  const storyUrl = createStoryUrl({
-    kind: storySettings.category,
-    story: storySettings.storyName,
-  });
-
-  const createDriver = async (dataHook = storySettings.dataHook) => {
-    const driver = myNewComponentTestkitFactory({ dataHook });
-
-    await waitForVisibilityOf(
-      await driver.element(),
-      \`Cannot find <MyNewComponent/> component with dataHook of \${dataHook}\`,
-    );
-
-    await scrollToElement(await driver.element());
-
-    return driver;
-  };
-
-  beforeAll(async () => {
-    await browser.get(storyUrl);
-  });
-
-  eyes.it('should render', async () => {
-    await createDriver();
-  });
-
-  eyes.it('should render live example', async () => {
-    await createDriver('story-my-new-component-live-example');
-  });
-});
-",
   "src/MyNewComponent/MyNewComponent.js": "import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './MyNewComponent.scss';
 
 import Text from '../Text';
 import Button from '../Button';
+
 
 class MyNewComponent extends React.PureComponent {
   static displayName = 'MyNewComponent';
@@ -88,7 +45,10 @@ class MyNewComponent extends React.PureComponent {
         </Text>
 
         <div className={styles.button}>
-          <Button onClick={this._handleClick} dataHook=\\"myNewComponent-button\\">
+          <Button
+            onClick={this._handleClick}
+            dataHook=\\"myNewComponent-button\\"
+          >
             {buttonText}
           </Button>
         </div>
@@ -108,16 +68,6 @@ metadata.exportedFrom({
   path: 'src/MyNewComponent/MyNewComponent.js',
 });
 ",
-  "src/MyNewComponent/MyNewComponent.private.uni.driver.js": "import { myNewComponentDriverFactory as publicDriverFactory } from './MyNewComponent.uni.driver';
-
-export const myNewComponentPrivateDriverFactory = base => {
-  return {
-    ...publicDriverFactory(base),
-
-    // Add here driver methods that considered \\"private\\"
-  };
-};
-",
   "src/MyNewComponent/MyNewComponent.scss": ".root {
   text-align: center;
 }
@@ -127,41 +77,6 @@ export const myNewComponentPrivateDriverFactory = base => {
   justify-content: space-evenly;
 }
 ",
-  "src/MyNewComponent/MyNewComponent.spec.js": "import React from 'react';
-import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
-
-import MyNewComponent from './MyNewComponent';
-import { myNewComponentPrivateDriverFactory } from './MyNewComponent.private.uni.driver';
-
-describe('MyNewComponent', () => {
-  const createDriver = createUniDriverFactory(myNewComponentPrivateDriverFactory);
-
-  it('should render', async () => {
-    const driver = createDriver(<MyNewComponent />);
-
-    expect(await driver.exists()).toBeTruthy();
-    expect(await driver.getButtonText()).toEqual('Click me!');
-  });
-
-  it('should increment', async () => {
-    const driver = createDriver(<MyNewComponent />);
-
-    await driver.clickButton();
-    await driver.clickButton();
-
-    expect(await driver.getCountText()).toEqual(
-      'You clicked this button 2 times',
-    );
-  });
-
-  it('should allow changing the button text', async () => {
-    const driver = createDriver(<MyNewComponent buttonText=\\"Press me\\" />);
-
-    expect(await driver.getButtonText()).toEqual('Press me');
-  });
-});
-
-",
   "src/MyNewComponent/MyNewComponent.uni.driver.js": "import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
 
 export const myNewComponentDriverFactory = base => {
@@ -169,33 +84,32 @@ export const myNewComponentDriverFactory = base => {
     ...baseUniDriverFactory(base),
 
     /** Get the current count */
-    getCountText: async () => base.$('[data-hook=\\"myNewComponent-count\\"]').text(),
+    getCountText: async () =>
+      base.$('[data-hook=\\"myNewComponent-count\\"]').text(),
 
     /** Click the button */
-    clickButton: async () => base.$('[data-hook=\\"myNewComponent-button\\"]').click(),
+    clickButton: async () =>
+      base.$('[data-hook=\\"myNewComponent-button\\"]').click(),
 
     /** Get the button's text */
-    getButtonText: async () => base.$('[data-hook=\\"myNewComponent-button\\"]').text(),
+    getButtonText: async () =>
+      base.$('[data-hook=\\"myNewComponent-button\\"]').text(),
   };
 };
 ",
-  "src/MyNewComponent/index.js": "export { default } from './MyNewComponent.js';
-",
-  "stories/MyNewComponent/index.story.js": "import React from 'react';
-import { storySettings } from './storySettings';
-import LiveCodeExample from '../utils/Components/LiveCodeExample';
-
-import MyNewComponent from '../../src/MyNewComponent';
+  "src/MyNewComponent/docs/index.story.js": "import React from 'react';
+import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
+import { Category } from '../../../stories/storiesHierarchy';
+import MyNewComponent from '..';
 
 export default {
-  category: storySettings.category,
-  storyName: storySettings.storyName,
+  category: Category.COMPONENTS,
+  storyName: 'MyNewComponent',
 
   component: MyNewComponent,
-  componentPath: '../../src/MyNewComponent/MyNewComponent.js',
+  componentPath: '..',
 
   componentProps: {
-    dataHook: storySettings.dataHook,
     buttonText: undefined,
   },
 
@@ -219,15 +133,122 @@ export default {
     </div>
   ),
 };
-
 ",
-  "stories/MyNewComponent/storySettings.js": "import { Category } from '../storiesHierarchy';
+  "src/MyNewComponent/index.js": "export { default } from './MyNewComponent.js';
+",
+  "src/MyNewComponent/test/MyNewComponent.e2e.js": "import {
+  waitForVisibilityOf,
+  scrollToElement,
+} from 'wix-ui-test-utils/protractor';
+
+import { eyesItInstance } from '../../../test/utils/eyes-it';
+import { createTestStoryUrl } from '../../../test/utils/storybook-helpers';
+import { myNewComponentTestkitFactory } from '../../../testkit/protractor';
+import { storySettings } from './storySettings';
+
+const eyes = eyesItInstance();
+
+describe('MyNewComponent', () => {
+  const createStoryUrl = testName =>
+    createTestStoryUrl({ ...storySettings, testName });
+
+  const createDriver = async (dataHook = storySettings.dataHook) => {
+    const driver = myNewComponentTestkitFactory({ dataHook });
+
+    await waitForVisibilityOf(
+      await driver.element(),
+      \`Cannot find <MyNewComponent/> component with dataHook of \${dataHook}\`,
+    );
+
+    await scrollToElement(await driver.element());
+
+    return driver;
+  };
+
+  const testStoryNames = storySettings.testStoryNames;
+
+  eyes.it('should increase count when button clicked', async () => {
+    await browser.get(createStoryUrl(testStoryNames.DEFAULT));
+    const driver = await createDriver();
+    await driver.clickButton();
+    expect(await driver.getCountText()).toBe('You clicked this button 1 times');
+  });
+});
+",
+  "src/MyNewComponent/test/MyNewComponent.private.uni.driver.js": "import { myNewComponentDriverFactory as publicDriverFactory } from '../MyNewComponent.uni.driver';
+
+export const myNewComponentPrivateDriverFactory = base => {
+  return {
+    ...publicDriverFactory(base),
+
+    // Add here driver methods that considered \\"private\\"
+  };
+};
+",
+  "src/MyNewComponent/test/MyNewComponent.spec.js": "import React from 'react';
+import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
+
+import MyNewComponent from '../MyNewComponent';
+import { myNewComponentPrivateDriverFactory } from './MyNewComponent.private.uni.driver';
+
+describe('MyNewComponent', () => {
+  const createDriver = createUniDriverFactory(
+    myNewComponentPrivateDriverFactory,
+  );
+
+  it('should render', async () => {
+    const driver = createDriver(<MyNewComponent />);
+
+    expect(await driver.exists()).toBeTruthy();
+    expect(await driver.getButtonText()).toEqual('Click me!');
+  });
+
+  it('should increment', async () => {
+    const driver = createDriver(<MyNewComponent />);
+
+    await driver.clickButton();
+    await driver.clickButton();
+
+    expect(await driver.getCountText()).toEqual(
+      'You clicked this button 2 times',
+    );
+  });
+
+  it('should allow changing the button text', async () => {
+    const driver = createDriver(
+      <MyNewComponent buttonText=\\"Press me\\" />,
+    );
+
+    expect(await driver.getButtonText()).toEqual('Press me');
+  });
+});
+",
+  "src/MyNewComponent/test/MyNewComponentStories.js": "import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { getTestStoryKind } from '../../../stories/storiesHierarchy';
+import { storySettings } from './storySettings';
+
+import MyNewComponent from '..';
+
+const TestStories = storiesOf(getTestStoryKind(storySettings), module);
+const { testStoryNames, dataHook } = storySettings;
+
+TestStories.add(testStoryNames.DEFAULT, () => (
+  <MyNewComponent
+    dataHook={dataHook}
+    buttonText=\\"Press me for a surprise\\"
+  />
+));
+",
+  "src/MyNewComponent/test/storySettings.js": "import { Category } from '../../../stories/storiesHierarchy';
 
 export const storySettings = {
   category: Category.COMPONENTS,
-
   storyName: 'MyNewComponent',
   dataHook: 'story-my-new-component',
+  testStoryNames: {
+    DEFAULT: 'Default',
+  },
 };
 ",
 }
@@ -235,50 +256,6 @@ export const storySettings = {
 
 exports[`copyTemplates should work as expected when description is provided 1`] = `
 Object {
-  "src/MyNewComponent/MyNewComponent.e2e.js": "import {
-  createStoryUrl,
-  waitForVisibilityOf,
-  scrollToElement,
-} from 'wix-ui-test-utils/protractor';
-
-import { eyesItInstance } from '../../test/utils/eyes-it';
-import { myNewComponentTestkitFactory } from '../../testkit/protractor';
-import { storySettings } from '../../stories/MyNewComponent/storySettings';
-
-const eyes = eyesItInstance();
-
-describe('MyNewComponent', () => {
-  const storyUrl = createStoryUrl({
-    kind: storySettings.category,
-    story: storySettings.storyName,
-  });
-
-  const createDriver = async (dataHook = storySettings.dataHook) => {
-    const driver = myNewComponentTestkitFactory({ dataHook });
-
-    await waitForVisibilityOf(
-      await driver.element(),
-      \`Cannot find <MyNewComponent/> component with dataHook of \${dataHook}\`,
-    );
-
-    await scrollToElement(await driver.element());
-
-    return driver;
-  };
-
-  beforeAll(async () => {
-    await browser.get(storyUrl);
-  });
-
-  eyes.it('should render', async () => {
-    await createDriver();
-  });
-
-  eyes.it('should render live example', async () => {
-    await createDriver('story-my-new-component-live-example');
-  });
-});
-",
   "src/MyNewComponent/MyNewComponent.js": "import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './MyNewComponent.scss';
@@ -286,6 +263,9 @@ import styles from './MyNewComponent.scss';
 import Text from '../Text';
 import Button from '../Button';
 
+/**
+ * This is a very cool component, ya'll
+ */
 class MyNewComponent extends React.PureComponent {
   static displayName = 'MyNewComponent';
 
@@ -321,7 +301,10 @@ class MyNewComponent extends React.PureComponent {
         </Text>
 
         <div className={styles.button}>
-          <Button onClick={this._handleClick} dataHook=\\"myNewComponent-button\\">
+          <Button
+            onClick={this._handleClick}
+            dataHook=\\"myNewComponent-button\\"
+          >
             {buttonText}
           </Button>
         </div>
@@ -341,16 +324,6 @@ metadata.exportedFrom({
   path: 'src/MyNewComponent/MyNewComponent.js',
 });
 ",
-  "src/MyNewComponent/MyNewComponent.private.uni.driver.js": "import { myNewComponentDriverFactory as publicDriverFactory } from './MyNewComponent.uni.driver';
-
-export const myNewComponentPrivateDriverFactory = base => {
-  return {
-    ...publicDriverFactory(base),
-
-    // Add here driver methods that considered \\"private\\"
-  };
-};
-",
   "src/MyNewComponent/MyNewComponent.scss": ".root {
   text-align: center;
 }
@@ -360,41 +333,6 @@ export const myNewComponentPrivateDriverFactory = base => {
   justify-content: space-evenly;
 }
 ",
-  "src/MyNewComponent/MyNewComponent.spec.js": "import React from 'react';
-import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
-
-import MyNewComponent from './MyNewComponent';
-import { myNewComponentPrivateDriverFactory } from './MyNewComponent.private.uni.driver';
-
-describe('MyNewComponent', () => {
-  const createDriver = createUniDriverFactory(myNewComponentPrivateDriverFactory);
-
-  it('should render', async () => {
-    const driver = createDriver(<MyNewComponent />);
-
-    expect(await driver.exists()).toBeTruthy();
-    expect(await driver.getButtonText()).toEqual('Click me!');
-  });
-
-  it('should increment', async () => {
-    const driver = createDriver(<MyNewComponent />);
-
-    await driver.clickButton();
-    await driver.clickButton();
-
-    expect(await driver.getCountText()).toEqual(
-      'You clicked this button 2 times',
-    );
-  });
-
-  it('should allow changing the button text', async () => {
-    const driver = createDriver(<MyNewComponent buttonText=\\"Press me\\" />);
-
-    expect(await driver.getButtonText()).toEqual('Press me');
-  });
-});
-
-",
   "src/MyNewComponent/MyNewComponent.uni.driver.js": "import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
 
 export const myNewComponentDriverFactory = base => {
@@ -402,37 +340,32 @@ export const myNewComponentDriverFactory = base => {
     ...baseUniDriverFactory(base),
 
     /** Get the current count */
-    getCountText: async () => base.$('[data-hook=\\"myNewComponent-count\\"]').text(),
+    getCountText: async () =>
+      base.$('[data-hook=\\"myNewComponent-count\\"]').text(),
 
     /** Click the button */
-    clickButton: async () => base.$('[data-hook=\\"myNewComponent-button\\"]').click(),
+    clickButton: async () =>
+      base.$('[data-hook=\\"myNewComponent-button\\"]').click(),
 
     /** Get the button's text */
-    getButtonText: async () => base.$('[data-hook=\\"myNewComponent-button\\"]').text(),
+    getButtonText: async () =>
+      base.$('[data-hook=\\"myNewComponent-button\\"]').text(),
   };
 };
 ",
-  "src/MyNewComponent/README.md": "# \`<MyNewComponent/>\`
-
-> This is a very cool component, ya'll
-",
-  "src/MyNewComponent/index.js": "export { default } from './MyNewComponent.js';
-",
-  "stories/MyNewComponent/index.story.js": "import React from 'react';
-import { storySettings } from './storySettings';
-import LiveCodeExample from '../utils/Components/LiveCodeExample';
-
-import MyNewComponent from '../../src/MyNewComponent';
+  "src/MyNewComponent/docs/index.story.js": "import React from 'react';
+import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
+import { Category } from '../../../stories/storiesHierarchy';
+import MyNewComponent from '..';
 
 export default {
-  category: storySettings.category,
-  storyName: storySettings.storyName,
+  category: Category.COMPONENTS,
+  storyName: 'MyNewComponent',
 
   component: MyNewComponent,
-  componentPath: '../../src/MyNewComponent/MyNewComponent.js',
+  componentPath: '..',
 
   componentProps: {
-    dataHook: storySettings.dataHook,
     buttonText: undefined,
   },
 
@@ -456,46 +389,31 @@ export default {
     </div>
   ),
 };
-
 ",
-  "stories/MyNewComponent/storySettings.js": "import { Category } from '../storiesHierarchy';
-
-export const storySettings = {
-  category: Category.COMPONENTS,
-
-  storyName: 'MyNewComponent',
-  dataHook: 'story-my-new-component',
-};
+  "src/MyNewComponent/index.js": "export { default } from './MyNewComponent.js';
 ",
-}
-`;
-
-exports[`copyTemplates should work for test component 1`] = `
-Object {
-  "src/MyTestComponent/MyTestComponent.e2e.js": "import {
-  createStoryUrl,
+  "src/MyNewComponent/test/MyNewComponent.e2e.js": "import {
   waitForVisibilityOf,
   scrollToElement,
 } from 'wix-ui-test-utils/protractor';
 
-import { eyesItInstance } from '../../test/utils/eyes-it';
-import { myTestComponentTestkitFactory } from '../../testkit/protractor';
-import { storySettings } from '../../stories/MyTestComponent/storySettings';
+import { eyesItInstance } from '../../../test/utils/eyes-it';
+import { createTestStoryUrl } from '../../../test/utils/storybook-helpers';
+import { myNewComponentTestkitFactory } from '../../../testkit/protractor';
+import { storySettings } from './storySettings';
 
 const eyes = eyesItInstance();
 
-describe('MyTestComponent', () => {
-  const storyUrl = createStoryUrl({
-    kind: storySettings.category,
-    story: storySettings.storyName,
-  });
+describe('MyNewComponent', () => {
+  const createStoryUrl = testName =>
+    createTestStoryUrl({ ...storySettings, testName });
 
   const createDriver = async (dataHook = storySettings.dataHook) => {
-    const driver = myTestComponentTestkitFactory({ dataHook });
+    const driver = myNewComponentTestkitFactory({ dataHook });
 
     await waitForVisibilityOf(
       await driver.element(),
-      \`Cannot find <MyTestComponent/> component with dataHook of \${dataHook}\`,
+      \`Cannot find <MyNewComponent/> component with dataHook of \${dataHook}\`,
     );
 
     await scrollToElement(await driver.element());
@@ -503,25 +421,104 @@ describe('MyTestComponent', () => {
     return driver;
   };
 
-  beforeAll(async () => {
-    await browser.get(storyUrl);
-  });
+  const testStoryNames = storySettings.testStoryNames;
 
-  eyes.it('should render', async () => {
-    await createDriver();
-  });
-
-  eyes.it('should render live example', async () => {
-    await createDriver('story-my-test-component-live-example');
+  eyes.it('should increase count when button clicked', async () => {
+    await browser.get(createStoryUrl(testStoryNames.DEFAULT));
+    const driver = await createDriver();
+    await driver.clickButton();
+    expect(await driver.getCountText()).toBe('You clicked this button 1 times');
   });
 });
 ",
+  "src/MyNewComponent/test/MyNewComponent.private.uni.driver.js": "import { myNewComponentDriverFactory as publicDriverFactory } from '../MyNewComponent.uni.driver';
+
+export const myNewComponentPrivateDriverFactory = base => {
+  return {
+    ...publicDriverFactory(base),
+
+    // Add here driver methods that considered \\"private\\"
+  };
+};
+",
+  "src/MyNewComponent/test/MyNewComponent.spec.js": "import React from 'react';
+import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
+
+import MyNewComponent from '../MyNewComponent';
+import { myNewComponentPrivateDriverFactory } from './MyNewComponent.private.uni.driver';
+
+describe('MyNewComponent', () => {
+  const createDriver = createUniDriverFactory(
+    myNewComponentPrivateDriverFactory,
+  );
+
+  it('should render', async () => {
+    const driver = createDriver(<MyNewComponent />);
+
+    expect(await driver.exists()).toBeTruthy();
+    expect(await driver.getButtonText()).toEqual('Click me!');
+  });
+
+  it('should increment', async () => {
+    const driver = createDriver(<MyNewComponent />);
+
+    await driver.clickButton();
+    await driver.clickButton();
+
+    expect(await driver.getCountText()).toEqual(
+      'You clicked this button 2 times',
+    );
+  });
+
+  it('should allow changing the button text', async () => {
+    const driver = createDriver(
+      <MyNewComponent buttonText=\\"Press me\\" />,
+    );
+
+    expect(await driver.getButtonText()).toEqual('Press me');
+  });
+});
+",
+  "src/MyNewComponent/test/MyNewComponentStories.js": "import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { getTestStoryKind } from '../../../stories/storiesHierarchy';
+import { storySettings } from './storySettings';
+
+import MyNewComponent from '..';
+
+const TestStories = storiesOf(getTestStoryKind(storySettings), module);
+const { testStoryNames, dataHook } = storySettings;
+
+TestStories.add(testStoryNames.DEFAULT, () => (
+  <MyNewComponent
+    dataHook={dataHook}
+    buttonText=\\"Press me for a surprise\\"
+  />
+));
+",
+  "src/MyNewComponent/test/storySettings.js": "import { Category } from '../../../stories/storiesHierarchy';
+
+export const storySettings = {
+  category: Category.COMPONENTS,
+  storyName: 'MyNewComponent',
+  dataHook: 'story-my-new-component',
+  testStoryNames: {
+    DEFAULT: 'Default',
+  },
+};
+",
+}
+`;
+
+exports[`copyTemplates should work for test component 1`] = `
+Object {
   "src/MyTestComponent/MyTestComponent.js": "import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './MyTestComponent.scss';
 
 import Text from '../Text';
 import Button from '../Button';
+
 
 class MyTestComponent extends React.PureComponent {
   static displayName = 'MyTestComponent';
@@ -558,7 +555,10 @@ class MyTestComponent extends React.PureComponent {
         </Text>
 
         <div className={styles.button}>
-          <Button onClick={this._handleClick} dataHook=\\"myTestComponent-button\\">
+          <Button
+            onClick={this._handleClick}
+            dataHook=\\"myTestComponent-button\\"
+          >
             {buttonText}
           </Button>
         </div>
@@ -578,16 +578,6 @@ metadata.exportedFrom({
   path: 'src/MyTestComponent/MyTestComponent.js',
 });
 ",
-  "src/MyTestComponent/MyTestComponent.private.uni.driver.js": "import { myTestComponentDriverFactory as publicDriverFactory } from './MyTestComponent.uni.driver';
-
-export const myTestComponentPrivateDriverFactory = base => {
-  return {
-    ...publicDriverFactory(base),
-
-    // Add here driver methods that considered \\"private\\"
-  };
-};
-",
   "src/MyTestComponent/MyTestComponent.scss": ".root {
   text-align: center;
 }
@@ -597,14 +587,124 @@ export const myTestComponentPrivateDriverFactory = base => {
   justify-content: space-evenly;
 }
 ",
-  "src/MyTestComponent/MyTestComponent.spec.js": "import React from 'react';
+  "src/MyTestComponent/MyTestComponent.uni.driver.js": "import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+
+export const myTestComponentDriverFactory = base => {
+  return {
+    ...baseUniDriverFactory(base),
+
+    /** Get the current count */
+    getCountText: async () =>
+      base.$('[data-hook=\\"myTestComponent-count\\"]').text(),
+
+    /** Click the button */
+    clickButton: async () =>
+      base.$('[data-hook=\\"myTestComponent-button\\"]').click(),
+
+    /** Get the button's text */
+    getButtonText: async () =>
+      base.$('[data-hook=\\"myTestComponent-button\\"]').text(),
+  };
+};
+",
+  "src/MyTestComponent/docs/index.story.js": "import React from 'react';
+import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
+import { Category } from '../../../stories/storiesHierarchy';
+import MyTestComponent from '..';
+
+export default {
+  category: Category.TESTS,
+  storyName: 'MyTestComponent',
+
+  component: MyTestComponent,
+  componentPath: '..',
+
+  componentProps: {
+    buttonText: undefined,
+  },
+
+  exampleProps: {
+    // Put here presets of props, for more info:
+    // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
+  },
+
+  examples: (
+    <div style={{ maxWidth: 627 }}>
+      <LiveCodeExample
+        compact
+        title=\\"Live code example\\"
+        initialCode={\`
+<MyTestComponent
+  dataHook=\\"story-my-test-component-live-example\\"
+  buttonText=\\"Press me for a surprise\\"
+  />
+        \`}
+      />
+    </div>
+  ),
+};
+",
+  "src/MyTestComponent/index.js": "export { default } from './MyTestComponent.js';
+",
+  "src/MyTestComponent/test/MyTestComponent.e2e.js": "import {
+  waitForVisibilityOf,
+  scrollToElement,
+} from 'wix-ui-test-utils/protractor';
+
+import { eyesItInstance } from '../../../test/utils/eyes-it';
+import { createTestStoryUrl } from '../../../test/utils/storybook-helpers';
+import { myTestComponentTestkitFactory } from '../../../testkit/protractor';
+import { storySettings } from './storySettings';
+
+const eyes = eyesItInstance();
+
+describe('MyTestComponent', () => {
+  const createStoryUrl = testName =>
+    createTestStoryUrl({ ...storySettings, testName });
+
+  const createDriver = async (dataHook = storySettings.dataHook) => {
+    const driver = myTestComponentTestkitFactory({ dataHook });
+
+    await waitForVisibilityOf(
+      await driver.element(),
+      \`Cannot find <MyTestComponent/> component with dataHook of \${dataHook}\`,
+    );
+
+    await scrollToElement(await driver.element());
+
+    return driver;
+  };
+
+  const testStoryNames = storySettings.testStoryNames;
+
+  eyes.it('should increase count when button clicked', async () => {
+    await browser.get(createStoryUrl(testStoryNames.DEFAULT));
+    const driver = await createDriver();
+    await driver.clickButton();
+    expect(await driver.getCountText()).toBe('You clicked this button 1 times');
+  });
+});
+",
+  "src/MyTestComponent/test/MyTestComponent.private.uni.driver.js": "import { myTestComponentDriverFactory as publicDriverFactory } from '../MyTestComponent.uni.driver';
+
+export const myTestComponentPrivateDriverFactory = base => {
+  return {
+    ...publicDriverFactory(base),
+
+    // Add here driver methods that considered \\"private\\"
+  };
+};
+",
+  "src/MyTestComponent/test/MyTestComponent.spec.js": "import React from 'react';
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 
-import MyTestComponent from './MyTestComponent';
+import MyTestComponent from '../MyTestComponent';
 import { myTestComponentPrivateDriverFactory } from './MyTestComponent.private.uni.driver';
 
 describe('MyTestComponent', () => {
-  const createDriver = createUniDriverFactory(myTestComponentPrivateDriverFactory);
+  const createDriver = createUniDriverFactory(
+    myTestComponentPrivateDriverFactory,
+  );
 
   it('should render', async () => {
     const driver = createDriver(<MyTestComponent />);
@@ -625,71 +725,40 @@ describe('MyTestComponent', () => {
   });
 
   it('should allow changing the button text', async () => {
-    const driver = createDriver(<MyTestComponent buttonText=\\"Press me\\" />);
+    const driver = createDriver(
+      <MyTestComponent buttonText=\\"Press me\\" />,
+    );
 
     expect(await driver.getButtonText()).toEqual('Press me');
   });
 });
-
 ",
-  "src/MyTestComponent/MyTestComponent.uni.driver.js": "import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
-
-export const myTestComponentDriverFactory = base => {
-  return {
-    ...baseUniDriverFactory(base),
-
-    /** Get the current count */
-    getCountText: async () => base.$('[data-hook=\\"myTestComponent-count\\"]').text(),
-
-    /** Click the button */
-    clickButton: async () => base.$('[data-hook=\\"myTestComponent-button\\"]').click(),
-
-    /** Get the button's text */
-    getButtonText: async () => base.$('[data-hook=\\"myTestComponent-button\\"]').text(),
-  };
-};
-",
-  "src/MyTestComponent/index.js": "export { default } from './MyTestComponent.js';
-",
-  "stories/MyTestComponent/index.story.js": "import React from 'react';
+  "src/MyTestComponent/test/MyTestComponentStories.js": "import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { getTestStoryKind } from '../../../stories/storiesHierarchy';
 import { storySettings } from './storySettings';
 
-import MyTestComponent from '../../src/MyTestComponent';
+import MyTestComponent from '..';
 
-export default {
-  category: storySettings.category,
-  storyName: storySettings.storyName,
+const TestStories = storiesOf(getTestStoryKind(storySettings), module);
+const { testStoryNames, dataHook } = storySettings;
 
-  component: MyTestComponent,
-  componentPath: '../../src/MyTestComponent/MyTestComponent.js',
-
-  componentProps: {
-    dataHook: storySettings.dataHook,
-    buttonText: undefined,
-  },
-
-  exampleProps: {
-    // Put here presets of props, for more info:
-    // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
-  },
-
-  examples: (
-    <div style={{ maxWidth: 627 }}>
-      <MyTestComponent
-        dataHook=\\"story-my-test-component-live-example\\"
-        buttonText=\\"Press me for a surprise\\"
-        />
-    </div>
-  ),
-};
-
+TestStories.add(testStoryNames.DEFAULT, () => (
+  <MyTestComponent
+    dataHook={dataHook}
+    buttonText=\\"Press me for a surprise\\"
+  />
+));
 ",
-  "stories/MyTestComponent/storySettings.js": "import { TESTS_PREFIX } from '../storiesHierarchy';
+  "src/MyTestComponent/test/storySettings.js": "import { Category } from '../../../stories/storiesHierarchy';
 
 export const storySettings = {
-  category: TESTS_PREFIX,
+  category: Category.TESTS,
   storyName: 'MyTestComponent',
   dataHook: 'story-my-test-component',
+  testStoryNames: {
+    DEFAULT: 'Default',
+  },
 };
 ",
 }

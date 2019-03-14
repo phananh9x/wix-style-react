@@ -1,6 +1,9 @@
 ---
 name: Bug Report
-about: Something isn't working as expected 🤔.
+about: "Something isn't working as expected \U0001F914."
+title: ''
+labels: ''
+assignees: ''
 
 ---
 

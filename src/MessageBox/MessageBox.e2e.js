@@ -8,7 +8,7 @@ import {
   scrollToElement,
 } from 'wix-ui-test-utils/protractor';
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
-import { storySettings } from '../../stories/MessageBox/storySettings';
+import { storySettings } from './docs/storySettings';
 
 const byDataHook = dataHook => $(`[data-hook="${dataHook}"]`);
 

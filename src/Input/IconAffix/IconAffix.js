@@ -7,13 +7,14 @@ import InputConsumer from '../InputConsumer';
 
 const IconAffix = ({ children, dataHook }) => (
   <InputConsumer consumerCompName={IconAffix.displayName}>
-    {({ size, inSuffix, onInputClicked }) => {
+    {({ size, inSuffix, onInputClicked, disabled }) => {
       const className = classNames(styles.icon, {
         [styles.inSuffix]: inSuffix,
+        [styles.disabled]: disabled,
       });
       return (
         <div
-          onClick={onInputClicked}
+          onClick={!disabled && onInputClicked}
           className={className}
           data-hook={dataHook}
         >

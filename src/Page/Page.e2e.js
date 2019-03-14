@@ -8,7 +8,7 @@ import {
   protractorTestkitFactoryCreator,
 } from 'wix-ui-test-utils/protractor';
 import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
-import { storySettings } from '../../stories/components/Page/storySettings';
+import { storySettings } from './docs/storySettings';
 
 const { category, storyName } = storySettings;
 

@@ -1,7 +1,7 @@
 {
   "name": "wix-style-react",
   "description": "wix-style-react",
-  "version": "6.7.1",
+  "version": "6.8.0",
   "main": "./dist/src/index.js",
   "module": "./dist/es/src/index.js",
   "sideEffects": [
@@ -40,14 +40,14 @@
     "prepublishOnly": "npm run bundle",
     "bundle": "webpack --config ./node_modules/yoshi/config/webpack.config.client.js --debug --display-error-details --progress",
     "transpile": "node ./scripts/transpile.js",
-    "transpile:watch": "babel src --out-dir dist/es/src --copy-files --watch",
+    "transpile:watch": "babel src --out-dir dist/es/src --copy-files --watch --plugins=@babel/plugin-syntax-dynamic-import",
     "postbuild": "npm run copy-public-styles && npm run export-components",
     "pr-postbuild": "npm install teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
     "prestorybook": "./scripts/ensure-dist.sh && npm run generate-autodocs-registry",
     "storybook:build": "npm run prestorybook && build-storybook",
     "storybook:static": "node scripts/e2e-server.js",
     "storybook": "npm run prestorybook && start-storybook -p 6006",
-    "postpublish": "npm install teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
+    "postpublish": "npm install @wix/teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
     "export-components": "import-path --path src",
     "lint": "yoshi lint --fix",
     "proxy-wix-ui-icons": "node scripts/proxy-wix-ui-icons",
@@ -150,7 +150,7 @@
     "yoshi-config": "^4.1.0-alpha.1",
     "yoshi-helpers": "^4.1.0-alpha.1",
     "yoshi-runtime": "^1.0.42",
-    "yoshi-style-dependencies": "^3.16.0"
+    "yoshi-style-dependencies": "^4.1.0-alpha.6"
   },
   "peerDependencies": {
     "react": "^15.0.0",
@@ -207,7 +207,9 @@
     "setupFiles": [
       "<rootDir>/test/jest-setup.js"
     ],
-    "setupFilesAfterEnv": ["wix-ui-test-utils/jest-setup"],
+    "setupFilesAfterEnv": [
+      "wix-ui-test-utils/jest-setup"
+    ],
     "moduleNameMapper": {
       "\\.(?!\\st).(css|less|scss)$": "identity-obj-proxy"
     },

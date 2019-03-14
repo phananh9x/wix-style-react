@@ -13,10 +13,7 @@ import {
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { eyesItInstance } from '../../test/utils/eyes-it';
 
-import {
-  storySettings,
-  testStories,
-} from '../../stories/FormField/storySettings';
+import { storySettings, testStories } from './docs/storySettings';
 
 const eyes = eyesItInstance();
 

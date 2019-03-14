@@ -2,7 +2,7 @@ import eyes from 'eyes.it';
 import { tooltipTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { getStoryUrl } from '../../test/utils/storybook-helpers';
-import { SHORT_CONTENT, LONG_CONTENT } from '../../stories/Tooltip/content';
+import { SHORT_CONTENT, LONG_CONTENT } from './docs/content';
 import { Category } from '../../stories/storiesHierarchy';
 
 describe('Tooltip', () => {

@@ -1,5 +1,5 @@
 export default component => {
-  const sliderHandles = () => component.$$('.slider-handle');
+  const sliderHandles = () => component.$$('[data-hook="slider-handle"]');
   const sliderHandle = index => sliderHandles().get(index);
 
   const actions = {
@@ -8,7 +8,7 @@ export default component => {
 
     handleTooltipValue: async ({ index }) => {
       await actions.hoverHandle({ index });
-      const tooltip = component.$('.slider-tooltip');
+      const tooltip = component.$('[data-hook="slider-tooltip"]');
       const tooltipText = await tooltip.getText();
       await actions.unHoverHandle({ index });
       return Number(tooltipText);
@@ -16,7 +16,7 @@ export default component => {
 
     isHandleTooltipDisplayed: async () => {
       const toolTipDisplayWrap = await component
-        .$$('.slider-tooltip')
+        .$$('[data-hook="slider-tooltip"]')
         .isDisplayed();
       return Boolean(toolTipDisplayWrap[0]);
     },

@@ -1,0 +1,18 @@
+// BasicClassesSassExample.scss
+
+/* You shuold import like this:
+ * @import `node_modules/wix-style-react/dist/src/Typography/xxxxx.scss`
+ * Or using the ~ alias (if configured)
+ * @import `~wix-style-react/dist/src/Typography/xxxxx.scss`
+ */
+@import '../../Typography/heading.scss';
+@import '../../Typography/text.scss';
+
+.myHeading {
+  @extend .h1;
+}
+
+.myText {
+  @extend .text;
+  @extend .sizeSmall;
+}

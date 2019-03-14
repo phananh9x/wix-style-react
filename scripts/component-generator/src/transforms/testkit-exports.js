@@ -39,7 +39,7 @@ module.exports = (file, api, options) => {
   );
 
   root.get().node.program.body.push(
-    `import { ${componentName}DriverFactory } from '../src/${ComponentName}/${ComponentName}.driver';
+    `import { ${componentName}DriverFactory } from '../src/${ComponentName}/${ComponentName}.uni.driver';
 
 export const ${componentName}TestkitFactory = ${testkitFactoryMethodName}(
   ${componentName}DriverFactory,

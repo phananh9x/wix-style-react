@@ -4,178 +4,184 @@
  * order is reflected in storybook sidebar
  */
 
-import './Introduction';
-import './Playground/Playground';
+require('./Introduction');
+require('./Playground/Playground');
 
 // 1. Foundations
-import './Typography/TypographyStory.js'; // 1.2 Typography
-import './Label.story.js'; // 1.2 + Label
-import './NewIcons'; // 1.4 Icons
+require('../src/Typography/docs/TypographyStory.js'); // 1.2 Typography
+require('../src/Label/docs/index.story.js'); // 1.2 + Label
+require('../src/new-icons/docs'); // 1.4 Icons
 
-import './Loader.story.js'; // 1.5 Loader
-import './LinearProgressBar.story.js'; // 1.6 LinearProgressBar
-import './CircularProgressBar.story.js'; // 1.7 LinearProgressBar
-import './ScrollBar'; // 1.8 ScrollBar
+require('../src/Loader/docs/index.story.js'); // 1.5 Loader
+require('../src/LinearProgressBar/docs/index.story.js'); // 1.6 LinearProgressBar
+require('../src/CircularProgressBar/docs/index.story.js'); // 1.7 LinearProgressBar
+require('./ScrollBar'); // 1.8 ScrollBar
 
 // 2. Layout
-import './PageLayout/index.story.js'; // 2.1 Page Layout
-import './Card'; // 2.2 Card Layout
-import './EmptyState/EmptyState.story'; // 2.4 EmptyState
-import './StatsWidget/index.story'; // 2.7 StatsWidget
-import './AddItem/AddItem.story'; // 2.8 AddItem
+require('./PageLayout/index.story'); // 2.1 Page Layout
+require('../src/Card/docs'); // 2.2 Card Layout
+require('../src/EmptyState/docs/index.story'); // 2.4 EmptyState
+require('../src/StatsWidget/docs/index.story'); // 2.7 StatsWidget
+require('../src/AddItem/docs/index.story'); // 2.8 AddItem
 
 // 3. Inputs
-import './TextInput/index.story'; // 3.1. Text Input
-import './TextArea/index.story'; // 3.2 Text Area
-import './RichTextArea/index.story.js'; // 3.2b + RichTextArea
-import './FieldWithSelectionComposite'; // 3.3 Field With Selection
-import './TimeInput/TimeInput.story.js'; // 3.4 TimeInput
-import './DatePicker.story.js'; // 3.6 DatePicker
-import './Range'; // 3.7 Range
-import './MultiSelect/index.story'; // 3.8 Tags
-import './MultiSelectComposite'; // 3.8 + MultiSelectComposite
-import './Search/index.story'; // 3.9 Search
-import './ImageViewer/index.story'; // 3.10 ImageViewer
-import './FilePicker/index.story'; // 3.10 + FilePicker
+require('./TextInput/index.story'); // 3.1. Text Input
+require('./TextArea/index.story'); // 3.2 Text Area
+require('../src/RichTextArea/docs/index.story.js'); // 3.2b + RichTextArea
+require('./FieldWithSelectionComposite'); // 3.3 Field With Selection
+require('../src/NumberInput/docs/index.story.js'); // 3.4 NumberInput
+require('../src/TimeInput/docs/index.story.js'); // 3.4 TimeInput
+require('../src/DatePicker/docs/index.story.js'); // 3.6 DatePicker
+require('../src/Range/docs'); // 3.7 Range
+require('../src/MultiSelect/docs/index.story'); // 3.8 Tags
+require('../src/MultiSelectComposite/docs'); // 3.8 + MultiSelectComposite
+require('../src/Search/docs/index.story'); // 3.9 Search
+require('../src/ImageViewer/docs/index.story'); // 3.10 ImageViewer
+require('../src/FilePicker/docs/index.story'); // 3.10 + FilePicker
 
 // 4. Selection
-import './Dropdown/DropdownStory.js'; // 4.1 Dropdown
-import './AutoComplete'; // 4.1 + AutoComplete
-import './AutoCompleteComposite'; // 4.1 + AutoCompleteComposite
-import './InputWithOptions'; // 4.1 + InputWithOptions
-import './MultiSelectCheckbox/index.story.js'; // 4.1 + MultiSelectCheckbox
-import './CheckBox/index.story.js'; // 4.2 Checkbox
-import './RadioGroup.story.js'; // 4.3 RadioGroup
-import './ToggleSwitch/index.story'; // 4.4 ToggleSwitch
-import './SegmentedToggle/index.story'; // 4.5 SegmentedToggle
-import './Slider/index.story'; // 4.7 Slider
-import './ColorInput/index.story'; // 4.8 ColorInput
+require('../src/Dropdown/docs/DropdownStory.js'); // 4.1 Dropdown
+require('../src/AutoComplete/docs'); // 4.1 + AutoComplete
+require('../src/AutoCompleteComposite/docs'); // 4.1 + AutoCompleteComposite
+require('../src/InputWithOptions/docs'); // 4.1 + InputWithOptions
+require('../src/MultiSelectCheckbox/docs/index.story.js'); // 4.1 + MultiSelectCheckbox
+require('../src/Checkbox/docs/index.story.js'); // 4.2 Checkbox
+require('../src/RadioGroup/docs/index.story.js'); // 4.3 RadioGroup
+require('../src/ToggleSwitch/docs/index.story'); // 4.4 ToggleSwitch
+require('../src/SegmentedToggle/docs/index.story'); // 4.5 SegmentedToggle
+require('../src/Slider/docs/index.story'); // 4.7 Slider
+require('../src/ColorInput/docs/index.story'); // 4.8 ColorInput
 
 // 5. Buttons
-import './Button/index.story.js'; // 5.1 Standard
-import './IconButton/index.story'; // 5.2 Icon Button
-import './TextButton/index.story'; // 5.3 Text Button
-import './CloseButton/index.story.js'; // 5.4 Close Button
+require('../src/Button/docs/index.story.js'); // 5.1 Standard
+require('../src/IconButton/docs/index.story'); // 5.2 Icon Button
+require('../src/TextButton/docs/index.story'); // 5.3 Text Button
+require('../src/CloseButton/docs/index.story.js'); // 5.4 Close Button
 
 // 6. Navigation
-import './SideMenu'; // 6.1 SideMenu
-import './Breadcrumbs/index.story.js'; // 6.2 + Breadcrumbs
-import './Tabs'; // 6.3 Tabs
+require('../src/SideMenu/docs'); // 6.1 SideMenu
+require('../src/Breadcrumbs/docs/index.story.js'); // 6.2 + Breadcrumbs
+require('../src/Tabs/docs'); // 6.3 Tabs
 
 // 7. Tooltips
-import './Tooltip/Composite/CompositeStory'; // 7.1 Tooltip
-import './Popover/index.story'; //7.2 Popover
-import './PopoverMenu/index.story'; // 7.3 Popover Menu
+require('../src/Tooltip/docs/Composite/CompositeStory'); // 7.1 Tooltip
+require('../src/Popover/docs/index.story'); //7.2 Popover
+require('../src/PopoverMenu/docs/index.story'); // 7.3 Popover Menu
 
 // 8. Notification Bars
 // 8.1 Standard, 8.2 Error, 8.3 Success, 8.4 Warning, 8.5 Premium
-import './Notification/index.story.js';
-import './FloatingNotification/index.story';
-import './FloatingHelper/FloatingHelper.story.js'; // 8.6 FloatingHelper
-import './FloatingHelperContent/FloatingHelperContent.story.js'; // 8.6 + FloatingHelper.Content
-import './SectionHelper/SectionHelper.story.js'; // 8.7 SectionHelper
+require('../src/Notification/docs/index.story.js');
+require('../src/FloatingNotification/docs/index.story');
+require('../src/FloatingHelper/docs/index.story.js'); // 8.6 FloatingHelper
+require('../src/FloatingHelper/FloatingHelperContent/docs/index.story.js'); // 8.6 + FloatingHelper.Content
+require('../src/SectionHelper/docs/index.story.js'); // 8.7 SectionHelper
 
 // 9. Modals
-import './MessageBox';
-import './Modal';
-import './EndorseContentLayout';
+require('../src/MessageBox/docs');
+require('../src/Modal/docs');
+require('../src/EndorseContentLayout/docs');
 
 // 10. Tables
-import './DataTable'; // 10.1 DataTable
-import './Table'; // 10.1 Table
-import './TableToolbar/ToolbarStory.js'; // 10.1 Table -> TableToolbar
-import './TableActionCell/TableActionCell.story'; // 10.1 Table -> TableActionCell
+require('../src/DataTable/docs'); // 10.1 DataTable
+require('../src/Table/docs/index.story'); // 10.1 Table
+require('../src/TableToolbar/docs/ToolbarStory'); // 10.1 Table -> TableToolbar
+require('../src/TableActionCell/docs/index.story.js'); // 10.1 Table -> TableActionCell
 
 // 11. Pickers and Selectors
-import './DropdownLayout'; // 11.1 DropdownLayout
-import './EditableSelector/index.story'; // 11.2 EditableSelector
-import './ModalSelectorLayout.story.js'; // 11.3 ModalSelectorLayout
-import './ColorPicker/index.story.js'; // 11.5 Color Picker
-import './Calendar/index.story'; // 11.5 Calendar
-import './CalendarPanel/index.story'; // 11.6 CalendarPanel
+require('../src/DropdownLayout/docs'); // 11.1 DropdownLayout
+require('../src/EditableSelector/docs/index.story'); // 11.2 EditableSelector
+require('../src/ModalSelectorLayout/docs/index.story.js'); // 11.3 ModalSelectorLayout
+require('../src/ColorPicker/docs/index.story.js'); // 11.5 Color Picker
+require('../src/Calendar/docs/index.story'); // 11.5 Calendar
+require('../src/CalendarPanel/docs/index.story'); // 11.6 CalendarPanel
 
 // 12. Other
-import './Badge/index.story'; // 12.1 Badge
-import './BadgeSelect/index.story.js'; // 12.2 BadgeSelect
-import './CounterBadge/CounterBadge.story'; //12.3 CounterBadge
-import './FullTextView.story.js'; //12.4 FullTextView
-import './Tag/Tag.story'; // 12.5 Tag
-import './Avatar/Avatar.story'; // 12.6 Avatar
-import './Highlighter.story.js'; // Highlighter
+require('../src/Badge/docs/index.story'); // 12.1 Badge
+require('../src/BadgeSelect/docs/index.story.js'); // 12.2 BadgeSelect
+require('../src/CounterBadge/docs/index.story'); //12.3 CounterBadge
+require('../src/FullTextView/docs/index.story.js'); //12.4 FullTextView
+require('../src/Tag/docs/index.story'); // 12.5 Tag
+require('../src/Avatar/docs/index.story'); // 12.6 Avatar
+require('../src/Highlighter/docs/index.story.js'); // Highlighter
 
 // Components API
-import './Box/index.story.js';
-import './components/Calendar/index.story';
-import './components/CalendarPanel/index.story';
-import './CalendarPanelFooter/index.story';
-import './components/Card';
-import './CardGalleryItem/CardGalleryItem.story';
-import './Carousel/index.story.js';
-import './Collapse.story';
-import './components/Dropdown/Dropdown.story.js';
-import './DropdownBase/index.story';
-import './components/EmptyState/EmptyState.story';
-import './FormField/index.story.js';
-import './GenericModalLayout/GenericModalLayout.story.js';
-import './GoogleAddressInput/index.story.js';
-import './components/Grid';
-import './Heading/index.story';
-import './Input/index.story';
-import './InputArea/index.story.js';
-import './Layout/index.story.js';
-import './Layout';
-import './components/MultiSelect/index.story';
-import './components/Page/PageExampleStories.js';
-import './components/Page/index.story.js';
-import './components/PageHeader/index.story.js';
-import './Proportion/index.story.js';
-import './RichTextArea/api.story';
-import './Skeleton.story.js';
-import './Text/index.story';
-import './Thumbnail/index.story';
+require('../src/Box/docs/index.story.js');
+require('../src/CalendarPanelFooter/docs/index.story');
+require('../src/CardGalleryItem/docs/index.story');
+require('../src/Carousel/docs/index.story.js');
+require('../src/Collapse/docs/index.story');
+require('./Dropdown/Dropdown.story.js');
+require('../src/DropdownBase/docs/index.story');
+require('../src/FormField/docs/index.story.js');
+require('../src/GenericModalLayout/docs/index.story.js');
+require('../src/GoogleAddressInput/docs/index.story.js');
+require('../src/Grid/docs');
+require('../src/Heading/docs/index.story');
+require('../src/Input/docs/index.story');
+require('../src/InputArea/docs/index.story.js');
+require('../src/Layout/docs/index.story.js');
+require('../src/Layout/docs');
+require('./MultiSelect/index.story');
+require('./NumberInput/index.story');
+require('../src/Page/docs/PageExampleStories.js');
+require('../src/Page/docs/index.story.js');
+require('../src/PageHeader/docs/index.story.js');
+require('../src/Proportion/docs/index.story.js');
+require('../src/RichTextArea/docs/api.story');
+require('../src/Skeleton/docs/index.story.js');
+require('../src/Text/docs/index.story');
+require('../src/Thumbnail/docs/index.story');
 
 // Styling
-import './Typography/TypographyClassesStory';
+require('../src/Typography/docs/TypographyClassesStory');
 
 // WIP
-import './WIP';
-import './DragAndDrop/DragAndDrop.js';
-import './Builders/BadgeSelectItemBuilder';
-import './Builders/ContactItemBuilder';
+require('./WIP');
+require('../src/DragAndDrop/docs/DragAndDrop.js');
+require('../src/BadgeSelectItemBuilder/docs');
+require('../src/ContactItemBuilder/docs');
+require('../src/DateInput/docs/index.story');
 
 // Tests
-import './Typography/TypographyTestStories';
-import './Input/InputTestStories';
-import './TimeInput/testStory';
-import './components/Page/PageTestStories.js'; // Tests/2. Layout/2.5 + Page/
-import './components/Page/PageTestStoriesDeprecated.js'; // Tests/2. Layout/2.5 + Page/Deprecated
-import './components/PageHeader/PageHeaderTestStories.js'; // Tests/2. Layout/2.5 + PageHeader/
-import './Button/testButton'; // Tests/5. Button/5.1 Button
-import './IconButton/testStory'; // Tests/5. Button/5.2 IconButton
-import './TextButton/testStory'; // Tests/5. Button/5.3 TextButton
-import './CloseButton/testStory'; // Tests/5. Button/5.4 CloseButton
-import './Calendar/CalendarTestStory'; // Tests/3. Inputs/3.13 Calendar
-import './MultiSelect/MultiSelectTestStory'; // Tests/3. Inputs/3.8 Tags
-import './PopoverMenu/PopoverMenuRegressionTest.js'; // Tests/7.3. Popover Menu/
-import './Popover/testStory';
-import './TableToolbar/ToolbarTestStory'; // Tests/10. Table
-import './Tag/TagTestStory'; // Tests/12. Other/12.5 Tag
-import './Avatar/AvatarTestStory'; // Tests/12. Other/12.6 Avatar
-import './Box/testStory';
-import './Thumbnail/testStory';
-import './EditableSelector/testStory';
-import './Slider/testStory'; // 4.7 Slider
-import './StatsWidget/testStory'; // 2.7 StatsWidget
-import './SegmentedToggle/testStory'; // 4.5 SegmentedToggle
-import './FloatingNotification/FloatingNotificationTestStory'; // 8.2 FloatingNotification
-import './FormField/testStory';
-import './RichTextArea/testStory';
-import './ColorInput/testStory';
+require('../src/Typography/docs/TypographyTestStories');
+require('../src/Input/docs/InputTestStories');
+require('../src/NumberInput/test/testStory');
+require('../src/TimeInput/docs/testStory');
+require('../src/Page/docs/PageTestStories.js'); // Tests/2. Layout/2.5 + Page/
+require('../src/Page/docs/PageTestStoriesDeprecated.js'); // Tests/2. Layout/2.5 + Page/Deprecated
+require('../src/PageHeader/docs/PageHeaderTestStories.js'); // Tests/2. Layout/2.5 + PageHeader/
+require('../src/Button/docs/testButton'); // Tests/5. Button/5.1 Button
+require('../src/IconButton/docs/testStory'); // Tests/5. Button/5.2 IconButton
+require('../src/TextButton/docs/testStory'); // Tests/5. Button/5.3 TextButton
+require('../src/CloseButton/docs/testStory'); // Tests/5. Button/5.4 CloseButton
+require('../src/Calendar/docs/CalendarTestStory'); // Tests/3. Inputs/3.13 Calendar
+require('../src/MultiSelect/docs/MultiSelectTestStory'); // Tests/3. Inputs/3.8 Tags
+require('../src/PopoverMenu/docs/PopoverMenuRegressionTest.js'); // Tests/7.3. Popover Menu/
+require('../src/Popover/docs/testStory');
+require('../src/TableToolbar/docs/ToolbarTestStory'); // Tests/10. Table
+require('../src/Tag/docs/TagTestStory'); // Tests/12. Other/12.5 Tag
+require('../src/Avatar/docs/AvatarTestStory'); // Tests/12. Other/12.6 Avatar
+require('../src/Box/docs/testStory');
+require('../src/Thumbnail/docs/testStory');
+require('../src/EditableSelector/docs/testStory');
+require('../src/Slider/docs/testStory'); // 4.7 Slider
+require('../src/StatsWidget/docs/testStory'); // 2.7 StatsWidget
+require('../src/SegmentedToggle/docs/testStory'); // 4.5 SegmentedToggle
+require('../src/FloatingNotification/docs/FloatingNotificationTestStory'); // 8.2 FloatingNotification
+require('../src/FormField/docs/testStory');
+require('../src/RichTextArea/docs/testStory');
+require('../src/ColorInput/docs/testStory');
+require('../src/DateInput/test/testStories');
 
 // The generated test component
-import './GeneratedTestComponent/index.story';
+require('../src/GeneratedTestComponent/docs/index.story');
+require('../src/GeneratedTestComponent/test/GeneratedTestComponentStories');
 
 // This import was added by the component generator
 import './Accordion/index.story';
 import './RichTextInputArea/index.story';
 import './NoBorderInput/index.story';
+require('../src/RichTextInputArea/docs/index.story');
+
+// This import was added by the component generator
+require('../src/NoBorderInput/docs/index.story');

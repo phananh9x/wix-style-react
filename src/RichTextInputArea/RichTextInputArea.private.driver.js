@@ -1,6 +1,6 @@
 import publicDriverFactory, { getTextArea } from './RichTextInputArea.driver';
 
-import richTextToolbarPrivateDriverFactory from './RichTextToolbar.private.driver';
+import richTextToolbarPrivateDriverFactory from './Toolbar/RichTextToolbar.private.driver';
 
 export default base => {
   return {

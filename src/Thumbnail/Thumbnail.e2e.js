@@ -6,10 +6,7 @@ import {
 import { eyesItInstance } from '../../test/utils/eyes-it';
 import { thumbnailTestkitFactory } from '../../testkit/protractor';
 import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
-import {
-  storySettings,
-  testStories,
-} from '../../stories/Thumbnail/storySettings';
+import { storySettings, testStories } from './docs/storySettings';
 
 const storyUrl = createTestStoryUrl({
   category: storySettings.category,

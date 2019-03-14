@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  * some comment
  */
@@ -7,6 +8,7 @@ module.exports = {
   },
 
   MyNewComponent: {
-    unidriver: true
+    unidriver: true,
+    testkitPath: "../src/MyNewComponent/MyNewComponent.uni.driver"
   }
 };

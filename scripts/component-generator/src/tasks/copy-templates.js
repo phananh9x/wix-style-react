@@ -4,27 +4,19 @@ const utils = require('../utils');
 const replaceTemplates = require('../replace-templates');
 const createValuesMap = require('../create-values-map');
 
-const createFileMap = ({ ComponentName, description, testComponent }) => {
+const createFileMap = ({ ComponentName }) => {
   const filesToCopy = [
     'src/Component/Component.uni.driver.js',
     'src/Component/Component.meta.js',
-    'src/Component/Component.private.uni.driver.js',
-    'src/Component/Component.e2e.js',
     'src/Component/Component.js',
     'src/Component/Component.scss',
-    'src/Component/Component.spec.js',
     'src/Component/index.js',
-
-    // If `testComponent === true`, we won't generate a story for now
-    ...(!testComponent
-      ? [
-          'stories/Component/storySettings.js',
-          'stories/Component/index.story.js',
-        ]
-      : []),
-
-    // Create README only if we have a description
-    ...(description ? ['src/Component/README.md'] : []),
+    'src/Component/docs/index.story.js',
+    'src/Component/test/Component.private.uni.driver.js',
+    'src/Component/test/Component.spec.js',
+    'src/Component/test/Component.e2e.js',
+    'src/Component/test/ComponentStories.js',
+    'src/Component/test/storySettings.js',
   ];
 
   return filesToCopy.reduce((res, curr) => {
@@ -64,20 +56,4 @@ module.exports = async answers => {
 
   // Copy file
   await copyTemplates(fileMap, valuesMap);
-
-  // Copy `testComponent` files
-  if (answers.testComponent) {
-    await copyTemplates(
-      {
-        'stories/Component/storySettings.js': `stories/${
-          answers.ComponentName
-        }/storySettings.js`,
-        'stories/Component/index.story.js': `stories/${
-          answers.ComponentName
-        }/index.story.js`,
-      },
-      valuesMap,
-      'test-component',
-    );
-  }
 };

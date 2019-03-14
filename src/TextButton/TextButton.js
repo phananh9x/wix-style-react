@@ -2,12 +2,24 @@ import React, { Component } from 'react';
 import { ButtonNext } from 'wix-ui-core/button-next';
 import cx from 'classnames';
 import { textButton } from 'wix-ui-core/themes/backoffice';
-import { string, node, oneOf, element, bool, func } from 'prop-types';
+import {
+  oneOfType,
+  string,
+  node,
+  oneOf,
+  element,
+  object,
+  bool,
+  func,
+  symbol,
+} from 'prop-types';
 
 class TextButton extends Component {
   static displayName = 'TextButton';
 
   static propTypes = {
+    /** render as some other component or DOM tag */
+    as: oneOfType([func, object, string]),
     /** Additional classes */
     className: string,
     /** Skins of TextButton content */

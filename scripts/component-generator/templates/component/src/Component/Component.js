@@ -5,6 +5,7 @@ import styles from './{%ComponentName%}.scss';
 import Text from '../Text';
 import Button from '../Button';
 
+{%descriptionJSDoc%}
 class {%ComponentName%} extends React.PureComponent {
   static displayName = '{%ComponentName%}';
 
@@ -40,7 +41,10 @@ class {%ComponentName%} extends React.PureComponent {
         </Text>
 
         <div className={styles.button}>
-          <Button onClick={this._handleClick} dataHook="{%componentName%}-button">
+          <Button
+            onClick={this._handleClick}
+            dataHook="{%componentName%}-button"
+          >
             {buttonText}
           </Button>
         </div>

@@ -17,4 +17,7 @@ import './Counter/index.story';
 import './Typography/TypographyClassesStory';
 
 // This import was added by the component generator
-import './MyNewComponent/index.story';
+require('../src/MyNewComponent/docs/index.story');
+
+// This import was added by the component generator
+require('../src/MyNewComponent/test/MyNewComponentStories');

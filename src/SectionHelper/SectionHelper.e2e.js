@@ -2,12 +2,12 @@ import eyes from 'eyes.it';
 import { sectionHelperTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
-import { storybookConfig } from '../../stories/SectionHelper/storybookConfig';
+import { storySettings } from './docs/storySettings';
 
 describe('SectionHelper', () => {
   const storyUrl = createStoryUrl({
-    kind: storybookConfig.category,
-    story: storybookConfig.storyName,
+    kind: storySettings.category,
+    story: storySettings.storyName,
     withExamples: false,
   });
   const testkit = sectionHelperTestkitFactory({

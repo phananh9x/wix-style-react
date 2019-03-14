@@ -3,10 +3,7 @@ import {
   createStoryUrl,
   createTestStoryUrl,
 } from '../../test/utils/storybook-helpers';
-import {
-  storySettings,
-  testStories,
-} from '../../stories/TimeInput/storySettings';
+import { storySettings, testStories } from './docs/storySettings';
 
 describe('TimeInput', () => {
   const storyUrl = createStoryUrl({

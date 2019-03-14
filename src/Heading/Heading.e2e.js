@@ -8,7 +8,7 @@ import { tooltipTestkitFactory } from 'wix-ui-core/dist/src/testkit/protractor';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { APPEARANCES } from './Heading';
 
-import { storySettings } from '../../stories/Heading/storySettings';
+import { storySettings } from './docs/storySettings';
 
 describe('Heading', () => {
   const storyUrl = createStoryUrl({

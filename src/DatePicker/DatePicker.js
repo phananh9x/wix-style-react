@@ -8,12 +8,10 @@ import setMonth from 'date-fns/set_month';
 import setDate from 'date-fns/set_date';
 
 import WixComponent from '../BaseComponents/WixComponent';
-import CalendarIcon from '../new-icons/Date';
-import { formatDate } from '../LocaleUtils';
 import Calendar from '../Calendar';
-import Input from '../Input';
 
 import styles from './DatePicker.scss';
+import DateInput from '../DateInput';
 
 /**
  * DatePicker component
@@ -140,20 +138,6 @@ export default class DatePicker extends WixComponent {
     this.closeCalendar();
   }
 
-  _formatDateValue = () => {
-    const { value, dateFormat, locale } = this.props;
-
-    if (!value) {
-      return '';
-    }
-
-    if (typeof dateFormat === 'function') {
-      return dateFormat(value);
-    }
-
-    return formatDate(value, dateFormat, locale);
-  };
-
   _renderInput = () => {
     const {
       inputDataHook,
@@ -165,31 +149,28 @@ export default class DatePicker extends WixComponent {
       errorMessage,
       customInput,
       inputProps,
+      dateFormat,
     } = this.props;
 
-    const _inputProps = {
-      dataHook: inputDataHook,
-      value: this._formatDateValue(initialValue),
-      onInputClicked: this.openCalendar,
-      disabled,
-      readOnly,
-      placeholder: placeholderText,
-      prefix: (
-        <Input.IconAffix>
-          <CalendarIcon />
-        </Input.IconAffix>
-      ),
-      onFocus: this.openCalendar,
-      onKeyDown: this._handleKeyDown,
-      tabIndex: this.state.isDateInputFocusable ? 1 : -1,
-      error,
-      errorMessage,
-      autoSelect: false,
-      ...(customInput ? customInput.props : {}),
-      ...inputProps,
-    };
-
-    return React.cloneElement(customInput || <Input />, _inputProps);
+    return (
+      <DateInput
+        dataHook={inputDataHook}
+        value={initialValue}
+        onInputClicked={this.openCalendar}
+        disabled={disabled}
+        readOnly={readOnly}
+        placeholder={placeholderText}
+        onFocus={this.openCalendar}
+        onKeyDown={this._handleKeyDown}
+        tabIndex={this.state.isDateInputFocusable ? 1 : -1}
+        error={error}
+        errorMessage={errorMessage}
+        autoSelect={false}
+        dateFormat={dateFormat}
+        {...(customInput ? customInput.props : {})}
+        {...inputProps}
+      />
+    );
   };
 
   _setInputRef = ref => (this.inputRef = ref);
@@ -283,6 +264,9 @@ DatePicker.propTypes = {
       'no',
       'nl',
       'da',
+      'zh',
+      'th',
+      'cs',
     ]),
     PropTypes.shape({
       distanceInWords: PropTypes.object,

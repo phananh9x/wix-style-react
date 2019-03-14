@@ -17,7 +17,7 @@ export const avatarTestkitFactory = enzymeUniTestkitFactoryCreator(
   avatarDriverFactory,
 );
 
-import { myNewComponentDriverFactory } from '../src/MyNewComponent/MyNewComponent.driver';
+import { myNewComponentDriverFactory } from '../src/MyNewComponent/MyNewComponent.uni.driver';
 
 export const myNewComponentTestkitFactory = enzymeUniTestkitFactoryCreator(
   myNewComponentDriverFactory,

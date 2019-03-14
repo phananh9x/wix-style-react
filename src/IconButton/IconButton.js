@@ -2,12 +2,23 @@ import React, { Component } from 'react';
 import { ButtonNext } from 'wix-ui-core/button-next';
 import cx from 'classnames';
 import { iconButton } from 'wix-ui-core/themes/backoffice';
-import { string, node, bool, oneOf, func } from 'prop-types';
+import {
+  oneOfType,
+  string,
+  node,
+  oneOf,
+  object,
+  bool,
+  func,
+  symbol,
+} from 'prop-types';
 
 class IconButton extends Component {
   static displayName = 'IconButton';
 
   static propTypes = {
+    /** render as some other component or DOM tag */
+    as: oneOfType([func, object, string]),
     /** Classes to be applied to the root element */
     className: string,
     /** Used for passing any wix-style-react icon. For external icon make sure to follow ux sizing guidelines */
@@ -54,9 +65,10 @@ class IconButton extends Component {
         className={classNames}
         disabled={disabled}
       >
-        {React.cloneElement(children, {
-          size: size === 'small' ? '18px' : '24px',
-        })}
+        {children &&
+          React.cloneElement(children, {
+            size: size === 'small' ? '18px' : '24px',
+          })}
       </ButtonNext>
     );
   }

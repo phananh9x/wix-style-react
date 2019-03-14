@@ -1,7 +1,7 @@
 import eyes from 'eyes.it';
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
 
-import storySettings from '../../stories/Layout/story-settings';
+import storySettings from './docs/storySettings';
 
 describe('Layout', () => {
   [

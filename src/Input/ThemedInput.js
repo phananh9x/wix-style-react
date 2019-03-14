@@ -80,4 +80,8 @@ class ThemedInput extends Input {
   }
 }
 
+ThemedInput.propTypes = {
+  ...Input.propTypes,
+};
+
 export default ThemedInput;

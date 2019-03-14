@@ -1,17 +1,28 @@
 import React, { Component } from 'react';
 import { ButtonNext } from 'wix-ui-core/button-next';
 import cx from 'classnames';
-
-import { string, oneOf, bool, func, node } from 'prop-types';
 import Close from '../new-icons/system/Close';
 import CloseLarge from '../new-icons/system/CloseLarge';
 
 import { closeButton } from 'wix-ui-core/themes/backoffice';
 
+import {
+  oneOfType,
+  string,
+  node,
+  oneOf,
+  object,
+  bool,
+  func,
+  symbol,
+} from 'prop-types';
+
 class CloseButton extends Component {
   static displayName = 'CloseButton';
 
   static propTypes = {
+    /** render as some other component or DOM tag */
+    as: oneOfType([func, object, string]),
     /** additional css classes */
     className: string,
     /** Used for passing any wix-style-react icon. For external icon make sure to follow ux sizing guidelines */

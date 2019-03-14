@@ -2,10 +2,7 @@ import eyes from 'eyes.it';
 import { richTextAreaTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
-import {
-  storySettings,
-  testStories,
-} from '../../stories/RichTextArea/storySettings';
+import { storySettings, testStories } from './docs/storySettings';
 import { BUTTON_TYPES } from './RichTextArea.protractor.driver';
 import { flattenInternalDriver } from '../../test/utils/private-drivers';
 

@@ -6,6 +6,9 @@
     align-items: center;
     height: 100%;
     color: $B10;
+    &.disabled {
+        color: $D55;
+    }
     &.inSuffix {
         padding-right: 6px;
     }

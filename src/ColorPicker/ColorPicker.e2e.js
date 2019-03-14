@@ -2,7 +2,7 @@ import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { createStoryUrl } from 'wix-ui-test-utils/protractor';
 
 import { eyesItInstance } from '../../test/utils/eyes-it';
-import { storySettings } from '../../stories/ColorPicker/storySettings';
+import { storySettings } from './docs/storySettings';
 import { colorPickerTestkitFactory } from '../../testkit/protractor';
 
 describe('ColorPicker', () => {

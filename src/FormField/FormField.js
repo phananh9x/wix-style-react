@@ -57,6 +57,9 @@ class FormField extends React.Component {
     /** optional text labeling this form field */
     label: PropTypes.node,
 
+    /** setting label size (small, medium) */
+    labelSize: PropTypes.string,
+
     labelPlacement: PropTypes.oneOf([
       labelPlacements.top,
       labelPlacements.right,
@@ -87,6 +90,7 @@ class FormField extends React.Component {
   };
 
   static defaultProps = {
+    labelSize: 'medium',
     required: false,
     stretchContent: true,
     labelPlacement: labelPlacements.top,
@@ -166,6 +170,7 @@ class FormField extends React.Component {
       id,
       children,
       stretchContent,
+      labelSize,
     } = this.props;
     const { lengthLeft } = this.state;
 
@@ -190,6 +195,7 @@ class FormField extends React.Component {
           >
             <Label
               appearance="T1"
+              size={labelSize}
               children={label}
               for={id}
               data-hook="formfield-label"

@@ -1,0 +1,17 @@
+@import '../../common.scss';
+
+.actions {
+  display: flex;
+}
+
+.filter-select {
+  margin: 0 20px 0 10px;
+}
+
+.example {
+  background-color: $D60;
+  margin: 50px;
+  padding: 20px;
+  min-width: 874;
+  max-width: 1234px;
+}

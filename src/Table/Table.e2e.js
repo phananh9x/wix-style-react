@@ -10,7 +10,7 @@ import {
 } from 'wix-ui-test-utils/protractor';
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import { flattenInternalDriver } from '../../test/utils/private-drivers';
-import { storySettings } from '../../stories/Table/storySettings';
+import { storySettings } from './docs/storySettings';
 
 describe('Table', () => {
   const storyUrl = createStoryUrl({

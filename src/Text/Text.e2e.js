@@ -8,7 +8,7 @@ import {
 import { tooltipTestkitFactory } from 'wix-ui-core/dist/src/testkit/protractor';
 import { textTestkitFactory } from '../../testkit/protractor';
 import { SIZES, SKINS, WEIGHTS } from './constants';
-import { storySettings } from '../../stories/Text/storySettings';
+import { storySettings } from './docs/storySettings';
 
 describe('Text', () => {
   const storyUrl = createStoryUrl({

@@ -1,41 +1,83 @@
 @import '../common';
 
-:global {
-  @import '~rc-slider/assets/index';
+:global(.wix-style-react-slider) :global(.rc-slider) {
+  position: relative;
+  height: 14px;
+  padding: 5px 0;
+  width: 100%;
+  border-radius: 6px;
+  touch-action: none;
+  box-sizing: border-box;
 }
 
-:global(.wix-slider) {
-  $height: 6px;
-  $borderRadius: 10px;
+:global(.wix-style-react-slider) :global(.rc-slider-rail) {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: $B40;
+  border-radius: 5px;
+  height: 6px;
+  border-radius: 10px;
+}
 
-  :global(.rc-slider-rail) {
-    background-color: $B40;
-    border-radius: 5px;
-    height: $height;
-    border-radius: $borderRadius;
-  }
+:global(.wix-style-react-slider) :global(.rc-slider-track) {
+  position: absolute;
+  left: 0;
+  background-color: $B10;
+  height: 6px;
+  border-radius: 10px;
+}
 
-  :global(.rc-slider-track) {
-    background-color: $B10;
-    height: $height;
-    border-radius: $borderRadius;
-  }
+:global(.wix-style-react-slider) :global(.rc-slider-mark) {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  width: 100%;
+  font-size: 12px;
+}
 
-  :global(.rc-slider-dot) {
-    display: none;
-  }
+:global(.wix-style-react-slider) :global(.rc-slider-mark-text) {
+  position: absolute;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  color: $D10;
+}
 
-  :global(.mark-line) {
-    position: relative;
-    margin: auto;
-    top: 6px;
-    width: 1px;
-    height: 7px;
-    background-color: $D50;
-  }
+:global(.wix-style-react-slider) :global(.rc-slider-mark-text-active) {
+  color: $D10;
+}
 
-  :global(.mark-value) {
-    position: relative;
-    margin-top: 14px;
-  }
+:global(.wix-style-react-slider) :global(.rc-slider-step) {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+}
+
+:global(.wix-style-react-slider) :global(.rc-slider-disabled) {
+  background-color: transparent;
+}
+
+:global(.wix-style-react-slider) :global(.rc-slider-disabled .rc-slider-rail) {
+  background-color: $D60;
+}
+
+:global(.wix-style-react-slider) :global(.rc-slider-disabled .rc-slider-track) {
+  background-color: $D55;
+}
+
+.markLine {
+  position: relative;
+  margin: auto;
+  top: 6px;
+  width: 1px;
+  height: 7px;
+  background-color: $D50;
+}
+
+.markValue {
+  position: relative;
+  margin-top: 14px;
 }

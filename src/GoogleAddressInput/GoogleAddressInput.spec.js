@@ -65,6 +65,18 @@ export class GmapsTestClient {
   }
 }
 
+class GmapsTestClientWithFields extends GmapsTestClient {
+  placeDetails({ request }) {
+    const { fields } = request;
+    if (fields) {
+      return Promise.resolve([
+        _.extend({}, GEOCODE_RESULT, { __called__: JSON.stringify(request) }),
+      ]);
+    }
+    throw new Error('placeDetails() request params are malformed');
+  }
+}
+
 describe('GoogleAddressInput', () => {
   const { createShallow, createMount } = componentFactory();
 
@@ -189,6 +201,32 @@ describe('GoogleAddressInput', () => {
       expect(component.find('InputWithOptions').props().autoSelect).toEqual(
         false,
       );
+    });
+
+    it('should allow specify specific fields', async () => {
+      const onSet = sinon.spy();
+
+      const component = createShallow({
+        Client: GmapsTestClientWithFields,
+        countryCode: 'XX',
+        onSet,
+        placeDetailsFields: [
+          'name',
+          'rating',
+          'formatted_phone_number',
+          'geometry',
+        ],
+        handler: GoogleAddressInputHandler.places,
+      });
+      component.setState({ suggestions: defaultSuggestions });
+      component
+        .find('InputWithOptions')
+        .props()
+        .onSelect({ id: 0, value: 'my address' });
+
+      await eventually(() => {
+        expect(onSet.args[0][0]).toEqual(buildResult('my address'));
+      });
     });
 
     it('should allow focusing input', () => {

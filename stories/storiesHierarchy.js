@@ -20,4 +20,5 @@ export const Category = {
   COMPONENTS: 'Components',
   STYLING: 'Styling',
   WIP: 'WIP',
+  TESTS: 'Tests',
 };

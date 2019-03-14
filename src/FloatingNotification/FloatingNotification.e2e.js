@@ -1,6 +1,6 @@
 import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
 import { eyesItInstance } from '../../test/utils/eyes-it';
-import { storySettings } from '../../stories/FloatingNotification/storySettings';
+import { storySettings } from './docs/storySettings';
 
 const eyes = eyesItInstance();
 

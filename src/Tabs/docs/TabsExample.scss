@@ -1,0 +1,30 @@
+@import '../../common';
+
+.radioGroup {
+  margin-top: 10px;
+}
+
+.controlGroup + .controlGroup {
+  margin-top: 15px;
+}
+
+.preview {
+  margin-top: 12px;
+  border: 10px solid $D50;
+  height: 100px;
+}
+
+.sideContentExample {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+
+  button {
+    margin-right: 12px;
+
+    &:last-of-type {
+      margin-right: 48px;
+    }
+  }
+}

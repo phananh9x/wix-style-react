@@ -14,6 +14,7 @@ import {
   number,
   string,
   func,
+  shape,
 } from 'prop-types';
 
 class PopoverMenu extends WixComponent {
@@ -49,6 +50,14 @@ class PopoverMenu extends WixComponent {
     showArrow: bool,
     onShow: func,
     onHide: func,
+    /**
+     * Allows to shift the tooltip position by x and y pixels.
+     * Both positive and negative values are accepted.
+     */
+    moveBy: shape({
+      x: number,
+      y: number,
+    }),
   };
 
   static defaultProps = {
@@ -117,6 +126,7 @@ class PopoverMenu extends WixComponent {
         showArrow={this.props.showArrow}
         onShow={this.props.onShow}
         onHide={this.props.onHide}
+        moveBy={this.props.moveBy}
       >
         <Button type="button" height={buttonHeight} theme={buttonTheme}>
           <More />

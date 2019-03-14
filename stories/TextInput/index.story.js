@@ -1,9 +1,9 @@
 import React from 'react';
 import { storySettings } from './storySettings';
-import { baseScope } from '../utils/Components/LiveCodeExample';
+import { baseScope } from '../utils/LiveCodeExample';
 import {
   header,
-  title,
+  title as sectionTitle,
   description,
   table,
   importExample,
@@ -68,7 +68,7 @@ export default {
       }),
     ]),
 
-    title('Examples'),
+    sectionTitle('Examples'),
 
     ...[
       {

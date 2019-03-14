@@ -4,10 +4,7 @@ import {
   createStoryUrl,
   createTestStoryUrl,
 } from '../../test/utils/storybook-helpers';
-import {
-  storySettings,
-  testStories,
-} from '../../stories/CloseButton/storySettings';
+import { storySettings, testStories } from './docs/storySettings';
 
 describe('CloseButton', () => {
   const storyUrl = createStoryUrl({

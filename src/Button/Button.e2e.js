@@ -4,7 +4,7 @@ import {
   createStoryUrl,
   createTestStoryUrl,
 } from '../../test/utils/storybook-helpers';
-import { storySettings, testStories } from '../../stories/Button/storySettings';
+import { storySettings, testStories } from './docs/storySettings';
 import { disableCSSAnimation } from '../../test/utils/protractor-helpers';
 
 const testStoryUrl = testName =>

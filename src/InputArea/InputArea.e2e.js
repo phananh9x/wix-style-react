@@ -4,7 +4,7 @@ import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
-import { storySettings } from '../../stories/InputArea/storySettings';
+import { storySettings } from './docs/storySettings';
 import InputArea from './InputArea';
 
 const LONG_INPUT = 'all work and no play makes jack a dull boy\n';

@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 
 import styles from './styles.scss';
 
-const Layout = ({ children, gap, cols }) => (
+const Layout = ({ children, gap, cols, justifyItems, alignItems }) => (
   <div
     style={{
       gridGap: gap,
+      justifyItems,
+      alignItems,
       gridTemplateColumns: cols ? `repeat(${cols}, 1fr)` : undefined,
     }}
     className={styles.root}
@@ -25,6 +27,12 @@ Layout.propTypes = {
 
   /** set custom amount of columns to be rendered. Default is 12 which means at `<Cell span={12}/>` occupies all columns, in other words, full width */
   cols: PropTypes.number,
+
+  /** is used to justify the grid items along the row axis */
+  justifyItems: PropTypes.string,
+
+  /** is used to aligns the grid items along the column axis */
+  alignItems: PropTypes.string,
 };
 
 Layout.defaultProps = {

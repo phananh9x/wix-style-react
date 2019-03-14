@@ -7,7 +7,7 @@ import {
   createTestStoryUrl,
 } from '../../test/utils/storybook-helpers';
 
-import { storySettings } from '../../stories/MultiSelect/storySettings';
+import { storySettings } from './docs/storySettings';
 
 describe('MultiSelect', () => {
   describe('AutoExample', () => {

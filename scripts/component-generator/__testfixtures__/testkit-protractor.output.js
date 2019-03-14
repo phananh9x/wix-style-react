@@ -17,7 +17,7 @@ export const avatarTestkitFactory = protractorUniTestkitFactoryCreator(
   avatarDriverFactory,
 );
 
-import { myNewComponentDriverFactory } from '../src/MyNewComponent/MyNewComponent.driver';
+import { myNewComponentDriverFactory } from '../src/MyNewComponent/MyNewComponent.uni.driver';
 
 export const myNewComponentTestkitFactory = protractorUniTestkitFactoryCreator(
   myNewComponentDriverFactory,

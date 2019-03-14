@@ -6,7 +6,7 @@ import {
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
 
 import { cardGalleryItemTestkitFactory } from '../../testkit/protractor';
-import { storySettings } from '../../stories/CardGalleryItem/storySettings';
+import { storySettings } from './docs/storySettings';
 
 const { kind, storyName } = storySettings;
 const autoExampleUrl = createStoryUrl({

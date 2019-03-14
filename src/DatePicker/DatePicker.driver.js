@@ -1,8 +1,9 @@
 import inputDriverFactory from '../Input/Input.driver';
 import calendarDriverFactory from '../Calendar/Calendar.driver';
+import styles from '../Input/Input.scss';
 
 const datePickerDriverFactory = ({ element }) => {
-  const inputRoot = element && element.children[0].querySelector('.root');
+  const inputRoot = element && element.querySelector(`.${styles.root}`);
   const inputDriver = inputDriverFactory({ element: inputRoot });
   const calendarDriver = calendarDriverFactory({ element });
 

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Range } from 'rc-slider';
-import uniqueId from 'lodash/uniqueId';
+import PropTypes, { oneOfType, arrayOf, number } from 'prop-types';
+import Slide from 'rc-slider';
+import { generateID } from '../utils/generateId';
 import SliderHandle from './SliderHandle';
-import classNames from 'classnames';
-import './Slider.scss';
+import styles from './Slider.scss';
 
 /**
  * A slider component with multi-range support
@@ -25,9 +24,9 @@ export default class Slider extends Component {
     const { min, max } = this.props;
 
     return (
-      <div className="mark">
-        <div className="mark-line" />
-        <div className="mark-value">
+      <div>
+        <div className={styles.markLine} />
+        <div className={styles.markValue}>
           {(value === min || value === max) && <div>{value}</div>}
         </div>
       </div>
@@ -44,33 +43,52 @@ export default class Slider extends Component {
     }, {});
   }
 
-  render() {
-    const marks = this.props.displayMarks ? this.getMarks() : {};
-    const { dataHook } = this.props;
+  renderHandle = props => {
+    const { displayTooltip, disabled } = this.props;
     return (
-      <div
-        className={classNames('wix-slider', { rtl: this.props.rtl })}
-        id={this.props.id}
-        data-hook={dataHook}
-      >
-        <Range
-          handle={props => (
-            <SliderHandle
-              key={props.index}
-              displayTooltip={this.props.displayTooltip}
-              {...props}
-            />
-          )}
-          min={this.props.min}
-          max={this.props.max}
-          value={this.props.value}
-          marks={marks}
-          step={this.props.step}
-          pushable={this.props.pushable}
-          onChange={this.props.onChange}
-          onAfterChange={this.props.onAfterChange}
-          allowCross={this.props.allowCross}
-        />
+      <SliderHandle
+        key={props.index}
+        displayTooltip={displayTooltip}
+        disabled={disabled}
+        {...props}
+      />
+    );
+  };
+
+  renderSlider = () => {
+    const {
+      pushable,
+      allowCross,
+      value,
+      displayMarks,
+      dataHook,
+      id,
+      ...rest
+    } = this.props;
+    return Array.isArray(value) && value.length > 1 ? (
+      <Slide.Range
+        {...rest}
+        handle={this.renderHandle}
+        marks={displayMarks ? this.getMarks() : {}}
+        value={value}
+        pushable={pushable}
+        allowCros={allowCross}
+      />
+    ) : (
+      <Slide
+        {...rest}
+        handle={this.renderHandle}
+        marks={displayMarks ? this.getMarks() : {}}
+        value={Array.isArray(value) ? value[0] : value}
+      />
+    );
+  };
+
+  render() {
+    const { dataHook, id } = this.props;
+    return (
+      <div className="wix-style-react-slider" id={id} data-hook={dataHook}>
+        {this.renderSlider()}
       </div>
     );
   }
@@ -112,7 +130,7 @@ Slider.propTypes = {
   pushable: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
 
   /** The slider's selected range */
-  value: PropTypes.arrayOf(PropTypes.number),
+  value: oneOfType([arrayOf(PropTypes.number), number]),
 };
 
 Slider.defaultProps = {
@@ -121,7 +139,7 @@ Slider.defaultProps = {
   step: 1,
   value: [2, 7],
   allowCross: true,
-  id: uniqueId(),
+  id: generateID(),
   displayTooltip: true,
   displayMarks: true,
   rtl: false,

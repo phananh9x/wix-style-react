@@ -9,7 +9,7 @@ import {
   createStoryUrl,
   createTestStoryUrl,
 } from '../../test/utils/storybook-helpers';
-import { storySettings, testStories } from '../../stories/Box/storySettings';
+import { storySettings, testStories } from './docs/storySettings';
 import { boxTestkitFactory } from '../../testkit/protractor';
 
 const eyes = eyesItInstance();

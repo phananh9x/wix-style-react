@@ -5,7 +5,7 @@ import {
   scrollToElement,
 } from 'wix-ui-test-utils/protractor';
 
-import { storySettings } from '../../stories/TableActionCell/storySettings';
+import { storySettings } from './docs/storySettings';
 import { tableActionCellTestkitFactory } from '../../testkit/protractor';
 
 const hoverElement = element =>

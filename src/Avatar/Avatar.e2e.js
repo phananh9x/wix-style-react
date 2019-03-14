@@ -1,7 +1,7 @@
 import { eyesItInstance } from '../../test/utils/eyes-it';
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import { avatarTestkitFactory } from '../../testkit/protractor';
-import { storySettings } from '../../stories/Avatar/storySettings';
+import { storySettings } from './docs/storySettings';
 import { getTestStoryKind } from '../../stories/storiesHierarchy';
 
 describe('Avatar', () => {

@@ -2,10 +2,7 @@ import eyes from 'eyes.it';
 import { editableSelectorTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
-import {
-  storySettings,
-  testStories,
-} from '../../stories/EditableSelector/storySettings';
+import { storySettings, testStories } from './docs/storySettings';
 
 const storyUrl = createTestStoryUrl({
   category: storySettings.category,

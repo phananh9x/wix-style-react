@@ -1,6 +1,9 @@
 ---
 name: Feature request
-about: I have a suggestion 🙋
+about: "I have a suggestion \U0001F64B"
+title: ''
+labels: ''
+assignees: ''
 
 ---
 

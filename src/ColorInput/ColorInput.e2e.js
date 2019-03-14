@@ -1,8 +1,5 @@
 import { eyesItInstance } from '../../test/utils/eyes-it';
-import {
-  storySettings,
-  testStories,
-} from '../../stories/ColorInput/storySettings';
+import { storySettings, testStories } from './docs/storySettings';
 
 import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
 

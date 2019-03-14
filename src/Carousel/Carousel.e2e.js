@@ -7,7 +7,7 @@ import {
 } from 'wix-ui-test-utils/protractor';
 
 import { carouselTestkitFactory } from '../../testkit/protractor';
-import { storySettings } from '../../stories/Carousel/storySettings';
+import { storySettings } from './docs/storySettings';
 import { ExpectedConditions as EC } from 'protractor';
 
 describe('Carousel', () => {

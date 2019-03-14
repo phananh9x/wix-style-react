@@ -64,7 +64,13 @@ import {
  */
 
 /**
- * A page container which contains a header and scrollable content
+ * A page container which contains a header and scrollable content.
+ *
+ * NOTICE : Temp workaround for Bug that happens if all these are true:
+ *  - You are using the upgraded page `<Page upgrade/>`
+ *  - You are using `<Page.Sticky/>` OR `<Page.FixedContent/>`
+ *  - You are using a `<Modal/>`
+ * Workaround: You need to set the Modal's zIndex to something greater than 11000.
  */
 class Page extends WixComponent {
   static defaultProps = {

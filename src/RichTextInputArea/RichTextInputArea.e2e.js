@@ -6,7 +6,7 @@ import {
 
 import { eyesItInstance } from '../../test/utils/eyes-it';
 import richTextInputAreaPrivateDriverFactory from './RichTextInputArea.private.driver';
-import { storySettings } from '../../stories/RichTextInputArea/storySettings';
+import { storySettings } from './docs/storySettings';
 
 const eyes = eyesItInstance();
 

@@ -1,0 +1,98 @@
+
+:import {
+  -st-from: "wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css";
+  -st-default: Focusable;
+}
+
+:import {
+  -st-from: "wix-ui-core/dist/src/themes/backoffice/colors.st.css";
+  -st-named: F00,B00, WHITE, D55;
+}
+
+:import {
+  -st-from: "wix-ui-core/dist/src/themes/backoffice/shadows.st.css";
+  -st-named: shadow30;
+}
+
+.root {
+  -st-extends: Focusable;
+  -st-states: disabled;
+  position: absolute;
+  margin-left: -7px;
+  margin-top: -5px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  box-sizing:border-box;
+  border-radius: 50%;
+  border: solid 1px rgba(0,0,0,0.05);
+  background-color: #fff;
+  touch-action: pan-x;
+  cursor: grab;
+  outline: none;
+  box-shadow: 0 1px 2px 0 rgba(22, 45, 61, 0.24), 0 0 3px 0 rgba(22, 45, 61, 0.12);
+}
+
+.root:not(:focus-visible):not(:focus):not(:disabled):hover {
+  /** rc-slider hover overwrite */
+  border: 1px solid transparent;
+  box-shadow: 0 1px 2px 2px rgba(138, 209, 250, 0.58);
+}
+
+.root:not(:focus-visible):not(:disabled):active {
+  box-shadow: 0 1px 2px 2px rgba(138, 209, 250, 0.58);
+}
+
+.root:not(:disabled):focus-visible {
+  box-shadow: 0 0 0 2px value(F00);
+  z-index: 2;
+}
+
+.root:not(:disabled):focus {
+  box-shadow: 0 0 0 2px value(F00);
+  /** rc-slider focus overwrite */
+  border: 1px solid transparent;
+  z-index: 2;
+}
+
+.dot {
+  -st-states: disabled, focused;
+  border-radius: 50%;
+  background-color: value(B00);
+  opacity: 0.7;
+  margin-top: 3px;
+  margin-left: 3px;
+  width: 8px;
+  height: 8px;
+}
+
+.dot:disabled {
+  background-color: value(D55);
+}
+
+
+:global(.wix-style-react-slider) :global([dir='rtl']) {
+  margin-right: 3px;
+}
+
+.tooltip {
+  position: absolute;
+  background-color: value(WHITE);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 5px;
+  padding: 10px 15px;
+  bottom: 25px;
+  left: -15px;
+  box-shadow: value(shadow30);
+  user-select: none;
+}
+
+.tooltip::after {  
+  position: absolute;
+  content: "";
+  border-top: 5px solid white;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  bottom: -5px;
+  left: calc(50% - 5px);
+}

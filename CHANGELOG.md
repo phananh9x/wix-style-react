@@ -14,6 +14,44 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+## 6.8.0 - 2019-03-13
+
+### Added
+
+- `<Calendar/>` - new supported locales Thai, Chinese, and Chech.[#3078](https://github.com/wix/wix-style-react/pull/3078)
+- `<CalendarPanel/>` - new supported locales Thai, Chinese, and Chech.[#3078](https://github.com/wix/wix-style-react/pull/3078)
+- `<DatePicker/>` - new supported locales Thai, Chinese, and Chech.[#3078](https://github.com/wix/wix-style-react/pull/3078)
+- `<Slider/>` - add single track support [#3062](https://github.com/wix/wix-style-react/pull/3062)
+- `<NumberInput />` - add new NumberInput component [#3033](https://github.com/wix/wix-style-react/pull/3033)
+
+### Fixed
+- `<ImageViewer/>` - fix image position in Firefox [#3092](https://github.com/wix/wix-style-react/pull/3092)
+
+### Docs
+
+- `<Slider/>` - docs redesign [#3062](https://github.com/wix/wix-style-react/pull/3062)
+
+## 6.7.3 - 2019-03-07
+
+### Added
+
+- `<Layout/>` - add justifyItems and alignItems props [#3056](https://github.com/wix/wix-style-react/pull/3056)
+- `<PopoverMenu/>` - add `moveBy` prop [#3064](https://github.com/wix/wix-style-react/pull/3064)
+- `<FormField/>` - add `labelSize` prop [#3075](https://github.com/wix/wix-style-react/pull/3075)
+
+### Fixed
+
+- `<Button/>` - fix proptype definition [#3066](https://github.com/wix/wix-style-react/pull/3066)
+- `<TextButton/>` - fix proptype definition [#3066](https://github.com/wix/wix-style-react/pull/3066)
+- `<CloseButton/>` - fix proptype definition [#3066](https://github.com/wix/wix-style-react/pull/3066)
+- `<IconButton/>` - fix proptype definition [#3066](https://github.com/wix/wix-style-react/pull/3066)
+
+## 6.7.2 - 2019-03-03
+
+No Changes (Patch version, only to re-publish Storybook, after failed publish)
+
 ## 6.7.1 - 2019-02-28
 
 ### Added

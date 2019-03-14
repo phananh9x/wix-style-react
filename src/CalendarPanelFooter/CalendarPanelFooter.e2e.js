@@ -6,7 +6,7 @@ import {
 
 import { eyesItInstance } from '../../test/utils/eyes-it';
 import { calendarPanelFooterTestkitFactory } from '../../testkit/protractor';
-import { storySettings } from '../../stories/CalendarPanelFooter/storySettings';
+import { storySettings } from './docs/storySettings';
 
 const eyes = eyesItInstance();
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Markdown from 'wix-storybook-utils/Markdown';
-import LiveCodeExample from '../utils/Components/LiveCodeExample';
+import LiveCodeExample from '../utils/LiveCodeExample';
 import exampleCode from '!raw-loader!./example';
 
 const playaroundExplanation = `

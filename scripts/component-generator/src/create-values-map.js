@@ -6,8 +6,14 @@ module.exports = answers => {
 
   return {
     ...answers,
-
+    descriptionJSDoc:
+      answers.description === undefined
+        ? ''
+        : `/**
+ * ${answers.description}
+ */`,
     componentName,
+    CATEGORY: answers.testComponent ? 'TESTS' : 'COMPONENTS',
     'component-name': componentNameSnake,
   };
 };

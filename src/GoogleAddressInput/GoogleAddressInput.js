@@ -167,11 +167,15 @@ class GoogleAddressInput extends React.Component {
       suggestion &&
       suggestion.place_id
     ) {
-      handlerCall = this.client.placeDetails({
+      const request = {
         request: {
           placeId: suggestion.place_id,
         },
-      });
+      };
+      if (this.props.placeDetailsFields) {
+        request.request.fields = this.props.placeDetailsFields;
+      }
+      handlerCall = this.client.placeDetails(request);
     } else {
       handlerCall = this.client.geocode({
         request: {
@@ -325,6 +329,9 @@ GoogleAddressInput.propTypes = {
 
   /** Lower level filtering of autocomplete result types (see [here](https://developers.google.com/places/supported_types) for list)  */
   filterTypes: PropTypes.array,
+
+  /** Fields indicating which types of Places data to return (see [here](https://developers.google.com/maps/documentation/javascript/places#place_details)**/
+  placeDetailsFields: PropTypes.array,
 
   /** Should display error marker */
   error: PropTypes.bool,

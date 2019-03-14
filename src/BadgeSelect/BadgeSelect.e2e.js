@@ -7,7 +7,7 @@ import {
 } from 'wix-ui-test-utils/protractor';
 
 import { badgeSelectTestkitFactory } from '../../testkit/protractor';
-import { storySettings } from '../../stories/BadgeSelect/storySettings';
+import { storySettings } from './docs/storySettings';
 
 describe('BadgeSelect', () => {
   const eyes = eyesItInstance();

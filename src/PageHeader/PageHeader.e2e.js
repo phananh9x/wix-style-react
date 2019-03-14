@@ -7,7 +7,7 @@ import {
 } from '../../testkit/protractor';
 import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
 
-import { storySettings } from '../../stories/components/PageHeader/storySettings';
+import { storySettings } from './docs/storySettings';
 
 describe('PageHeader', () => {
   const eyes = eyesItInstance();

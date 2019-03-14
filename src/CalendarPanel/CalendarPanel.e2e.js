@@ -5,7 +5,7 @@ import {
 
 import { eyesItInstance } from '../../test/utils/eyes-it';
 import { calendarPanelTestkitFactory } from '../../testkit/protractor';
-import { storySettings } from '../../stories/CalendarPanel/storySettings';
+import { storySettings } from './docs/storySettings';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
 const eyes = eyesItInstance();

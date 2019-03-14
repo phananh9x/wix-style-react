@@ -1,7 +1,7 @@
 import { eyesItInstance } from '../../test/utils/eyes-it';
 
 import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
-import { storySettings } from '../../stories/TableToolbar/storySettings';
+import { storySettings } from './docs/storySettings';
 
 describe('TableToolbar', () => {
   const eyes = eyesItInstance();

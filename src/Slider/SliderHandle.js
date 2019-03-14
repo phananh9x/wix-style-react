@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './SliderHandle.scss';
+import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
 
-export default class SliderHandle extends Component {
+import styles from './SliderHandle.st.css';
+
+class SliderHandle extends Component {
   constructor(props) {
     super(props);
 
@@ -15,6 +17,7 @@ export default class SliderHandle extends Component {
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
     this.handleMouseUp = this.handleMouseUp.bind(this);
+    this.clickFocus = this.clickFocus.bind(this);
   }
 
   componentDidMount() {
@@ -24,6 +27,8 @@ export default class SliderHandle extends Component {
   componentWillUnmount() {
     document.removeEventListener('mouseup', this.handleMouseUp);
   }
+
+  clickFocus() {}
 
   handleMouseUp() {
     this.toggleTooltip(false);
@@ -46,30 +51,38 @@ export default class SliderHandle extends Component {
   }
 
   toggleTooltip(showTooltip) {
-    const { displayTooltip } = this.props;
-    this.setState({ showTooltip: displayTooltip && showTooltip });
+    const { displayTooltip, disabled } = this.props;
+    this.setState({ showTooltip: displayTooltip && !disabled && showTooltip });
   }
 
   render() {
+    const { disabled, rtl, focusableOnFocus, focusableOnBlur } = this.props;
     return (
       <div
+        {...styles('root', { disabled }, this.props)}
+        onBlur={focusableOnBlur}
+        onFocus={focusableOnFocus}
+        tabIndex="0"
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
-        className="slider-handle"
+        data-hook="slider-handle"
         style={{ left: `${this.props.offset}%` }}
       >
         {this.state.showTooltip && (
-          <div className="slider-tooltip">{this.props.value}</div>
+          <div data-hook="slider-tooltip" className={styles.tooltip}>
+            {this.props.value}
+          </div>
         )}
-        <div className="slider-handle-inner" />
+        <div {...styles('dot', { disabled, rtl }, this.props)} />
       </div>
     );
   }
 }
 
 SliderHandle.propTypes = {
+  disabled: PropTypes.bool,
   displayTooltip: PropTypes.bool,
   offset: PropTypes.number,
   value: PropTypes.number,
@@ -78,3 +91,5 @@ SliderHandle.propTypes = {
 SliderHandle.defaultProps = {
   displayTooltip: true,
 };
+
+export default withFocusable(SliderHandle);

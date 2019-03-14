@@ -7,7 +7,10 @@ module.exports = (file, api, options) => {
 
   j(imports[imports.length - 1]).insertAfter(
     `// This import was added by the component generator
-import './${ComponentName}/index.story';`,
+require('../src/${ComponentName}/docs/index.story');
+
+// This import was added by the component generator
+require('../src/${ComponentName}/test/${ComponentName}Stories');`,
   );
 
   return root.toSource();

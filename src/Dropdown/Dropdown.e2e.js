@@ -4,7 +4,7 @@ import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
 
 import { dropdownTestkitFactory } from '../../testkit/protractor';
-import { storySettings } from '../../stories/components/Dropdown/storySettings';
+import { storySettings } from '../../stories/Dropdown/storySettings';
 
 describe('Dropdown', () => {
   const eyes = eyesItInstance();

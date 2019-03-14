@@ -7,9 +7,9 @@ import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { tagTestkitFactory } from '../../testkit/protractor';
 import { tooltipTestkitFactory } from 'wix-ui-core/dist/src/testkit/protractor';
-import { createAutoExampleProps } from '../../stories/AutoExampleWrapperContants';
+import { createAutoExampleProps } from '../../stories/utils/AutoExampleWrapperContants';
 
-import { storySettings } from '../../stories/Tag/storySettings';
+import { storySettings } from './docs/storySettings';
 
 describe('Tag', () => {
   const eyes = eyesItInstance();
