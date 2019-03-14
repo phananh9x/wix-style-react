@@ -28,7 +28,7 @@ const liveCode = config =>
       style: { backgroundColor: '#f0f4f7' },
     },
     compact: true,
-    components: { ...baseScope },
+    components: baseScope,
     ...config,
   });
 
@@ -68,54 +68,52 @@ export default {
         'https://github.com/wix/wix-style-react/tree/master/src/CloseButton/CloseButton.js',
       issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
     }),
-    tabs({
-      tabs: [
-        tab({
-          title: 'Description',
-          sections: [
-            importExample({
-              source: "import IconButton from 'wix-style-react/IconButton';",
-            }),
+    tabs([
+      tab({
+        title: 'Description',
+        sections: [
+          importExample({
+            source: "import CloseButton from 'wix-style-react/CloseButton';",
+          }),
 
-            divider(),
+          divider(),
 
-            columns([title('Examples')]),
+          columns([title('Examples')]),
 
-            ...[
-              {
-                title: 'Skins',
-                text: 'CloseButton supports 3 styles',
-                source: examples.skins,
-              },
-              {
-                title: 'Custom Icons',
-                text: 'CloseButton supports custom icons.',
-                source: examples.custom,
-              },
-              {
-                title: 'Sizes',
-                text: 'CloseButton 2 sizes',
-                source: examples.sizes,
-              },
-            ].map(example),
-          ],
-        }),
+          ...[
+            {
+              title: 'Skins',
+              text: 'CloseButton supports 3 styles',
+              source: examples.skins,
+            },
+            {
+              title: 'Custom Icons',
+              text: 'CloseButton supports custom icons.',
+              source: examples.custom,
+            },
+            {
+              title: 'Sizes',
+              text: 'CloseButton 2 sizes',
+              source: examples.sizes,
+            },
+          ].map(example),
+        ],
+      }),
 
-        tab({
-          title: 'API',
-          sections: [api()],
-        }),
+      tab({
+        title: 'API',
+        sections: [api()],
+      }),
 
-        tab({
-          title: 'Testkit',
-          sections: [description({ text: testkit })],
-        }),
+      tab({
+        title: 'Testkit',
+        sections: [description(testkit)],
+      }),
 
-        tab({
-          title: 'Playground',
-          sections: [playground()],
-        }),
-      ],
-    }),
+      tab({
+        title: 'Playground',
+        sections: [playground()],
+      }),
+    ]),
   ],
 };
