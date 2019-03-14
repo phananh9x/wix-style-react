@@ -68,7 +68,7 @@ You can render `<Table.Content/>` anywhere inside a `<Table/>` (not necessarily 
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
-| titleBarVisible | boolean | true | false | wether to display the column's title bar (`<thead>`) or not. (defaults to  `true`) |
+| titleBarVisible | boolean | true | false | whether to display the column's title bar (`<thead>`) or not. (defaults to  `true`) |
 
 ### `<Table.TitleBar/>`
 
