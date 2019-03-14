@@ -13,29 +13,6 @@ describe('EditableTitle', () => {
   });
 
   function runTests(render) {
-    it('should invoke onFocus', async () => {
-      const onFocus = jest.fn();
-      const { driver } = render(componentWithProps({ onFocus }));
-
-      await driver.getInput.focus();
-
-      expect(onFocus).toHaveBeenCalled();
-    });
-
-    it('should invoke onBlur', async () => {
-      const onBlur = jest.fn();
-      const onComplete = jest.fn();
-      const { driver } = render(
-        componentWithProps({ onBlur, onComplete, defaultValue: 'arye' }),
-      );
-
-      await driver.getInput.focus();
-      await driver.getInput.blur();
-
-      expect(onBlur).toHaveBeenCalled();
-      expect(onComplete).toHaveBeenCalled();
-    });
-
     it('should have a title', async () => {
       const initialValue = 'Some Title';
       const { driver } = render(componentWithProps({ initialValue }));
@@ -58,7 +35,7 @@ describe('EditableTitle', () => {
 
       await driver.clickHeading();
 
-      expect(await driver.getInput.getValue()).toEqual(defaultValue);
+      expect(await driver.getInput().getValue()).toEqual(defaultValue);
     });
   }
 });

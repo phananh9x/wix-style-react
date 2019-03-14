@@ -1,22 +1,25 @@
 import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
-import { headingUniDriverFactory } from '../Heading/Heading.uni.driver';
 import { testkit as inputUniDriverFactory } from '../Input/Input.uni.driver';
+
+const dataHookOf = dataHook => `[data-hook="${dataHook}"]`;
 
 export const editableTitleUniDriverFactory = base => {
   const dataHook = {
-    heading: `[data-hook="heading"]`,
-    label: `[data-hook="label"]`,
+    heading: dataHookOf('heading'),
+    renamingField: dataHookOf('renaming-field'),
   };
+
+  const inputDriver = () =>
+    inputUniDriverFactory(base.$(dataHook.renamingField));
+  const heading = base.$(dataHook.heading);
 
   return {
     ...baseUniDriverFactory(base),
 
-    getInput: inputUniDriverFactory(base),
-    getHeading: headingUniDriverFactory(base.$(dataHook.heading)),
+    getInput: inputDriver,
+    getHeadingText: () => heading.text(),
+    clickHeading: () => heading.click(),
 
-    getLabelText: () => base.$(dataHook.label).text(),
-    getHeadingText: () => base.$(dataHook.heading).text(),
-    clickHeading: () => base.$(dataHook.heading).click(),
     exists: () => !!base.exists(),
   };
 };

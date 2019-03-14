@@ -11,12 +11,21 @@ class EditableTitle extends React.Component {
 
     this.state = {
       focus: false,
-      value: props.initialValue,
+      value: props.initialValue || '',
     };
   }
 
   onChange = e => {
     this.setState({ value: e.target.value });
+  };
+
+  showPlaceholder = () => !this.state.value && this.props.defaultValue;
+
+  onFocus = () => {
+    if (!this.state.value && this.props.defaultValue) {
+      this.setState({ value: this.props.defaultValue });
+    }
+    this.setState({ focus: true }, () => this.wsrInput.focus());
   };
 
   render() {
@@ -30,20 +39,20 @@ class EditableTitle extends React.Component {
       <div
         className={classNames(conditionalClasses, styles.root, className)}
         data-hook={dataHook}
+        tabIndex={0}
+        onFocus={this.onFocus}
       >
         <div
-          onClick={() => {
-            if (!this.state.value && this.props.defaultValue) {
-              this.setState({ value: this.props.defaultValue });
-            }
-            this.setState({ focus: true }, () => this.wsrInput.focus());
-          }}
+          onClick={this.onFocus}
           data-hook="heading"
-          className={classNames({
-            [styles.headerIsRenaming]: this.state.focus,
-            [styles.heading]: !this.state.focus,
-            [styles.placeholder]: !this.state.value && this.props.defaultValue,
-          })}
+          className={classNames(
+            {
+              [styles.headerIsRenaming]:
+                this.state.focus && !this.showPlaceholder(),
+              [styles.placeholder]: this.showPlaceholder(),
+            },
+            styles.heading,
+          )}
         >
           <Heading ellipsis>
             {this.state.value || this.props.defaultValue}
@@ -63,59 +72,46 @@ class EditableTitle extends React.Component {
             [styles.hiddenInput]: !this.state.focus,
           })}
           style={{ position: 'absolute', zIndex: 1, width: '100%' }}
+          data-hook="renaming-field"
         >
           <Input
-            dataHook="renaming-field"
             className={styles.nbinput}
             textOverflow="clip"
             maxLength={524288}
             onChange={this.onChange}
             value={this.state.value}
             ref={wsrInput => (this.wsrInput = wsrInput)}
-            onFocus={e => {
+            onFocus={() => {
               this.setState({ focus: true });
-              if (typeof this.props.onFocus === 'function') {
-                this.props.onFocus(e);
-              }
             }}
-            onBlur={e => {
-              if (!this.state.value) {
-                this.setState({ value: this.props.defaultValue });
-              }
-              this.setState({ focus: false });
-              if (typeof this.props.onBlur === 'function') {
-                this.props.onBlur(e);
-              }
-              if (typeof this.props.onComplete === 'function') {
-                this.props.onComplete(this.state.value);
-              }
-            }}
+            onBlur={this.onValueSubmission}
+            onEnterPressed={this.onValueSubmission}
           />
         </div>
       </div>
     );
   }
+
+  onValueSubmission = () => {
+    if (!this.state.value) {
+      this.setState({ value: this.props.defaultValue });
+    }
+    this.setState({ focus: false });
+    if (typeof this.props.onValueSubmission === 'function') {
+      this.props.onValueSubmission(this.state.value);
+    }
+  };
 }
 
 EditableTitle.displayName = 'EditableTitle';
-
-EditableTitle.defaultProps = {
-  initialValue: '',
-};
 
 EditableTitle.propTypes = {
   /** Value - initial value to display */
   initialValue: PropTypes.string,
   /** default - value to display when empty, when clicked the input gets this value */
   defaultValue: PropTypes.string,
-  /** onComplete - invoked when done editing */
-  onComplete: PropTypes.func,
-  /** onFocus - when focusing the input */
-  onFocus: PropTypes.func,
-  /** onBlur - when blurring the input */
-  onBlur: PropTypes.func,
-  /** disabled - when input is disabled */
-  disabled: PropTypes.bool,
+  /** onValueSubmission - invoked when done editing */
+  onValueSubmission: PropTypes.func,
 };
 
 export default EditableTitle;
