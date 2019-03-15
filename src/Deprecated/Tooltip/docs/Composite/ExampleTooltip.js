@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Template from './Template';
-import RadioGroup from '../../../RadioGroup';
-import ToggleSwitch from '../../../ToggleSwitch';
-import Label from '../../../Label';
-import Input from '../../../Input';
+import RadioGroup from '../../../../RadioGroup';
+import ToggleSwitch from '../../../../ToggleSwitch';
+import Label from '../../../../Label';
+import Input from '../../../../Input';
 
 import styles from './Example.scss';
 

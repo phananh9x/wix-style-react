@@ -64,7 +64,7 @@ require('../src/Breadcrumbs/docs/index.story'); // 6.2 + Breadcrumbs
 require('../src/Tabs/docs'); // 6.3 Tabs
 
 // 7. Tooltips
-require('../src/Tooltip/docs/Composite/CompositeStory'); // 7.1 Tooltip
+require('../src/Tooltip/docs/index.story'); // 7.1 Tooltip
 require('../src/Popover/docs/index.story'); //7.2 Popover
 require('../src/PopoverMenu/docs/index.story'); // 7.3 Popover Menu
 
@@ -182,3 +182,6 @@ require('../src/RichTextInputArea/docs/index.story');
 
 // This import was added by the component generator
 require('../src/NoBorderInput/docs/index.story');
+
+// Deprecated
+require('../src/Deprecated/Tooltip/docs/Composite/CompositeStory'); // Deprecated/Tooltip

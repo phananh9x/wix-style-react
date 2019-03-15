@@ -16,6 +16,7 @@ export const Category = {
   SELECTION: '4. Selection',
   TOOLTIP_AND_POPOVER: '7. Tooltip and Popover',
   PICKERS_AND_SELECTORS: '11. Pickers and Selectors',
+  DEPRECATED: 'Deprecated',
   OTHER: '12. Other',
   COMPONENTS: 'Components',
   STYLING: 'Styling',

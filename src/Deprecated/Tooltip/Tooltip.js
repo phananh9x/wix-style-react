@@ -1,6 +1,6 @@
 import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import WixComponent from '../BaseComponents/WixComponent';
+import WixComponent from '../../BaseComponents/WixComponent';
 import ReactDOM from 'react-dom';
 import TooltipContent from './TooltipContent';
 import position from './TooltipPosition';

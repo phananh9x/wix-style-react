@@ -1,4 +1,4 @@
-@import '../../../common.scss';
+@import '../../../../common.scss';
 
 .option {
   margin-bottom: 10px;
@@ -16,7 +16,9 @@
   padding: 20px;
 }
 
-.input { width: 60%; }
+.input {
+  width: 60%;
+}
 .output {
   width: 40%;
   background-color: $GR30;
@@ -55,4 +57,3 @@
   padding: 10px;
   border: solid 1px #efefef;
 }
-

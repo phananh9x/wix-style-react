@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Category } from '../../../../stories/storiesHierarchy';
+import { Category } from '../../../../../stories/storiesHierarchy';
 import InteractiveCodeExample from 'wix-storybook-utils/InteractiveCodeExample';
 import TabbedView from 'wix-storybook-utils/TabbedView';
 import Markdown from 'wix-storybook-utils/Markdown';
@@ -27,7 +27,7 @@ import ExampleMoveRaw from '!raw-loader!../Core/ExampleMove';
 
 import TooltipSource from '!raw-loader!../../Tooltip';
 
-storiesOf(Category.TOOLTIP_AND_POPOVER, module).add('7.1. Tooltip', () => (
+storiesOf(Category.DEPRECATED, module).add('7.1. Tooltip', () => (
   <TabbedView tabs={['Usage', 'API', 'Testkit']}>
     <div>
       <h1>Tooltip</h1>
