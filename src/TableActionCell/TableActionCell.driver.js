@@ -1,5 +1,5 @@
 import popoverMenuDriverFactory from '../PopoverMenu/PopoverMenu.driver';
-import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
+import tooltipDriverFactory from '../Deprecated/Tooltip/Tooltip.driver';
 import buttonDriverFactory from '../Deprecated/Button/Button.driver.js';
 import { INTERNAL_DRIVER_SYMBOL } from '../../test/utils/private-drivers';
 

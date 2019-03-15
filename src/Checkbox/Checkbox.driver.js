@@ -1,7 +1,7 @@
 import { isClassExists } from '../../test/utils';
 import { labelDriverFactory } from 'wix-ui-backoffice/dist/src/components/Label/Label.driver';
 import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
-import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
+import tooltipDriverFactory from '../Deprecated/Tooltip/Tooltip.driver';
 
 const labelTestkitFactory = testkitFactoryCreator(labelDriverFactory);
 const toolTipTestkitFactory = testkitFactoryCreator(tooltipDriverFactory);

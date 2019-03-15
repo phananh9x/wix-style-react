@@ -1,13 +1,13 @@
 import React from 'react';
-import eventually from '../../test/utils/eventually';
+import eventually from '../../../test/utils/eventually';
 import {
   createRendererWithDriver,
   createRendererWithUniDriver,
   cleanup,
-} from '../../test/utils/react';
+} from '../../../test/utils/react';
 import Tooltip from './Tooltip';
-import { buttonTestkitFactory } from '../../testkit';
-import Button from '../Button';
+import { buttonTestkitFactory } from '../../../testkit';
+import Button from '../../Button';
 
 import tooltipDriverFactory from './Tooltip.driver';
 import { teskitTooltip } from './Tooltip.uni.driver';

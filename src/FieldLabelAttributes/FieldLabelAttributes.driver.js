@@ -1,4 +1,4 @@
-import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
+import tooltipDriverFactory from '../Deprecated/Tooltip/Tooltip.driver';
 
 const fieldLabelAttributesDriverFactory = ({ element }) => {
   return {

@@ -1,5 +1,5 @@
 import textDriverFactory from '../Text/Text.driver';
-import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
+import tooltipDriverFactory from '../Deprecated/Tooltip/Tooltip.driver';
 
 const addItemDriverFactory = ({ element, eventTrigger }) => {
   const byHook = hook => element.querySelector(`[data-hook*="${hook}"]`);

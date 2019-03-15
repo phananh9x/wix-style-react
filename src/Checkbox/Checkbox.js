@@ -9,7 +9,7 @@ import WixComponent from '../BaseComponents/WixComponent';
 import { withFocusable, focusableStates } from '../common/Focusable';
 
 import { generateID } from '../utils/generateId';
-import Tooltip from '../Tooltip';
+import Tooltip from '../Deprecated/Tooltip';
 
 /** a simple WixStyle checkbox */
 class Checkbox extends WixComponent {

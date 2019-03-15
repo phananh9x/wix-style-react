@@ -1,7 +1,7 @@
 import React from 'react';
 import { TooltipContainerStrategy } from './TooltipContainerStrategy';
 import { mount } from 'enzyme';
-import Page from '../Page';
+import Page from '../../Page';
 
 describe('TooltipContainerStrategy', () => {
   it('should return body when element is null', () => {

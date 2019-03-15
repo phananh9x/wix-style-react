@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import style from './TableActionCell.st.css';
 import HoverSlot from './HoverSlot';
-import Tooltip from '../Tooltip/Tooltip';
+import Tooltip from '../Deprecated/Tooltip/Tooltip';
 import Button from '../Deprecated/Button';
 import PopoverMenu from '../PopoverMenu';
 import PopoverMenuItem from '../PopoverMenuItem';

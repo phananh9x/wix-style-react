@@ -1,7 +1,7 @@
 import buttonDriverFactory from '../Deprecated/Button/Button.driver';
 
 import addItemDriverFactory from '../AddItem/AddItem.driver';
-import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
+import tooltipDriverFactory from '../Deprecated/Tooltip/Tooltip.driver';
 
 const imageViewerDriverFactory = ({ element, eventTrigger }) => {
   const addItemDataHook = 'add-image';

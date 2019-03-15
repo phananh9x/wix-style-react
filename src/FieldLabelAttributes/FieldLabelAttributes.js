@@ -2,7 +2,7 @@ import React from 'react';
 import { bool, node } from 'prop-types';
 import styles from './FieldLabelAttributes.scss';
 import WixComponent from '../BaseComponents/WixComponent';
-import Tooltip from '../Tooltip';
+import Tooltip from '../Deprecated/Tooltip';
 import InfoCircle from '../new-icons/InfoCircle';
 
 class FieldLabelAttributes extends WixComponent {

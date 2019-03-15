@@ -6,7 +6,7 @@ import FormFieldError from 'wix-ui-icons-common/system/FormFieldError';
 import classNames from 'classnames';
 
 import style from './ImageViewer.scss';
-import Tooltip from '../Tooltip';
+import Tooltip from '../Deprecated/Tooltip';
 import Button from '../Deprecated/Button';
 import WixComponent from '../BaseComponents/WixComponent';
 import AddItem from '../AddItem/AddItem';

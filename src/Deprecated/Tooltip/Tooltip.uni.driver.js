@@ -1,5 +1,5 @@
-import { ReactBase } from '../../test/utils/unidriver/ReactBase';
-import eventually from '../../test/utils/eventually';
+import { ReactBase } from '../../../test/utils/unidriver/ReactBase';
+import eventually from '../../../test/utils/eventually';
 import { reactUniDriver } from 'unidriver/react';
 
 const arrowDirection = {

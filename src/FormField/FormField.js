@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Label from '../Label';
-import Tooltip from '../Tooltip';
+import Tooltip from '../Deprecated/Tooltip';
 import Text, { SKINS } from '../Text';
 
 import InfoIcon from '../common/InfoIcon';

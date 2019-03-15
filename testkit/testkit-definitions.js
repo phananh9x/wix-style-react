@@ -83,7 +83,6 @@ module.exports = {
   PageHeader: { skipSanityTest: true },
   PopoverMenuItem: { skipSanityTest: true, noTestkit: true },
   TableToolbar: { skipSanityTest: true, noTestkit: true },
-  Tooltip: { skipSanityTest: true },
   VBox: { skipSanityTest: true, noTestkit: true },
   Collapse: { skipSanityTest: true, noTestkit: true },
   Card: { skipSanityTest: true, noTestkit: true },
@@ -207,5 +206,10 @@ module.exports = {
 
   ColorInput: {
     unidriver: true,
+  },
+
+  Tooltip: {
+    skipSanityTest: true,
+    testkitPath: '../src/Deprecated/Tooltip/Tooltip.driver',
   },
 };

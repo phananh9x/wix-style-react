@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import WixComponent from '../BaseComponents/WixComponent';
 import Arc from './Arc';
 import css from './Loader.scss';
-import Tooltip from '../Tooltip';
+import Tooltip from '../Deprecated/Tooltip';
 import FormFieldError from '../new-icons/system/FormFieldError';
 import FormFieldErrorSmall from '../new-icons/system/FormFieldErrorSmall';
 import ToggleOn from '../new-icons/system/ToggleOn';

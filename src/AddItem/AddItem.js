@@ -8,7 +8,7 @@ import AddItemMedium from 'wix-ui-icons-common/system/AddItemMedium';
 import AddItemSmall from 'wix-ui-icons-common/system/AddItemSmall';
 import Add from '../new-icons/Add';
 import ActionText from './components/ActionText';
-import Tooltip from '../Tooltip';
+import Tooltip from '../Deprecated/Tooltip';
 import AddMedia from 'wix-ui-icons-common/system/AddMedia';
 
 import styles from './AddItem.scss';
